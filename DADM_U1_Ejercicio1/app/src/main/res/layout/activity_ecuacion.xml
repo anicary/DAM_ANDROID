@@ -12,11 +12,13 @@
         android:layout_height="wrap_content"
         android:text="Escriba un valor"
         android:textSize="30sp"/>
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="mayor que 0"
-        android:textSize="20sp"/>
+        android:inputType="number"
+        android:textSize="20sp" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -50,11 +52,13 @@
         android:layout_height="wrap_content"
         android:hint="El otro valor"
         android:textSize="30sp"/>
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="mayor que 0"
-        android:textSize="20sp"/>
+        android:inputType="number"
+        android:textSize="20sp" />
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
