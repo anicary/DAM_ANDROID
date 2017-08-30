@@ -11,34 +11,36 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Escriba un valor"
-        android:textSize="30sp"/>
+        android:textSize="30sp"
+        android:id="@+id/etiqueta1"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
         android:hint="mayor que 0"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:id="@+id/valor1"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Que deseas hacer"
-        android:textSize="30sp"/>
+        android:textSize="30sp"
+        android:id="@+id/etiqueta2"/>
     <RadioGroup
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:checkedButton="@+id/rbtn1">
+        android:layout_height="wrap_content">
 
         <RadioButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/rbtn1"
+            android:id="@+id/operacion1"
             android:text="Sumar"
             android:textSize="20sp"
             android:checked="true"/>
         <RadioButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/rbtn2"
+            android:id="@+id/operacion2"
             android:text="Dividir"
             android:textSize="20sp"
             android:checked="false"/>
@@ -48,17 +50,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="El otro valor"
-        android:textSize="30sp"/>
+        android:textSize="30sp"
+        android:id="@+id/etiqueta3"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
         android:hint="mayor que 0"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:id="@+id/valor2"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Realizar"/>
+        android:text="Realizar"
+        android:id="@+id/realizar"/>
 
 
 
