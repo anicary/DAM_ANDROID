@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">PracticaU1_1_LayoutsymasLayout_AnaCarlinaMondragonRangel</string>
+    <string-array name="ventas">
+        <item>Ventas</item>
+        <item>Informatica</item>
+        <item>Jardineria/da</item>
+    </string-array>
+    <string-array name="estado">
+        <item>Soltero</item>
+        <item>Casado</item>
+        <item>Viudo/da</item>
+    </string-array>
+</resources>
