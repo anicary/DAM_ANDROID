@@ -16,7 +16,6 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
         android:hint="mayor que 0"
         android:textSize="20sp"
         android:id="@+id/valor1"/>
@@ -55,7 +54,6 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
         android:hint="mayor que 0"
         android:textSize="20sp"
         android:id="@+id/valor2"/>
@@ -63,6 +61,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Realizar"
+        android:onClick="operacion"
         android:id="@+id/realizar"/>
 
 
