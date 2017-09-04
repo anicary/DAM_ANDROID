@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="mx.edu.ittepic.dadm_1_ejercicio2.FrameLayoutEjemplo">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/contenedorimagenes"
+        android:src="@drawable/imagen1"
+        android:layout_gravity="center" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn1"
+        android:layout_gravity="top|left"
+        android:text="IMAGEN 1"
+        android:onClick="cambiarImagen1"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn2"
+        android:layout_gravity="top|right"
+        android:text="IMAGEN 2"
+        android:onClick="cambiarImagen2"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn3"
+        android:layout_gravity="bottom|left"
+        android:text="IMAGEN 3"
+        android:onClick="cambiarImagen3"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn4"
+        android:layout_gravity="bottom|right"
+        android:text="IMAGEN 4"
+        android:onClick="cambiarImagen4"/>
+
+
+
+</FrameLayout>

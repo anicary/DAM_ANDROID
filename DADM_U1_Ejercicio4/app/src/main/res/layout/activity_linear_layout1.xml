@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/fondodegradado"
+    tools:context="mx.edu.ittepic.dadm_u1_ejercicio4.LinearLayout1">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/itt_resplandor"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ELIGE UNA CARRERA"
+        android:textColor="#FFFFFF"
+        android:textSize="20dp"
+        android:textStyle="bold"/>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="7dp"
+            android:background="#FFFFFF">
+
+            <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/admon"
+                android:onClick="administracion"
+        android:id="@+id/admon"
+        android:layout_marginRight="5dp" />
+         <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/arqui"
+             android:onClick="arquitectura"
+        android:id="@+id/arqui"
+        android:layout_marginRight="5dp"/>
+            <ImageView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:src="@drawable/civil"
+                android:onClick="civil"
+       android:id="@+id/civil"
+       android:layout_marginRight="5dp"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/electrica"
+        android:id="@+id/electrica"
+        android:onClick="electrica"
+        android:layout_marginRight="5dp"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/industrial"
+        android:id="@+id/industrial"
+        android:onClick="industrial"
+        android:layout_marginRight="5dp"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/quimica"
+        android:onClick="quimica"
+        android:layout_marginRight="5dp"/>
+
+     <ImageView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:src="@drawable/sistemas"
+         android:id="@+id/sistemas"
+         android:onClick="sistemas"
+         android:layout_marginRight="5dp"/>
+     <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/tic"
+         android:onClick="tic"
+                android:id="@+id/tic"
+                android:layout_marginRight="5dp"/>
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TERMINAR"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"/>
+
+
+</LinearLayout>
