@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo7"
     tools:context="mx.edu.ittepic.practicau1_1_retosemana_anacarolinamondragonrangel.MenuBonitoSinImagenes">
 
     <TextView
@@ -29,11 +30,6 @@
             android:layout_toStartOf="@+id/movil"
             android:layout_marginEnd="20dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:layout_gravity="center"
-            android:text=""/>
         </FrameLayout>
 
         <FrameLayout
@@ -63,11 +59,6 @@
             android:layout_above="@+id/android"
             android:layout_alignStart="@+id/internet">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_gravity="center"
-                android:text=""/>
         </FrameLayout>
 
         <FrameLayout
@@ -142,6 +133,17 @@
                 android:layout_gravity="center"
                 android:text="ANDROID"
                 style="@style/circulostexto"/>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="70dp"
+            android:layout_height="10dp"
+            android:background="@drawable/linea"
+            android:id="@+id/rectangulo"
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@+id/itic"
+            android:layout_marginStart="15dp">
 
         </FrameLayout>
 
