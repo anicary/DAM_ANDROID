@@ -1,0 +1,29 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="descripcion">
+            <item name="android:textSize">20dp</item>
+            <item name="android:textColor">#ef0509</item>
+            <item name="android:background">#f5dc1a</item>
+            <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="vuelosbase">
+            <item name="android:textSize">18dp</item>
+            <item name="android:textColor">#0421fc</item>
+            <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="vuelosbase1" parent = "vuelosbase">
+        <item name="android:background">#ffff00</item>
+    </style>
+    <style name="vuelobase2" parent="vuelosbase">
+        <item name="android:background">#aca</item>
+    </style>
+</resources>
