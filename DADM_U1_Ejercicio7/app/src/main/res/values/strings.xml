@@ -1,9 +1,3 @@
 <resources>
-    <string name="app_name">DADM_U1_Ejercicio7</string>
-    <string-array name="estados">
-        <item>Pakistan</item>
-        <item>Egipto</item>
-        <item>Irak</item>
-        <item>Libano</item>
-    </string-array>
+    <string name="app_name">los papues</string>
 </resources>
