@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo7"
+    android:background="@drawable/fondoblue"
     tools:context="mx.edu.ittepic.practicau1_1_retosemana_anacarolinamondragonrangel.MenuBonitoSinImagenes">
 
     <TextView
@@ -12,13 +12,22 @@
         android:layout_height="wrap_content"
         android:fontFamily="cursive"
         android:text="(C)Ana Carolina"
+        android:textColor="@color/grey_font"
+        android:shadowColor="@color/text_shadow_white"
+        android:shadowDx="-4"
+        android:shadowDy="-4"
+        android:shadowRadius="2"
+        android:textStyle="bold"
         android:textAlignment="center"
-        android:textSize="40dp" />
-    
+        android:layout_marginTop="25sp"
+        android:textSize="40dp"
+        android:id="@+id/titulo"/>
+
     <RelativeLayout
         android:layout_width="350dp"
         android:layout_height="500dp"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:background="@drawable/fondo3">
 
 
         <FrameLayout
@@ -41,7 +50,8 @@
             android:layout_marginStart="25dp"
             android:layout_marginTop="112dp"
             android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true">
+            android:layout_alignParentStart="true"
+            android:onClick="internet">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -69,7 +79,8 @@
             android:id="@+id/movil"
             android:layout_above="@+id/itic"
             android:layout_alignEnd="@+id/app"
-            android:layout_marginEnd="12dp">
+            android:layout_marginEnd="12dp"
+            android:onClick="movil">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -87,7 +98,8 @@
             android:layout_below="@+id/internet"
             android:layout_toEndOf="@+id/internet"
             android:layout_marginTop="12dp"
-            android:id="@+id/itic">
+            android:id="@+id/itic"
+            android:onClick="itic">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -106,7 +118,8 @@
             android:layout_alignTop="@+id/itic"
             android:layout_toEndOf="@+id/itic"
             android:layout_marginTop="45dp"
-            android:id="@+id/app">
+            android:id="@+id/app"
+            android:onClick="apps">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -125,7 +138,8 @@
             android:layout_below="@+id/itic"
             android:layout_toStartOf="@+id/app"
             android:layout_marginEnd="18dp"
-            android:id="@+id/android">
+            android:id="@+id/android"
+            android:onClick="android">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -135,19 +149,16 @@
                 style="@style/circulostexto"/>
 
         </FrameLayout>
-
-        <FrameLayout
-            android:layout_width="70dp"
-            android:layout_height="10dp"
-            android:background="@drawable/linea"
-            android:id="@+id/rectangulo"
-            android:layout_alignParentBottom="true"
-            android:layout_alignStart="@+id/itic"
-            android:layout_marginStart="15dp">
-
-        </FrameLayout>
-
-
     </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="70dp"
+        android:layout_height="10dp"
+        android:background="@drawable/linea"
+        android:id="@+id/rectangulo"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="10sp">
+
+    </FrameLayout>
 
 </FrameLayout>

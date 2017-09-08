@@ -65,6 +65,7 @@ public class RelativeLayout1 extends AppCompatActivity {
                 Toast.makeText(this, "error no se asigno ningun valor al peso", Toast.LENGTH_SHORT).show();
             }
         }
+
     }
 
 
