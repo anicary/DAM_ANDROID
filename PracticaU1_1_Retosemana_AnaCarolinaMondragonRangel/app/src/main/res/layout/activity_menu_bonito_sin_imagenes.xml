@@ -58,6 +58,11 @@
                 android:layout_height="20dp"
                 android:layout_gravity="center"
                 android:text="Internet"
+                android:textColor="@color/light_font"
+                android:shadowColor="@color/text_shadow_white"
+                android:shadowDx="4"
+                android:shadowDy="4"
+                android:shadowRadius="8"
                 style="@style/circulostexto"/>
         </FrameLayout>
 
@@ -87,6 +92,11 @@
                 android:layout_height="20dp"
                 android:layout_gravity="center"
                 android:text="MOVIL"
+                android:textColor="@color/light_font"
+                android:shadowColor="@color/text_shadow_white"
+                android:shadowDx="4"
+                android:shadowDy="4"
+                android:shadowRadius="8"
                 style="@style/circulostexto"/>
 
         </FrameLayout>
@@ -106,6 +116,11 @@
                 android:layout_height="20dp"
                 android:layout_gravity="center"
                 android:text="ITIC"
+                android:textColor="@color/light_font"
+                android:shadowColor="@color/text_shadow_white"
+                android:shadowDx="4"
+                android:shadowDy="4"
+                android:shadowRadius="8"
                 style="@style/circulostexto"/>
 
         </FrameLayout>
@@ -126,6 +141,11 @@
                 android:layout_height="20dp"
                 android:layout_gravity="center"
                 android:text="APPS"
+                android:textColor="@color/light_font"
+                android:shadowColor="@color/text_shadow_white"
+                android:shadowDx="4"
+                android:shadowDy="4"
+                android:shadowRadius="8"
                 style="@style/circulostexto"/>
 
         </FrameLayout>
@@ -146,6 +166,11 @@
                 android:layout_height="20dp"
                 android:layout_gravity="center"
                 android:text="ANDROID"
+                android:textColor="@color/light_font"
+                android:shadowColor="@color/text_shadow_white"
+                android:shadowDx="4"
+                android:shadowDy="4"
+                android:shadowRadius="8"
                 style="@style/circulostexto"/>
 
         </FrameLayout>
