@@ -23,159 +23,6 @@
         android:textSize="40dp"
         android:id="@+id/titulo"/>
 
-    <RelativeLayout
-        android:layout_width="350dp"
-        android:layout_height="500dp"
-        android:layout_gravity="center"
-        android:background="@drawable/fondo3">
-
-
-        <FrameLayout
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:background="@drawable/circulo1"
-            android:id="@+id/vacio1"
-            android:layout_alignTop="@+id/movil"
-            android:layout_toStartOf="@+id/movil"
-            android:layout_marginEnd="20dp">
-
-        </FrameLayout>
-
-        <FrameLayout
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:background="@drawable/circulo1"
-            android:id="@+id/internet"
-            android:layout_marginLeft="24dp"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="112dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:onClick="internet">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_gravity="center"
-                android:text="Internet"
-                android:textColor="@color/light_font"
-                android:shadowColor="@color/text_shadow_white"
-                android:shadowDx="4"
-                android:shadowDy="4"
-                android:shadowRadius="8"
-                style="@style/circulostexto"/>
-        </FrameLayout>
-
-        <FrameLayout
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:background="@drawable/circulo1"
-            android:id="@+id/vacio2"
-            android:layout_above="@+id/android"
-            android:layout_alignStart="@+id/internet">
-
-        </FrameLayout>
-
-        <FrameLayout
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:background="@drawable/circulo1"
-            android:layout_marginBottom="17dp"
-            android:id="@+id/movil"
-            android:layout_above="@+id/itic"
-            android:layout_alignEnd="@+id/app"
-            android:layout_marginEnd="12dp"
-            android:onClick="movil">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_gravity="center"
-                android:text="MOVIL"
-                android:textColor="@color/light_font"
-                android:shadowColor="@color/text_shadow_white"
-                android:shadowDx="4"
-                android:shadowDy="4"
-                android:shadowRadius="8"
-                style="@style/circulostexto"/>
-
-        </FrameLayout>
-
-        <FrameLayout
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:background="@drawable/circulo1"
-            android:layout_below="@+id/internet"
-            android:layout_toEndOf="@+id/internet"
-            android:layout_marginTop="12dp"
-            android:id="@+id/itic"
-            android:onClick="itic">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_gravity="center"
-                android:text="ITIC"
-                android:textColor="@color/light_font"
-                android:shadowColor="@color/text_shadow_white"
-                android:shadowDx="4"
-                android:shadowDy="4"
-                android:shadowRadius="8"
-                style="@style/circulostexto"/>
-
-        </FrameLayout>
-
-        <FrameLayout
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:background="@drawable/circulo1"
-            android:layout_marginStart="27dp"
-            android:layout_alignTop="@+id/itic"
-            android:layout_toEndOf="@+id/itic"
-            android:layout_marginTop="45dp"
-            android:id="@+id/app"
-            android:onClick="apps">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_gravity="center"
-                android:text="APPS"
-                android:textColor="@color/light_font"
-                android:shadowColor="@color/text_shadow_white"
-                android:shadowDx="4"
-                android:shadowDy="4"
-                android:shadowRadius="8"
-                style="@style/circulostexto"/>
-
-        </FrameLayout>
-
-        <FrameLayout
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:background="@drawable/circulo1"
-            android:layout_marginTop="22dp"
-            android:layout_below="@+id/itic"
-            android:layout_toStartOf="@+id/app"
-            android:layout_marginEnd="18dp"
-            android:id="@+id/android"
-            android:onClick="android">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_gravity="center"
-                android:text="ANDROID"
-                android:textColor="@color/light_font"
-                android:shadowColor="@color/text_shadow_white"
-                android:shadowDx="4"
-                android:shadowDy="4"
-                android:shadowRadius="8"
-                style="@style/circulostexto"/>
-
-        </FrameLayout>
-    </RelativeLayout>
-
     <FrameLayout
         android:layout_width="70dp"
         android:layout_height="10dp"
@@ -185,5 +32,158 @@
         android:layout_marginBottom="10sp">
 
     </FrameLayout>
+
+    <RelativeLayout
+        android:layout_width="350dp"
+        android:layout_height="500dp"
+        android:layout_gravity="center"
+        android:background="@drawable/fondo3">
+
+
+        <FrameLayout
+            android:id="@+id/vacio1"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignTop="@+id/movil"
+            android:layout_marginEnd="20dp"
+            android:layout_toStartOf="@+id/movil"
+            android:background="@drawable/circulo1">
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/internet"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="24dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="112dp"
+            android:background="@drawable/circulo1"
+            android:onClick="internet">
+
+            <TextView
+                style="@style/circulostexto"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:shadowColor="@color/text_shadow_white"
+                android:shadowDx="4"
+                android:shadowDy="4"
+                android:shadowRadius="8"
+                android:text="Internet"
+                android:textColor="@color/light_font" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/vacio2"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_above="@+id/android"
+            android:layout_alignStart="@+id/internet"
+            android:background="@drawable/circulo1">
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/movil"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_above="@+id/itic"
+            android:layout_alignEnd="@+id/app"
+            android:layout_marginBottom="17dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/circulo1"
+            android:onClick="movil">
+
+            <TextView
+                style="@style/circulostexto"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:shadowColor="@color/text_shadow_white"
+                android:shadowDx="4"
+                android:shadowDy="4"
+                android:shadowRadius="8"
+                android:text="MOVIL"
+                android:textColor="@color/light_font" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/itic"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_below="@+id/internet"
+            android:layout_marginTop="12dp"
+            android:layout_toEndOf="@+id/internet"
+            android:background="@drawable/circulo1"
+            android:onClick="itic">
+
+            <TextView
+                style="@style/circulostexto"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:shadowColor="@color/text_shadow_white"
+                android:shadowDx="4"
+                android:shadowDy="4"
+                android:shadowRadius="8"
+                android:text="ITIC"
+                android:textColor="@color/light_font" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/app"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignTop="@+id/itic"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="45dp"
+            android:layout_toEndOf="@+id/itic"
+            android:background="@drawable/circulo1"
+            android:onClick="apps">
+
+            <TextView
+                style="@style/circulostexto"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:shadowColor="@color/text_shadow_white"
+                android:shadowDx="4"
+                android:shadowDy="4"
+                android:shadowRadius="8"
+                android:text="APPS"
+                android:textColor="@color/light_font" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/android"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_below="@+id/itic"
+            android:layout_marginEnd="18dp"
+            android:layout_marginTop="22dp"
+            android:layout_toStartOf="@+id/app"
+            android:background="@drawable/circulo1"
+            android:onClick="android">
+
+            <TextView
+                style="@style/circulostexto"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:shadowColor="@color/text_shadow_white"
+                android:shadowDx="4"
+                android:shadowDy="4"
+                android:shadowRadius="8"
+                android:text="ANDROID"
+                android:textColor="@color/light_font" />
+
+        </FrameLayout>
+    </RelativeLayout>
 
 </FrameLayout>
