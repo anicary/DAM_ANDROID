@@ -38,25 +38,15 @@
             <TextView
                 android:id="@+id/textlista"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:elevation="10dp"
                 android:fontFamily="casual"
                 android:text="TextView"
                 android:textAlignment="center"
-                android:textColor="@android:color/background_light"
+                android:textColor="@android:color/black"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:typeface="sans" />
-
-            <TextView
-                android:id="@+id/textdescripcion"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:elevation="10dp"
-                android:text="TextView"
-                android:textAlignment="center"
-                android:textColor="@android:color/background_light"
-                android:textSize="10sp" />
         </LinearLayout>
 
     </LinearLayout>

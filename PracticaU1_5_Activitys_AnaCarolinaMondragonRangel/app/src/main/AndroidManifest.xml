@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="mx.edu.ittepic.practicau1_5_activitys_anacarolinamondragonrangel">
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -8,12 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MenuActivity" android:label="Menu Activitys">
+        <activity
+            android:name=".MenuActivity"
+            android:label="Menu Activitys">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Ecuacion" />
+        <activity android:name=".Concatenar" />
+        <activity android:name=".Guardar" />
+        <activity android:name=".Recuperar"></activity>
     </application>
+
 </manifest>

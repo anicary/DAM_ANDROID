@@ -40,8 +40,6 @@ public class ListaAdaptador extends BaseAdapter {
         Lista elemento = elementos.get(position);
         TextView nombre = (TextView) vista.findViewById(R.id.textlista);
         nombre.setText(elemento.getNombre());
-        TextView descripcion = (TextView) vista.findViewById(R.id.textdescripcion);
-        descripcion.setText(elemento.getDescripcion());
         ImageView image = (ImageView) vista.findViewById(R.id.imglista);
         int imageResource = actividad.getResources().getIdentifier(elemento.getImagen(), null, actividad.getPackageName());
         image.setImageDrawable(actividad.getResources().getDrawable(imageResource));
