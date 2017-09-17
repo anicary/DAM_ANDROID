@@ -26,14 +26,10 @@ public class Concatenar extends AppCompatActivity {
 
         String palabra1,palabra2;
 
-
-        try {
             palabra1 = (edit1.getText().toString());
             palabra2 = (edit2.getText().toString());
 
             result.setText("resultado: " +palabra1+palabra2);
-
-        }catch (NumberFormatException e){}
     }
     public void cerrar (View v){
         finish();
