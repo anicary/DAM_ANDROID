@@ -20,6 +20,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Seleccionmascota"
+            android:label="PAW PROFILE" />
+        <activity
+            android:name=".REGISTRO"
+            android:label="REGISTRARSE" />
+        <activity
+            android:name=".SiguienteRegistro"
+            android:label="REGISTRO MASCOTA" />
+        <activity android:name=".Alimento" />
+        <activity
+            android:name=".Calendario"
+            android:label="CALENDARIO" />
+        <activity android:name=".Acercade" android:label="ACERCA DE"></activity>
     </application>
 
 </manifest>

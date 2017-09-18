@@ -1,6 +1,7 @@
 package mx.edu.ittepic.miniu1_anacarolinamondragonrangel;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -159,5 +160,16 @@ public class IniciarSesion extends AppCompatActivity {
     private void delayedHide(int delayMillis) {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
+    }
+
+    public void Inicio (View v){
+
+        Intent opcion = new Intent(IniciarSesion.this,Seleccionmascota.class);
+        startActivity(opcion);
+    }
+    public void Registro (View v){
+
+        Intent opcion = new Intent(IniciarSesion.this,REGISTRO.class);
+        startActivity(opcion);
     }
 }
