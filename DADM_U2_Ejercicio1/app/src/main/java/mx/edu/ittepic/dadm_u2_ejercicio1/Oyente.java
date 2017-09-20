@@ -110,13 +110,14 @@ public class Oyente extends AppCompatActivity {
 
                 AlertDialog.Builder mensaje = new AlertDialog.Builder(Oyente.this);
                 mensaje.setTitle("ATENCION");
-                mensaje.setMessage(":D");
-                mensaje.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+                mensaje.setMessage("USTED A PRESIONADO EL ICONO DE ALERTA");
+                mensaje.setPositiveButton("OKA", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
                         dialog.dismiss();
                     }
                 });
+                mensaje.show();
                 break;
             case R.id.salir:
                 //CODIGO DE SALIR
@@ -126,7 +127,7 @@ public class Oyente extends AppCompatActivity {
                 break;
             case R.id.saludar:
                 //CODIGO DE SALUDAR
-                Toast.makeText(Oyente.this,"HOLA K HACE",Toast.LENGTH_LONG).show();
+                Toast.makeText(Oyente.this,"HOLA K HACE",Toast.LENGTH_SHORT).show();
                 break;
 
         }
