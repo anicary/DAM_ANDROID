@@ -4,6 +4,8 @@ import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -93,5 +95,41 @@ public class Oyente extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    /*Este primer metodo de lo que es un menu completo es para agregarlo a la VENTANA */
+    public boolean onCreateOptionsMenu(Menu m){
+                                        /*nombre archivo XML*//*Nombre de la clase public*/
+        getMenuInflater().inflate(R.menu.menupantallaprincipal,m);
+        return true;
+    }
+    public boolean onOptionsItemSelected(MenuItem elegido){
+        switch (elegido.getItemId()){
+            case R.id.acerca:
+                /*CODIGO DE ACERCA DE*/
+
+                AlertDialog.Builder mensaje = new AlertDialog.Builder(Oyente.this);
+                mensaje.setTitle("ATENCION");
+                mensaje.setMessage(":D");
+                mensaje.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+                        dialog.dismiss();
+                    }
+                });
+                break;
+            case R.id.salir:
+                //CODIGO DE SALIR
+                break;
+            case R.id.exportar:
+                //CODIGO DE EXPORTAR
+                break;
+            case R.id.saludar:
+                //CODIGO DE SALUDAR
+                Toast.makeText(Oyente.this,"HOLA K HACE",Toast.LENGTH_LONG).show();
+                break;
+
+        }
+        return true;
     }
 }
