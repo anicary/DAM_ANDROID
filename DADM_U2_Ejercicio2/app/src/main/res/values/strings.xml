@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">DADM_U2_Ejercicio2</string>
+    <string-array name="opcionesListview">
+        <item>Abrir otro activity</item>
+        <item>Acerca de...</item>
+        <item>Salir</item>
+    </string-array>
+</resources>
