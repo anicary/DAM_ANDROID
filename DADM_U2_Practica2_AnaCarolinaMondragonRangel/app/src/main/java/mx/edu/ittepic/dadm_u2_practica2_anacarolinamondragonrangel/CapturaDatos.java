@@ -14,9 +14,7 @@ import android.widget.Toast;
 
 public class CapturaDatos extends AppCompatActivity {
     EditText name,direccion,edad_p;
-    RadioButton M,H;
     Button btnvalidar;
-    Switch Encendido,apagado;
     String mensajeError ="";
 
     @Override
@@ -27,6 +25,7 @@ public class CapturaDatos extends AppCompatActivity {
         name=(EditText) findViewById(R.id.nombre);
         direccion=(EditText) findViewById(R.id.domicilio);
         edad_p=(EditText) findViewById(R.id.edad);
+        btnvalidar=(Button) findViewById(R.id.validar);
 
         btnvalidar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,14 +61,7 @@ public class CapturaDatos extends AppCompatActivity {
 
                     alerta.setTitle("ATENCION")
                             .setMessage("FALTA LLENAR LOS SIGUIENTES CAMPOS \n"+mensajeError)
-                            .setPositiveButton("SI", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    finish();
-                                    dialogInterface.dismiss();
-                                }
-                            })
-                            .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                            .setNegativeButton("OK", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     dialogInterface.cancel();
@@ -92,6 +84,7 @@ public class CapturaDatos extends AppCompatActivity {
                                 }
                             }).show();
                 }
+                mensajeError="";
             }
         });
     }
