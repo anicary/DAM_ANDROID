@@ -1,0 +1,10 @@
+
+<resources>
+    <string name="app_name">DADM_U2_Practica1_AnaCarolinaMondragonRangel</string>
+    <string-array name="opcion">
+        <item>Sumar</item>
+        <item>Restar</item>
+        <item>Multiplicar</item>
+        <item>Dividir</item>
+    </string-array>
+</resources>
