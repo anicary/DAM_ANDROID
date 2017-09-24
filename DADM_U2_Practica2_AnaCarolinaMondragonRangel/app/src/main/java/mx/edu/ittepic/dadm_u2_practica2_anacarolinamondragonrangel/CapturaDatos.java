@@ -32,8 +32,9 @@ public class CapturaDatos extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (name.getText().toString().equals("")) {
-                    mensajeError += "El campo nombre esta vacio \n";
+
                 }else {
+                    mensajeError += "El campo nombre esta vacio \n";
                 }
 
                 if (direccion.getText().toString().equals("")) {
