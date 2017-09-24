@@ -92,33 +92,41 @@ public class BurgerKing extends AppCompatActivity {
         ordenar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (h1.isChecked() && !italiana.getText().toString().equals("")) {
-                    int valor1 = 0;
-                    valor1 = Integer.parseInt(italiana.getText().toString());
-                    resultado += valor1 * 55;
-                } else {
+                if (h1.isChecked() && italiana.getText().toString().equals("")) {
                     mensajeError += "El campo de italiana esta vacio \n";
-                }
-                if (h2.isChecked() && !vegana.getText().toString().equals("")) {
-                    int valor2 = 0;
-                    valor2 = Integer.parseInt(vegana.getText().toString());
-                    resultado += valor2 * 150;
                 } else {
+                    if (h1.isChecked()) {
+                        int valor1 = 0;
+                        valor1 = Integer.parseInt(italiana.getText().toString());
+                        resultado += valor1 * 55;
+                    }
+                }
+                if (h2.isChecked() && vegana.getText().toString().equals("")) {
                     mensajeError += "El campo de vegana esta vacio \n";
-                }
-                if (h3.isChecked() && !light.getText().toString().equals("")) {
-                    int valor3 = 0;
-                    valor3 = Integer.parseInt(light.getText().toString());
-                    resultado += valor3 * 80;
                 } else {
+                    if (h2.isChecked()) {
+                        int valor1 = 0;
+                        valor1 = Integer.parseInt(vegana.getText().toString());
+                        resultado += valor1 * 150;
+                    }
+                }
+                if (h3.isChecked() && light.getText().toString().equals("")) {
                     mensajeError += "El campo de light esta vacio \n";
-                }
-                if (r.isChecked() && !refresco.getText().toString().equals("")) {
-                    int valor4 = 0;
-                    valor4 = Integer.parseInt(refresco.getText().toString());
-                    resultado += valor4 * 24;
                 } else {
-                    mensajeError += "El campo de refresco esta vacio \n";
+                    if (h3.isChecked()) {
+                        int valor1 = 0;
+                        valor1 = Integer.parseInt(italiana.getText().toString());
+                        resultado += valor1 * 80;
+                    }
+                }
+                if (r.isChecked() && refresco.getText().toString().equals("")) {
+                    mensajeError += "El campo de italiana esta vacio \n";
+                } else {
+                    if (r.isChecked()) {
+                        int valor1 = 0;
+                        valor1 = Integer.parseInt(italiana.getText().toString());
+                        resultado += valor1 * 24;
+                    }
                 }
                 AlertDialog.Builder alerta = new AlertDialog.Builder(BurgerKing.this);
                 if (mensajeError.length() > 0) {
@@ -134,14 +142,15 @@ public class BurgerKing extends AppCompatActivity {
                 } else {
                     alerta.setTitle("AVISO")
                             .setMessage("PASE A RECOGER SU ORDEN A VENTANILLA")
-                            .setPositiveButton("REGRESAR", new DialogInterface.OnClickListener() {
+                            .setMessage("EL TOTAL DE SU ORDEN ES: "+ resultado)
+                            .setNegativeButton("REGRESAR", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     finish();
                                     dialogInterface.cancel();
                                 }
                             })
-                            .setNegativeButton("CERRAR", new DialogInterface.OnClickListener() {
+                            .setPositiveButton("CERRAR", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     dialogInterface.dismiss();
