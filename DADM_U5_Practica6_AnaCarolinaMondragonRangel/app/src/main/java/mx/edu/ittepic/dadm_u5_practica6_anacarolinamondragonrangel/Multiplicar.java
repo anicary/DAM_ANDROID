@@ -1,6 +1,5 @@
 package mx.edu.ittepic.dadm_u5_practica6_anacarolinamondragonrangel;
 
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,41 +9,40 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 public class Multiplicar extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener{
-
+    Button calcular;
+    TextView tabla ;
+    Integer limite=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multiplicar);
-
         final EditText num;
-        Button calcular;
-        TextView resultado;
-
         ((SeekBar)findViewById(R.id.barra)).setOnSeekBarChangeListener(this);
-
         num=(EditText) findViewById(R.id.ed1);
         calcular=(Button)findViewById(R.id.calcular);
-        resultado=(TextView)findViewById(R.id.txt3);
-
+        tabla=(TextView)findViewById(R.id.txt3);
         calcular.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String resultado="";
-                int campo1,valor=0;
-                campo1 = Integer.parseInt(num.getText().toString());
-                for (int i=0; i<= campo1; i++){
-                    valor=campo1*i;
-                    resultado = campo1 + " x "+ i +"="+valor;
+                int valor=0;
+                //   inicio | condicion| incremento   (++ o --)
+                for (int i=1; i<= limite; i++){
+
+                   valor=Integer.parseInt(num.getText().toString());
+
+                    resultado += valor + " x "+ (i) +"="+(valor*(i))+" \n";
                 }
-
-
+               tabla.setText(resultado);
             }
         });
     }
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-        ((TextView)findViewById(R.id.txt2)).setText("CALCULAR HASTA: "+ i);
+
+        ((TextView)findViewById(R.id.txt2)).setText("CALCULAR HASTA: "+ i );
+        limite =i;
     }
 
     @Override
