@@ -142,17 +142,10 @@ public class BurgerKing extends AppCompatActivity {
                 } else {
                     alerta.setTitle("AVISO")
                             .setMessage("PASE A RECOGER SU ORDEN A VENTANILLA \n EL TOTAL DE SU ORDEN ES: "+ resultado)
-                            .setPositiveButton("CERRAR", new DialogInterface.OnClickListener() {
+                            .setPositiveButton("ENTENDIDO", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
-                                    finish();
                                     dialogInterface.dismiss();
-                                }
-                            })
-                            .setNegativeButton("REGRESAR", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    dialogInterface.cancel();
                                 }
                             }).show();
                 }
