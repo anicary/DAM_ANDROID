@@ -9,7 +9,7 @@ import android.widget.Spinner;
 
 public class ImpuestosSAT extends AppCompatActivity {
 
-    EditText salario,horas,subtotal,iva,total;
+    EditText salario, horas, subtotal, iva, total;
     Spinner opcion;
     Button realizarpago;
 
@@ -18,48 +18,42 @@ public class ImpuestosSAT extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_impuestos_sat);
 
-        salario= (EditText) findViewById(R.id.salario);
-        horas=(EditText) findViewById(R.id.hrs);
-        subtotal=(EditText) findViewById(R.id.subtotal);
-        iva=(EditText) findViewById(R.id.iva);
-        total=(EditText) findViewById(R.id.total);
+        salario = (EditText) findViewById(R.id.salario);
+        horas = (EditText) findViewById(R.id.hrs);
+        subtotal = (EditText) findViewById(R.id.subtotal);
+        iva = (EditText) findViewById(R.id.iva);
+        total = (EditText) findViewById(R.id.total);
 
-        opcion=(Spinner) findViewById(R.id.tipopersona);
+        opcion = (Spinner) findViewById(R.id.tipopersona);
 
-        realizarpago=(Button) findViewById(R.id.realizarpago);
+        realizarpago = (Button) findViewById(R.id.realizarpago);
 
         realizarpago.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-              double campo1,campo2,resultadototal = 0, campoiva1=.15, campoiva2=.18;
+                double campo1, campo2, resultadototal = 0;
 
-                try {
-                    campo1 = Float.parseFloat(salario.getText().toString());
-                    campo2 = Float.parseFloat(horas.getText().toString());
+                campo1 = Float.parseFloat(salario.getText().toString());
+                campo2 = Float.parseFloat(horas.getText().toString());
 
-                if (opcion.getSelectedItemPosition() == 0){
+                if (opcion.getSelectedItemPosition() == 0) {
 
-                    resultadototal = (((campo1*campo2)*campoiva1)+campo1*campo2);
-
-
-                    iva.setText("IVA " + campoiva1);
+                    resultadototal = (((campo1 * campo2) * .15) + campo1 * campo2);
 
 
-                }else {
+                    iva.setText("IVA " + .15);
 
-                    resultadototal = (((campo1*campo2)*campoiva2)+campo1*campo2);
 
-                    iva.setText("IVA " + campoiva2);
+                } else {
 
-                }
-                    subtotal.setText("SUBTOTAL " + campo1*campo2);
-                    total.setText("TOTAL " + resultadototal);
+                    resultadototal = (((campo1 * campo2) * .18) + campo1 * campo2);
 
-                }catch (NumberFormatException e) {
+                    iva.setText("IVA " + .18);
 
                 }
-
+                subtotal.setText("SUBTOTAL " + campo1 * campo2);
+                total.setText("TOTAL " + resultadototal);
 
             }
         });
