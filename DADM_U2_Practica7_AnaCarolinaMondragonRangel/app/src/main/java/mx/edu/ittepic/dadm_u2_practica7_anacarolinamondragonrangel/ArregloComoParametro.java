@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class ArregloComoParametro extends AppCompatActivity {
     EditText numeros;
@@ -23,13 +24,16 @@ public class ArregloComoParametro extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if (numeros.getText().toString().equals("")) {
-
-                    Intent opcion = new Intent(ArregloComoParametro.this, MainActivity.class);
-                    opcion.putExtra("arreglo", numeros.getText().toString());/*ENVIAR DATOS A LOS ACTIVITYS */
+                if (numeros.getText().toString().equals("")){
+                    Toast.makeText(ArregloComoParametro.this,"INSERTE NUMEROS",Toast.LENGTH_LONG).show();
+                }else{
+                    Intent opcion = new Intent(ArregloComoParametro.this,MainActivity.class);
+                    opcion.putExtra("arreglo",numeros.getText().toString());/*ENVIAR DATOS A LOS ACTIVITYS */
                     startActivity(opcion);
                 }
+
             }
+
         });
 
     }

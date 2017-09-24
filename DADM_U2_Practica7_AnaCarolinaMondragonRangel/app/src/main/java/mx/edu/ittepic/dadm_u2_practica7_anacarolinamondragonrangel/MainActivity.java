@@ -28,16 +28,20 @@ public class MainActivity extends AppCompatActivity {
         mostrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Integer valorsacado = Integer.parseInt (numeroscoma.getText().toString());
-                if(valorsacado<arreglo.length){
-                    pos.setText("Posicion:"+valorsacado+":"+arreglo[valorsacado]);
+                Integer valorsacado=0;
+                if (numeroscoma.getText().toString().equals("")) {
+                    Toast.makeText(MainActivity.this, "INSERTE POSICION", Toast.LENGTH_LONG).show();
+
                 }else{
-                    Toast.makeText(MainActivity.this,"POSICION INVALIDA",Toast.LENGTH_SHORT);
+                    valorsacado = Integer.parseInt (numeroscoma.getText().toString());
+                    if(valorsacado<arreglo.length){
+                        pos.setText("Posicion:"+valorsacado+":"+arreglo[valorsacado]);
+                    }else{
+
+                        Toast.makeText(MainActivity.this,"POSICION INVALIDA",Toast.LENGTH_SHORT).show();
+                    }
+
                 }
-
-
-
-
             }
         });
 
