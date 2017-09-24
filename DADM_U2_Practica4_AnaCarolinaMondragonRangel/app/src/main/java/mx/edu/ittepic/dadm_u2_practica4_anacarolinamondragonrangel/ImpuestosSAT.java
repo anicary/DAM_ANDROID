@@ -32,7 +32,7 @@ public class ImpuestosSAT extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-              double subresultado = 0,campo1,campo2,resultado=0,resultadototal = 0, campoiva=.15;
+              double subresultado = 0,campo1,campo2,resultado=0,resultadototal = 0, campoiva1=.15, campoiva2 =.18;
 
                 try {
                     campo1 = Float.parseFloat(salario.getText().toString());
@@ -40,13 +40,20 @@ public class ImpuestosSAT extends AppCompatActivity {
 
                 if (opcion.getSelectedItemPosition() == 0) {
                     subresultado = campo1 * campo2;
-                    resultado = subresultado*campoiva;
+                    resultado = subresultado*campoiva1;
                     resultadototal =resultado+subresultado;
 
+                }else {
+                    if (opcion.getSelectedItemPosition() == 1) {
+                        subresultado = campo1 * campo2;
+                        resultado = subresultado * campoiva2;
+                        resultadototal = resultado + subresultado;
+                    }
                 }
                 subtotal.setText("SUBTOTAL "+subresultado);
-                    iva.setText("IVA "+campoiva);
+                    iva.setText("IVA "+campoiva2);
                     total.setText("TOTAL "+resultadototal);
+
                 }catch (NumberFormatException e) {
 
                 }

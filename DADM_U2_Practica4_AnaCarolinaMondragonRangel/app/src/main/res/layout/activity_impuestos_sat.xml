@@ -19,6 +19,7 @@
         android:textStyle="bold"/>
     <EditText
         android:id="@+id/salario"
+        android:inputType="number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Escribe tu salario por hora"
@@ -28,6 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="horas totales trabajadas"
+        android:inputType="number"
         android:layout_marginTop="10dp"/>
     <Spinner
         android:id="@+id/tipopersona"
