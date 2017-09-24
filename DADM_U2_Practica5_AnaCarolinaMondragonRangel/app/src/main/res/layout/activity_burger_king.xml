@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:stretchColumns="*"
+    android:layout_marginRight="40dp"
+    android:layout_marginLeft="40dp"
+    tools:context="mx.edu.ittepic.dadm_u2_practica5_anacarolinamondragonrangel.BurgerKing">
+
+<TableRow>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#0000FF"
+        android:text="HAMBURGUESAS EL REY"
+        android:textStyle="bold"
+        android:layout_marginTop="30dp"
+        android:textSize="25dp"/>
+</TableRow>
+    <TableRow>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hamburguesa italiana --- $55"
+            android:layout_marginTop="30dp"
+            android:textSize="17dp"/>
+    </TableRow>
+    <TableRow>
+        <LinearLayout>
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/chk1"/>
+
+        <EditText
+            android:id="@+id/edit1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Cantidad"/>
+        </LinearLayout>
+
+    </TableRow>
+
+</TableLayout>
