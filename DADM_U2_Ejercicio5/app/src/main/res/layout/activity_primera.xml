@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:orientation="vertical"
+    tools:context="mx.edu.ittepic.dadm_u2_ejercicio5.Primera">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="cantidad"
+            android:textSize="20dp"
+            android:textColor="#000000"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit1"
+            android:ems="10"
+            android:inputType="number"
+            android:layout_marginLeft="20dp"/>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/listamenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:entries="@array/menu">
+    </ListView>
+
+
+</LinearLayout>
