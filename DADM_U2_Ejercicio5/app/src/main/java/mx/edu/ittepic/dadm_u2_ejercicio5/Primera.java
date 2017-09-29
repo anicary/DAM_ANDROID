@@ -44,10 +44,9 @@ public class Primera extends AppCompatActivity {
         });
     }
 
-
-
     public void abrirOperaciones(){
         Intent abrirOperaciones = new Intent(Primera.this,operaciones.class);
+        abrirOperaciones.putExtra("Cantidad",edit1.getText().toString());  // creamos un putExtra y lo enviamos al activity
         startActivity(abrirOperaciones);
 
     }
