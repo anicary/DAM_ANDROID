@@ -2,6 +2,7 @@ package mx.edu.ittepic.dadm_u2_ejercicio5;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -26,6 +27,7 @@ public class operaciones extends AppCompatActivity {
         layin2.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         layin2.setOrientation(LinearLayout.VERTICAL);
         layin3= new LinearLayout(this);
+        layin3.setGravity(Gravity.CENTER);
        /* layin3.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));*/
         layin3.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         layin3.setOrientation(LinearLayout.HORIZONTAL);
@@ -63,6 +65,40 @@ public class operaciones extends AppCompatActivity {
                     suma+=Integer.parseInt(cantidad[i].getText().toString());
                 }
                 Toast.makeText(getApplicationContext(),"Suma:"+suma,Toast.LENGTH_LONG).show();
+            }
+        });
+        btnrestar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int resta=0;
+                for (int i=0;i<cantidad.length;i++)
+                {
+                    resta-=Integer.parseInt(cantidad[i].getText().toString());
+                }
+                Toast.makeText(getApplicationContext(),"resta:"+resta,Toast.LENGTH_LONG).show();
+            }
+        });
+        btndivmul.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int multi=1;
+                for (int i=0;i<cantidad.length;i++)
+                {
+                    multi=multi*Integer.parseInt(cantidad[i].getText().toString());
+                }
+                Toast.makeText(getApplicationContext(),"multi:"+multi,Toast.LENGTH_LONG).show();
+            }
+        });
+        btndivmul.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                float divi=1;
+                for (int i=0;i<cantidad.length;i++)
+                {
+                    divi=divi/Float.parseFloat(cantidad[i].getText().toString());
+                }
+                Toast.makeText(getApplicationContext(),"multi:"+divi,Toast.LENGTH_LONG).show();
+                return true;
             }
         });
         layin3.addView(btnsumar);
