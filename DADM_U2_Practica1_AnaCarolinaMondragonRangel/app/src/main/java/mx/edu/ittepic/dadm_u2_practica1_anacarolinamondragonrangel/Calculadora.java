@@ -33,7 +33,6 @@ public class Calculadora extends AppCompatActivity {
         btnsumar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 if (num1.getText().toString().equals("") || num2.getText().toString().equals("")){
                     Toast.makeText(Calculadora.this,"ERROR CAMPO VACIO",Toast.LENGTH_SHORT).show();
 

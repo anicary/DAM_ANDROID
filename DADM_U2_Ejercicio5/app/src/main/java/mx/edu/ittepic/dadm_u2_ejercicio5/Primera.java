@@ -52,6 +52,8 @@ public class Primera extends AppCompatActivity {
     }
     public void abrirCobro(){
         Intent abrirCobro = new Intent(Primera.this,cobro.class);
+        abrirCobro.putExtra("Cantidad",Integer.parseInt(edit1.getText().toString()));
+
         startActivity(abrirCobro);
         }
     public void acercade(){

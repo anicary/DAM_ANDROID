@@ -52,8 +52,8 @@ public class CapturaDatos extends AppCompatActivity {
                             .setMessage("FALTA LLENAR LOS SIGUIENTES CAMPOS \n"+mensajeError)
                             .setNegativeButton("OK", new DialogInterface.OnClickListener() {
                                 @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    dialogInterface.cancel();
+                                public void onClick(DialogInterface lol, int i) {
+                                    lol.cancel();
                                 }
                             }).show();
                 }else{

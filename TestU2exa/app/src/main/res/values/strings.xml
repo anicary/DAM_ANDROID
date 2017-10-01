@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">TestU2exa</string>
+    <string-array name="spinner1">
+        <item>panamericano</item>
+        <item>panicano</item>
+        <item>panano</item>
+    </string-array>
+</resources>
