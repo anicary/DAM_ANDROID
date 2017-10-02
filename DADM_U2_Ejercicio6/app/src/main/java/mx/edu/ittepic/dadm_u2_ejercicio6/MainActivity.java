@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         parametros.setMargins(80,20,80,0);
 
         textoImag = new TextView(this);
-        textoImag.setPadding(0,30,0,0);
+        textoImag.setPadding(0,50,0,30);
         textoImag.setText("ROSQUILLAS");
         textoImag.setTextSize(30);
         textoImag.setGravity(Gravity.CENTER);
@@ -52,7 +52,8 @@ public class MainActivity extends AppCompatActivity {
         img.setImageDrawable(getDrawable(imagenes[0]));
 
         sw1= new Switch(this);
-        sw1.setGravity(Gravity.CENTER_HORIZONTAL);
+        sw1.setLayoutParams(new LinearLayout.LayoutParams(630,  LinearLayout.LayoutParams.WRAP_CONTENT));
+        sw1.setPadding(0,50,0,0);
         sw1.setShowText(true);
         sw1.setTextOn("ON");
         sw1.setTextOff("OFF");
@@ -74,10 +75,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (posicion == 0) {
-                    posicion = imagenes.length;
+                    posicion = imagenes.length-1;
 
                 } else {
-                    posicion--;
+                    posicion --;
                 }
                     img.setImageDrawable(getDrawable(imagenes[posicion]));
                     textoImag.setText(texto[posicion]);
@@ -96,15 +97,22 @@ public class MainActivity extends AppCompatActivity {
                 textoImag.setText(texto[posicion]);
             }
         });
-        reloj = new CountDownTimer(50000,1000) {
+        reloj = new CountDownTimer(5000,2000) {
             @Override
             public void onTick(long l) {
+                    if (posicion < imagenes.length-1){
+                        posicion ++;
 
+                    }else{
+                        posicion =0;
+                    }
+                    img.setImageDrawable(getDrawable(imagenes[posicion]));
+                    textoImag.setText(texto[posicion]);
             }
 
             @Override
             public void onFinish() {
-
+                reloj.start();
             }
         };
         sw1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -124,9 +132,6 @@ public class MainActivity extends AppCompatActivity {
         layin.addView(img);
         layin.addView(sw1);
         layin.addView(layoutBtn);
-
-
-
 
     }
 
