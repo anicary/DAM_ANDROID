@@ -8,5 +8,4 @@
     android:id="@+id/layout1"
     tools:context="mx.edu.ittepic.dadm_u2_ejercicio6.MainActivity">
 
-
 </LinearLayout>

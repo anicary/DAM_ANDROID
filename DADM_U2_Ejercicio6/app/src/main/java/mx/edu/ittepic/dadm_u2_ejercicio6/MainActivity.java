@@ -77,12 +77,24 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        reloj = new CountDownTimer(50000,1000) {
+            @Override
+            public void onTick(long l) {
+
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+        };
         sw1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (sw1.isChecked()){
-
+                    reloj.start();
                 }else{
+                    reloj.cancel();
 
                 }
             }
