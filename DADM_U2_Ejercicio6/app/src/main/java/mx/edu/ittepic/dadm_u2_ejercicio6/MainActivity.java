@@ -73,12 +73,12 @@ public class MainActivity extends AppCompatActivity {
         anterior.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    if (posicion < imagenes.length-1) {
-                        posicion--;
+                if (posicion == 0) {
+                    posicion = imagenes.length;
 
-                    } else {
-                        posicion = 0;
-                    }
+                } else {
+                    posicion--;
+                }
                     img.setImageDrawable(getDrawable(imagenes[posicion]));
                     textoImag.setText(texto[posicion]);
                 }
