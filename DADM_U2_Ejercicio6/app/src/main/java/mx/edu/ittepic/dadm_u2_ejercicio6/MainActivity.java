@@ -1,5 +1,6 @@
 package mx.edu.ittepic.dadm_u2_ejercicio6;
 
+import android.os.CountDownTimer;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Switch;
@@ -18,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView img;
     Switch sw1;
     Button anterior,siguiente;
+    CountDownTimer reloj;
 
 
     @Override
@@ -44,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         img.setImageDrawable(getDrawable(R.drawable.dona));
 
         sw1= new Switch(this);
+        sw1.setGravity(Gravity.CENTER_HORIZONTAL);
         sw1.setShowText(true);
         sw1.setTextOn("ON");
         sw1.setTextOff("OFF");
@@ -65,6 +69,22 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+            }
+        });
+        siguiente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        sw1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (sw1.isChecked()){
+
+                }else{
+
+                }
             }
         });
         layin.addView(textoImag);
