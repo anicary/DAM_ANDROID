@@ -21,6 +21,11 @@ public class MainActivity extends AppCompatActivity {
     Switch sw1;
     Button anterior,siguiente;
     CountDownTimer reloj;
+    int [] imagenes ={R.drawable.dona, R.drawable.burger,R.drawable.taco,R.drawable.dogo,
+            R.drawable.camaron, R.drawable.pizza,R.drawable.papas,R.drawable.chela,
+            R.drawable.huevito,R.drawable.pan};
+    String[] texto ={"ROSQUILLA","HAMBURGUESA","TAQUITOS","HOT DOG","CAMARON","PIZZA","PAPAS FRITAS","CERVEZA","HUEVO","CUERNOS"};
+    int posicion=0;
 
 
     @Override
@@ -44,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         textoImag.setGravity(Gravity.CENTER);
 
         img = new ImageView(this);
-        img.setImageDrawable(getDrawable(R.drawable.dona));
+        img.setImageDrawable(getDrawable(imagenes[0]));
 
         sw1= new Switch(this);
         sw1.setGravity(Gravity.CENTER_HORIZONTAL);
@@ -68,13 +73,27 @@ public class MainActivity extends AppCompatActivity {
         anterior.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                    if (posicion < imagenes.length-1) {
+                        posicion--;
 
-            }
+                    } else {
+                        posicion = 0;
+                    }
+                    img.setImageDrawable(getDrawable(imagenes[posicion]));
+                    textoImag.setText(texto[posicion]);
+                }
         });
         siguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (posicion < imagenes.length-1){
+                    posicion ++;
 
+                }else{
+                posicion =0;
+                }
+                img.setImageDrawable(getDrawable(imagenes[posicion]));
+                textoImag.setText(texto[posicion]);
             }
         });
         reloj = new CountDownTimer(50000,1000) {
@@ -92,9 +111,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (sw1.isChecked()){
+                    layoutBtn.setVisibility(View.GONE);
                     reloj.start();
                 }else{
                     reloj.cancel();
+                    layoutBtn.setVisibility(View.VISIBLE);
 
                 }
             }
