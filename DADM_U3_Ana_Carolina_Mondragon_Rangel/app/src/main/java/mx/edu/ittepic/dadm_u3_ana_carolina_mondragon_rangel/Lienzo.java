@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.os.CountDownTimer;
 import android.view.View;
 
 /**
@@ -13,12 +14,61 @@ import android.view.View;
 
 public class Lienzo extends View{
     int y=0,x=0;
+    /* VALORES VAMPIROS */
+    float xv=0,yv=0,pv=0,pv2=0;
+    CountDownTimer relogvapmpi1,relogalas;
     public Lienzo(Context context) {
         super(context);
+        relogvapmpi1 = new CountDownTimer(2000,1) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                if(pv==0){
+                    yv+=1;
+                }else
+                {
+                    if(yv!=0){
+                        yv-=1;
+                    }
+                }
+                invalidate();
+            }
+            @Override
+            public void onFinish() {
+                if(pv==0){
+                    pv=1;
+                }else
+                {
+                    yv=0;
+                    pv=0;
+                }
+                relogvapmpi1.start();
+            }
+        };
+        relogvapmpi1.start();
+        relogalas = new CountDownTimer(2000,200) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                if(pv2==0){
+                    pv2=1;
+                }else
+                {
+                    pv2=0;
+                }
+                invalidate();
+            }
+            @Override
+            public void onFinish() {
+                relogalas.start();
+            }
+        };
+        relogalas.start();
+        /* VALORES VAMPIROS */
     }
     public void onDraw (Canvas c){
+        vampiro(c,xv+250,yv+50);
+        vampiro(c,xv+1500,yv+50);
+        vampiro(c,xv+400,yv+300);
         Bruja(c,y,x);
-
     }
     public void Bruja (Canvas c, float y, float x){
         Paint p = new Paint();
@@ -101,6 +151,26 @@ public class Lienzo extends View{
 
 
 
+    }
+    public void vampiro(Canvas pincel,float x,float y){
+        float tam1=75, tam2=25;
+        dibujarCuadrado(pincel,Color.BLACK,x+75,y-25,tam2,tam2);
+        dibujarCuadrado(pincel,Color.BLACK,x+125,y-25,tam2,tam2);
+        if(pv2==1){
+            dibujarCuadrado(pincel,Color.BLACK,x,y,tam1,tam2);
+            dibujarCuadrado(pincel,Color.BLACK,x+100,y,tam2,tam2);
+            dibujarCuadrado(pincel,Color.BLACK,x+150,y,tam1,tam2);
+            dibujarCuadrado(pincel,Color.BLACK,x+25,y+25,175,tam2);
+        }else
+        {
+            dibujarCuadrado(pincel,Color.BLACK,x+150,y,25,tam2);
+            dibujarCuadrado(pincel,Color.BLACK,x+50,y,25,tam2);
+            dibujarCuadrado(pincel,Color.BLACK,x+100,y,tam2,tam2);
+            dibujarCuadrado(pincel,Color.BLACK,x+50,y+25,125,tam2);
+        }
+
+        dibujarCuadrado(pincel,Color.BLACK,x+75,y+50,75,tam2);
+        dibujarCuadrado(pincel,Color.BLACK,x+100,y+75,25,tam2);
     }
     public  void dibujarCuadrado(Canvas pincel,int color,float  derecha,float arriba,float tam1, float tam2)
     {
