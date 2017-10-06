@@ -1,7 +1,9 @@
 package mx.edu.ittepic.dadm_u2_practica1_anacarolinamondragonrangel;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
