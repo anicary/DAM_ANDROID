@@ -177,13 +177,13 @@ public class Lienzo extends View{
         p.setColor(Color.rgb(206, 136, 208));
         p.setStyle(Paint.Style.FILL);
         p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
-        dibujarCuadrado(c,Color.rgb(206, 136, 208),x+830,y+490,80,70);
+        dibujarCuadrado(c,Color.rgb(206, 136, 208),x+830,y+550,100,70);
 
         p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
         p.setColor(Color.rgb(242, 212, 171));
         p.setStyle(Paint.Style.FILL);
         p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
-        dibujarCuadrado(c,Color.rgb(242, 212, 171),x+828,y+560,40,40);
+        dibujarCuadrado(c,Color.rgb(242, 212, 171),x+828,y+590,40,40);
 
         p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
         p.setColor(Color.rgb(167, 24, 211));
@@ -216,6 +216,43 @@ public class Lienzo extends View{
         p.setStyle(Paint.Style.FILL);
         p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
         dibujarCuadrado(c,Color.BLACK,x+1120,y+700,50,40);
+
+        p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
+        p.setColor(Color.rgb(216, 178, 85));
+        p.setStyle(Paint.Style.FILL);
+        p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
+        dibujarCuadrado(c,Color.rgb(216, 178, 85),x+800,y+630,72,30);
+        p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
+        p.setColor(Color.rgb(216, 178, 85));
+        p.setStyle(Paint.Style.FILL);
+        p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
+        dibujarCuadrado(c,Color.rgb(216, 178, 85),x+1020,y+630,42,30);
+        p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
+        p.setColor(Color.rgb(216, 178, 85));
+        p.setStyle(Paint.Style.FILL);
+        p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
+        dibujarCuadrado(c,Color.rgb(216, 178, 85),x+1120,y+630,100,30);
+        p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
+        p.setColor(Color.rgb(216, 178, 85));
+        p.setStyle(Paint.Style.FILL);
+        p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
+        dibujarCuadrado(c,Color.rgb(216, 178, 85),x+1180,y+575,40,130);
+        p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
+        p.setColor(Color.rgb(216, 178, 85));
+        p.setStyle(Paint.Style.FILL);
+        p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
+        dibujarCuadrado(c,Color.rgb(216, 178, 85),x+1220,y+555,200,180);
+
+        p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
+        p.setColor(Color.rgb(166, 86, 44));
+        p.setStyle(Paint.Style.FILL);
+        p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
+        dibujarCuadrado(c,Color.rgb(166, 86, 44),x+1260,y+580,160,40);
+        p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
+        p.setColor(Color.rgb(166, 86, 44));
+        p.setStyle(Paint.Style.FILL);
+        p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
+        dibujarCuadrado(c,Color.rgb(166, 86, 44),x+1260,y+670,160,40);
 
 
     }
