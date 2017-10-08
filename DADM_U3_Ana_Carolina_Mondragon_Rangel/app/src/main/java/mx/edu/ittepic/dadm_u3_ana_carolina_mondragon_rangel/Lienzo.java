@@ -65,10 +65,12 @@ public class Lienzo extends View{
         /* VALORES VAMPIROS */
     }
     public void onDraw (Canvas c){
-        vampiro(c,xv+250,yv+50);
-        vampiro(c,xv+1500,yv+50);
-        vampiro(c,xv+400,yv+300);
-        Bruja(c,y,x);
+        lunanaranja(c,y,x);
+        lunaamarilla(c,y,x);
+        //vampiro(c,xv+250,yv+50);
+        //vampiro(c,xv+1500,yv+50);
+        //vampiro(c,xv+400,yv+300);
+        //Bruja(c,y,x);
     }
     public void Bruja (Canvas c, float y, float x){
         Paint p = new Paint();
@@ -254,6 +256,88 @@ public class Lienzo extends View{
         p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
         dibujarCuadrado(c,Color.rgb(166, 86, 44),x+1260,y+670,160,40);
 
+
+    }
+    public void lunanaranja(Canvas c,float y, float x){
+        Paint p = new Paint();
+
+        p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
+        p.setColor(Color.rgb(220, 124, 0));
+        p.setStyle(Paint.Style.FILL);
+        p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
+        dibujarCuadrado(c,Color.rgb(220, 124, 0),x+800,y+100,400,50);
+        p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
+        p.setColor(Color.rgb(220, 124, 0));
+        p.setStyle(Paint.Style.FILL);
+        p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
+        dibujarCuadrado(c,Color.rgb(220, 124, 0),x+700,y+150,600,50);
+        p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
+        p.setColor(Color.rgb(220, 124, 0));
+        p.setStyle(Paint.Style.FILL);
+        p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
+        dibujarCuadrado(c,Color.rgb(220, 124, 0),x+650,y+200,700,50);
+        p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
+        p.setColor(Color.rgb(220, 124, 0));
+        p.setStyle(Paint.Style.FILL);
+        p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
+        dibujarCuadrado(c,Color.rgb(220, 124, 0),x+600,y+250,800,50);
+        p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
+        p.setColor(Color.rgb(220, 124, 0));
+        p.setStyle(Paint.Style.FILL);
+        p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
+        dibujarCuadrado(c,Color.rgb(220, 124, 0),x+550,y+300,900,290);
+        p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
+        p.setColor(Color.rgb(220, 124, 0));
+        p.setStyle(Paint.Style.FILL);
+        p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
+        dibujarCuadrado(c,Color.rgb(220, 124, 0),x+600,y+590,800,50);
+        p.setStyle(Paint.Style.FILL);
+        p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
+        dibujarCuadrado(c,Color.rgb(220, 124, 0),x+650,y+640,700,50);
+        p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
+        p.setColor(Color.rgb(220, 124, 0));
+        p.setStyle(Paint.Style.FILL);
+        p.setStyle(Paint.Style.FILL);
+        p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
+        dibujarCuadrado(c,Color.rgb(220, 124, 0),x+700,y+690,600,50);
+        p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
+        p.setColor(Color.rgb(220, 124, 0));
+        p.setStyle(Paint.Style.FILL);
+        p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
+        p.setColor(Color.rgb(220, 124, 0));
+        p.setStyle(Paint.Style.FILL);
+        p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
+        dibujarCuadrado(c,Color.rgb(220, 124, 0),x+800,y+730,400,50);
+
+    }
+    public void lunaamarilla (Canvas c, float y, float x){
+        Paint p = new Paint();
+
+        p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
+        p.setColor(Color.rgb(249, 187, 3));
+        p.setStyle(Paint.Style.FILL);
+        p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
+        dibujarCuadrado(c,Color.rgb(249, 187, 3),x+900,y+240,200,50);
+        p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
+        p.setColor(Color.rgb(249, 187, 3));
+        p.setStyle(Paint.Style.FILL);
+        p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
+        dibujarCuadrado(c,Color.rgb(249, 187, 3),x+800,y+290,400,50);
+        p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
+        p.setColor(Color.rgb(249, 187, 3));
+        p.setStyle(Paint.Style.FILL);
+        p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
+        dibujarCuadrado(c,Color.rgb(249, 187, 3),x+750,y+340,500,200);
+        p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
+        p.setColor(Color.rgb(249, 187, 3));
+        p.setStyle(Paint.Style.FILL);
+        p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
+        dibujarCuadrado(c,Color.rgb(249, 187, 3),x+800,y+540,400,50);
+        p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
+        p.setColor(Color.rgb(249, 187, 3));
+        p.setStyle(Paint.Style.FILL);
+        p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
+        dibujarCuadrado(c,Color.rgb(249, 187, 3),x+900,y+580,200,50);
 
     }
     public void vampiro(Canvas pincel,float x,float y){
