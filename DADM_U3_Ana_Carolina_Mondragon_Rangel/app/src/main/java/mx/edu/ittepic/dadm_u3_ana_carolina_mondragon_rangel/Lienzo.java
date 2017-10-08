@@ -14,9 +14,10 @@ import android.view.View;
 
 public class Lienzo extends View{
     int y=0,x=0;
+    float yedi=0,xedi=0,xedi2=0;
     /* VALORES VAMPIROS */
     float xv=0,yv=0,pv=0,pv2=0;
-    CountDownTimer relogvapmpi1,relogalas;
+    CountDownTimer relogvapmpi1,relogalas,edificiocapa1,edificiocapa2;
     public Lienzo(Context context) {
         super(context);
         relogvapmpi1 = new CountDownTimer(2000,1) {
@@ -63,13 +64,52 @@ public class Lienzo extends View{
         };
         relogalas.start();
         /* VALORES VAMPIROS */
+        edificiocapa1= new CountDownTimer(30000,10) {
+            @Override
+            public void onTick(long l) {
+                if (xedi==1800){
+                    xedi=0;
+                }
+                xedi++;
+                //  System.out.println("Texto"+xedi);
+            }
+
+            @Override
+            public void onFinish() {
+                edificiocapa1.start();
+            }
+        };
+        edificiocapa1.start();
+        edificiocapa2= new CountDownTimer(30000,50) {
+            @Override
+            public void onTick(long l) {
+                if (xedi2==1800){
+                    xedi2=0;
+                }
+                xedi2++;
+            }
+
+            @Override
+            public void onFinish() {
+                edificiocapa2.start();
+            }
+        };
+        edificiocapa2.start();
     }
     public void onDraw (Canvas c){
         lunanaranja(c,y,x);
         lunaamarilla(c,y,x);
+        /*Edificios*/
+        Edificios1(c,xedi2-1750-500,yedi+700,Color.rgb(46, 0, 0));
+        Edificios1(c,xedi2+500,yedi+700,Color.rgb(46, 0, 0));
+        Edificios1(c,xedi+50,yedi+625,Color.BLACK);
+        Edificios1(c,xedi-1750,yedi+625,Color.BLACK);
+        dibujarCuadrado(c,Color.BLACK,0,850,1900,50);
+        /*Edificios*/
         //vampiro(c,xv+250,yv+50);
         //vampiro(c,xv+1500,yv+50);
         //vampiro(c,xv+400,yv+300);
+
         //Bruja(c,y,x);
     }
     public void Bruja (Canvas c, float y, float x){
@@ -359,6 +399,75 @@ public class Lienzo extends View{
 
         dibujarCuadrado(pincel,Color.BLACK,x+75,y+50,75,tam2);
         dibujarCuadrado(pincel,Color.BLACK,x+100,y+75,25,tam2);
+    }
+    public void Edificios1(Canvas pincel, float x, float y, int color){
+        /* Edificio 1*/
+        dibujarCuadrado(pincel,color,x-50,y+225,1900,50);
+        dibujarCuadrado(pincel,color,x+150,y-100,25,25);
+        dibujarCuadrado(pincel,color,x+125,y-75,75,25);
+        dibujarCuadrado(pincel,color,x+100,y-50,125,25);
+        dibujarCuadrado(pincel,color,x+75,y-25,175,300);
+        dibujarCuadrado(pincel,color,x+250,y+150,50,75);
+        dibujarCuadrado(pincel,color,x+275,y+175,50,75);
+        dibujarCuadrado(pincel,color,x+300,y+200,50,75);
+        dibujarCuadrado(pincel,color,x+0,y+200,75,25);
+
+        vetanas(pincel,x+150,y-75,1);
+        vetanas(pincel,x+125,y-25,2);
+        vetanas(pincel,x+125+25+25,y-25,2);
+        vetanas(pincel,x+125+25,y+50,3);
+        /* Edificio 1 fin */
+         /* Edificio 2 */
+        dibujarCuadrado(pincel,color,x+375,y+25,75,200);
+        dibujarCuadrado(pincel,color,x+400,y+0,25,25);
+        vetanas(pincel,x+400,y+50,2);
+        vetanas(pincel,x+400,y+125,2);
+         /* Edificio 2 fin */
+        /* Edificio 3*/
+        dibujarCuadrado(pincel,color,x+150+1350,y-100,25,25);
+        dibujarCuadrado(pincel,color,x+125+1350,y-75,75,25);
+        dibujarCuadrado(pincel,color,x+100+1350,y-50,125,25);
+        dibujarCuadrado(pincel,color,x+75+1350,y-25,175,300);
+        dibujarCuadrado(pincel,color,x+250+1350,y+150,50,75);
+        dibujarCuadrado(pincel,color,x+275+1350,y+175,50,75);
+        dibujarCuadrado(pincel,color,x+300+1350,y+200,50,75);
+        vetanas(pincel,x+150+1350,y-75,1);
+        vetanas(pincel,x+125+1350,y-25,2);
+        vetanas(pincel,x+125+25+25+1350,y-25,2);
+        vetanas(pincel,x+125+25+1350,y+50,3);
+        /* Edificio 3 fin */
+            /* Edificio 3*/
+        dibujarCuadrado(pincel,color,x+150+500,y-100-15,25,25);
+        dibujarCuadrado(pincel,color,x+125+500,y-75-15,75,25);
+        dibujarCuadrado(pincel,color,x+100+500,y-50-15,125,25);
+        dibujarCuadrado(pincel,color,x+75+500,y-25-15,175,300);
+        dibujarCuadrado(pincel,color,x+250+500,y+150-15,50,75);
+        dibujarCuadrado(pincel,color,x+275+500,y+175-15,50,75);
+        dibujarCuadrado(pincel,color,x+300+500,y+200-15,50,75);
+        vetanas(pincel,x+125+500,y-25-15,2);
+        vetanas(pincel,x+125+25+25+500,y-25-15,2);
+        vetanas(pincel,x+125+25+25+500,y+50,2);
+        vetanas(pincel,x+125+25+25+450,y+50,2);
+        vetanas(pincel,x+125+25+25+500,y+125,2);
+        vetanas(pincel,x+125+25+25+450,y+125,2);
+        /* Edificio 3 fin */
+    }
+    public void vetanas(Canvas pincel,float x,float y, int ventas)
+    {
+        if (ventas==1){
+            dibujarCuadrado(pincel,Color.rgb(255,140,0),x+0,y-0,25,25);
+        }else{
+            if (ventas==3){
+                dibujarCuadrado(pincel,Color.rgb(255,140,0),x-25,y+25,75,25);
+                dibujarCuadrado(pincel,Color.rgb(255,140,0),x+0,y-0,25,100);
+            }
+            else
+            {
+                dibujarCuadrado(pincel,Color.rgb(255,140,0),x+0,y-0,25,50);
+            }
+
+        }
+
     }
     public  void dibujarCuadrado(Canvas pincel,int color,float  derecha,float arriba,float tam1, float tam2)
     {
