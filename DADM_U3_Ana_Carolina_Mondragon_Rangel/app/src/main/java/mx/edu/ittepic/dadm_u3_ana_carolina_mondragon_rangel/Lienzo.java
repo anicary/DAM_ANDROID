@@ -97,9 +97,11 @@ public class Lienzo extends View{
         edificiocapa2.start();
     }
     public void onDraw (Canvas c){
+        lunacafe(c,y,x);
+        lunamasnaranja(c,y,x);
         lunanaranja(c,y,x);
         lunaamarilla(c,y,x);
-        /*Edificios*/
+        /*Edificios
         Edificios1(c,xedi2-1750-500,yedi+700,Color.rgb(46, 0, 0));
         Edificios1(c,xedi2+500,yedi+700,Color.rgb(46, 0, 0));
         Edificios1(c,xedi+50,yedi+625,Color.BLACK);
@@ -298,56 +300,189 @@ public class Lienzo extends View{
 
 
     }
+    public void lunacafe(Canvas c,float y, float x){
+        Paint p = new Paint();
+
+        p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
+        p.setColor(Color.rgb(206, 101, 0));
+        p.setStyle(Paint.Style.FILL);
+        p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
+        dibujarCuadrado(c,Color.rgb(206, 101, 0),x+600,y+1,800,100);
+        p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
+        p.setColor(Color.rgb(206, 101, 0));
+        p.setStyle(Paint.Style.FILL);
+        p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
+        dibujarCuadrado(c,Color.rgb(206, 101, 0),x+400,y+20,1200,60);
+        p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
+        p.setColor(Color.rgb(206, 101, 0));
+        p.setStyle(Paint.Style.FILL);
+        p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
+        dibujarCuadrado(c,Color.rgb(206, 101, 0),x+350,y+80,1300,50);
+        p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
+        p.setColor(Color.rgb(206, 101, 0));
+        p.setStyle(Paint.Style.FILL);
+        p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
+        dibujarCuadrado(c,Color.rgb(206, 101, 0),x+300,y+130,1400,50);
+        p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
+        p.setColor(Color.rgb(206, 101, 0));
+        p.setStyle(Paint.Style.FILL);
+        p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
+        dibujarCuadrado(c,Color.rgb(206, 101, 0),x+250,y+180,1500,50);
+        p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
+        p.setColor(Color.rgb(206, 101, 0));
+        p.setStyle(Paint.Style.FILL);
+        p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
+        dibujarCuadrado(c,Color.rgb(206, 101, 0),x+200,y+220,1600,370);
+        p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
+        p.setColor(Color.rgb(206, 101, 0));
+        p.setStyle(Paint.Style.FILL);
+        p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
+        dibujarCuadrado(c,Color.rgb(206, 101, 0),x+250,y+590,1500,50);
+        p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
+        p.setColor(Color.rgb(206, 101, 0));
+        p.setStyle(Paint.Style.FILL);
+        p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
+        dibujarCuadrado(c,Color.rgb(206, 101, 0),x+300,y+640,1400,50);
+        p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
+        p.setColor(Color.rgb(206, 101, 0));
+        p.setStyle(Paint.Style.FILL);
+        p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
+        dibujarCuadrado(c,Color.rgb(206, 101, 0),x+350,y+690,1300,50);
+        p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
+        p.setColor(Color.rgb(206, 101, 0));
+        p.setStyle(Paint.Style.FILL);
+        p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
+        dibujarCuadrado(c,Color.rgb(206, 101, 0),x+400,y+730,1200,50);
+        p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
+        p.setColor(Color.rgb(206, 101, 0));
+        p.setStyle(Paint.Style.FILL);
+        p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
+        dibujarCuadrado(c,Color.rgb(206, 101, 0),x+450,y+780,1100,70);
+        p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
+        p.setColor(Color.rgb(206, 101, 0));
+        p.setStyle(Paint.Style.FILL);
+        p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
+        dibujarCuadrado(c,Color.rgb(206, 101, 0),x+500,y+830,1000,70);
+
+
+
+    }
+    public void lunamasnaranja(Canvas c,float y, float x) {
+        Paint p = new Paint();
+
+        p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
+        p.setColor(Color.rgb(241, 135, 0));
+        p.setStyle(Paint.Style.FILL);
+        p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
+        dibujarCuadrado(c,Color.rgb(241, 135, 0),x+700,y+10,600,50);
+        p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
+        p.setColor(Color.rgb(241, 135, 0));
+        p.setStyle(Paint.Style.FILL);
+        p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
+        dibujarCuadrado(c,Color.rgb(241, 135, 0),x+600,y+40,800,50);
+        p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
+        p.setColor(Color.rgb(241, 135, 0));
+        p.setStyle(Paint.Style.FILL);
+        p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
+        dibujarCuadrado(c,Color.rgb(241, 135, 0),x+550,y+80,900,70);
+        p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
+        p.setColor(Color.rgb(241, 135, 0));
+        p.setStyle(Paint.Style.FILL);
+        p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
+        dibujarCuadrado(c,Color.rgb(241, 135, 0),x+500,y+130,1000,70);
+        p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
+        p.setColor(Color.rgb(241, 135, 0));
+        p.setStyle(Paint.Style.FILL);
+        p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
+        dibujarCuadrado(c,Color.rgb(241, 135, 0),x+450,y+180,1100,70);
+        p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
+        p.setColor(Color.rgb(241, 135, 0));
+        p.setStyle(Paint.Style.FILL);
+        p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
+        dibujarCuadrado(c,Color.rgb(241, 135, 0),x+400,y+230,1200,70);
+        p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
+        p.setColor(Color.rgb(241, 135, 0));
+        p.setStyle(Paint.Style.FILL);
+        p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
+        dibujarCuadrado(c,Color.rgb(241, 135, 0),x+400,y+290,1200,300);
+        p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
+        p.setColor(Color.rgb(241, 135, 0));
+        p.setStyle(Paint.Style.FILL);
+        p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
+        dibujarCuadrado(c,Color.rgb(241, 135, 0),x+450,y+590,1100,50);
+        p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
+        p.setColor(Color.rgb(241, 135, 0));
+        p.setStyle(Paint.Style.FILL);
+        p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
+        dibujarCuadrado(c,Color.rgb(241, 135, 0),x+500,y+640,1000,50);
+        p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
+        p.setColor(Color.rgb(241, 135, 0));
+        p.setStyle(Paint.Style.FILL);
+        p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
+        dibujarCuadrado(c,Color.rgb(241, 135, 0),x+550,y+690,900,50);
+        p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
+        p.setColor(Color.rgb(241, 135, 0));
+        p.setStyle(Paint.Style.FILL);
+        p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
+        dibujarCuadrado(c,Color.rgb(241, 135, 0),x+600,y+740,800,40);
+        p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
+        p.setColor(Color.rgb(241, 135, 0));
+        p.setStyle(Paint.Style.FILL);
+        p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
+        dibujarCuadrado(c,Color.rgb(241, 135, 0),x+650,y+780,700,70);
+
+
+    }
     public void lunanaranja(Canvas c,float y, float x){
         Paint p = new Paint();
 
         p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
-        p.setColor(Color.rgb(220, 124, 0));
+        p.setColor(Color.rgb(252, 172, 0));
         p.setStyle(Paint.Style.FILL);
         p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
-        dibujarCuadrado(c,Color.rgb(220, 124, 0),x+800,y+100,400,50);
+        dibujarCuadrado(c,Color.rgb(252, 172, 0),x+800,y+100,400,50);
         p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
-        p.setColor(Color.rgb(220, 124, 0));
+        p.setColor(Color.rgb(252, 194, 0));
         p.setStyle(Paint.Style.FILL);
         p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
-        dibujarCuadrado(c,Color.rgb(220, 124, 0),x+700,y+150,600,50);
+        dibujarCuadrado(c,Color.rgb(252, 172, 0),x+700,y+150,600,50);
         p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
-        p.setColor(Color.rgb(220, 124, 0));
+        p.setColor(Color.rgb(252, 172, 0));
         p.setStyle(Paint.Style.FILL);
         p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
-        dibujarCuadrado(c,Color.rgb(220, 124, 0),x+650,y+200,700,50);
+        dibujarCuadrado(c,Color.rgb(252, 172, 0),x+650,y+200,700,50);
         p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
-        p.setColor(Color.rgb(220, 124, 0));
+        p.setColor(Color.rgb(252, 172, 0));
         p.setStyle(Paint.Style.FILL);
         p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
-        dibujarCuadrado(c,Color.rgb(220, 124, 0),x+600,y+250,800,50);
+        dibujarCuadrado(c,Color.rgb(252, 172, 0),x+600,y+250,800,50);
         p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
-        p.setColor(Color.rgb(220, 124, 0));
+        p.setColor(Color.rgb(252, 172, 0));
         p.setStyle(Paint.Style.FILL);
         p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
-        dibujarCuadrado(c,Color.rgb(220, 124, 0),x+550,y+300,900,290);
+        dibujarCuadrado(c,Color.rgb(252, 172, 0),x+550,y+300,900,290);
         p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
-        p.setColor(Color.rgb(220, 124, 0));
+        p.setColor(Color.rgb(252, 172, 0));
         p.setStyle(Paint.Style.FILL);
         p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
-        dibujarCuadrado(c,Color.rgb(220, 124, 0),x+600,y+590,800,50);
+        dibujarCuadrado(c,Color.rgb(252, 172, 0),x+600,y+590,800,50);
         p.setStyle(Paint.Style.FILL);
         p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
-        dibujarCuadrado(c,Color.rgb(220, 124, 0),x+650,y+640,700,50);
+        dibujarCuadrado(c,Color.rgb(252, 172, 0),x+650,y+640,700,50);
         p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
-        p.setColor(Color.rgb(220, 124, 0));
+        p.setColor(Color.rgb(252, 172, 0));
         p.setStyle(Paint.Style.FILL);
         p.setStyle(Paint.Style.FILL);
         p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
-        dibujarCuadrado(c,Color.rgb(220, 124, 0),x+700,y+690,600,50);
+        dibujarCuadrado(c,Color.rgb(252, 172, 0),x+700,y+690,600,50);
         p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
-        p.setColor(Color.rgb(220, 124, 0));
+        p.setColor(Color.rgb(252, 172, 0));
         p.setStyle(Paint.Style.FILL);
         p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
-        p.setColor(Color.rgb(220, 124, 0));
+        p.setColor(Color.rgb(252, 172, 0));
         p.setStyle(Paint.Style.FILL);
         p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO
-        dibujarCuadrado(c,Color.rgb(220, 124, 0),x+800,y+730,400,50);
+        dibujarCuadrado(c,Color.rgb(252, 172, 0),x+800,y+730,400,50);
 
     }
     public void lunaamarilla (Canvas c, float y, float x){
