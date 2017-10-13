@@ -47,7 +47,7 @@ public class Lienzo extends View {
 
     public void onDraw(Canvas c) {
         Paint p = new Paint();
-        zorro(c,0,0,25);
+        zorro(c,500,0,25);
 
     }
 
