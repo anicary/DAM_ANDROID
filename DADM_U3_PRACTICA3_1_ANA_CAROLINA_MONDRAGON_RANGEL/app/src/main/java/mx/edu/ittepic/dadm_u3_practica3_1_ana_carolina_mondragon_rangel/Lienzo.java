@@ -68,14 +68,14 @@ public class Lienzo extends View {
                 }
             if (zorro[i] == 2) { //ROJO
                 p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
-                p.setColor(Color.rgb(242,212,171));
+                p.setColor(Color.rgb(255, 51, 0));
                 p.setStyle(Paint.Style.FILL);
                   /* p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO*/
                 dibujarCuadrado(c,Color.BLACK,x+columna,y+fila,tamano,tamano);
             }
             if (zorro[i] == 2) { //CREMA
                 p.setStyle(Paint.Style.STROKE); //STROKE DIBUJA EL CONTORNO
-                p.setColor(Color.rgb(242,212,171));
+                p.setColor(Color.rgb(255, 255, 230));
                 p.setStyle(Paint.Style.FILL);
                   /* p.setStrokeWidth(10); // HACE EL CONTORNO MAS GRUESO*/
                 dibujarCuadrado(c,Color.BLACK,x+columna,y+fila,tamano,tamano);
