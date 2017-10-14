@@ -5,11 +5,14 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.os.CountDownTimer;
 import android.view.View;
 /**
  * Created by UsuarioPrueba on 12/10/2017.
  */
 public class Lienzo extends View {
+    CountDownTimer colores;
+    boolean colocacion = true;
     int[] zorro = {
            /*1,2,3*/
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -42,13 +45,40 @@ public class Lienzo extends View {
             0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0,
     };
 
-    public Lienzo(Context context) {
+    public Lienzo(final Context context) {
         super(context);
+        colores = new CountDownTimer(30000, 120) {
+            @Override
+            public void onTick(long l) {
+                if (colocacion) {
+                    colocacion = false;
+                } else {
+                    colocacion = true;
+                }
+                invalidate();
+            }
+
+            @Override
+            public void onFinish() {
+                colores.start();
+            }
+        };
+        colores.start();
     }
 
     public void onDraw(Canvas c) {
         Paint p = new Paint();
-        zorro(c,500,0,25);
+        dibujarCuadrado(c, Color.rgb(190, 247, 167), 0, 0, 1920, 1080);
+
+        if (colocacion) {
+            p.setColor(Color.rgb(215, 196, 247));
+            dibujarCuadrado(c, Color.rgb(215, 196, 247), 0, 0, 1920, 1080);
+        } else {
+            p.setColor(Color.rgb(190, 247, 167));
+            p.setStyle(Paint.Style.FILL);
+        }
+        zorro(c, 500, 15, 30);
+
 
     }
 
