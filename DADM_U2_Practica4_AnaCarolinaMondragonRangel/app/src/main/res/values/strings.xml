@@ -1,7 +1,0 @@
-<resources>
-    <string name="app_name">DADM_U2_Practica4_AnaCarolinaMondragonRangel</string>
-    <string-array name="personas">
-        <item>Persona fisica</item>
-        <item>Persona moral</item>
-    </string-array>
-</resources>

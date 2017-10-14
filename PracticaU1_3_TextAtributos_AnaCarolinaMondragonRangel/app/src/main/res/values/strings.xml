@@ -1,9 +1,0 @@
-<resources>
-    <string name="app_name">PracticaU1_3_TextAtributos_AnaCarolinaMondragonRangel</string>
-    <string-array name="colores">
-        <item>AZUL</item>
-        <item>BLANCO</item>
-        <item>AMARILLO</item>
-        <item>VERDE</item>
-    </string-array>
-</resources>
