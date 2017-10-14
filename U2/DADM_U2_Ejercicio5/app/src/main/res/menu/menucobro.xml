@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="sumar"
+    android:id="@+id/sumar"/>
+    <item android:title="borrar"
+        android:id="@+id/borrar"/>
+    <item android:title="regresar"
+        android:id="@+id/regresar"/>
+
+</menu>

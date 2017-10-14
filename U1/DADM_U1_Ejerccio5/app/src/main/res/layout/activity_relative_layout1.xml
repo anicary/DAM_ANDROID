@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    tools:context="mx.edu.ittepic.dadm_u1_ejerccio5.RelativeLayout1">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/titulo"
+        android:text="CONVERSOR"
+        android:layout_centerHorizontal="true"
+        android:textSize="40dp"
+        android:textColor="#FF0000"
+        android:layout_marginBottom="40dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cantidad en dolares"
+        style="@style/textoetiquetas"
+        android:layout_below="@id/titulo"
+        android:id="@+id/texto1"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/canditaddolares"
+        android:layout_below="@id/titulo"
+        android:layout_toEndOf="@id/texto1"
+        android:ems="10"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cantidad en Euros"
+        style="@style/textoetiquetas"
+        android:layout_below="@id/texto1"
+        android:id="@+id/texto2"
+        android:layout_marginTop="30dp"/>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:id="@+id/cantidadeuros"
+        android:layout_below="@id/texto1"
+        android:layout_toEndOf="@id/texto2"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn1"
+        android:text="CONVERTIR"
+        android:onClick="convertir"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/texto2"
+        android:layout_marginTop="50dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RESULTADO"
+        style="@style/textoetiquetas"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/resultado"
+        android:layout_marginTop="40dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/precio"
+        android:text="PRECIO"
+        style="@style/textoverde"
+        android:layout_above="@id/resultado"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="5"
+        android:layout_above="@id/resultado"
+        android:layout_toEndOf="@id/precio"
+        android:id="@+id/cantidadprecio"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="asignar"
+        android:id="@+id/btn2"
+        android:text="ASIGNAR"
+        android:layout_above="@id/resultado"
+        android:layout_toEndOf="@id/cantidadprecio"/>
+
+
+</RelativeLayout>

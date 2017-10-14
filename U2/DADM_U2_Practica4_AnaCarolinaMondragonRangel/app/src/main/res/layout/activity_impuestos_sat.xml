@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginLeft="40dp"
+    android:layout_marginRight="40dp"
+    tools:context="mx.edu.ittepic.dadm_u2_practica4_anacarolinamondragonrangel.ImpuestosSAT">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="DECLARACION DE IMPUESTOS"
+        android:textAlignment="center"
+        android:layout_marginTop="20dp"
+        android:textSize="24dp"
+        android:textColor="#0000FF"
+        android:textStyle="bold"/>
+    <EditText
+        android:id="@+id/salario"
+        android:inputType="number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Escribe tu salario por hora"
+        android:layout_marginTop="20dp"/>
+    <EditText
+        android:id="@+id/hrs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="horas totales trabajadas"
+        android:inputType="number"
+        android:layout_marginTop="10dp"/>
+    <Spinner
+        android:id="@+id/tipopersona"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/personas">
+    </Spinner>
+    <EditText
+        android:id="@+id/subtotal"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="SubTotal" />
+    <EditText
+        android:id="@+id/iva"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="IVA" />
+    <EditText
+        android:id="@+id/total"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Total" />
+    <Button
+        android:id="@+id/realizarpago"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Realizar pago"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="right"/>
+</LinearLayout>

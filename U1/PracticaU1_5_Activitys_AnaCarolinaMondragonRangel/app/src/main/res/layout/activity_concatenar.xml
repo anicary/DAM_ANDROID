@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    tools:context="mx.edu.ittepic.practicau1_5_activitys_anacarolinamondragonrangel.Concatenar">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CONCATENAR"
+        android:textAlignment="center"
+        android:layout_marginTop="30dp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:textSize="30dp"
+        android:fontFamily="monospace"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="En esta ventana usted puede concatenar 2 palabras"
+        android:textAlignment="center"
+        android:layout_marginTop="30dp" android:textColor="#000000"
+        android:textSize="20dp"
+        android:fontFamily="monospace"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Palabra 1:"
+            android:textColor="#000000"
+            android:fontFamily="sans-serif-condensed"
+            android:textStyle="bold"
+            android:textSize="20dp"/>
+        <EditText
+            android:id="@+id/palabra1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Escriba su palabra"
+            android:ems="20"
+            android:layout_marginLeft="20dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Palabra 2:"
+            android:textColor="#000000"
+            android:fontFamily="sans-serif-condensed"
+            android:textStyle="bold"
+            android:textSize="20dp"/>
+        <EditText
+            android:id="@+id/palabra2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Escriba su palabra"
+            android:ems="20"
+            android:layout_marginLeft="20dp"/>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/resultado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:text="PALABRA CONCATENADA:"
+        android:textStyle="bold|italic"
+        android:textColor="#000000"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:id="@+id/concatenar"
+        android:onClick="concatenar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:text="CONCATENAR" />
+
+    <Button
+        android:id="@+id/cerrar"
+        android:onClick="cerrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CERRAR"
+
+        android:layout_marginTop="20dp"/>
+</LinearLayout>
+

@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">DADM_U2_Ejercicio5</string>
+    <string-array name="menu">
+        <item>operaciones</item>
+        <item>cobro</item>
+        <item>Acerca de...</item>
+        <item>salir</item>
+    </string-array>
+</resources>
