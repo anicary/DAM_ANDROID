@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Point;
 import android.graphics.RectF;
 import android.view.View;
 
@@ -40,7 +42,7 @@ public class Lienzo extends View {
         GrupoCopos = new Copos[5];
         Random xrandom = new Random();
         for (int i=0;i<GrupoCopos.length;i++){
-            GrupoCopos[i] =new Copos(xrandom.nextInt(1000),0,xrandom.nextInt(50),20);
+            GrupoCopos[i] =new Copos(xrandom.nextInt(1000),-50,xrandom.nextInt(50),20);
         }
     }
     public void arbol (Canvas c, float x, float y,float tamx, float tamy){
@@ -90,7 +92,7 @@ public class Lienzo extends View {
         arbol(c,50,1150,10,10);//Arbol lejos
         arbol(c,900,1150,10,10);//Arbol lejos
         arbol(c,700,1100,18,18);//DONDE SE LLAMA EL ARBOL
-
+        triangulo(c,Color.BLACK, 800, 1150, 250);
         for (int i=0;i<GrupoCopos.length;i++){
             GrupoCopos[i].Dibujar(c);
         }
@@ -106,5 +108,21 @@ public class Lienzo extends View {
         float b = y + tamy;
         RectF rec = new RectF(x, y, r, b);
         c.drawRect(rec, p);
+    }
+    public void triangulo(Canvas canvas,int color, int x, int y, int tamano) {
+        int tamanomitad = tamano / 2; //Obtenemos el tamaño y lo dividimos
+        Path camino = new Path(); /*Creamos un camino*/
+        camino.moveTo(x, y - tamanomitad);// iniciamos en x y vamos a la (y-tamaño/2)
+        camino.lineTo(x - tamanomitad, y + tamanomitad);
+        camino.lineTo(x + tamanomitad, y + tamanomitad);
+        camino.lineTo(x, y - tamanomitad);
+        camino.close();
+        /*CREAMOS EL COLOR*/
+        Paint p =new Paint();
+        p.setColor(color);
+        p.setStyle(Paint.Style.STROKE);
+        p.setStyle(Paint.Style.FILL);
+        /*DIBUJAMNOS EL CAMINO CON EL COLOR*/
+        canvas.drawPath(camino, p);
     }
 }
