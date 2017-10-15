@@ -81,6 +81,7 @@ public class Lienzo extends View {
                 Toast.makeText(getContext(),"SOLTASTE X: "+x+"Y:"+y,Toast.LENGTH_SHORT).show();
                 break;
         }
+
         return true;
     }
 }
