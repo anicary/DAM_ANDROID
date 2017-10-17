@@ -52,7 +52,8 @@ public class Lienzo extends View {
                     }
 
                     @Override
-                    public void onFinish() {
+                    public void onFinish()
+                    {
                         timer.start();
                     }
                 };
@@ -62,10 +63,10 @@ public class Lienzo extends View {
             public void onDraw(Canvas c) {
 
                 Paint p = new Paint(); //configuracion
-                //Edificio
+                //DIBUJAR RECTANGULO
                 p.setColor(Color.rgb(204, 95, 195));
                 c.drawRect(rx1, ry1, rx2, ry2, p);
-
+                //DIBBUJAR CIRCULO
                 p.setColor(Color.rgb(146, 185, 195));
                 RectF circulo = new RectF(cx1, cy1, cx2, cy2);
                 c.drawOval(circulo, p);

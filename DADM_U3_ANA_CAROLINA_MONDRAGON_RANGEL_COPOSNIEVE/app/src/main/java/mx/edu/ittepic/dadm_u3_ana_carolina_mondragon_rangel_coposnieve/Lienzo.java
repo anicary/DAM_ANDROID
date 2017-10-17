@@ -92,6 +92,7 @@ public class Lienzo extends View {
         arbol(c,50,1150,10,10);//Arbol lejos
         arbol(c,900,1150,10,10);//Arbol lejos
         arbol(c,700,1100,18,18);//DONDE SE LLAMA EL ARBOL
+
         triangulo(c,Color.BLACK, 800, 1150, 250);
         for (int i=0;i<GrupoCopos.length;i++){
             GrupoCopos[i].Dibujar(c);

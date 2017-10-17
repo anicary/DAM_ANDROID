@@ -48,7 +48,8 @@ public class Lienzo extends View {
             }
 
             @Override
-            public void onFinish() {
+            public void onFinish()
+            {
                 timer.start();
             }
         };
