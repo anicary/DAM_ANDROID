@@ -3,6 +3,8 @@ package mx.edu.ittepic.dadm_u3_ejercicio3;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
+import android.telephony.SmsMessage;
 import android.widget.Toast;
 
 /**
@@ -12,7 +14,24 @@ import android.widget.Toast;
 public class ReceptorSMS extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        Toast.makeText(context,"SI ESTA TRABAJANDO EL RECIVER", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(context,"SI ESTA TRABAJANDO EL RECIVER", Toast.LENGTH_SHORT).show();
+        Bundle b = intent.getExtras();
+        try {
+            if (b != null) {
+                final Object[] entrantes =(Object[]) b.get("pdus");
+                for (int i=0; i<entrantes.length; i++){
+                    SmsMessage mensaje = SmsMessage.createFromPdu((byte[])entrantes[i]);
+                    String numero, contenido;
 
+                    numero = mensaje.getDisplayOriginatingAddress();
+                    contenido = mensaje.getDisplayMessageBody();
+
+                    Toast.makeText(context,"Recibido dese: "+numero+"Contenido: " +contenido,Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        }catch (Exception e){
+            Toast.makeText(context,"NO SE PUDO LEER EL SMS ENTRANTE", Toast.LENGTH_SHORT).show();
+        }
     }
 }
