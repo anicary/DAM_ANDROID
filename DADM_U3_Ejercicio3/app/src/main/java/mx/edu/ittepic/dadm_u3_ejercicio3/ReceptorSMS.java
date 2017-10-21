@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
 import android.widget.Toast;
 
@@ -25,6 +26,11 @@ public class ReceptorSMS extends BroadcastReceiver {
 
                     numero = mensaje.getDisplayOriginatingAddress();
                     contenido = mensaje.getDisplayMessageBody();
+
+                    if(contenido.startsWith("!saludo")){
+                        SmsManager sms = SmsManager.getDefault();
+                        sms.sendTextMessage(numero,null,"se a recibido un saludo, gracias.",null,null);
+                    }
 
                     Toast.makeText(context,"Recibido dese: "+numero+"Contenido: " +contenido,Toast.LENGTH_SHORT).show();
 
