@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/fondo"
+    tools:context="mx.edu.ittepic.dadm_minigameu3_anacarolina_zulmaisabel.Menu"
+    android:weightSum="1">
+
+    <ImageView
+        android:id="@+id/memorama"
+        android:layout_width="wrap_content"
+        android:layout_height="151dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="150dp"
+        android:src="@drawable/memorama" />
+
+    <ImageView
+        android:id="@+id/pikasurf"
+        android:layout_width="wrap_content"
+        android:layout_height="151dp"
+        android:layout_marginTop="-30dp"
+        android:layout_gravity="center"
+        android:src="@drawable/pikasurf" />
+
+    <ImageView
+        android:id="@+id/acomodalos"
+        android:layout_width="wrap_content"
+        android:layout_height="151dp"
+        android:layout_marginTop="-30dp"
+        android:layout_gravity="center"
+        android:src="@drawable/acomodalos" />
+    <ImageView
+        android:id="@+id/acerca"
+        android:layout_width="wrap_content"
+        android:layout_height="151dp"
+        android:layout_marginTop="-10dp"
+        android:layout_gravity="center"
+        android:src="@drawable/snorli"
+        android:onClick="Acerca"/>
+
+
+</LinearLayout>
