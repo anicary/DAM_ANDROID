@@ -35,6 +35,11 @@ public class Intro extends View {
                     y += 8;
                     y1 -=8;
                 }
+                else
+                {
+                    siguiente.start();
+                    timer.cancel();
+                }
                 if (y >= (1300- corgi.getHeight()) / 2) {
                     movimiento = false;
                 }
@@ -47,8 +52,8 @@ public class Intro extends View {
                 timer.start();
             }
         };
-        siguiente.start();
-        siguiente = new CountDownTimer(1000,1) {
+        timer.start();
+        siguiente = new CountDownTimer(2000,1) {
             @Override
             public void onTick(long l) {
             }
