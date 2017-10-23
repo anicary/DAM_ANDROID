@@ -1,11 +1,13 @@
 package mx.edu.ittepic.dadm_minigameu3_anacarolina_zulmaisabel;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.CountDownTimer;
+import android.support.v4.app.ActivityCompat;
 import android.view.View;
 
 /**
@@ -14,8 +16,8 @@ import android.view.View;
 
 public class Intro extends View {
     Bitmap corgi,texto;
-    CountDownTimer timer;
-    int y=0;
+    CountDownTimer timer,siguiente;
+    int y=0, y1=1300;
     boolean movimiento;
     public Intro(Context context) {
         super(context);
@@ -30,15 +32,16 @@ public class Intro extends View {
             public void onTick(long l) {
 
                 if(movimiento ==true) {
-                    y += 5;
+                    y += 8;
+                    y1 -=8;
                 }
                 if (y >= (1300- corgi.getHeight()) / 2) {
                     movimiento = false;
                 }
+                if (y1 >= (800- corgi.getHeight()) / 2)
 
-                invalidate(); //Vuelve a ejecutar el onDraw
+                    invalidate(); //Vuelve a ejecutar el onDraw
             }
-
             @Override
             public void onFinish()
             {
@@ -46,10 +49,28 @@ public class Intro extends View {
             }
         };
         timer.start();
+
+        siguiente = new CountDownTimer(1000,1) {
+            @Override
+            public void onTick(long l) {
+                if (movimiento == true){
+                    Intent opcion = new Intent(getContext(),Menu.class);
+                    startActivity(opcion);
+                    siguiente.start();
+                }
+
+
+                    invalidate(); //Vuelve a ejecutar el onDraw
+            }
+            @Override
+            public void onFinish()
+            {
+            }
+        };
     }
     public void onDraw(Canvas c){
         Paint p = new Paint();
         c.drawBitmap(corgi,200,y,p);
-        c.drawBitmap(texto,50,1000,p);
+        c.drawBitmap(texto,50,y1,p);
     }
 }
