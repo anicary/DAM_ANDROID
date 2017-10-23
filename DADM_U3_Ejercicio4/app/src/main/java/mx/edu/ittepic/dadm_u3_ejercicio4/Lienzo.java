@@ -22,7 +22,7 @@ public class Lienzo extends View {
     }
     public void onDraw(Canvas c){
         Paint p = new Paint();
-        circulo(c, Color.MAGENTA,500,300,150,100);
+        circulo(c, Color.MAGENTA,500,300,150);
         triangulo(c, Color.BLACK,triangulopos[0],triangulopos[1],triangulopos[2]);
     }
     public boolean onTouchEvent(MotionEvent me) { //CODIGO BASE DE UN VIEW CON EVENTO
@@ -58,7 +58,7 @@ public class Lienzo extends View {
                 break;
 
     }
-    System.out.println(" x:"+x+"  y:"+y);
+    System.out.println(" x:"+x+"  y:"+y +"--- x"+ triangulopos[0]+" y"+ triangulopos[1]);
         invalidate();
         return true;
     }
@@ -66,22 +66,18 @@ public class Lienzo extends View {
 
 
     public boolean estaEnAreaCirculo(float xP, float yP){
-        if(xP >= 500 && xP <= 500+150){
-            if (yP >= 300 && yP <=300+150){
+        if(xP >= 500-150 && xP <= 500+(150*3)){ // se resta el radio del lado izquierdo y se multiplica por 3 del lado derecho
+            if (yP >= 300-150 && yP <=300+(150)*3){ // se resta el radio del lado izquierdo y se multiplica por 3 del lado derecho
                 return true;
             }
         }
         return false;
     }
 
-    public void circulo(Canvas c, int color, float x,float y, float tamx, float tamy){
+    public void circulo(Canvas c, int color, float x,float y, float tamx){
         Paint p = new Paint();
         p.setColor(color);
         p.setStyle(Paint.Style.FILL);
-        float a= x+tamx;
-        float b= y+tamy;
-      //  RectF circulo = new RectF(x,y,a,b);
-        //c.drawOval(circulo,p);
         c.drawCircle(x+tamx,y+tamx,tamx,p);
     }
 
