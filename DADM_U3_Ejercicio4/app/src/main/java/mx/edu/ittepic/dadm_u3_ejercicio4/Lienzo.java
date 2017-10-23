@@ -66,8 +66,8 @@ public class Lienzo extends View {
 
 
     public boolean estaEnAreaCirculo(float xP, float yP){
-        if(xP >= 400 && xP <= 400+150){
-            if (yP >= 200 && yP <=200+150){
+        if(xP >= 500 && xP <= 500+150){
+            if (yP >= 300 && yP <=300+150){
                 return true;
             }
         }
