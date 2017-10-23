@@ -37,9 +37,7 @@ public class Intro extends View {
                 }
                 if (y >= (1300- corgi.getHeight()) / 2) {
                     movimiento = false;
-                    siguiente.start();
                 }
-              //  if (y1 >= (800- corgi.getHeight()) / 2)
 
                     invalidate(); //Vuelve a ejecutar el onDraw
             }
@@ -49,7 +47,7 @@ public class Intro extends View {
                 timer.start();
             }
         };
-        timer.start();
+        siguiente.start();
         siguiente = new CountDownTimer(1000,1) {
             @Override
             public void onTick(long l) {
@@ -57,8 +55,10 @@ public class Intro extends View {
             @Override
             public void onFinish()
             {
-                Intent opcion = new Intent(getContext(),Menu.class);
-                getContext().startActivity(opcion);
+                if(movimiento == false) {
+                    Intent opcion = new Intent(getContext(), Menu.class);
+                    getContext().startActivity(opcion);
+                }
             }
         };
     }
