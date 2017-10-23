@@ -19,20 +19,16 @@ public class Lienzo extends View {
   float triangulopos[] ={300,200,300};
     public Lienzo (Context context){
         super(context);
-
-
     }
     public void onDraw(Canvas c){
         Paint p = new Paint();
-        circulo(c, Color.MAGENTA,400,200,300,300);
+        circulo(c, Color.MAGENTA,500,300,150,100);
         triangulo(c, Color.BLACK,triangulopos[0],triangulopos[1],triangulopos[2]);
     }
     public boolean onTouchEvent(MotionEvent me) { //CODIGO BASE DE UN VIEW CON EVENTO
         float x, y;
-
         x = me.getX();
         y = me.getY();
-
         switch (me.getAction()) {
             case MotionEvent.ACTION_DOWN:
 
@@ -40,8 +36,6 @@ public class Lienzo extends View {
                     if (triangulopos[1] > y && triangulopos[1] < y + triangulopos[3]) {
                         triangulopos[0] = x;
                         triangulopos[1] = y;
-
-                        invalidate();
                     }
                 }
 
@@ -51,37 +45,44 @@ public class Lienzo extends View {
                     if (triangulopos[0] <= 1080) {
                         triangulopos[0] = x;
                         triangulopos[1] = y;
-
                     }
                 }
-                invalidate();
+                if(estaEnAreaCirculo( triangulopos[0], triangulopos[1]))
+                {
+                    System.out.println("TOCO CIRCULO");
+                    Toast.makeText(getContext(), "Toco el circulo", Toast.LENGTH_SHORT).show();
+                }
+
                 break;
             case MotionEvent.ACTION_UP:
                 break;
 
-        }
+    }
+    System.out.println(" x:"+x+"  y:"+y);
+        invalidate();
         return true;
     }
 
 
-    public boolean estaEnAreaRect(float xP, float yP){
-        if(xP > 300 && xP < 200){
-            if (yP > 200 && yP <200){
-                invalidate();
+
+    public boolean estaEnAreaCirculo(float xP, float yP){
+        if(xP >= 400 && xP <= 400+150){
+            if (yP >= 200 && yP <=200+150){
                 return true;
             }
         }
         return false;
     }
+
     public void circulo(Canvas c, int color, float x,float y, float tamx, float tamy){
         Paint p = new Paint();
         p.setColor(color);
         p.setStyle(Paint.Style.FILL);
         float a= x+tamx;
         float b= y+tamy;
-        RectF circulo = new RectF(x,y,a,b);
-        c.drawOval(circulo,p);
-
+      //  RectF circulo = new RectF(x,y,a,b);
+        //c.drawOval(circulo,p);
+        c.drawCircle(x+tamx,y+tamx,tamx,p);
     }
 
     public void triangulo(Canvas c, int color, float x,float y, float tamano){
