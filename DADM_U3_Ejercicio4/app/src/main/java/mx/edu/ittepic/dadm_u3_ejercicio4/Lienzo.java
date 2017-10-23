@@ -62,9 +62,6 @@ public class Lienzo extends View {
         invalidate();
         return true;
     }
-
-
-
     public boolean estaEnAreaCirculo(float xP, float yP){
         if(xP >= 500-150 && xP <= 500+(150*3)){ // se resta el radio del lado izquierdo y se multiplica por 3 del lado derecho
             if (yP >= 300-150 && yP <=300+(150)*3){ // se resta el radio del lado izquierdo y se multiplica por 3 del lado derecho
@@ -73,7 +70,6 @@ public class Lienzo extends View {
         }
         return false;
     }
-
     public void circulo(Canvas c, int color, float x,float y, float tamx){
         Paint p = new Paint();
         p.setColor(color);
