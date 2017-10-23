@@ -16,66 +16,57 @@ import android.widget.Toast;
  */
 
 public class Lienzo extends View {
-    CountDownTimer timer;
-    boolean movimiento=true;
-    int x=300;
-    int ancho,alto;
-
+  float triangulopos[] ={300,200,300};
     public Lienzo (Context context){
         super(context);
-        ancho =400;
-        alto=200;
 
-        timer = new CountDownTimer(5000,1) {
-            @Override
-            public void onTick(long l) {
 
-                if(movimiento ==true){
-                    x+=5;
-                }else{
-                    x-=5;
-                }
-                if(x>=1000){
-                    movimiento = false;
-                }
-                if(x<0){
-                    movimiento=true;
-                }
-                invalidate(); //Vuelve a ejecutar el onDraw
-            }
-
-            @Override
-            public void onFinish()
-            {
-                timer.start();
-            }
-        };
-        timer.start();
     }
     public void onDraw(Canvas c){
         Paint p = new Paint();
         circulo(c, Color.MAGENTA,400,200,300,300);
-        triangulo(c, Color.BLACK,300+ancho,200,300);
+        triangulo(c, Color.BLACK,triangulopos[0],triangulopos[1],triangulopos[2]);
     }
-    public boolean onTouchEvent(MotionEvent me){ //CODIGO BASE DE UN VIEW CON EVENTO
-        float xPantalla, yPantalla;
+    public boolean onTouchEvent(MotionEvent me) { //CODIGO BASE DE UN VIEW CON EVENTO
+        float x, y;
 
-        xPantalla=me.getX();
-        yPantalla=me.getY();
+        x = me.getX();
+        y = me.getY();
 
-        switch (me.getAction()){
+        switch (me.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                if(estaEnAreaRect(xPantalla,yPantalla)){
-                    Toast.makeText(getContext(),"COLISIONO",Toast.LENGTH_SHORT).show();
-                }
-        }
 
+                if (triangulopos[0] > x && triangulopos[0] < x + triangulopos[2]) {
+                    if (triangulopos[1] > y && triangulopos[1] < y + triangulopos[3]) {
+                        triangulopos[0] = x;
+                        triangulopos[1] = y;
+
+                        invalidate();
+                    }
+                }
+
+                break;
+            case MotionEvent.ACTION_MOVE:
+                if (triangulopos[0] > 0) {
+                    if (triangulopos[0] <= 1080) {
+                        triangulopos[0] = x;
+                        triangulopos[1] = y;
+
+                    }
+                }
+                invalidate();
+                break;
+            case MotionEvent.ACTION_UP:
+                break;
+
+        }
         return true;
     }
 
+
     public boolean estaEnAreaRect(float xP, float yP){
-        if(xP > 300 && xP < 300+ancho){
-            if (yP > 200 && yP <200+alto){
+        if(xP > 300 && xP < 200){
+            if (yP > 200 && yP <200){
                 invalidate();
                 return true;
             }
@@ -93,8 +84,8 @@ public class Lienzo extends View {
 
     }
 
-    public void triangulo(Canvas c, int color, int x,int y, int tamano){
-        int tamanomitad = tamano/2;
+    public void triangulo(Canvas c, int color, float x,float y, float tamano){
+        float tamanomitad = tamano/2;
         Path camino = new Path();
         camino.moveTo(x,y-tamanomitad);
         camino.lineTo(x-tamanomitad,y+tamanomitad);
