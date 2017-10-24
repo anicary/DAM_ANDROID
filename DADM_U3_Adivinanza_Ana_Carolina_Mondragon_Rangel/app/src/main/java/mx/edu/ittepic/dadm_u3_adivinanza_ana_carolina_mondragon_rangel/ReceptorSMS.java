@@ -12,24 +12,26 @@ import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
 import android.widget.Toast;
 
+import java.util.Random;
+
 /**
  * Created by UsuarioPrueba on 22/10/2017.
  */
 
 
 public class ReceptorSMS extends BroadcastReceiver {
-    int intento=0;
+    int intento=0,adivina=0;
     String [][] adivinanza ={
             {"QUE TIENE EL REY EN LA PANSA??","OMBLIGO","EL OMBLIGO"},
             {"LANA SUBE LANA BAJA, QUE ES?","LA NAVAJA","NAVAJA"},
     };
+    Random  ran = new Random();
     @Override
     public void onReceive(Context context, Intent intent) {
                 /* PERMISOS */
-
         //Toast.makeText(context,"SI ESTA TRABAJANDO EL RECIVER", Toast.LENGTH_SHORT).show();
         Bundle b = intent.getExtras();
-        try {
+    //    try {
             if (b != null) {
                 final Object[] entrantes =(Object[]) b.get("pdus");
                 for (int i=0; i<entrantes.length; i++){
@@ -37,19 +39,47 @@ public class ReceptorSMS extends BroadcastReceiver {
                     String numero, contenido;
                     numero = mensaje.getDisplayOriginatingAddress();
                     contenido = mensaje.getDisplayMessageBody();
+                    SmsManager sms = SmsManager.getDefault();
                     if(contenido.startsWith("!ADIVINANZA")){
-                           Toast.makeText(context,"Recibido dese: "+numero+"Contenido: " +contenido,Toast.LENGTH_SHORT).show();
-                      //  if(intento<4) {
-                         SmsManager sms = SmsManager.getDefault();
-                          sms.sendTextMessage(numero, null, "se a recibido un saludo, gracias.", null, null);
-                        //}
+
+                        if(intento==0)
+                        {
+                            adivina=ran.nextInt(entrantes.length+1);
+                        }
+
                     }
-                   Toast.makeText(context,"Recibido dese: "+numero+"Contenido: " +contenido,Toast.LENGTH_SHORT).show();
+                    if(intento<4)
+                    {
+                        if(intento==0)
+                        {
+                            sms.sendTextMessage(numero, null, ""+adivinanza[adivina][0] +" ", null, null);
+                            intento++;
+                        }else
+                        {
+                            if(contenido.startsWith(""+adivinanza[adivina][1]) || contenido.startsWith(""+adivinanza[adivina][2]) )
+                            {
+                                sms.sendTextMessage(numero, null, "CORRECTO!!", null, null);
+                                intento=0;
+                            }else
+                            {
+                                sms.sendTextMessage(numero, null, "Incorrecto Intentos: "+(intento+1), null, null);
+                                intento++;
+                            }
+                        }
+
+
+                    }
+                    if(intento>=4)
+                    {
+                        intento=0;
+                        sms.sendTextMessage(numero, null, "Termino las respuestas correctas eran: "+adivinanza[adivina][1]+","+adivinanza[adivina][2], null, null);
+                    }
+                   //Toast.makeText(context,"Recibido dese: "+numero+"Contenido: " +contenido,Toast.LENGTH_SHORT).show();
                 }
             }
-        }catch (Exception e){
+     /*   }catch (Exception e){
             Toast.makeText(context,"NO SE PUDO ENVIAR EL MENSAJE", Toast.LENGTH_SHORT).show();
-        }
+        } */
     }
 }
 

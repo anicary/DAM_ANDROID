@@ -34,24 +34,7 @@ public class MainActivity extends AppCompatActivity {
        {
 
        }
-       /* PERMISOS=(Button)findViewById(R.id.button);
-        PERMISOS.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                        /* PERMISOS */
-              /*  ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.RECEIVE_SMS}, 10);
-                ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.READ_SMS}, 11);
-                ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.SEND_SMS}, 225);
-                int permisoEstado = ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.READ_PHONE_STATE);
-                if (permisoEstado != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.READ_PHONE_STATE}, 1);
-                }*/
-          /*      SmsManager sms = SmsManager.getDefault();
-                sms.sendTextMessage("15555215556", null, "HOLA",null,null);
-            }
-        }); */
-
-        try {
+         try {
             filtro = new IntentFilter("android.provider.Telephony.SMS_RECEIVED");
             receptor = new ReceptorSMS();
             registerReceiver(receptor, filtro);//LO REGISTRA A NIVEL DE APLIACION ESPERANDO EL SMS ENTRANTE
@@ -59,20 +42,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             Toast.makeText(getApplicationContext(), "No se logro iniciar el receptor de sms entrante", Toast.LENGTH_SHORT).show();
         }
- /*
-        enviar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String num,cont;
-                num = numero.getText().toString();
-                cont = contenido.getText().toString();
 
-                SmsManager sms = SmsManager.getDefault();
-                sms.sendTextMessage(num, null, cont,null,null);
-
-                Toast.makeText(MainActivity.this,"SE ENVIO MENSAJE", Toast.LENGTH_LONG).show();
-            }
-        }); */
     }
     /* PERMISOS */
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
