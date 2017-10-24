@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.ImageView;
 
 public class Menu extends AppCompatActivity {
-
+    ImageView pikasurf;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,6 +18,14 @@ public class Menu extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.getSupportActionBar().hide();
         setContentView(R.layout.activity_menu);
+        pikasurf= (ImageView)findViewById(R.id.pikasurf);
+        pikasurf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent opcion = new Intent(Menu.this,Pikasurf.class);
+                startActivity(opcion);
+            }
+        });
     }
     public void Acerca (View v){
 
