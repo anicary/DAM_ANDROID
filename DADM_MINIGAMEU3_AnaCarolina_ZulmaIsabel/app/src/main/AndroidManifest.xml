@@ -20,7 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Pikasurf" android:screenOrientation="landscape" ></activity>
+        <activity android:name=".Pikasurf" android:screenOrientation="portrait" ></activity>
     </application>
 
 </manifest>

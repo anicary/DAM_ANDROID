@@ -64,13 +64,59 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
     public class Pika extends View{
         int xc=0,yc=0;
         CountDownTimer timpo;
+        int pos=0;
         public Pika (Context context) {
             super(context);
             Resolucion();
-            timpo= new CountDownTimer(1,1) {
+            timpo= new CountDownTimer(1000,1) {
                 @Override
                 public void onTick(long millisUntilFinished) {
+                    switch (pos){
+                        case 0:
+                            xc+=5;
+                            if(xc<=(resulusionx-50))
+                            {
+                                pos=0;
+                            }else
+                            {
+                                pos=1;
+                            }
+                            break;
+                        case 1:
+                            yc+=5;
+                            if(yc<=(resulusiony-50))
+                            {
+                                pos=1;
+                            }else
+                            {
+                                pos=2;
+                            }
+                            break;
+                        case 2:
+                            xc-=5;
+                            if(xc>=0 )
+                            {
+                                pos=2;
+                            }else
+                            {
+                                pos=3;
+                            }
+                            break;
+                        case 3:
+                            yc-=5;
+                            if(yc>0)
+                            {
+                                pos=3;
+                            }else
+                            {
+                                pos=0;
+                            }
+                            break;
+                    }
 
+
+                    System.out.println("POS "+pos+" xc"+xc);
+                    invalidate();
                 }
 
                 @Override
@@ -106,6 +152,7 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
             display.getSize(size);
             resulusionx = size.x;
             resulusiony = size.y;
+            System.out.println("RESOLUCION "+resulusionx+","+resulusiony);
 
         }
     }
