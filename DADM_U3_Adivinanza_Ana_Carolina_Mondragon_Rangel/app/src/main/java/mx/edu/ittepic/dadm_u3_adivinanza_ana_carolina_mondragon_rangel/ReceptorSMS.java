@@ -1,9 +1,13 @@
 package mx.edu.ittepic.dadm_u3_adivinanza_ana_carolina_mondragon_rangel;
 
+import android.Manifest;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
 import android.widget.Toast;
@@ -21,6 +25,8 @@ public class ReceptorSMS extends BroadcastReceiver {
     };
     @Override
     public void onReceive(Context context, Intent intent) {
+                /* PERMISOS */
+
         //Toast.makeText(context,"SI ESTA TRABAJANDO EL RECIVER", Toast.LENGTH_SHORT).show();
         Bundle b = intent.getExtras();
         try {
@@ -29,23 +35,20 @@ public class ReceptorSMS extends BroadcastReceiver {
                 for (int i=0; i<entrantes.length; i++){
                     SmsMessage mensaje = SmsMessage.createFromPdu((byte[])entrantes[i]);
                     String numero, contenido;
-
                     numero = mensaje.getDisplayOriginatingAddress();
                     contenido = mensaje.getDisplayMessageBody();
-
                     if(contenido.startsWith("!ADIVINANZA")){
-                        if(intento!=3) {
-                            SmsManager sms = SmsManager.getDefault();
-                            sms.sendTextMessage(numero, null, "se a recibido un saludo, gracias.", null, null);
-                        }
+                           Toast.makeText(context,"Recibido dese: "+numero+"Contenido: " +contenido,Toast.LENGTH_SHORT).show();
+                      //  if(intento<4) {
+                         SmsManager sms = SmsManager.getDefault();
+                          sms.sendTextMessage(numero, null, "se a recibido un saludo, gracias.", null, null);
+                        //}
                     }
-
-                    Toast.makeText(context,"Recibido dese: "+numero+"Contenido: " +contenido,Toast.LENGTH_SHORT).show();
-
+                   Toast.makeText(context,"Recibido dese: "+numero+"Contenido: " +contenido,Toast.LENGTH_SHORT).show();
                 }
             }
         }catch (Exception e){
-            Toast.makeText(context,"NO SE PUDO LEER EL SMS ENTRANTE", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context,"NO SE PUDO ENVIAR EL MENSAJE", Toast.LENGTH_SHORT).show();
         }
     }
 }
