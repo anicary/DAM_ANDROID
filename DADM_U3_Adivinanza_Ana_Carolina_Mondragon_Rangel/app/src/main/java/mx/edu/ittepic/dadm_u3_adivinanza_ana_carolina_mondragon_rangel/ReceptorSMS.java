@@ -62,7 +62,7 @@ public class ReceptorSMS extends BroadcastReceiver {
                                 intento=0;
                             }else
                             {
-                                sms.sendTextMessage(numero, null, "Incorrecto Intentos: "+(intento+1), null, null);
+                                sms.sendTextMessage(numero, null, "Incorrecto Intentos: "+(intento), null, null);
                                 intento++;
                             }
                         }
