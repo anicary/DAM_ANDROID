@@ -20,7 +20,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="DOMICILIO CON CO Y COLONIA"
+        android:hint="DOMICILIO CON CP Y COLONIA"
         android:id="@+id/domicilio"/>
     <LinearLayout
         android:layout_width="match_parent"
