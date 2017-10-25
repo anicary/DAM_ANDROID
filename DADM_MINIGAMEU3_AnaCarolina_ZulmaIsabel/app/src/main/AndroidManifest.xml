@@ -11,8 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Menu" ></activity>
-        <activity android:name=".AcercaDe" />
+        <activity android:name=".Menu" android:screenOrientation="portrait" ></activity>
+        <activity android:name=".AcercaDe" android:screenOrientation="portrait" />
         <activity android:name=".Inicio"  android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,7 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Pikasurf" android:screenOrientation="portrait" ></activity>
+        <activity android:name=".Pikasurf" android:screenOrientation="landscape" ></activity>
     </application>
 
 </manifest>

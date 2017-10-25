@@ -1,6 +1,7 @@
 package mx.edu.ittepic.dadm_minigameu3_anacarolina_zulmaisabel;
 
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -23,6 +24,7 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
     public long ultimaact; //ES UNA VARIABLE PARA DETECTAR EL SHAKE
     int resulusionx,resulusiony;
     float x=0,y=0;
+    Pikachu jugador;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +34,7 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
         setContentView(new Pika(this));
         sensores = (SensorManager) getSystemService(SENSOR_SERVICE); //OBTIENE EL SENSOR DE TELEFONO
         ultimaact = System.currentTimeMillis(); //OBTIENE LOS MILISEGUNDOS ACTUALES
+        jugador= new Pikachu(BitmapFactory.decodeResource(getResources(), R.drawable.pika),50,(resulusiony/2)-150,"PIKA",300);
     }
     public void onSensorChanged(SensorEvent sensorEvent) { //CUANDO EL SENSOR DETECTA UN CAMBIO
 
@@ -40,7 +43,19 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
             x = valores[0];
             y = valores[1];
             float z = valores[2];
-            System.out.println("x"+(x*.981));
+            if(x>=0 && x<=7)
+            {
+                jugador.sety(-10);
+            }else
+            {
+                if(x>7 && x<=10)
+                {
+                    jugador.sety(10);
+                }
+            }
+            //x5.51404
+            // 8.49571
+            System.out.println("x"+(x)+"  "+x+"   y:"+y);
         }
     }
 
@@ -63,12 +78,25 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
 
     public class Pika extends View{
         int xc=0,yc=0;
-        CountDownTimer timpo;
+        CountDownTimer timpo,global;
         int pos=0;
         public Pika (Context context) {
             super(context);
             Resolucion();
-            timpo= new CountDownTimer(1000,1) {
+            global= new CountDownTimer(1000,1) {
+                @Override
+                public void onTick(long millisUntilFinished) {
+
+                    invalidate();
+                }
+
+                @Override
+                public void onFinish() {
+                    global.start();
+                }
+            };
+            global.start();
+           /* timpo= new CountDownTimer(1000,1) {
                 @Override
                 public void onTick(long millisUntilFinished) {
                     switch (pos){
@@ -124,7 +152,7 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
                     timpo.start();
                 }
             };
-            timpo.start();
+            timpo.start(); */
         }
         public void onDraw (Canvas c)
         {
@@ -132,7 +160,8 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
             p.setStyle(Paint.Style.FILL);
             p.setColor(Color.rgb(59, 66, 167));
             c.drawPaint(p); //PARA DIBUJAR EL PAINT
-            cuadrado(c,Color.WHITE,xc,yc,50,50);
+            // cuadrado(c,Color.WHITE,xc,yc,50,50);
+            c.drawBitmap(jugador.imagen, jugador.x, jugador.y, p);
         }
         public  void cuadrado (Canvas c, int color, float  x, float y, float tamx, float tamy)
         {
