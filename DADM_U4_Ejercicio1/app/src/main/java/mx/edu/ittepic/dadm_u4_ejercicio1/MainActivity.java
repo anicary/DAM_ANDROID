@@ -86,13 +86,12 @@ EditText identificador,nombre,domicilio;
                                 .setMessage("Nombre: "+resultadoConsulta.getString(1)+
                                         "Domicilio: "+resultadoConsulta.getString(2))
                         .setPositiveButton("OK",new DialogInterface.OnClickListener(){
-                            public void onClick(DialogInterface dialog, int i){
+                            public void onClick(DialogInterface dialog, int i) {
                                 dialog.dismiss();
                             }
                         }).show();
             }
             base.close();
-
         }catch (SQLException e){
             Toast.makeText(this,e.getMessage(),Toast.LENGTH_LONG).show();
         }
