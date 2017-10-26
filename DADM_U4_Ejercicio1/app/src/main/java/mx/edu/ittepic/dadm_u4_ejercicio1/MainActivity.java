@@ -51,9 +51,9 @@ EditText identificador,nombre,domicilio;
             SQLiteDatabase base =db.getWritableDatabase(); //insertar o delete
             String sentenciaSQL = "INSERT INTO PERSONA VALUES (ID,'NOMBRE','DOMICILIO')";
 
-            sentenciaSQL.replace("ID",identificador.getText().toString());
-            sentenciaSQL.replace("NOMBRE",nombre.getText().toString());
-            sentenciaSQL.replace("DOMICILIO",domicilio.getText().toString());
+            sentenciaSQL = sentenciaSQL.replace("ID",identificador.getText().toString());
+            sentenciaSQL=sentenciaSQL.replace("NOMBRE",nombre.getText().toString());
+            sentenciaSQL=sentenciaSQL.replace("DOMICILIO",domicilio.getText().toString());
 
             base.execSQL(sentenciaSQL);//AQUI SE ESTA REALIZANDO EL INSERT
             //LA LINEA DE ARRIBA HACE TODO MENOS CONSULTAS
