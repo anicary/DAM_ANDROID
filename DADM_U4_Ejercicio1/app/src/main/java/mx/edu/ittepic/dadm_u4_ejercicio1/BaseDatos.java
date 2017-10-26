@@ -21,7 +21,7 @@ public class BaseDatos extends SQLiteOpenHelper  {
         //estructura de tablas que se desea crear
         //tiene un parametro llamado db
         //CUANDO UN ENTERO ES LLAVE PRIMARIA ES INTEGER DE LO CONTRARIO SOLO ES INT
-        db.execSQL("CREATE TABLE PERSONA(ID INTEGER PRIMARY KEY, NOMBRE VARCHAR(100),DOMICILIO VARCHAR(300))");//EJECUTA SQL
+        db.execSQL("CREATE TABLE PERSONA(ID INTEGER PRIMARY KEY, NOMBRE VARCHAR(200),DOMICILIO VARCHAR(300))");//EJECUTA SQL
     }
 
     @Override

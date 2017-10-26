@@ -49,11 +49,11 @@ EditText identificador,nombre,domicilio;
         try{
                                 //INSERT DELETE UPDATE
             SQLiteDatabase base =db.getWritableDatabase(); //insertar o delete
-            String sentenciaSQL = "INSERT INTO PERSONA VALUES (id,'nombre','domicilio')";
+            String sentenciaSQL = "INSERT INTO PERSONA VALUES (ID,'NOMBRE','DOMICILIO')";
 
-            sentenciaSQL.replace("id",identificador.getText().toString());
-            sentenciaSQL.replace("nombre",nombre.getText().toString());
-            sentenciaSQL.replace("domicilio",domicilio.getText().toString());
+            sentenciaSQL.replace("ID",identificador.getText().toString());
+            sentenciaSQL.replace("NOMBRE",nombre.getText().toString());
+            sentenciaSQL.replace("DOMICILIO",domicilio.getText().toString());
 
             base.execSQL(sentenciaSQL);//AQUI SE ESTA REALIZANDO EL INSERT
             //LA LINEA DE ARRIBA HACE TODO MENOS CONSULTAS
