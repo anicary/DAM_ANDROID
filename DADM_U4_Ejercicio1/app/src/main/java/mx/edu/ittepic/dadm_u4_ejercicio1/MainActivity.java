@@ -73,7 +73,7 @@ EditText identificador,nombre,domicilio;
     private void consultarDatos(){
         try{
             SQLiteDatabase base =db.getReadableDatabase();//LECTURA PORQUE ES CONSULTA, no es subsetible a daños
-            String sentenciaSQL = "SELECT * FROM PRESONA WHERE ID="+identificador.getText().toString();
+            String sentenciaSQL = "SELECT * FROM PERSONA WHERE ID="+identificador.getText().toString();
             //ejecuta una sensentencia especificamente en un query un query es un select y te regrese un objeto
             //tipo cursor
            Cursor resultadoConsulta = base.rawQuery(sentenciaSQL,null);
@@ -83,8 +83,8 @@ EditText identificador,nombre,domicilio;
             }else{
                 AlertDialog.Builder alerta = new AlertDialog.Builder(this);
                         alerta.setTitle("RESULTADO")
-                                .setMessage("Nombre: "+resultadoConsulta.getString(1)+
-                                        "Domicilio: "+resultadoConsulta.getString(2))
+                                .setMessage("Nombre : "+resultadoConsulta.getString(1)+
+                                        "Domicilio : "+resultadoConsulta.getString(2))
                         .setPositiveButton("OK",new DialogInterface.OnClickListener(){
                             public void onClick(DialogInterface dialog, int i) {
                                 dialog.dismiss();
