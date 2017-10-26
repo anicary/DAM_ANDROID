@@ -1,7 +1,10 @@
 package mx.edu.ittepic.dadm_u4_ejercicio1;
 
+import android.content.DialogInterface;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -35,11 +38,17 @@ EditText identificador,nombre,domicilio;
                 insertarDatos();
             }
         });
+        consultar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                consultarDatos();
+            }
+        });
     }
     private void insertarDatos(){
         try{
                                 //INSERT DELETE UPDATE
-            SQLiteDatabase base =db.getWritableDatabase();
+            SQLiteDatabase base =db.getWritableDatabase(); //insertar o delete
             String sentenciaSQL = "INSERT INTO PERSONA VALUES (id,'nombre','domicilio')";
 
             sentenciaSQL.replace("id",identificador.getText().toString());
@@ -55,9 +64,38 @@ EditText identificador,nombre,domicilio;
             nombre.setText("");
             domicilio.setText("");
 
+            base.close();
 
         }catch (SQLException e){
             Toast.makeText(this,e.getMessage(),Toast.LENGTH_LONG).show();
         }
     }
+    private void consultarDatos(){
+        try{
+            SQLiteDatabase base =db.getReadableDatabase();//LECTURA PORQUE ES CONSULTA, no es subsetible a daños
+            String sentenciaSQL = "SELECT * FROM PRESONA WHERE ID="+identificador.getText().toString();
+            //ejecuta una sensentencia especificamente en un query un query es un select y te regrese un objeto
+            //tipo cursor
+           Cursor resultadoConsulta = base.rawQuery(sentenciaSQL,null);
+            //movetofirst se va al primer resultado que tiene y si no no muestra nada
+            if (resultadoConsulta.moveToFirst()==false){
+                Toast.makeText(this,"NO HAY DATOS",Toast.LENGTH_LONG).show();
+            }else{
+                AlertDialog.Builder alerta = new AlertDialog.Builder(this);
+                        alerta.setTitle("RESULTADO")
+                                .setMessage("Nombre: "+resultadoConsulta.getString(1)+
+                                        "Domicilio: "+resultadoConsulta.getString(2))
+                        .setPositiveButton("OK",new DialogInterface.OnClickListener(){
+                            public void onClick(DialogInterface dialog, int i){
+                                dialog.dismiss();
+                            }
+                        }).show();
+            }
+            base.close();
+
+        }catch (SQLException e){
+            Toast.makeText(this,e.getMessage(),Toast.LENGTH_LONG).show();
+        }
+    }
+
 }
