@@ -1,7 +1,11 @@
 package mx.edu.ittepic.dadm_minigameu3_anacarolina_zulmaisabel;
 
 
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Point;
+import android.view.Display;
+import android.view.WindowManager;
 
 public class Pikachu {
 
@@ -9,7 +13,7 @@ public class Pikachu {
     float x, y;
     int id;
     String TAG;
-
+    int resulusionx,resulusiony;
     public Pikachu(Bitmap imagen, float x, float y, String TAG, float tam) {
         imagen = escalado(imagen, tam, true);
         this.imagen = imagen;
@@ -22,6 +26,7 @@ public class Pikachu {
         this.y = y - (imagen.getHeight() / 2);
     }
     public void sety(float y){
+
         this.y+=y;
     }
     public boolean hitArea(float xp, float yp) {
@@ -32,14 +37,16 @@ public class Pikachu {
         }
         return false;
     }
+    public float getTamanoY()
+    {
+        return imagen.getHeight();
+    }
     public String getTAG() {
         return TAG;
     }
-
     public void setTAG(String TAG) {
         this.TAG = TAG;
     }
-
     public void movera(int x, int y) {
         this.x = x;
         this.y = y;
@@ -76,5 +83,4 @@ public class Pikachu {
         Bitmap nuevaImagen = Bitmap.createScaledBitmap(imgentrada, width, height, filtro);
         return nuevaImagen;
     }
-
 }

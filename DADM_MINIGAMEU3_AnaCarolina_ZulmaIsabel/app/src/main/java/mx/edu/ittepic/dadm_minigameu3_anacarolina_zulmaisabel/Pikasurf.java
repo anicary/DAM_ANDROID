@@ -26,6 +26,7 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
     float x=0,y=0;
     Pikachu jugador;
     Sprite playa;
+    float tamanoplayer=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +37,7 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
         sensores = (SensorManager) getSystemService(SENSOR_SERVICE); //OBTIENE EL SENSOR DE TELEFONO
         ultimaact = System.currentTimeMillis(); //OBTIENE LOS MILISEGUNDOS ACTUALES
         jugador= new Pikachu(BitmapFactory.decodeResource(getResources(), R.drawable.pika),resulusionx-1200,(resulusiony/2)-50,"PIKA",300);
+        tamanoplayer=jugador.getTamanoY();
         playa = new Sprite(BitmapFactory.decodeResource(getResources(),R.drawable.playa1),0,0,resulusiony*2);
     }
     public void onSensorChanged(SensorEvent sensorEvent) { //CUANDO EL SENSOR DETECTA UN CAMBIO
@@ -47,12 +49,20 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
             float z = valores[2];
             if(x>=0 && x<=7)
             {
-                jugador.sety(-10);
+                if(jugador.getY()>(resulusiony/2)-210)
+                {
+                    jugador.sety(-15);
+                }
+
             }else
             {
                 if(x>7 && x<=10)
                 {
-                    jugador.sety(10);
+                    if(jugador.getY()<(resulusiony-jugador.getTamanoY()))
+                    {
+                        jugador.sety(15);
+                    }
+
                 }
             }
             //x5.51404
