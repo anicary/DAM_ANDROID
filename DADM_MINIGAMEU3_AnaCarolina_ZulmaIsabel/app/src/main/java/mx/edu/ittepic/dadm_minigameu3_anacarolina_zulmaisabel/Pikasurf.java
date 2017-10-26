@@ -36,7 +36,7 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
         setContentView(new Pika(this));
         sensores = (SensorManager) getSystemService(SENSOR_SERVICE); //OBTIENE EL SENSOR DE TELEFONO
         ultimaact = System.currentTimeMillis(); //OBTIENE LOS MILISEGUNDOS ACTUALES
-        jugador= new Pikachu(BitmapFactory.decodeResource(getResources(), R.drawable.pika),resulusionx-1200,(resulusiony/2)-50,"PIKA",300);
+        jugador= new Pikachu(BitmapFactory.decodeResource(getResources(), R.drawable.pika),(resulusionx/3),(resulusiony/2)-50,"PIKA",300);
         tamanoplayer=jugador.getTamanoY();
         playa = new Sprite(BitmapFactory.decodeResource(getResources(),R.drawable.playa1),0,0,resulusiony*2);
     }
