@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -44,8 +45,14 @@ EditText identificador,nombre,domicilio;
                 consultarDatos();
             }
         });
+        eliminar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                eliminarDatos();
+            }
+        });
     }
-    private void insertarDatos(){
+    private void insertarDatos(){//Es privado porque solo se va a utilizar dentro de la clase
         try{
                                 //INSERT DELETE UPDATE
             SQLiteDatabase base =db.getWritableDatabase(); //insertar o delete
@@ -96,5 +103,37 @@ EditText identificador,nombre,domicilio;
             Toast.makeText(this,e.getMessage(),Toast.LENGTH_LONG).show();
         }
     }
+    private void eliminarDatos(){
+       final EditText idBorrar = new EditText(this);
+        idBorrar.setInputType(InputType.TYPE_CLASS_NUMBER);
+        AlertDialog.Builder alerta = new AlertDialog.Builder(this);
+        alerta.setTitle("ATENCION")
+                .setMessage("ID A BORRAE: ")
+                .setView(idBorrar)
+                .setPositiveButton("BORRAR", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+                        eliminarDatos2(idBorrar.getText().toString());
+                        dialog.dismiss();
+                    }
+                })
+                .setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+                        dialog.cancel();
+                    }
+                }).show();
+    }
+    private void eliminarDatos2(String idBorrar){
+    try{
+        SQLiteDatabase base =db.getWritableDatabase();
+        String sentenciaSQL = "DELETE FROM PERSONA WHERE ID="+idBorrar;
+        base.execSQL(sentenciaSQL);
 
+        Toast.makeText(this,"SE BORRO EL ID "+idBorrar,Toast.LENGTH_LONG).show();
+        base.close();
+    }catch (SQLException e){
+        Toast.makeText(this,e.getMessage(),Toast.LENGTH_LONG).show();
+    }
+    }
 }
