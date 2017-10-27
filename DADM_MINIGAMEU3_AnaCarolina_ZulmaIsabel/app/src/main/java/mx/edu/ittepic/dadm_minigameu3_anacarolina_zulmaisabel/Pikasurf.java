@@ -25,7 +25,7 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
     int resulusionx,resulusiony;
     float x=0,y=0;
     Pikachu jugador;
-    Sprite playa;
+    Sprite playa,boton1;
     float tamanoplayer=0;
     boolean juego=true;
     @Override
@@ -35,11 +35,13 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.getSupportActionBar().hide();
         setContentView(new Pika(this));
+        Resolucion();
         sensores = (SensorManager) getSystemService(SENSOR_SERVICE); //OBTIENE EL SENSOR DE TELEFONO
         ultimaact = System.currentTimeMillis(); //OBTIENE LOS MILISEGUNDOS ACTUALES
         jugador= new Pikachu(BitmapFactory.decodeResource(getResources(), R.drawable.pika),(resulusionx/3),(resulusiony/2)-50,"PIKA",(float)(resulusiony/3.5));
         tamanoplayer=jugador.getTamanoY();
         playa = new Sprite(BitmapFactory.decodeResource(getResources(),R.drawable.playa1),0,0,resulusiony*2);
+        boton1= new Sprite(BitmapFactory.decodeResource(getResources(),R.drawable.botonsur),(resulusionx/2),(resulusiony/2),resulusiony/9);
     }
     public void onSensorChanged(SensorEvent sensorEvent) { //CUANDO EL SENSOR DETECTA UN CAMBIO
 
@@ -98,7 +100,6 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
         int pos=0;
         public Pika (Context context) {
             super(context);
-            Resolucion();
             global= new CountDownTimer(1000,1) {
                 @Override
                 public void onTick(long millisUntilFinished) {
@@ -180,8 +181,8 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
             c.drawPaint(p); //PARA DIBUJAR EL PAINT
             // cuadrado(c,Color.WHITE,xc,yc,50,50);
             c.drawBitmap(playa.imagen, playa.x, playa.y, p);
-
             c.drawBitmap(jugador.imagen, jugador.x, jugador.y, p);
+            c.drawBitmap(boton1.imagen, playa.x, playa.y, p);
         }
         public  void cuadrado (Canvas c, int color, float  x, float y, float tamx, float tamy)
         {
@@ -194,15 +195,15 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
             RectF rec = new RectF(x, y, r, b);
             c.drawRect(rec, p);
         }
-        public void Resolucion() {
-            WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
-            Display display = wm.getDefaultDisplay();
-            Point size = new Point();
-            display.getSize(size);
-            resulusionx = size.x;
-            resulusiony = size.y;
-            System.out.println("RESOLUCION "+resulusionx+","+resulusiony);
+    }
+    public void Resolucion() {
+        WindowManager wm = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
+        Display display = wm.getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        resulusionx = size.x;
+        resulusiony = size.y;
+        System.out.println("RESOLUCION "+resulusionx+","+resulusiony);
 
-        }
     }
 }
