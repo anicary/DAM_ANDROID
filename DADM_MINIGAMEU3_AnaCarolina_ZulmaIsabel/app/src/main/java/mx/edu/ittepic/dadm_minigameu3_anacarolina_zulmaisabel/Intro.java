@@ -21,18 +21,17 @@ public class Intro extends View {
     Bitmap corgi,texto;
     CountDownTimer timer,siguiente;
     int resulusionx,resulusiony;
-    int y=0, y1=1300;
+    float y=0, y1=1300;
     boolean movimiento;
     public Intro(Context context) {
         super(context);
         Resolucion();
+        y1=(float) (resulusiony/1.4768);
         corgi = BitmapFactory.decodeResource(getResources(),R.drawable.corgi);
         corgi=escalado(corgi,(resulusiony/3), true);
         texto = BitmapFactory.decodeResource(getResources(),R.drawable.generatedtext);
         texto=escalado(texto,(resulusiony/2), true);
         movimiento = true;
-
-
         timer = new CountDownTimer(5000,1) {
             @Override
             public void onTick(long l) {
@@ -46,7 +45,7 @@ public class Intro extends View {
                     siguiente.start();
                     timer.cancel();
                 }
-                if (y >= (1300- corgi.getHeight()) / 2) {
+                if (y >= ((float) (resulusiony/1.4768- corgi.getHeight()) / 2)) {
                     movimiento = false;
                 }
 
@@ -75,8 +74,8 @@ public class Intro extends View {
     }
     public void onDraw(Canvas c){
         Paint p = new Paint();
-        c.drawBitmap(corgi,200,y,p);
-        c.drawBitmap(texto,50,y1,p);
+        c.drawBitmap(corgi,(float) (resulusionx/5.4),y,p);
+        c.drawBitmap(texto,(float) (resulusionx/21.6),y1,p);
     }
     public void Resolucion() {
         WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);

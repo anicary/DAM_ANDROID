@@ -27,6 +27,7 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
     Pikachu jugador;
     Sprite playa;
     float tamanoplayer=0;
+    boolean juego=true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +37,7 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
         setContentView(new Pika(this));
         sensores = (SensorManager) getSystemService(SENSOR_SERVICE); //OBTIENE EL SENSOR DE TELEFONO
         ultimaact = System.currentTimeMillis(); //OBTIENE LOS MILISEGUNDOS ACTUALES
-        jugador= new Pikachu(BitmapFactory.decodeResource(getResources(), R.drawable.pika),(resulusionx/3),(resulusiony/2)-50,"PIKA",300);
+        jugador= new Pikachu(BitmapFactory.decodeResource(getResources(), R.drawable.pika),(resulusionx/3),(resulusiony/2)-50,"PIKA",(float)(resulusiony/3.5));
         tamanoplayer=jugador.getTamanoY();
         playa = new Sprite(BitmapFactory.decodeResource(getResources(),R.drawable.playa1),0,0,resulusiony*2);
     }
@@ -47,22 +48,25 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
             x = valores[0];
             y = valores[1];
             float z = valores[2];
-            if(x>=0 && x<=7)
+            if(juego)
             {
-                if(jugador.getY()>(resulusiony/2)-210)
+                if(x>=0 && x<=7)
                 {
-                    jugador.sety(-15);
-                }
-
-            }else
-            {
-                if(x>7 && x<=10)
-                {
-                    if(jugador.getY()<(resulusiony-jugador.getTamanoY()))
+                    if(jugador.getY()>(resulusiony/2)-210)
                     {
-                        jugador.sety(15);
+                        jugador.sety(-15);
                     }
 
+                }else
+                {
+                    if(x>7 && x<=10)
+                    {
+                        if(jugador.getY()<(resulusiony-jugador.getTamanoY()))
+                        {
+                            jugador.sety(15);
+                        }
+
+                    }
                 }
             }
             //x5.51404
@@ -98,7 +102,9 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
             global= new CountDownTimer(1000,1) {
                 @Override
                 public void onTick(long millisUntilFinished) {
+                    if(juego){
 
+                    }
                     invalidate();
                 }
 
