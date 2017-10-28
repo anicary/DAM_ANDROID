@@ -16,6 +16,10 @@ public class Sprite {
         this.x = x - (imagen.getWidth() / 2);
         this.y = y - (imagen.getHeight() / 2);
     }
+    public void animacionX(float velocidad)
+    {
+        this.x+=velocidad;
+    }
     public boolean hitArea(float xp, float yp) {
         if (xp >= x && xp <= (x + imagen.getWidth())) {
             if (yp >= y && yp <= (y + imagen.getHeight())) {

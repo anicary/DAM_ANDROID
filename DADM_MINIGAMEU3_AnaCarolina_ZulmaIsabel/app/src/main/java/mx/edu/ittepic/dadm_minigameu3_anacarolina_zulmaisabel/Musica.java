@@ -22,4 +22,8 @@ public class Musica {
     {
         mainPlayer.setLooping(bucle);
     }
+    public void setVolumen(float volumen)
+    {
+        mainPlayer.setVolume(volumen,volumen);
+    }
 }
