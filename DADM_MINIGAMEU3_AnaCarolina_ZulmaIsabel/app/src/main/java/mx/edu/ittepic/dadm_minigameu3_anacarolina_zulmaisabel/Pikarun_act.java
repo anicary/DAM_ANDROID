@@ -28,8 +28,9 @@ public class Pikarun_act extends AppCompatActivity {
 
     public class PikaRUN extends View {
         SpriteAnim pikarunsp;
+        Sprite [] capas;
         int img[]={R.drawable.pikarun1,R.drawable.pikarun2,R.drawable.pikarun3,R.drawable.pikarun4,R.drawable.pikarun5,R.drawable.pikarun6};
-        int  layers[]={R.drawable.layer1,R.drawable.layer1};
+        int  layers[]={R.drawable.layerr1,R.drawable.layerr0};
         Bitmap [] imge;
         int  pixelArt[]={R.drawable.roca};
         Objetos [] assets;
@@ -39,11 +40,16 @@ public class Pikarun_act extends AppCompatActivity {
             super(context);
             Resolucion();
             imge= new Bitmap[img.length];
+            capas= new Sprite[2];
+            for(int i=0; i<layers.length ;i++)
+            {
+                capas[i] = new Sprite(BitmapFactory.decodeResource(getResources(),layers[i]),0,0,(float)(resulusiony*1.7));
+            }
             for(int i=0;i<img.length;i++)
             {
                 imge[i]=BitmapFactory.decodeResource(getResources(),img[i]);
             }
-            pikarunsp= new SpriteAnim(imge,resulusionx/9,resulusiony/2,250);
+            pikarunsp= new SpriteAnim(imge,resulusionx/9,(float) (resulusiony/1.8),250);
             principal= new CountDownTimer(1000,1) {
                 @Override
                 public void onTick(long millisUntilFinished) {
@@ -87,6 +93,10 @@ public class Pikarun_act extends AppCompatActivity {
             p.setStyle(Paint.Style.FILL);
             p.setColor(Color.rgb(59, 66, 167));
             c.drawPaint(p); //PARA DIBUJAR EL PAINT
+            for(int i=0;i<capas.length;i++)
+            {
+                c.drawBitmap(capas[i].imagen, capas[i].x, capas[i].y, p);
+            }
             for(int i=0;i<assets.length;i++)
             {
                 assets[i].dibujarObjeto(c);
