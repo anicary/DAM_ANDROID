@@ -19,7 +19,8 @@ import android.view.WindowManager;
 import java.util.Random;
 
 public class Pikarun_act extends AppCompatActivity {
-    CountDownTimer principal;
+    CountDownTimer principal,puntuacionCont;
+    int puntuacionGlobal;
     int resulusionx,resulusiony;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +68,7 @@ public class Pikarun_act extends AppCompatActivity {
             for(int i=0;i< assets.length;i++)
             {
                 //assets[i]=new Objetos(getApplication(),pixelArt[0],resulusionx+300,500,300,"PIEDRA");
-                assets[i]=new Objetos(getApplication(),pixelArt[0],resulusionx+300,(float) (resulusiony/1.7),resulusiony/5,"PIEDRA");
+                assets[i]=new Objetos(getApplication(),pixelArt[0],resulusionx+300,(float) (resulusiony/1.6),resulusiony/5,"PIEDRA");
                // assets[i].setEstado(true);
             }
             ObjetosEntregar=new CountDownTimer(10000,2000) {
@@ -86,6 +87,18 @@ public class Pikarun_act extends AppCompatActivity {
                 }
             };
             ObjetosEntregar.start();
+            puntuacionCont=new CountDownTimer(5000,1000) {
+                @Override
+                public void onTick(long millisUntilFinished) {
+                    puntuacionGlobal++;
+                }
+
+                @Override
+                public void onFinish() {
+                    puntuacionCont.start();
+                }
+            };
+            puntuacionCont.start();
         }
         public void onDraw (Canvas c)
         {
@@ -104,6 +117,10 @@ public class Pikarun_act extends AppCompatActivity {
             }
             pikarunsp.dibujar(c);
             pikarunsp.animINI();
+            p.setColor(Color.BLACK);
+            p.setTextSize(resulusionx/40);
+            p.setStyle(Paint.Style.FILL);
+            c.drawText("PUNTUACION: "+puntuacionGlobal,resulusionx/38,resulusiony/22,p);
         }
         public boolean onTouchEvent(MotionEvent motionEvent) {
 
