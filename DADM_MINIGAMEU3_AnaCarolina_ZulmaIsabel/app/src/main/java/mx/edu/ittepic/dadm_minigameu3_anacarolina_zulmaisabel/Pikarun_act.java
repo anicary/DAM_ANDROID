@@ -29,6 +29,7 @@ public class Pikarun_act extends AppCompatActivity {
     public class PikaRUN extends View {
         SpriteAnim pikarunsp;
         int img[]={R.drawable.pikarun1,R.drawable.pikarun2,R.drawable.pikarun3,R.drawable.pikarun4,R.drawable.pikarun5,R.drawable.pikarun6};
+        int  layers[]={R.drawable.layer1,R.drawable.layer1};
         Bitmap [] imge;
         int  pixelArt[]={R.drawable.roca};
         Objetos [] assets;
