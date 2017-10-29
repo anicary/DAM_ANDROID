@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="mx.edu.ittepic.dadm_minigameu3_anacarolina_zulmaisabel">
-    <uses-permission android:name="android.hardware.sensor.gyroscope"/>
-    <uses-permission android:name="android.hardware.sensor.accelerometer"/>
+
+    <uses-permission android:name="android.hardware.sensor.gyroscope" />
+    <uses-permission android:name="android.hardware.sensor.accelerometer" />
     <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,16 +13,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Menu" android:screenOrientation="portrait" ></activity>
-        <activity android:name=".AcercaDe" android:screenOrientation="portrait" />
-        <activity android:name=".Inicio"  android:screenOrientation="portrait">
+        <activity
+            android:name=".Menu"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AcercaDe"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Inicio"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Pikasurf" android:screenOrientation="landscape" ></activity>
+        <activity
+            android:name=".Pikasurf"
+            android:screenOrientation="landscape" />
+        <activity android:name=".Pikarun_act"  android:screenOrientation="landscape" ></activity>
     </application>
 
 </manifest>
