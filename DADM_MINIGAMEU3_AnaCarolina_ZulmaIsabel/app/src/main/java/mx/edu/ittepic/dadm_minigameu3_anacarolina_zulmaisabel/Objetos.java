@@ -60,6 +60,14 @@ public class Objetos {
             dibujo.x=resulusionx+200;
         }
     }
+    public boolean hitArea(float xp, float yp) {
+        if (xp >= dibujo.x && xp <= (dibujo.x + dibujo.imagen.getWidth())) {
+            if (yp >= dibujo.y && yp <= (dibujo.y + dibujo.imagen.getHeight())) {
+                return true;
+            }
+        }
+        return false;
+    }
     public void setEstado(boolean estado)
     {
         this.estado=estado;
