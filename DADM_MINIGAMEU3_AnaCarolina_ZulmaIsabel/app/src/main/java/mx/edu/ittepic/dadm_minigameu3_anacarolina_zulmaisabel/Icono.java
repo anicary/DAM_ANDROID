@@ -2,10 +2,6 @@ package mx.edu.ittepic.dadm_minigameu3_anacarolina_zulmaisabel;
 
 import android.graphics.Bitmap;
 
-/**
- * Created by mario on 30/10/2017.
- */
-
 public class Icono {
     Bitmap imagen, imagen2;
     float x,y;

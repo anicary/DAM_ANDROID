@@ -14,11 +14,6 @@ import android.view.WindowManager;
 
 import java.util.Random;
 
-/**
- * Created by mario on 30/10/2017.
- */
-
-
 public class Tablero extends View {
     CountDownTimer quitar;
     Icono imgA[], imgB[], imagentocada;
