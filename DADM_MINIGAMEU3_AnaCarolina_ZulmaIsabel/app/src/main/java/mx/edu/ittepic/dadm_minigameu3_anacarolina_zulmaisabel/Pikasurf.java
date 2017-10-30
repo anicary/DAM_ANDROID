@@ -208,6 +208,16 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
                 assets[i].dibujarObjeto(c);
                 assets[i].moverX(-10);
             }
+            for(int i=0;i<assets.length;i++)
+            {
+                if(assets[i].onColission(jugador)){
+                   if( assets[i].getEtiqueta().equals("CAPSUP"))
+                   {
+                       puntuacionGlobal+=50;
+                       assets[i].setEstado(false);
+                   }
+                }
+            }
             c.drawBitmap(jugador.imagen, jugador.x, jugador.y, p);
             c.drawBitmap(boton1.imagen, boton1.x, boton1.y, p);
             c.drawBitmap(puntos.imagen, puntos.x,puntos.y, p);

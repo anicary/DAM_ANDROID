@@ -26,6 +26,10 @@ public class Objetos {
         this.Etiqueta=Etiqueta;
         Resolucion();
     }
+    public String getEtiqueta()
+    {
+        return Etiqueta;
+    }
     public void Resolucion() {
         WindowManager wm = (WindowManager) contexto.getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
         Display display = wm.getDefaultDisplay();
@@ -88,6 +92,8 @@ public class Objetos {
     }
     public boolean onColission(Sprite otro) {
         if (otro.hitArea(dibujo.x, dibujo.y)) {
+            System.out.println("1"+dibujo.x+" "+dibujo.y);
+
             return true;
         }
         if (otro.hitArea(dibujo.x + dibujo.imagen.getWidth(), dibujo.y))
@@ -101,6 +107,26 @@ public class Objetos {
         {
             return true;
         }
+        return false;
+    }
+    public boolean onColission(Pikachu otro) {
+        if (otro.hitArea(dibujo.x, dibujo.y)) {
+           // System.out.println("1"+dibujo.x+" "+dibujo.y);
+            System.out.println("TOCOOOOOOOOO 1");
+            return true;
+        }
+      /*  if (otro.hitArea(dibujo.x + dibujo.imagen.getWidth(), dibujo.y))
+        {
+            System.out.println("TOCOOOOOOOOO 2");
+            return true;
+        }
+        if (otro.hitArea(dibujo.x + dibujo.imagen.getWidth(), dibujo.y + dibujo.imagen.getHeight())) {
+            return true;
+        }
+        if (otro.hitArea(dibujo.x,  + dibujo.imagen.getHeight()))
+        {
+            return true;
+        }*/
         return false;
     }
     public void setEstado(boolean estado)
