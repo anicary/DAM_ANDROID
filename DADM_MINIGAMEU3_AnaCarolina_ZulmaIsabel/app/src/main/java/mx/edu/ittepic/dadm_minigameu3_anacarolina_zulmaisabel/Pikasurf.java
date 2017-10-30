@@ -87,6 +87,7 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
         puntos= new Sprite(BitmapFactory.decodeResource(getResources(),R.drawable.puntos),0,-(resulusiony/30),(float)(resulusiony/2.5));
         gameover = new Sprite(BitmapFactory.decodeResource(getResources(),R.drawable.gameover),(float)(resulusionx/2-(resulusionx/2.8)),resulusiony/2-(resulusiony/4),(float)(resulusiony*1.2));
     }
+
     public void onSensorChanged(SensorEvent sensorEvent) {
         if (sensorEvent.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
             float[] valores = sensorEvent.values;
@@ -128,11 +129,13 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
         sensores.registerListener(this,
                 sensores.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
                 SensorManager.SENSOR_DELAY_NORMAL);
+        reproductor.reproducir();
     }
     @Override
     protected void onPause() {
         super.onPause();
         sensores.unregisterListener(this);
+        reproductor.detener();
     }
 
     public class Pika extends View{
@@ -162,7 +165,11 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
                 @Override
                 public void onTick(long millisUntilFinished) {
                     if(juego){
-
+                        if(puntuacionGlobal<=0)
+                        {
+                            juego=false;
+                            puntuacionGlobal=0;
+                        }
                     }
                     invalidate();
                 }
@@ -219,8 +226,8 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
                    }
                     if( assets[i].getEtiqueta().equals("PIEDRA"))
                     {
-                        puntuacionGlobal-=25;
-                        assets[i].setEstado(false);
+                            puntuacionGlobal-=25;
+                            assets[i].setEstado(false);
                     }
                 }
             }
