@@ -223,7 +223,7 @@ EditText identificador,nombre,domicilio;
             base.close();
 
         }catch (SQLException e){
-            
+
         }
     }
 
