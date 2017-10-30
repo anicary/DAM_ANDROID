@@ -28,6 +28,7 @@ public class Pikarun_act extends AppCompatActivity {
     }
 
     public class PikaRUN extends View {
+        boolean JUEGO=true;
         SpriteAnim pikarunsp;
         Sprite [] capas;
         int img[]={R.drawable.pikarun1,R.drawable.pikarun2,R.drawable.pikarun3,R.drawable.pikarun4,R.drawable.pikarun5,R.drawable.pikarun6};
@@ -36,7 +37,7 @@ public class Pikarun_act extends AppCompatActivity {
         int  pixelArt[]={R.drawable.roca};
         Objetos [] assets;
         CountDownTimer ObjetosEntregar;
-        int posrocas=0;
+        int posrocas=0,velocidad=-5;
         public PikaRUN (Context context) {
             super(context);
             Resolucion();
@@ -68,16 +69,22 @@ public class Pikarun_act extends AppCompatActivity {
             for(int i=0;i< assets.length;i++)
             {
                 //assets[i]=new Objetos(getApplication(),pixelArt[0],resulusionx+300,500,300,"PIEDRA");
-                assets[i]=new Objetos(getApplication(),pixelArt[0],resulusionx+300,(float) (resulusiony/1.6),resulusiony/5,"PIEDRA");
+                assets[i]=new Objetos(getApplication(),pixelArt[0],resulusionx+300,(float) (resulusiony/1.5),resulusiony/8,"PIEDRA");
                // assets[i].setEstado(true);
             }
             ObjetosEntregar=new CountDownTimer(10000,2000) {
                 @Override
                 public void onTick(long millisUntilFinished) {
-                    if(true){
+                    if(JUEGO){
                         if(posrocas<10)
                         {
                             assets[posrocas].setEstado(true);
+                        }
+                    }else
+                    {
+                        for(int i=0;i<assets.length;i++)
+                        {
+                            assets[i].setEstado(false);
                         }
                     }
                 }
@@ -90,7 +97,25 @@ public class Pikarun_act extends AppCompatActivity {
             puntuacionCont=new CountDownTimer(5000,1000) {
                 @Override
                 public void onTick(long millisUntilFinished) {
-                    puntuacionGlobal++;
+                    if(JUEGO) {
+                        puntuacionGlobal++;
+                        if(puntuacionGlobal==20)
+                        {
+                            velocidad=-6;
+                        }
+                        if(puntuacionGlobal==40)
+                        {
+                            velocidad=-10;
+                        }
+                        if(puntuacionGlobal==60)
+                        {
+                            velocidad=-12;
+                        }
+                        if(puntuacionGlobal>100)
+                        {
+                            velocidad=-15;
+                        }
+                    }
                 }
 
                 @Override
@@ -113,10 +138,23 @@ public class Pikarun_act extends AppCompatActivity {
             for(int i=0;i<assets.length;i++)
             {
                 assets[i].dibujarObjeto(c);
-                assets[i].moverX(-5);
+                assets[i].moverX(velocidad);
+            }
+            for (int i = 0; i < assets.length; i++) {
+                if (assets[i].onColission(pikarunsp)) {
+               /*     if (vida >= 1) {
+                        vida -= 0.05f;
+                    } else {
+                        gameOver(c);
+                    }*/
+                    JUEGO=false;
+                    assets[i].moverX(0);
+                    System.out.println("CHOKO");
+                    pikarunsp.animSTOP();
+                }
             }
             pikarunsp.dibujar(c);
-            pikarunsp.animINI();
+           // pikarunsp.animINI();
             p.setColor(Color.BLACK);
             p.setTextSize(resulusionx/40);
             p.setStyle(Paint.Style.FILL);

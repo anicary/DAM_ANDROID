@@ -11,10 +11,9 @@ public class SpriteAnim {
     int id;
     int pos=5;
     int posarr=0;
-    CountDownTimer relog;
     boolean salto=true;
-    boolean anim=false;
-    CountDownTimer bajar,saltar;
+    boolean anim=true;
+    CountDownTimer relog,bajar,saltar;
     public SpriteAnim(Bitmap [] imagen, float x, float y,float tam) {
         this.imagen= new Bitmap[imagen.length];
         posarr=imagen.length;
@@ -29,22 +28,24 @@ public class SpriteAnim {
         relog= new CountDownTimer(1000,50) {
             @Override
             public void onTick(long millisUntilFinished) {
-            if(anim)
-            {
+             if(anim)
+             {
                 if(pos<1){
                     pos=5;
                 }else
                 {
                     pos--;
                 }
-            }
+             }
             }
 
             @Override
             public void onFinish() {
+
                 relog.start();
             }
-        };relog.start();
+        };
+        relog.start();
     }
     public void animacionX(float velocidad)
     {
@@ -79,41 +80,48 @@ public class SpriteAnim {
     public  void animINI()
     {
         anim=true;
+
     }
     public  void animSTOP()
     {
         anim=false;
+        relog.cancel();
+        System.out.println("detener animacion");
     }
 
     public void saltar(){
-        if(salto)
+        if(anim)
         {
-            bajar= new CountDownTimer(800,1) {
-                @Override
-                public void onTick(long millisUntilFinished) {
-                    y+=5;
-                }
-                @Override
-                public void onFinish() {
-                    bajar.cancel();
-                    salto=true;
-                }
-            };
-            saltar= new CountDownTimer(800,1) {
-                @Override
-                public void onTick(long millisUntilFinished) {
-                    y-=5;
-                }
-                @Override
-                public void onFinish() {
-                    bajar.start();
-                    saltar.cancel();
-                }
-            };
-            salto=false;
-            saltar.start();
+            if(salto)
+            {
+                bajar= new CountDownTimer(800,1) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+                        y+=5;
+                    }
+                    @Override
+                    public void onFinish() {
+                        bajar.cancel();
+                        salto=true;
+                    }
+                };
+                saltar= new CountDownTimer(800,1) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+                        y-=5;
+                    }
+                    @Override
+                    public void onFinish() {
+                        bajar.start();
+                        saltar.cancel();
+                    }
+                };
+                salto=false;
+                saltar.start();
 
+            }
         }
+
 
 
     }

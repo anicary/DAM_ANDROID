@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Point;
+import android.provider.Settings;
 import android.view.Display;
 import android.view.WindowManager;
 
@@ -65,6 +66,47 @@ public class Objetos {
             if (yp >= dibujo.y && yp <= (dibujo.y + dibujo.imagen.getHeight())) {
                 return true;
             }
+        }
+        return false;
+    }
+    public boolean onColission(SpriteAnim otro) {
+        int xmenos= (dibujo.imagen.getWidth()/2);
+        int ymenos= (dibujo.imagen.getHeight()/2);
+       if (otro.hitArea((dibujo.x+xmenos), (dibujo.y+ymenos))) {
+            System.out.println("1"+dibujo.x+" "+dibujo.y);
+            return true;
+        }
+       /* if (otro.hitArea((dibujo.x) + dibujo.imagen.getWidth(), dibujo.y))
+
+        {
+            System.out.println("ARRIBA "+dibujo.x+" "+dibujo.y);
+            return true;
+        }
+        if (otro.hitArea(dibujo.x + dibujo.imagen.getWidth(), dibujo.y + dibujo.imagen.getHeight())) {
+            System.out.println(""+dibujo.x+" "+dibujo.y);
+            return true;
+        }*/
+        /*if (otro.hitArea(dibujo.x,  + dibujo.imagen.getHeight()))
+        {
+            System.out.println(""+dibujo.x+" "+dibujo.y);
+            return true;
+        }*/
+        return false;
+    }
+    public boolean onColission(Sprite otro) {
+        if (otro.hitArea(dibujo.x, dibujo.y)) {
+            return true;
+        }
+        if (otro.hitArea(dibujo.x + dibujo.imagen.getWidth(), dibujo.y))
+        {
+            return true;
+        }
+        if (otro.hitArea(dibujo.x + dibujo.imagen.getWidth(), dibujo.y + dibujo.imagen.getHeight())) {
+            return true;
+        }
+        if (otro.hitArea(dibujo.x,  + dibujo.imagen.getHeight()))
+        {
+            return true;
         }
         return false;
     }
