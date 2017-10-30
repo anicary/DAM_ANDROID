@@ -80,7 +80,7 @@ public class SpriteAnim {
     public  void animINI()
     {
         anim=true;
-
+        relog.start();
     }
     public  void animSTOP()
     {

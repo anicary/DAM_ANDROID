@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 
 import java.util.Random;
@@ -24,6 +25,9 @@ public class Pikarun_act extends AppCompatActivity {
     int resulusionx,resulusiony;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+      //  requestWindowFeature(Window.FEATURE_NO_TITLE);
+     //   this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+   //     this.getSupportActionBar().hide();
         setContentView(new PikaRUN(this));
     }
 
@@ -164,9 +168,18 @@ public class Pikarun_act extends AppCompatActivity {
 
             if (motionEvent.getAction() == motionEvent.ACTION_DOWN) {
 
+
             }
             if (motionEvent.getAction() == motionEvent.ACTION_UP) {
-                pikarunsp.saltar();
+                if(!JUEGO)
+                {
+                    JUEGO=true;
+                    puntuacionGlobal=0;
+                    pikarunsp.animINI();
+                }else
+                {
+                    pikarunsp.saltar();
+                }
             }
             return true;
         }
