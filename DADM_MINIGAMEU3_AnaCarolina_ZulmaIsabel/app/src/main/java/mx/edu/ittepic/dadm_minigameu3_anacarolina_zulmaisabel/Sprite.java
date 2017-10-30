@@ -10,7 +10,6 @@ public class Sprite {
         this.imagen = imagen;
         this.x = x;
         this.y = y;
-
     }
     public void mover(float x, float y) {
         this.x = x - (imagen.getWidth() / 2);

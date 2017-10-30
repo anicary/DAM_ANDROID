@@ -34,7 +34,7 @@ public class Pikarun_act extends AppCompatActivity {
         boolean JUEGO=true;
         SpriteAnim pikarunsp;
         Sprite [] capas;
-        Sprite  puntos;
+        Sprite  puntos,gameover;
         int img[]={R.drawable.pikarun1,R.drawable.pikarun2,R.drawable.pikarun3,R.drawable.pikarun4,R.drawable.pikarun5,R.drawable.pikarun6};
         int  layers[]={R.drawable.layerr1,R.drawable.layerr0};
         Bitmap [] imge;
@@ -127,6 +127,7 @@ public class Pikarun_act extends AppCompatActivity {
             puntuacionCont.start();
             puntos= new Sprite(BitmapFactory.decodeResource(getResources(),R.drawable.puntos),0,-(resulusiony/30),(float)(resulusiony/2.5));
             pikarunsp.setSalto(resulusiony/72);
+            gameover = new Sprite(BitmapFactory.decodeResource(getResources(),R.drawable.gameover),(float)(resulusionx/2-(resulusionx/2.8)),resulusiony/2-(resulusiony/4),(float)(resulusiony*1.2));
         }
         public void onDraw (Canvas c)
         {
@@ -158,6 +159,10 @@ public class Pikarun_act extends AppCompatActivity {
             p.setTextSize(resulusionx/40);
             p.setStyle(Paint.Style.FILL);
             c.drawText("DISTANCIA: "+puntuacionGlobal,resulusionx/38,resulusiony/22,p);
+            if(!JUEGO)
+            {
+                c.drawBitmap(gameover.imagen, gameover.x,gameover.y, p);
+            }
         }
         public boolean onTouchEvent(MotionEvent motionEvent) {
 
