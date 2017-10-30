@@ -15,6 +15,7 @@ import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Display;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -30,7 +31,7 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
     Sprite boton1,puntos,gameover;
     Sprite [] capas;
     float tamanoplayer=0;
-    boolean juego=true;
+    boolean juego=false;
     Objetos [] assets;
     int  layers[]={R.drawable.layer0,R.drawable.layer1,R.drawable.layer2,R.drawable.layer3,R.drawable.layer4};
     int  pixelArt[]={R.drawable.capsup,R.drawable.roca};
@@ -216,10 +217,18 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
                        puntuacionGlobal+=50;
                        assets[i].setEstado(false);
                    }
+                    if( assets[i].getEtiqueta().equals("PIEDRA"))
+                    {
+                        puntuacionGlobal-=25;
+                        assets[i].setEstado(false);
+                    }
                 }
             }
             c.drawBitmap(jugador.imagen, jugador.x, jugador.y, p);
-            c.drawBitmap(boton1.imagen, boton1.x, boton1.y, p);
+            if(!juego)
+            {
+                c.drawBitmap(boton1.imagen, boton1.x, boton1.y, p);
+            }
             c.drawBitmap(puntos.imagen, puntos.x,puntos.y, p);
             p.setColor(Color.BLACK);
             p.setTextSize(resulusionx/40);
@@ -236,6 +245,25 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
             float b = y + tamy;
             RectF rec = new RectF(x, y, r, b);
             c.drawRect(rec, p);
+        }
+        public boolean onTouchEvent(MotionEvent motionEvent) {
+            float x=motionEvent.getX();
+            float y=motionEvent.getY();
+            if (motionEvent.getAction() == motionEvent.ACTION_DOWN) {
+
+
+            }
+            if (motionEvent.getAction() == motionEvent.ACTION_UP) {
+                if(!juego)
+                {
+                    if(boton1.hitArea(x,y))
+                    {
+                        juego=true;
+                    }
+                }
+
+            }
+            return true;
         }
     }
     public void Resolucion() {
