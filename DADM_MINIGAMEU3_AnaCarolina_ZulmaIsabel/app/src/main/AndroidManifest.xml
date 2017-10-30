@@ -8,12 +8,12 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
         android:hardwareAccelerated="false"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:largeHeap="true"
         android:theme="@style/AppTheme">
         <activity
             android:name=".Menu"
@@ -33,7 +33,11 @@
         <activity
             android:name=".Pikasurf"
             android:screenOrientation="landscape" />
-        <activity android:name=".Pikarun_act" android:label="PIKA RUUUN"  android:screenOrientation="landscape" ></activity>
+        <activity
+            android:name=".Pikarun_act"
+            android:label="PIKA RUUUN"
+            android:screenOrientation="landscape" />
+        <activity android:name=".PrincipalTablero"></activity>
     </application>
 
 </manifest>

@@ -1,23 +1,23 @@
-package mx.edu.ittepic.tdm_u3_memorama;
+package mx.edu.ittepic.dadm_minigameu3_anacarolina_zulmaisabel;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
-import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 
 import java.util.Random;
+
+/**
+ * Created by mario on 30/10/2017.
+ */
+
 
 public class Tablero extends View {
     CountDownTimer quitar;
@@ -36,7 +36,7 @@ public class Tablero extends View {
     int drawablesB[] = {
             /*   col1  fila 1  */
             R.drawable.charmander,
-            R.drawable.pika ,
+            R.drawable.pikamemo ,
             /*   col1  fila 2  */
             R.drawable.lol,
             R.drawable.jiggly,
@@ -48,7 +48,7 @@ public class Tablero extends View {
             R.drawable.pip,
             /*   col3  fila 1 */
             R.drawable.jiggly,
-            R.drawable.pika,
+            R.drawable.pikamemo,
             /*   col3  fila 2  */
             R.drawable.lol,
             R.drawable.pip
@@ -155,11 +155,11 @@ public class Tablero extends View {
         if (me.getAction() == MotionEvent.ACTION_UP) {
             if (turno >=2) {
                 System.out.println("C"+imgB[carta1].getPar() +" "+imgB[carta2].getPar() );
-               if (imgB[carta1].getPar() == imgB[carta2].getPar()) {
+                if (imgB[carta1].getPar() == imgB[carta2].getPar()) {
                     System.out.println("CORRECTO");
-                   imgB[carta1].setActivo(true);
-                   imgB[carta2].setActivo(true);
-                      turno=0;
+                    imgB[carta1].setActivo(true);
+                    imgB[carta2].setActivo(true);
+                    turno=0;
                 }
                 else
                 {

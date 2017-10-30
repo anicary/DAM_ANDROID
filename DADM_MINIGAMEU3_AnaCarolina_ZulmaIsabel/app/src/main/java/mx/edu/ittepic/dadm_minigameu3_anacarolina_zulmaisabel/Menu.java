@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 public class Menu extends AppCompatActivity {
-    ImageView pikasurf,pikarun;
+    ImageView pikasurf,pikarun,memo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +31,14 @@ public class Menu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent opcion = new Intent(Menu.this,Pikarun_act.class);
+                startActivity(opcion);
+            }
+        });
+        memo= (ImageView)findViewById(R.id.memorama);
+        memo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent opcion = new Intent(Menu.this,PrincipalTablero.class);
                 startActivity(opcion);
             }
         });
