@@ -165,7 +165,7 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
                 @Override
                 public void onTick(long millisUntilFinished) {
                     if(juego){
-                        if(puntuacionGlobal<=0)
+                        if(puntuacionGlobal<0)
                         {
                             juego=false;
                             puntuacionGlobal=0;
@@ -213,8 +213,11 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
             }
             for(int i=0;i<assets.length;i++)
             {
-                assets[i].dibujarObjeto(c);
-                assets[i].moverX(-10);
+                if(juego) {
+                    assets[i].dibujarObjeto(c);
+                    assets[i].moverX(-10);
+                }
+
             }
             for(int i=0;i<assets.length;i++)
             {
@@ -226,8 +229,11 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
                    }
                     if( assets[i].getEtiqueta().equals("PIEDRA"))
                     {
+                        if(juego)
+                        {
                             puntuacionGlobal-=25;
                             assets[i].setEstado(false);
+                        }
                     }
                 }
             }

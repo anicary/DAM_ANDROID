@@ -110,7 +110,7 @@ public class Objetos {
         return false;
     }
     public boolean onColission(Pikachu otro) {
-        if (otro.hitArea(dibujo.x, dibujo.y)) {
+        if (otro.hitArea(dibujo.x+(dibujo.x/3), dibujo.y)) {
            // System.out.println("1"+dibujo.x+" "+dibujo.y);
             System.out.println("TOCOOOOOOOOO 1");
             return true;
