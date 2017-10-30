@@ -98,7 +98,7 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
             {
                 if(x>=0 && x<=6)
                 {
-                    if(jugador.getY()>(resulusiony/2)-210)
+                    if(jugador.getY()>(resulusiony/2)-(resulusiony/5.14285714))
                     {
                         jugador.sety(-15);
                     }
