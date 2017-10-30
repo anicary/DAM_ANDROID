@@ -55,7 +55,7 @@ public class Pikarun_act extends AppCompatActivity {
             {
                 imge[i]=BitmapFactory.decodeResource(getResources(),img[i]);
             }
-            pikarunsp= new SpriteAnim(imge,resulusionx/9,(float) (resulusiony/1.8),250);
+            pikarunsp= new SpriteAnim(imge,resulusionx/9,(float) (resulusiony/1.8),(float)(resulusiony/4.32));
             principal= new CountDownTimer(1000,1) {
                 @Override
                 public void onTick(long millisUntilFinished) {
