@@ -61,14 +61,7 @@ public class Objetos {
             dibujo.x=resulusionx+200;
         }
     }
-    public boolean hitArea(float xp, float yp) {
-        if (xp >= dibujo.x && xp <= (dibujo.x + dibujo.imagen.getWidth())) {
-            if (yp >= dibujo.y && yp <= (dibujo.y + dibujo.imagen.getHeight())) {
-                return true;
-            }
-        }
-        return false;
-    }
+
     public boolean onColission(SpriteAnim otro) {
         int xmenos= (dibujo.imagen.getWidth()/2);
         int ymenos= (dibujo.imagen.getHeight()/2);

@@ -27,18 +27,14 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
     int resulusionx,resulusiony;
     float x=0,y=0;
     Pikachu jugador;
-    Sprite boton1;
+    Sprite boton1,puntos,gameover;
     Sprite [] capas;
     float tamanoplayer=0;
     boolean juego=true;
     Objetos [] assets;
     int  layers[]={R.drawable.layer0,R.drawable.layer1,R.drawable.layer2,R.drawable.layer3,R.drawable.layer4};
     int  pixelArt[]={R.drawable.capsup,R.drawable.roca};
-    int posrocas[]={
-            500,
-            700,
-            900
-    };
+    float posrocas[];
     int puntuacionGlobal;
     Musica reproductor;
     @Override
@@ -59,6 +55,10 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
         {
             capas[i] = new Sprite(BitmapFactory.decodeResource(getResources(),layers[i]),0,0,resulusiony*2);
         }
+        posrocas= new float[3];
+        posrocas [0]= (float) (resulusiony/2.16);
+        posrocas [1]= (float) (resulusiony/1.54285714);
+        posrocas [2]= (float) (resulusiony/1.2);
         assets = new Objetos[10];
         int posrock=0;
         for(int i=0;i< assets.length;i++)
@@ -83,10 +83,11 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
         reproductor= new Musica(getApplicationContext(),R.raw.surfmusica,true);
         reproductor.reproducir();
         boton1= new Sprite(BitmapFactory.decodeResource(getResources(),R.drawable.botonsur),(resulusionx/2)-(resulusionx/9),(resulusiony/2)-50,resulusiony/2);
+        puntos= new Sprite(BitmapFactory.decodeResource(getResources(),R.drawable.puntos),0,-(resulusiony/30),(float)(resulusiony/2.5));
+        gameover = new Sprite(BitmapFactory.decodeResource(getResources(),R.drawable.gameover),(float)(resulusionx/2-(resulusionx/2.8)),resulusiony/2-(resulusiony/4),(float)(resulusiony*1.2));
     }
-    public void onSensorChanged(SensorEvent sensorEvent) { //CUANDO EL SENSOR DETECTA UN CAMBIO
-
-        if (sensorEvent.sensor.getType() == Sensor.TYPE_ACCELEROMETER) { //TIPO DE SENSOR
+    public void onSensorChanged(SensorEvent sensorEvent) {
+        if (sensorEvent.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
             float[] valores = sensorEvent.values;
             x = valores[0];
             y = valores[1];
@@ -117,10 +118,8 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
             System.out.println("x"+(x)+"  "+x+"   y:"+y);
         }
     }
-
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {
-
     }
     @Override
     protected void onResume() {
@@ -166,7 +165,6 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
                     }
                     invalidate();
                 }
-
                 @Override
                 public void onFinish() {
                     global.start();
@@ -174,7 +172,7 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
             };
             global.start();
 
-            ObjetosEntregar=new CountDownTimer(10000,2000) {
+            ObjetosEntregar=new CountDownTimer(10000,1000) {
                 @Override
                 public void onTick(long millisUntilFinished) {
                     if(juego){
@@ -188,63 +186,6 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
                 }
             };
             ObjetosEntregar.start();
-           /* timpo= new CountDownTimer(1000,1) {
-                @Override
-                public void onTick(long millisUntilFinished) {
-                    switch (pos){
-                        case 0:
-                            xc+=5;
-                            if(xc<=(resulusionx-50))
-                            {
-                                pos=0;
-                            }else
-                            {
-                                pos=1;
-                            }
-                            break;
-                        case 1:
-                            yc+=5;
-                            if(yc<=(resulusiony-50))
-                            {
-                                pos=1;
-                            }else
-                            {
-                                pos=2;
-                            }
-                            break;
-                        case 2:
-                            xc-=5;
-                            if(xc>=0 )
-                            {
-                                pos=2;
-                            }else
-                            {
-                                pos=3;
-                            }
-                            break;
-                        case 3:
-                            yc-=5;
-                            if(yc>0)
-                            {
-                                pos=3;
-                            }else
-                            {
-                                pos=0;
-                            }
-                            break;
-                    }
-
-
-                    System.out.println("POS "+pos+" xc"+xc);
-                    invalidate();
-                }
-
-                @Override
-                public void onFinish() {
-                    timpo.start();
-                }
-            };
-            timpo.start(); */
         }
         public void onDraw (Canvas c)
         {
@@ -265,14 +206,15 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
             for(int i=0;i<assets.length;i++)
             {
                 assets[i].dibujarObjeto(c);
-                assets[i].moverX(-5);
+                assets[i].moverX(-10);
             }
             c.drawBitmap(jugador.imagen, jugador.x, jugador.y, p);
             c.drawBitmap(boton1.imagen, boton1.x, boton1.y, p);
+            c.drawBitmap(puntos.imagen, puntos.x,puntos.y, p);
             p.setColor(Color.BLACK);
             p.setTextSize(resulusionx/40);
             p.setStyle(Paint.Style.FILL);
-            c.drawText("PUNTUACION: "+puntuacionGlobal,resulusionx/38,resulusiony/22,p);
+            c.drawText("DISTANCIA: "+puntuacionGlobal,resulusionx/38,resulusiony/22,p);
         }
         public  void cuadrado (Canvas c, int color, float  x, float y, float tamx, float tamy)
         {
