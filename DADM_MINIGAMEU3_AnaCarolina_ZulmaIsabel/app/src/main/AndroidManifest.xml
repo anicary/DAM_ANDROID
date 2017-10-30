@@ -33,7 +33,7 @@
         <activity
             android:name=".Pikasurf"
             android:screenOrientation="landscape" />
-        <activity android:name=".Pikarun_act"  android:screenOrientation="landscape" ></activity>
+        <activity android:name=".Pikarun_act" android:label="PIKA RUUUN"  android:screenOrientation="landscape" ></activity>
     </application>
 
 </manifest>

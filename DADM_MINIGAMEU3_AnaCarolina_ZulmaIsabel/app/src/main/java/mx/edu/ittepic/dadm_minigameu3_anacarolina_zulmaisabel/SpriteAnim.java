@@ -105,14 +105,17 @@ public class SpriteAnim {
                     }
                     @Override
                     public void onFinish() {
-                        bajar.cancel();
                         salto=true;
+                        bajar.cancel();
                     }
                 };
                 saltar= new CountDownTimer(800,1) {
                     @Override
                     public void onTick(long millisUntilFinished) {
-                        y-=saltovelo;
+                        if(!salto)
+                        {
+                            y-=saltovelo;
+                        }
                     }
                     @Override
                     public void onFinish() {
@@ -122,10 +125,8 @@ public class SpriteAnim {
                 };
                 salto=false;
                 saltar.start();
-
             }
         }
-
     }
     public void setSalto(float saltovelo)
     {

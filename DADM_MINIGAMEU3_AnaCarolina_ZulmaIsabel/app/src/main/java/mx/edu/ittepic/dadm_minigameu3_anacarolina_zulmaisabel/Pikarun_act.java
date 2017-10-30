@@ -23,6 +23,7 @@ public class Pikarun_act extends AppCompatActivity {
     CountDownTimer principal,puntuacionCont;
     int puntuacionGlobal;
     int resulusionx,resulusiony;
+    int velocidadrelog=2000;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
       //  requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -74,7 +75,7 @@ public class Pikarun_act extends AppCompatActivity {
             {
                 assets[i]=new Objetos(getApplication(),pixelArt[0],resulusionx+300,(float) (resulusiony/1.5),resulusiony/8,"PIEDRA");
             }
-            ObjetosEntregar=new CountDownTimer(10000,2000) {
+            ObjetosEntregar=new CountDownTimer(10000,velocidadrelog) {
                 @Override
                 public void onTick(long millisUntilFinished) {
                     if(JUEGO){
@@ -103,14 +104,17 @@ public class Pikarun_act extends AppCompatActivity {
                         puntuacionGlobal++;
                         if(puntuacionGlobal==20)
                         {
+                            velocidadrelog=1500;
                             velocidad=-20;
                         }
                         if(puntuacionGlobal==40)
                         {
+                            velocidadrelog=1100;
                             velocidad=-30;
                         }
                         if(puntuacionGlobal==60)
                         {
+                            velocidadrelog=800;
                             velocidad=-40;
                         }
                         if(puntuacionGlobal>100)
