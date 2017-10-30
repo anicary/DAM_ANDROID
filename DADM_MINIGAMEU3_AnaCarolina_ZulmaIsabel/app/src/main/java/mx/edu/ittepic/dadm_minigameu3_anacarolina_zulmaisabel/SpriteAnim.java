@@ -7,7 +7,7 @@ import android.os.CountDownTimer;
 
 public class SpriteAnim {
     Bitmap [] imagen;
-    float x, y;
+    float x, y, tam,saltovelo,posinicialy;
     int id;
     int pos=5;
     int posarr=0;
@@ -20,11 +20,12 @@ public class SpriteAnim {
         for(int i=0;i<imagen.length;i++)
         {
             imagen[i]=escalado(imagen[i], tam, true);
-
             this.imagen[i] = imagen[i];
         }
+        this.posinicialy=y;
         this.x = x;
         this.y = y;
+        this.tam=tam;
         relog= new CountDownTimer(1000,50) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -97,7 +98,10 @@ public class SpriteAnim {
                 bajar= new CountDownTimer(800,1) {
                     @Override
                     public void onTick(long millisUntilFinished) {
-                        y+=5;
+                        if(posinicialy>=y)
+                        {
+                            y+=saltovelo;
+                        }
                     }
                     @Override
                     public void onFinish() {
@@ -108,7 +112,7 @@ public class SpriteAnim {
                 saltar= new CountDownTimer(800,1) {
                     @Override
                     public void onTick(long millisUntilFinished) {
-                        y-=5;
+                        y-=saltovelo;
                     }
                     @Override
                     public void onFinish() {
@@ -122,8 +126,10 @@ public class SpriteAnim {
             }
         }
 
-
-
+    }
+    public void setSalto(float saltovelo)
+    {
+        this.saltovelo=saltovelo;
     }
 
 }

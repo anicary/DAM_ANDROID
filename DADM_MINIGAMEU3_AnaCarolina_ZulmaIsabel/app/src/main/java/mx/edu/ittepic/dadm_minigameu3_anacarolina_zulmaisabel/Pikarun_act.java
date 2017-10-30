@@ -30,18 +30,18 @@ public class Pikarun_act extends AppCompatActivity {
    //     this.getSupportActionBar().hide();
         setContentView(new PikaRUN(this));
     }
-
     public class PikaRUN extends View {
         boolean JUEGO=true;
         SpriteAnim pikarunsp;
         Sprite [] capas;
+        Sprite  puntos;
         int img[]={R.drawable.pikarun1,R.drawable.pikarun2,R.drawable.pikarun3,R.drawable.pikarun4,R.drawable.pikarun5,R.drawable.pikarun6};
         int  layers[]={R.drawable.layerr1,R.drawable.layerr0};
         Bitmap [] imge;
         int  pixelArt[]={R.drawable.roca};
         Objetos [] assets;
         CountDownTimer ObjetosEntregar;
-        int posrocas=0,velocidad=-5;
+        int posrocas=0,velocidad=-15;
         public PikaRUN (Context context) {
             super(context);
             Resolucion();
@@ -72,9 +72,7 @@ public class Pikarun_act extends AppCompatActivity {
             int posrock=0;
             for(int i=0;i< assets.length;i++)
             {
-                //assets[i]=new Objetos(getApplication(),pixelArt[0],resulusionx+300,500,300,"PIEDRA");
                 assets[i]=new Objetos(getApplication(),pixelArt[0],resulusionx+300,(float) (resulusiony/1.5),resulusiony/8,"PIEDRA");
-               // assets[i].setEstado(true);
             }
             ObjetosEntregar=new CountDownTimer(10000,2000) {
                 @Override
@@ -105,29 +103,30 @@ public class Pikarun_act extends AppCompatActivity {
                         puntuacionGlobal++;
                         if(puntuacionGlobal==20)
                         {
-                            velocidad=-6;
+                            velocidad=-20;
                         }
                         if(puntuacionGlobal==40)
                         {
-                            velocidad=-10;
+                            velocidad=-30;
                         }
                         if(puntuacionGlobal==60)
                         {
-                            velocidad=-12;
+                            velocidad=-40;
                         }
                         if(puntuacionGlobal>100)
                         {
-                            velocidad=-15;
+                            velocidad=-60;
                         }
                     }
                 }
-
                 @Override
                 public void onFinish() {
                     puntuacionCont.start();
                 }
             };
             puntuacionCont.start();
+            puntos= new Sprite(BitmapFactory.decodeResource(getResources(),R.drawable.puntos),0,-(resulusiony/30),(float)(resulusiony/2.5));
+            pikarunsp.setSalto(resulusiony/72);
         }
         public void onDraw (Canvas c)
         {
@@ -146,11 +145,6 @@ public class Pikarun_act extends AppCompatActivity {
             }
             for (int i = 0; i < assets.length; i++) {
                 if (assets[i].onColission(pikarunsp)) {
-               /*     if (vida >= 1) {
-                        vida -= 0.05f;
-                    } else {
-                        gameOver(c);
-                    }*/
                     JUEGO=false;
                     assets[i].moverX(0);
                     System.out.println("CHOKO");
@@ -159,10 +153,11 @@ public class Pikarun_act extends AppCompatActivity {
             }
             pikarunsp.dibujar(c);
            // pikarunsp.animINI();
+            c.drawBitmap(puntos.imagen, puntos.x,puntos.y, p);
             p.setColor(Color.BLACK);
             p.setTextSize(resulusionx/40);
             p.setStyle(Paint.Style.FILL);
-            c.drawText("PUNTUACION: "+puntuacionGlobal,resulusionx/38,resulusiony/22,p);
+            c.drawText("DISTANCIA: "+puntuacionGlobal,resulusionx/38,resulusiony/22,p);
         }
         public boolean onTouchEvent(MotionEvent motionEvent) {
 
@@ -192,6 +187,5 @@ public class Pikarun_act extends AppCompatActivity {
         resulusionx = size.x;
         resulusiony = size.y;
         System.out.println("RESOLUCION "+resulusionx+","+resulusiony);
-
     }
 }
