@@ -12,6 +12,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.CountDownTimer;
+import android.support.annotation.BoolRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Display;
@@ -19,6 +20,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import java.util.Random;
 
@@ -38,6 +40,7 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
     float posrocas[];
     int puntuacionGlobal;
     Musica reproductor;
+    boolean [] logos={false,false,false};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,6 +85,7 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
 
         }
         reproductor= new Musica(getApplicationContext(),R.raw.surfmusica,true);
+        reproductor.setVolumen((float)0.3);
         reproductor.reproducir();
         boton1= new Sprite(BitmapFactory.decodeResource(getResources(),R.drawable.botonsur),(resulusionx/2)-(resulusionx/9),(resulusiony/2)-50,resulusiony/2);
         puntos= new Sprite(BitmapFactory.decodeResource(getResources(),R.drawable.puntos),0,-(resulusiony/30),(float)(resulusiony/2.5));
@@ -171,6 +175,7 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
                             puntuacionGlobal=0;
                         }
                     }
+                    logros();
                     invalidate();
                 }
                 @Override
@@ -207,7 +212,15 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
                 c.drawBitmap(capas[i].imagen, capas[i].x, capas[i].y, p);
             }
             if(juego) {
-                capas[3].animacionX(-3);
+                if( capas[1].x<-resulusionx)
+                {
+                    capas[1].x=resulusionx;
+                }
+                if( capas[4].x<-(resulusionx+resulusionx/2))
+                {
+                    capas[4].x=resulusionx;
+                }
+                capas[3].animacionX(-6);
                 capas[1].animacionX((float) -0.8);
                 capas[4].animacionX((float) -3);
             }
@@ -288,5 +301,18 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
         resulusiony = size.y;
         System.out.println("RESOLUCION "+resulusionx+","+resulusiony);
 
+    }
+    public void logros()
+    {
+        if((puntuacionGlobal>=200 && 299<=puntuacionGlobal )&& !logos[0])
+        {
+            Toast.makeText(getApplicationContext(),"HAZ ALCANZADO 200!! PUNTOS",Toast.LENGTH_SHORT).show();
+            logos[0]=true;
+        }
+        if((puntuacionGlobal>=300 && 399<=puntuacionGlobal) && !logos[1])
+        {
+            Toast.makeText(getApplicationContext(),"HAZ ALCANZADO 300!! PUNTOS",Toast.LENGTH_SHORT).show();
+            logos[1]=true;
+        }
     }
 }
