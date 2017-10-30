@@ -1,5 +1,4 @@
 package mx.edu.ittepic.dadm_u3_adivinanza_ana_carolina_mondragon_rangel;
-
 import android.Manifest;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -13,12 +12,9 @@ import android.telephony.SmsMessage;
 import android.widget.Toast;
 
 import java.util.Random;
-
 /**
  * Created by UsuarioPrueba on 22/10/2017.
  */
-
-
 public class ReceptorSMS extends BroadcastReceiver {
     int intento=0,adivina=0;
     String [][] adivinanza ={
@@ -26,15 +22,12 @@ public class ReceptorSMS extends BroadcastReceiver {
             {"LANA SUBE LANA BAJA, QUE ES?","LA NAVAJA","NAVAJA"},
             {"ORO NO ES PLATA NO ES QUE ES??","EL PLATANO","PLATANO"},
             {"QUIEN ES ALGO Y NADA A LA VEZ??","EL PEZ","PEZ"}
-
     };
     Random  ran = new Random();
     @Override
     public void onReceive(Context context, Intent intent) {
-                /* PERMISOS */
-        //Toast.makeText(context,"SI ESTA TRABAJANDO EL RECIVER", Toast.LENGTH_SHORT).show();
         Bundle b = intent.getExtras();
-    //    try {
+       try {
             if (b != null) {
                 final Object[] entrantes =(Object[]) b.get("pdus");
                 for (int i=0; i<entrantes.length; i++){
@@ -44,12 +37,10 @@ public class ReceptorSMS extends BroadcastReceiver {
                     contenido = mensaje.getDisplayMessageBody();
                     SmsManager sms = SmsManager.getDefault();
                     if(contenido.startsWith("!ADIVINANZA")){
-
                         if(intento==0)
                         {
-                            adivina=ran.nextInt(entrantes.length+1);
+                            adivina=ran.nextInt(adivinanza.length);
                         }
-
                     }
                     if(intento<4)
                     {
@@ -77,12 +68,11 @@ public class ReceptorSMS extends BroadcastReceiver {
                         intento=0;
                         sms.sendTextMessage(numero, null, "Termino las respuestas correctas eran: "+adivinanza[adivina][1]+","+adivinanza[adivina][2], null, null);
                     }
-                   //Toast.makeText(context,"Recibido dese: "+numero+"Contenido: " +contenido,Toast.LENGTH_SHORT).show();
                 }
             }
-     /*   }catch (Exception e){
+        }catch (Exception e){
             Toast.makeText(context,"NO SE PUDO ENVIAR EL MENSAJE", Toast.LENGTH_SHORT).show();
-        } */
+        }
     }
 }
 

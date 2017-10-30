@@ -47,22 +47,6 @@ public class MainActivity extends AppCompatActivity {
     /* PERMISOS */
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-     /*   if (requestCode == 2){
-            if ((grantResults.length > 0) && (grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-            }
-        }
-        if (requestCode == 1) {
-            if ((grantResults.length > 0) && (grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-            }
-        }
-        if (requestCode == 3) {
-            if ((grantResults.length > 0) && (grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-            }
-        }
-        if (requestCode == 4) {
-            if ((grantResults.length > 0) && (grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-            }
-        }*/
     }
 
     private  boolean verificarPermisos() {
