@@ -24,6 +24,9 @@ public class ReceptorSMS extends BroadcastReceiver {
     String [][] adivinanza ={
             {"QUE TIENE EL REY EN LA PANSA??","OMBLIGO","EL OMBLIGO"},
             {"LANA SUBE LANA BAJA, QUE ES?","LA NAVAJA","NAVAJA"},
+            {"ORO NO ES PLATA NO ES QUE ES??","EL PLATANO","PLATANO"},
+            {"QUIEN ES ALGO Y NADA A LA VEZ??","EL PEZ","PEZ"}
+
     };
     Random  ran = new Random();
     @Override
