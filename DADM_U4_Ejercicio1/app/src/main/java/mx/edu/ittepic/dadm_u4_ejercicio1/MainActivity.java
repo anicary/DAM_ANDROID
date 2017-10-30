@@ -11,6 +11,7 @@ import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -49,6 +50,12 @@ EditText identificador,nombre,domicilio;
             @Override
             public void onClick(View view) {
                 eliminarDatos();
+            }
+        });
+        actualizar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                actualizarDatos();
             }
         });
     }
@@ -108,7 +115,7 @@ EditText identificador,nombre,domicilio;
         idBorrar.setInputType(InputType.TYPE_CLASS_NUMBER);
         AlertDialog.Builder alerta = new AlertDialog.Builder(this);
         alerta.setTitle("ATENCION")
-                .setMessage("ID A BORRAE: ")
+                .setMessage("ID A BORRAR: ")
                 .setView(idBorrar)
                 .setPositiveButton("BORRAR", new DialogInterface.OnClickListener() {
                     @Override
@@ -136,4 +143,88 @@ EditText identificador,nombre,domicilio;
         Toast.makeText(this,e.getMessage(),Toast.LENGTH_LONG).show();
     }
     }
+    private void actualizarDatos(){
+        final EditText idActualizar = new EditText(this);
+        idActualizar.setInputType(InputType.TYPE_CLASS_NUMBER);
+        AlertDialog.Builder alerta = new AlertDialog.Builder(this);
+        alerta.setTitle("ATENCION")
+                .setMessage("ID A ACTUALIZAR: ")
+                .setView(idActualizar)
+                .setPositiveButton("BUSCAR", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+                        actualizarDatos2(idActualizar.getText().toString());
+                        dialog.dismiss();
+                    }
+                })
+                .setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+                        dialog.cancel();
+                    }
+                }).show();
+    }
+    private void actualizarDatos2(final String idActualizar){
+        try{
+            SQLiteDatabase base =db.getReadableDatabase();
+            String sentenciaSQL = "SELECT * FROM PERSONA WHERE ID="+idActualizar;
+
+            Cursor respuesta = base.rawQuery(sentenciaSQL,null);
+            if (respuesta.moveToFirst()==false){
+                Toast.makeText(this,"NO EXISTE EL ID ",Toast.LENGTH_LONG).show();
+            }else{
+                final EditText nombreActualizar,domicilioActualizar;
+                LinearLayout layout;
+
+                nombreActualizar = new EditText(this);
+                domicilioActualizar = new EditText(this);
+                layout = new LinearLayout(this);
+
+                nombreActualizar.setText(respuesta.getString(1));
+                domicilioActualizar.setText(respuesta.getString(2));
+                layout.setOrientation(LinearLayout.VERTICAL);
+                layout.addView(nombreActualizar);
+                layout.addView(domicilioActualizar);
+
+                AlertDialog.Builder alerta = new AlertDialog.Builder(this);
+                alerta.setTitle("ATENCION")
+                        .setMessage("MODIFIQUE DATOS: ")
+                        .setView(layout)
+                        .setPositiveButton("ACTUALIZAR", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int i) {
+                                actualizarDatos3(idActualizar,nombreActualizar.getText().toString(),domicilioActualizar.getText().toString());
+                                dialog.dismiss();
+                            }
+                        })
+                        .setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int i) {
+                                dialog.cancel();
+                            }
+                        }).show();
+            }
+
+            base.close();
+        }catch (SQLException e){
+            Toast.makeText(this,e.getMessage(),Toast.LENGTH_LONG).show();
+        }
+    }
+    private void actualizarDatos3(String id, String nombre, String domicilio){
+        try{
+            SQLiteDatabase base =db.getWritableDatabase();
+            String SQL = "UPDATE PERSONA SET NOMBRE ='XX1' , DOMICILIO='XX2' WHERE ID="+id;
+            SQL = SQL.replace("XX1",nombre);
+            SQL = SQL.replace("XX2",domicilio);
+
+            base.execSQL(SQL);
+
+            Toast.makeText(this,"SE ACTUALIZO REGISTRO CON ID"+id,Toast.LENGTH_LONG).show();
+            base.close();
+
+        }catch (SQLException e){
+            
+        }
+    }
+
 }
