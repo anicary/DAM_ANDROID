@@ -73,11 +73,11 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
             }
             if(i<3)
             {
-                assets[i]=new Objetos(getApplication(),pixelArt[0],1920,posrocas[posrock],200,"CAPSUP");
+                assets[i]=new Objetos(getApplication(),pixelArt[0],resulusionx,posrocas[posrock],(float)(resulusiony/5.4),"CAPSUP");
             }else
             {
 
-                assets[i]=new Objetos(getApplication(),pixelArt[1],resulusionx+300,posrocas[posrock],300,"PIEDRA");
+                assets[i]=new Objetos(getApplication(),pixelArt[1],resulusionx+300,posrocas[posrock],(float)(resulusiony/5.4),"PIEDRA");
             }
 
         }
