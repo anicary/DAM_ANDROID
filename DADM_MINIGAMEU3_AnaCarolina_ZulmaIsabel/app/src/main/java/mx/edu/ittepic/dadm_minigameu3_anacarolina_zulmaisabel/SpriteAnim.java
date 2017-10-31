@@ -96,27 +96,32 @@ public class SpriteAnim {
             public void onTick(long l) {
                 if(anim)
                 {
-                    if(salto) {
+                   // if(salto) {
                         if(estado)
                         {
                             if((posinicialy-(imagen[0].getHeight())) <=y)
                             {
+                                //salto=false;
                                 y-=saltovelo;
                             }else
                             {
+                              //  salto=true;
+
                                 estado=false;
                             }
                         }else
                         {
                             if(posinicialy>=y){
+                              //  salto=false;
                                 y+=saltovelo;
                             }else
                             {
+                                salto=true;
                                 estado=true;
                             }
 
                         }
-                    }
+               //     }
 
                 }
             }
