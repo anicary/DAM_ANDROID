@@ -102,10 +102,14 @@ public class SpriteAnim {
                             if((posinicialy-(imagen[0].getHeight())) <=y)
                             {
                                 //salto=false;
-                                y-=saltovelo;
+                                if(!salto)
+                                {
+                                    y-=saltovelo;
+                                }
+
                             }else
                             {
-                              //  salto=true;
+                                //salto=true;
 
                                 estado=false;
                             }
@@ -113,10 +117,14 @@ public class SpriteAnim {
                         {
                             if(posinicialy>=y){
                               //  salto=false;
-                                y+=saltovelo;
+                                if(!salto)
+                                {
+                                    y+=saltovelo;
+                                }
+
                             }else
                             {
-                                salto=true;
+                               // salto=true;
                                 estado=true;
                             }
 
