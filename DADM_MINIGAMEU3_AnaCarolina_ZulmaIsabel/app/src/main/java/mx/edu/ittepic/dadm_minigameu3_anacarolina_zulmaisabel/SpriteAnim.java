@@ -95,7 +95,7 @@ public class SpriteAnim {
         {
             if(salto)
             {
-                bajar= new CountDownTimer(800,1) {
+                bajar= new CountDownTimer(1000,1) {
                     @Override
                     public void onTick(long millisUntilFinished) {
                         if(posinicialy>=y)
@@ -114,7 +114,10 @@ public class SpriteAnim {
                     public void onTick(long millisUntilFinished) {
                         if(!salto)
                         {
-                            y-=saltovelo;
+                            if(-(saltovelo*2.5)<=y)
+                            {
+                                y-=saltovelo;
+                            }
                         }
                     }
                     @Override
