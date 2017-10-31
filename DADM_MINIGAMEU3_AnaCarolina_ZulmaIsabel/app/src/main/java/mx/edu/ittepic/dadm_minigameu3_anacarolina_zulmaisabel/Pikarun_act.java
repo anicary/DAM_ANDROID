@@ -182,7 +182,7 @@ public class Pikarun_act extends AppCompatActivity {
                     pikarunsp.animINI();
                 }else
                 {
-                    pikarunsp.saltar();
+                    pikarunsp.saltar(true);
                 }
             }
             return true;

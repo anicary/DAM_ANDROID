@@ -90,21 +90,21 @@ public class SpriteAnim {
         System.out.println("detener animacion");
     }
     boolean estado=true;
-    public void saltar(){
+    public void saltar(boolean dato){
+        estado=dato;
         global=new CountDownTimer(1000,1) {
             @Override
             public void onTick(long l) {
                 if(anim)
                 {
-                   // if(salto) {
+
                         if(estado)
                         {
                             if((posinicialy-(imagen[0].getHeight())) <=y)
                             {
-                                //salto=false;
                                 if(salto)
                                 {
-                                    y-=saltovelo;
+                                    y-=10;
                                 }
 
                             }else
@@ -115,20 +115,20 @@ public class SpriteAnim {
                         }else
                         {
                             if(posinicialy>=y){
-                              //  salto=false;
+
                                 if(!salto)
                                 {
-                                    y+=saltovelo;
+                                    y+=10;
+                                }else
+                                {
+                                    estado=true;
                                 }
 
                             }else
                             {
                                 salto=true;
-                               // estado=true;
                             }
                         }
-               //     }
-
                 }
             }
 
