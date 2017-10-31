@@ -130,7 +130,7 @@ public class Pikarun_act extends AppCompatActivity {
             };
             puntuacionCont.start();
             puntos= new Sprite(BitmapFactory.decodeResource(getResources(),R.drawable.puntos),0,-(resulusiony/30),(float)(resulusiony/2.5));
-            pikarunsp.setSalto(resulusiony/72);
+            pikarunsp.setSalto((float)(13));
             gameover = new Sprite(BitmapFactory.decodeResource(getResources(),R.drawable.gameover),(float)(resulusionx/2-(resulusionx/2.8)),resulusiony/2-(resulusiony/4),(float)(resulusiony*1.2));
         }
         public void onDraw (Canvas c)
