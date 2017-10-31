@@ -92,7 +92,7 @@ public class SpriteAnim {
     boolean estado=true;
     public void saltar(boolean dato){
         estado=dato;
-        global=new CountDownTimer(1000,1) {
+       /* global=new CountDownTimer(1000,1) {
             @Override
             public void onTick(long l) {
                 if(anim)
@@ -137,13 +137,12 @@ public class SpriteAnim {
                 global.start();
             }
         };
-        global.start();
-        /*if(anim)
+        global.start(); */
+        if(anim)
         {
             if(salto)
-            {*/
-
-               /* bajar= new CountDownTimer(1000,1) {
+            {
+                bajar= new CountDownTimer(800,1) {
                     @Override
                     public void onTick(long millisUntilFinished) {
                         if(posinicialy>=y)
@@ -162,7 +161,7 @@ public class SpriteAnim {
                     public void onTick(long millisUntilFinished) {
                         if(!salto)
                         {
-                            if(-(saltovelo*2.5)<=y)
+                            if((posinicialy-(imagen[0].getHeight())) <=y)
                             {
                                 y-=saltovelo;
                             }
@@ -175,9 +174,9 @@ public class SpriteAnim {
                     }
                 };
                 salto=false;
-                saltar.start();*/
-       /*     }
-        }*/
+                saltar.start();
+            }
+        }
     }
     public void setSalto(float saltovelo)
     {
