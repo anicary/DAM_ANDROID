@@ -22,6 +22,7 @@ public class Tablero extends View {
     // boolean turno = false;
     //  boolean tacados
     int turno = 0;
+    Sprite fondo;
     float xv,yv;
     CountDownTimer tiempo;
     int drawablesA[] = {R.drawable.pokebola, R.drawable.pokebola, R.drawable.pokebola,
@@ -54,6 +55,7 @@ public class Tablero extends View {
         imgA = new Icono[12];
         imgB = new Icono[12];
         float yesA[] = {0, (float)(yv/5.48571428571),  (float)(yv/2.74285714286),  (float)(yv/1.82857142857), 0, (float)(yv/5.48571428571), (float)(yv/2.74285714286),  (float)(yv/1.82857142857), 0, (float)(yv/5.48571428571), (float)(yv/2.74285714286),  (float)(yv/1.82857142857)}; //coordenadas de y pokebolas
+        fondo = new Sprite(BitmapFactory.decodeResource(getResources(),R.drawable.fondo3),0,0,yv);
         float equisA[] = {(float)(xv/10.8), (float)(xv/10.8), (float)(xv/10.8),(float)(xv/10.8), (float)(xv/2.7), (float)(xv/2.7), (float)(xv/2.7), (float)(xv/2.7), (float)(xv/1.54285714286), (float)(xv/1.54285714286), (float)(xv/1.54285714286), (float)(xv/1.54285714286)}; //coordenadas de x pokebolas
         float pos[][]={
                 {(float)(xv/9),(float)(yv/96)},
@@ -118,6 +120,7 @@ public class Tablero extends View {
         Paint p = new Paint();
         p.setColor(Color.BLACK);
         c.drawRect(0, 0, xv, yv, p);
+        c.drawBitmap(fondo.imagen, fondo.x, fondo.y, p);
         for (int i = 0; i < imgA.length; i++) {
             if (imgA[i].visible) {
                 c.drawBitmap(imgA[i].imagen, imgA[i].x, imgA[i].y, p);
