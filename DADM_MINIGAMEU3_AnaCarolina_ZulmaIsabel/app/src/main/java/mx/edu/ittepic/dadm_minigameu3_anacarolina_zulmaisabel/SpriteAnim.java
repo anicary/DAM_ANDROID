@@ -13,7 +13,7 @@ public class SpriteAnim {
     int posarr=0;
     boolean salto=true;
     boolean anim=true;
-    CountDownTimer relog,bajar,saltar;
+    CountDownTimer relog,bajar,saltar,global;
     public SpriteAnim(Bitmap [] imagen, float x, float y,float tam) {
         this.imagen= new Bitmap[imagen.length];
         posarr=imagen.length;
@@ -89,13 +89,50 @@ public class SpriteAnim {
         relog.cancel();
         System.out.println("detener animacion");
     }
-
+    boolean estado=true;
     public void saltar(){
-        if(anim)
+        global=new CountDownTimer(1000,1) {
+            @Override
+            public void onTick(long l) {
+                if(anim)
+                {
+                    if(salto) {
+                        if(estado)
+                        {
+                            if((posinicialy-(imagen[0].getHeight())) <=y)
+                            {
+                                y-=saltovelo;
+                            }else
+                            {
+                                estado=false;
+                            }
+                        }else
+                        {
+                            if(posinicialy>=y){
+                                y+=saltovelo;
+                            }else
+                            {
+                                estado=true;
+                            }
+
+                        }
+                    }
+
+                }
+            }
+
+            @Override
+            public void onFinish() {
+                global.start();
+            }
+        };
+        global.start();
+        /*if(anim)
         {
             if(salto)
-            {
-                bajar= new CountDownTimer(1000,1) {
+            {*/
+
+               /* bajar= new CountDownTimer(1000,1) {
                     @Override
                     public void onTick(long millisUntilFinished) {
                         if(posinicialy>=y)
@@ -127,9 +164,9 @@ public class SpriteAnim {
                     }
                 };
                 salto=false;
-                saltar.start();
-            }
-        }
+                saltar.start();*/
+       /*     }
+        }*/
     }
     public void setSalto(float saltovelo)
     {
