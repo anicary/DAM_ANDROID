@@ -304,12 +304,12 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
     }
     public void logros()
     {
-        if((puntuacionGlobal>=200 && 299<=puntuacionGlobal )&& !logos[0])
+        if((puntuacionGlobal>=200)&& !logos[0])
         {
             Toast.makeText(getApplicationContext(),"HAZ ALCANZADO 200!! PUNTOS",Toast.LENGTH_SHORT).show();
             logos[0]=true;
         }
-        if((puntuacionGlobal>=300 && 399<=puntuacionGlobal) && !logos[1])
+        if((puntuacionGlobal>=300) && !logos[1])
         {
             Toast.makeText(getApplicationContext(),"HAZ ALCANZADO 300!! PUNTOS",Toast.LENGTH_SHORT).show();
             logos[1]=true;

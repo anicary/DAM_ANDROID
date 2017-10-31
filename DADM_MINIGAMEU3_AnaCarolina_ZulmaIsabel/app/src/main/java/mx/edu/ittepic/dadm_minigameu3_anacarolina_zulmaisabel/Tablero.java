@@ -53,21 +53,21 @@ public class Tablero extends View {
         Resolucion();
         imgA = new Icono[12];
         imgB = new Icono[12];
-        float yesA[] = {40, 250,  500,  800, 40, 250, 500, 800, 40, 250, 500, 800}; //coordenadas de y pokebolas
-        float equisA[] = {20, 20, 20, 20, 270, 270, 270, 270, 510, 510, 510, 510}; //coordenadas de x pokebolas
+        float yesA[] = {0, (float)(yv/5.48571428571),  (float)(yv/2.74285714286),  (float)(yv/1.82857142857), 0, (float)(yv/5.48571428571), (float)(yv/2.74285714286),  (float)(yv/1.82857142857), 0, (float)(yv/5.48571428571), (float)(yv/2.74285714286),  (float)(yv/1.82857142857)}; //coordenadas de y pokebolas
+        float equisA[] = {(float)(xv/10.8), (float)(xv/10.8), (float)(xv/10.8),(float)(xv/10.8), (float)(xv/2.7), (float)(xv/2.7), (float)(xv/2.7), (float)(xv/2.7), (float)(xv/1.54285714286), (float)(xv/1.54285714286), (float)(xv/1.54285714286), (float)(xv/1.54285714286)}; //coordenadas de x pokebolas
         float pos[][]={
-                {50,60},
-                {47,275},
-                {47,520},
-                {47,820},
-                {295,50},
-                {295,260},
-                {305,520},
-                {305,820},
-                {540,60},
-                {540,275},
-                {540,520},
-                {540,820}
+                {(float)(xv/9),(float)(yv/96)},
+                {(float)(xv/9),(float)(yv/5.48571428571)},
+                {(float)(xv/9),(float)(yv/2.74285714286)},
+                {(float)(xv/9),(float)(yv/1.82857142857)},
+                {(float)(xv/2.57142857143),(float)(yv/96)},
+                {(float)(xv/2.57142857143),(float)(yv/5.48571428571)},
+                {(float)(xv/2.57142857143),(float)(yv/2.74285714286)},
+                {(float)(xv/2.57142857143),(float)(yv/1.82857142857)},
+                {(float)(xv/1.54285714286),(float)(yv/96)},
+                {(float)(xv/1.54285714286),(float)(yv/5.48571428571)},
+                {(float)(xv/1.54285714286),(float)(yv/2.74285714286)},
+                {(float)(xv/1.54285714286),(float)(yv/1.82857142857)}
         };
         String pares[] = {"A", "B", "C", "D", "E", "F"};
         int pa[] = { // 0=CHARMANDER 1=PIKACHU
@@ -85,11 +85,11 @@ public class Tablero extends View {
                 4, 2};
 
         for (int i = 0; i < imgA.length; i++) { //DE SQUI PARA ABAJO NO CAMBIES NADA
-            imgA[i] = new Icono(BitmapFactory.decodeResource(getResources(), drawablesA[i]), equisA[i], yesA[i], true, "",true);
+            imgA[i] = new Icono(BitmapFactory.decodeResource(getResources(), drawablesA[i]), equisA[i], yesA[i], true, "",true,(float)(yv/6.4));
         }
         int p = 0;
         for (int i = 0; i < imgB.length; i++) {
-            imgB[i] = new Icono(BitmapFactory.decodeResource(getResources(), drawablesB[i]),pos[i][0],pos[i][1], false, pares[pa[i]],false);
+            imgB[i] = new Icono(BitmapFactory.decodeResource(getResources(), drawablesB[i]),pos[i][0],pos[i][1], false, pares[pa[i]],false,(float)(yv/6.4));
         }
         quitar = new CountDownTimer(5000, 1) {
             @Override
@@ -102,6 +102,7 @@ public class Tablero extends View {
                 cancel();
             }
         };
+
         tiempo= new CountDownTimer(1000,1) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -116,22 +117,21 @@ public class Tablero extends View {
     public void onDraw(Canvas c) {
         Paint p = new Paint();
         p.setColor(Color.BLACK);
-        c.drawRect(0, 0, 1000, 1500, p);
+        c.drawRect(0, 0, xv, yv, p);
         for (int i = 0; i < imgA.length; i++) {
-            if (imgA[i].visible == true) {
+            if (imgA[i].visible) {
                 c.drawBitmap(imgA[i].imagen, imgA[i].x, imgA[i].y, p);
             }
-            if (imgB[i].visible == true) {
+            if (imgB[i].visible) {
                 c.drawBitmap(imgB[i].imagen, imgB[i].x, imgB[i].y, p);
             }
         }
     }
     public boolean onTouchEvent(MotionEvent me) {
-        if (me.getAction() == MotionEvent.ACTION_DOWN) {
+       if (me.getAction() == MotionEvent.ACTION_DOWN) {
             for (int i = 0; i < imgB.length; i++) {
                 if (imgB[i].estaenArea(me.getX(), me.getY())) {
                     if(!imgB[i].getActivo()){
-
                         if (turno <= 2) {
                             carta2 = i;
                             numeros = i;
@@ -152,13 +152,15 @@ public class Tablero extends View {
                 System.out.println("C"+imgB[carta1].getPar() +" "+imgB[carta2].getPar() );
                 if (imgB[carta1].getPar() == imgB[carta2].getPar()) {
                     System.out.println("CORRECTO");
+                    imgA[carta1].setVisible(false);
+                    imgA[carta2].setVisible(false);
                     imgB[carta1].setActivo(true);
                     imgB[carta2].setActivo(true);
                     turno=0;
+                    invalidate();
                 }
                 else
                 {
-
                     turno=0;
                     imgB[carta2].setVisible(false);
                     imgB[carta1].setVisible(false);
@@ -188,5 +190,4 @@ public class Tablero extends View {
         }
         return randomizedArray;
     }
-
 }

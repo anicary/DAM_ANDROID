@@ -7,8 +7,9 @@ public class Icono {
     float x,y;
     public boolean visible,activo;
     String par;
-    public Icono(Bitmap i, float equis, float ye, boolean visible,String par,boolean activo){
+    public Icono(Bitmap i, float equis, float ye, boolean visible,String par,boolean activo,float tam){
         imagen = i;
+        imagen=escalado(imagen, tam, true);
         x = equis;
         y = ye;
         this.visible=visible;
@@ -43,5 +44,14 @@ public class Icono {
     {
         return activo;
     }
+
+    public static Bitmap escalado(Bitmap imgentrada, float tamanio,  boolean filtro) {
+        float ratio = Math.min((float) tamanio / imgentrada.getWidth(), (float) tamanio / imgentrada.getHeight());
+        int width = Math.round((float) ratio * imgentrada.getWidth());
+        int height = Math.round((float) ratio * imgentrada.getHeight());
+        Bitmap nuevaImagen = Bitmap.createScaledBitmap(imgentrada, width, height, filtro);
+        return nuevaImagen;
+    }
+
 
 }
