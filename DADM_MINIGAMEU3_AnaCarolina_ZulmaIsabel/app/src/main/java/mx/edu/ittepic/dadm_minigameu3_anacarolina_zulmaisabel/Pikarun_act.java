@@ -39,7 +39,7 @@ public class Pikarun_act extends AppCompatActivity {
         Sprite [] capas;
         Sprite  puntos,gameover;
         int img[]={R.drawable.pikarun1,R.drawable.pikarun2,R.drawable.pikarun3,R.drawable.pikarun4,R.drawable.pikarun5,R.drawable.pikarun6};
-        int  layers[]={R.drawable.layerr1,R.drawable.layerr0};
+        int  layers[]={R.drawable.layerr1,R.drawable.layerr1,R.drawable.layerr0,R.drawable.layerr0};
         Bitmap [] imge;
         int  pixelArt[]={R.drawable.roca};
         Objetos [] assets;
@@ -51,10 +51,11 @@ public class Pikarun_act extends AppCompatActivity {
             sistemavibrador = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
             imge= new Bitmap[img.length];
             capas= new Sprite[2];
-            for(int i=0; i<layers.length ;i++)
+            for(int i=0; i<capas.length ;i++)
             {
                 capas[i] = new Sprite(BitmapFactory.decodeResource(getResources(),layers[i]),0,0,(float)(resulusiony*1.7));
             }
+            capas[0].x=resulusionx;
             for(int i=0;i<img.length;i++)
             {
                 imge[i]=BitmapFactory.decodeResource(getResources(),img[i]);
@@ -138,9 +139,26 @@ public class Pikarun_act extends AppCompatActivity {
 
                     if(pikarunsp.anim)
                     {
+
+                        if( capas[1].x>=-(capas[0].getTamano()))
+                        {
+                            capas[1].moverX(-10);
+                        }else
+                        {
+                            capas[1].x= resulusionx;
+                        }
+                        if( capas[0].x>=-(capas[0].getTamano()))
+                        {
+                            capas[0].moverX(-10);
+                        }else
+                        {
+                            capas[0].x=resulusionx;
+                        }
+
+
                         if(pikarunsp.getEstado())
                         {
-                            if((pikarunsp.getPosinicialy()-(pikarunsp.getPosinicialy()/3) <=pikarunsp.y))
+                            if((pikarunsp.getPosinicialy()-(pikarunsp.getPosinicialy()/2) <=pikarunsp.y))
                             {
                                 pikarunsp.y-=20;
                             }else

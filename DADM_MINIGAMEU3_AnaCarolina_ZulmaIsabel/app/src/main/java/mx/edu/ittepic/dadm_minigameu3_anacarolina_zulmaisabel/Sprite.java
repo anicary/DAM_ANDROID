@@ -37,5 +37,12 @@ public class Sprite {
         Bitmap nuevaImagen = Bitmap.createScaledBitmap(imgentrada, width, height, filtro);
         return nuevaImagen;
     }
-
+    public void moverX(float x)
+    {
+        this.x+=x;
+    }
+    public float getTamano()
+    {
+        return  imagen.getWidth();
+    }
 }
