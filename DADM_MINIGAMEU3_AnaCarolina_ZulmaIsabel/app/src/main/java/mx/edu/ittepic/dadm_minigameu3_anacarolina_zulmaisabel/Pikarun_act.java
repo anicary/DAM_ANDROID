@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.RectF;
 import android.os.CountDownTimer;
+import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Display;
@@ -20,10 +21,11 @@ import android.view.WindowManager;
 import java.util.Random;
 
 public class Pikarun_act extends AppCompatActivity {
-    CountDownTimer principal,puntuacionCont;
+    CountDownTimer principal,puntuacionCont,global;
     int puntuacionGlobal;
     int resulusionx,resulusiony;
     int velocidadrelog=2000;
+    Vibrator sistemavibrador;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
       //  requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -46,6 +48,7 @@ public class Pikarun_act extends AppCompatActivity {
         public PikaRUN (Context context) {
             super(context);
             Resolucion();
+            sistemavibrador = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
             imge= new Bitmap[img.length];
             capas= new Sprite[2];
             for(int i=0; i<layers.length ;i++)
@@ -129,8 +132,40 @@ public class Pikarun_act extends AppCompatActivity {
                 }
             };
             puntuacionCont.start();
+            global=new CountDownTimer(1000,1) {
+                @Override
+                public void onTick(long l) {
+
+                    if(pikarunsp.anim)
+                    {
+                        if(pikarunsp.getEstado())
+                        {
+                            if((pikarunsp.getPosinicialy()-(pikarunsp.getPosinicialy()/3) <=pikarunsp.y))
+                            {
+                                pikarunsp.y-=20;
+                            }else
+                            {
+
+                                pikarunsp.estado=false;
+                            }
+                        }else
+                        {
+                            if(pikarunsp.getPosinicialy()>=pikarunsp.y){
+                                pikarunsp.y+=20;
+                            }else
+                            {
+                                pikarunsp.salto=true;
+                            }
+                        }
+                    }
+                }
+                @Override
+                public void onFinish() {
+                    global.start();
+                }
+            };
+            global.start();
             puntos= new Sprite(BitmapFactory.decodeResource(getResources(),R.drawable.puntos),0,-(resulusiony/30),(float)(resulusiony/2.5));
-            pikarunsp.setSalto((float)(13));
             gameover = new Sprite(BitmapFactory.decodeResource(getResources(),R.drawable.gameover),(float)(resulusionx/2-(resulusionx/2.8)),resulusiony/2-(resulusiony/4),(float)(resulusiony*1.2));
         }
         public void onDraw (Canvas c)
@@ -157,7 +192,6 @@ public class Pikarun_act extends AppCompatActivity {
                 }
             }
             pikarunsp.dibujar(c);
-           // pikarunsp.animINI();
             c.drawBitmap(puntos.imagen, puntos.x,puntos.y, p);
             p.setColor(Color.BLACK);
             p.setTextSize(resulusionx/40);
@@ -165,14 +199,12 @@ public class Pikarun_act extends AppCompatActivity {
             c.drawText("DISTANCIA: "+puntuacionGlobal,resulusionx/38,resulusiony/22,p);
             if(!JUEGO)
             {
+                sistemavibrador.vibrate(500);
                 c.drawBitmap(gameover.imagen, gameover.x,gameover.y, p);
             }
         }
         public boolean onTouchEvent(MotionEvent motionEvent) {
-
             if (motionEvent.getAction() == motionEvent.ACTION_DOWN) {
-
-
             }
             if (motionEvent.getAction() == motionEvent.ACTION_UP) {
                 if(!JUEGO)
@@ -182,7 +214,11 @@ public class Pikarun_act extends AppCompatActivity {
                     pikarunsp.animINI();
                 }else
                 {
-                    pikarunsp.saltar(true);
+                    if(pikarunsp.getSalto())
+                    {
+                        pikarunsp.saltar(true);
+                    }
+
                 }
             }
             return true;

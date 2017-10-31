@@ -47,6 +47,8 @@ public class SpriteAnim {
             }
         };
         relog.start();
+
+
     }
     public void animacionX(float velocidad)
     {
@@ -89,56 +91,11 @@ public class SpriteAnim {
         relog.cancel();
         System.out.println("detener animacion");
     }
-    boolean estado=true;
+    boolean estado=false;
     public void saltar(boolean dato){
-        estado=dato;
-       /* global=new CountDownTimer(1000,1) {
-            @Override
-            public void onTick(long l) {
-                if(anim)
-                {
-
-                        if(estado)
-                        {
-                            if((posinicialy-(imagen[0].getHeight())) <=y)
-                            {
-                                if(salto)
-                                {
-                                    y-=10;
-                                }
-
-                            }else
-                            {
-                                salto=false;
-                                estado=false;
-                            }
-                        }else
-                        {
-                            if(posinicialy>=y){
-
-                                if(!salto)
-                                {
-                                    y+=10;
-                                }else
-                                {
-                                    estado=true;
-                                }
-
-                            }else
-                            {
-                                salto=true;
-                            }
-                        }
-                }
-            }
-
-            @Override
-            public void onFinish() {
-                global.start();
-            }
-        };
-        global.start(); */
-        if(anim)
+       salto=false;
+        estado=true;
+        /*if(anim)
         {
             if(salto)
             {
@@ -176,11 +133,20 @@ public class SpriteAnim {
                 salto=false;
                 saltar.start();
             }
-        }
+        }*/
     }
-    public void setSalto(float saltovelo)
+    public boolean getSalto() {
+        return salto;
+    }
+    public float getPosinicialy()
     {
-        this.saltovelo=saltovelo;
+        return posinicialy;
     }
+    public boolean getEstado()
+    {
+        return  estado;
+    }
+
+
 
 }
