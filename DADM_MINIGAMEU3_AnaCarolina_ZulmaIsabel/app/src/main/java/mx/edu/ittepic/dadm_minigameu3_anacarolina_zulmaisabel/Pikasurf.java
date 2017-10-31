@@ -16,6 +16,7 @@ import android.support.annotation.BoolRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Display;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -39,7 +40,7 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
     int  pixelArt[]={R.drawable.capsup,R.drawable.roca};
     float posrocas[];
     int puntuacionGlobal;
-    Musica reproductor;
+    Musica reproductor,pikasound,pikdeath;
     boolean [] logos={false,false,false};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,11 +88,19 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
         reproductor= new Musica(getApplicationContext(),R.raw.surfmusica,true);
         reproductor.setVolumen((float)0.3);
         reproductor.reproducir();
+        pikdeath= new Musica(getApplicationContext(),R.raw.pikadeath,false);
+        pikasound= new Musica(getApplicationContext(),R.raw.pipika,false);
         boton1= new Sprite(BitmapFactory.decodeResource(getResources(),R.drawable.botonsur),(resulusionx/2)-(resulusionx/9),(resulusiony/2)-50,resulusiony/2);
         puntos= new Sprite(BitmapFactory.decodeResource(getResources(),R.drawable.puntos),0,-(resulusiony/30),(float)(resulusiony/2.5));
         gameover = new Sprite(BitmapFactory.decodeResource(getResources(),R.drawable.gameover),(float)(resulusionx/2-(resulusionx/2.8)),resulusiony/2-(resulusiony/4),(float)(resulusiony*1.2));
     }
-
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            reproductor.detener();
+        }
+        return super.onKeyDown(keyCode, event);
+    }
     public void onSensorChanged(SensorEvent sensorEvent) {
         if (sensorEvent.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
             float[] valores = sensorEvent.values;
@@ -237,6 +246,7 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
                 if(assets[i].onColission(jugador)){
                    if( assets[i].getEtiqueta().equals("CAPSUP"))
                    {
+                       pikasound.reproducir();
                        puntuacionGlobal+=50;
                        assets[i].setEstado(false);
                    }
@@ -244,6 +254,7 @@ public class Pikasurf extends AppCompatActivity  implements SensorEventListener 
                     {
                         if(juego)
                         {
+                            pikdeath.reproducir();
                             puntuacionGlobal-=25;
                             assets[i].setEstado(false);
                         }

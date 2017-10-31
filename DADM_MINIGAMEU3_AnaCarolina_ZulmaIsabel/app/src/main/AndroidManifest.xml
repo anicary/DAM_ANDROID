@@ -37,7 +37,7 @@
             android:name=".Pikarun_act"
             android:label="PIKA RUUUN"
             android:screenOrientation="landscape" />
-        <activity android:name=".PrincipalTablero"></activity>
+        <activity android:name=".PrincipalTablero" android:screenOrientation="portrait" ></activity>
     </application>
 
 </manifest>

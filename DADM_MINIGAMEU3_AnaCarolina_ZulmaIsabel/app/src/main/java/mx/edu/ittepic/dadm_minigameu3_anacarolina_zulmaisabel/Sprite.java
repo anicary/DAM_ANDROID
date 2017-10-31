@@ -30,6 +30,9 @@ public class Sprite {
     public float getX() {   return this.x = x;    }
     public float getY() {   return this.y = y;
     }
+    public void setX(float x){
+        this.x=x;
+    }
     public static Bitmap escalado(Bitmap imgentrada, float tamanio,  boolean filtro) {
         float ratio = Math.min((float) tamanio / imgentrada.getWidth(), (float) tamanio / imgentrada.getHeight());
         int width = Math.round((float) ratio * imgentrada.getWidth());

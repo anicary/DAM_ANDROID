@@ -4,6 +4,7 @@ import android.content.Context;
 import android.media.MediaPlayer;
 public class Musica {
     public MediaPlayer  mainPlayer;
+    boolean activo;
     public  Musica(Context contexto, int Cancion, boolean repetir)
     {
         mainPlayer = new MediaPlayer();
@@ -12,11 +13,16 @@ public class Musica {
     }
     public void reproducir()
     {
-
+        activo=true;
         mainPlayer.start();
     }
     public void detener(){
         mainPlayer.stop();
+        activo=false;
+    }
+    public void pausar(){
+        mainPlayer.pause();
+        activo=false;
     }
     public void repetir(boolean bucle)
     {
@@ -26,4 +32,5 @@ public class Musica {
     {
         mainPlayer.setVolume(volumen,volumen);
     }
+    public boolean getActivo(){return activo;}
 }

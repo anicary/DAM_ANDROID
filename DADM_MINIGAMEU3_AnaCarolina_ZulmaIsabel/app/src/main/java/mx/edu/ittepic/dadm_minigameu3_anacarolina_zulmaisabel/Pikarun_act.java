@@ -8,11 +8,14 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.RectF;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Display;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -22,19 +25,32 @@ import java.util.Random;
 
 public class Pikarun_act extends AppCompatActivity {
     CountDownTimer principal,puntuacionCont,global;
-    int puntuacionGlobal;
-    int resulusionx,resulusiony;
-    int velocidadrelog=2000;
+    int puntuacionGlobal,resulusionx,resulusiony,velocidadrelog=2000;
     Vibrator sistemavibrador;
+    Musica reproductor,pikasonido,pikadeath;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-      //  requestWindowFeature(Window.FEATURE_NO_TITLE);
-     //   this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-   //     this.getSupportActionBar().hide();
         setContentView(new PikaRUN(this));
     }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            reproductor.detener();
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        reproductor.reproducir();
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        reproductor.detener();
+    }
     public class PikaRUN extends View {
-        boolean JUEGO=true;
+        boolean JUEGO=true,vibrar=true;
         SpriteAnim pikarunsp;
         Sprite [] capas;
         Sprite  puntos,gameover;
@@ -50,12 +66,13 @@ public class Pikarun_act extends AppCompatActivity {
             Resolucion();
             sistemavibrador = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
             imge= new Bitmap[img.length];
-            capas= new Sprite[2];
+            capas= new Sprite[4];
             for(int i=0; i<capas.length ;i++)
             {
                 capas[i] = new Sprite(BitmapFactory.decodeResource(getResources(),layers[i]),0,0,(float)(resulusiony*1.7));
             }
-            capas[0].x=resulusionx;
+            capas[1].x=capas[0].getTamano();
+            capas[3].x=resulusionx+15;
             for(int i=0;i<img.length;i++)
             {
                 imge[i]=BitmapFactory.decodeResource(getResources(),img[i]);
@@ -74,7 +91,6 @@ public class Pikarun_act extends AppCompatActivity {
                 }
             };principal.start();
             assets = new Objetos[10];
-            int posrock=0;
             for(int i=0;i< assets.length;i++)
             {
                 assets[i]=new Objetos(getApplication(),pixelArt[0],resulusionx+300,(float) (resulusiony/1.5),resulusiony/8,"PIEDRA");
@@ -133,29 +149,41 @@ public class Pikarun_act extends AppCompatActivity {
                 }
             };
             puntuacionCont.start();
-            global=new CountDownTimer(1000,1) {
+            global=new CountDownTimer(10000,1) {
                 @Override
                 public void onTick(long l) {
-
                     if(pikarunsp.anim)
                     {
-
-                        if( capas[1].x>=-(capas[0].getTamano()))
+                        /* MOVIMIENTO FONDO */
+                        if( capas[1].x>=-(capas[1].getTamano()))
                         {
-                            capas[1].moverX(-10);
+                            capas[1].moverX(-5);
                         }else
                         {
-                            capas[1].x= resulusionx;
+                            capas[1].setX(resulusionx);
                         }
                         if( capas[0].x>=-(capas[0].getTamano()))
                         {
-                            capas[0].moverX(-10);
+                            capas[0].moverX(-5);
                         }else
                         {
-                            capas[0].x=resulusionx;
+                            capas[0].setX(resulusionx);
                         }
-
-
+                        /* MOVIMIENTO PISO */
+                        if( capas[2].x>=-(capas[2].getTamano()))
+                        {
+                            capas[2].moverX(-10);
+                        }else
+                        {
+                            capas[2].setX(resulusionx);
+                        }
+                        if( capas[3].x>=-(capas[3].getTamano()))
+                        {
+                            capas[3].moverX(-10);
+                        }else
+                        {
+                            capas[3].setX(resulusionx);
+                        }
                         if(pikarunsp.getEstado())
                         {
                             if((pikarunsp.getPosinicialy()-(pikarunsp.getPosinicialy()/2) <=pikarunsp.y))
@@ -185,6 +213,11 @@ public class Pikarun_act extends AppCompatActivity {
             global.start();
             puntos= new Sprite(BitmapFactory.decodeResource(getResources(),R.drawable.puntos),0,-(resulusiony/30),(float)(resulusiony/2.5));
             gameover = new Sprite(BitmapFactory.decodeResource(getResources(),R.drawable.gameover),(float)(resulusionx/2-(resulusionx/2.8)),resulusiony/2-(resulusiony/4),(float)(resulusiony*1.2));
+            reproductor= new Musica(getApplicationContext(),R.raw.run,true);
+            reproductor.setVolumen((float)0.3);
+            reproductor.reproducir();
+            pikasonido = new Musica(getApplicationContext(),R.raw.pikaeffect,false);
+            pikadeath= new Musica(getApplicationContext(),R.raw.pikadeath,false);
         }
         public void onDraw (Canvas c)
         {
@@ -217,7 +250,12 @@ public class Pikarun_act extends AppCompatActivity {
             c.drawText("DISTANCIA: "+puntuacionGlobal,resulusionx/38,resulusiony/22,p);
             if(!JUEGO)
             {
-                sistemavibrador.vibrate(500);
+                if(vibrar){
+                    pikadeath.reproducir();
+                    reproductor.pausar();
+                    sistemavibrador.vibrate(500);
+                    vibrar=false;
+                }
                 c.drawBitmap(gameover.imagen, gameover.x,gameover.y, p);
             }
         }
@@ -230,11 +268,14 @@ public class Pikarun_act extends AppCompatActivity {
                     JUEGO=true;
                     puntuacionGlobal=0;
                     pikarunsp.animINI();
+                    vibrar=true;
+                    reproductor.reproducir();
                 }else
                 {
                     if(pikarunsp.getSalto())
                     {
                         pikarunsp.saltar(true);
+                        pikasonido.reproducir();
                     }
 
                 }
