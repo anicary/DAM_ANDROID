@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">DADM_U4_Ejercicio2</string>
+    <string-array name="BD">
+        <item>INSERTAR</item>
+        <item>CONSULTAR</item>
+        <item>ACTUALIZAR</item>
+        <item>ELIMINAR</item>
+        <item>SALIR</item>
+
+    </string-array>
+</resources>
