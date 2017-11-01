@@ -1,5 +1,6 @@
 package mx.edu.ittepic.dadm_u4_ejercicio2;
 
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 public class Insertar extends AppCompatActivity {
     BD db;
     EditText nombre, domicilio, sueldo, puesto, fecha, conyugue;
+    String idtrabajadorUltimo="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +50,7 @@ public class Insertar extends AppCompatActivity {
     private void insertarDatos() {
         try {
             SQLiteDatabase base = db.getWritableDatabase();
-            String query1 = "INSERT INTO TRABAJADOR VALUES (IDTRABAJADOR,'NOMBRE','DOMICILIO','PUESTO','SUELDO','FECHAINGRESO')";
+            String query1 = "INSERT INTO TRABAJADOR VALUES (1,'NOMBRE','DOMICILIO','PUESTO','SUELDO','FECHAINGRESO')";
             String query2 = "SELECT MAX(IDTRABAJADOR) FROM TRABAJADOR";
 
             query1 = query1.replace("NOMBRE",nombre.getText().toString());
@@ -58,7 +60,16 @@ public class Insertar extends AppCompatActivity {
             query1 = query1.replace("FECHAINGRESO",fecha.getText().toString());
 
             base.execSQL(query1); //no retorna nada
-            base.rawQuery(query2,null); //retorna un cursor
+
+            Cursor resultado = base.rawQuery(query2,null); //retorna un cursor
+            if (resultado.moveToFirst()) {
+                do {
+                    idtrabajadorUltimo=resultado.getString(0);
+                } while (resultado.moveToNext());
+            }
+            String query3 = "INSERT INTO CONYUGE VALUES (IDCONYUGUE,'NOMBRE',"+idtrabajadorUltimo+")";
+            base.execSQL(query3); //no retorna nada
+
 
             Toast.makeText(this, "SE INSERTO CON EXITO", Toast.LENGTH_LONG).show();
 
@@ -67,6 +78,7 @@ public class Insertar extends AppCompatActivity {
             puesto.setText("");
             sueldo.setText("");
             fecha.setText("");
+            conyugue.setText("");
 
             base.close();
 
