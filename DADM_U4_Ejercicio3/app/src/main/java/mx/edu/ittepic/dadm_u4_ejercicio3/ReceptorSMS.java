@@ -9,9 +9,6 @@ import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
 import android.widget.Toast;
-
-import java.util.ArrayList;
-
 public class ReceptorSMS  extends BroadcastReceiver {
     BD db;
     @Override
