@@ -59,14 +59,15 @@ public class Insertar extends AppCompatActivity {
             SQL = SQL.replace("SUELDO",sueldo.getText().toString());
             SQL = SQL.replace("FECHAINGRESO",fecha.getText().toString());
 
-
-            base.execSQL(SQL);//AQUI SE ESTA REALIZANDO EL INSERT
-            //LA LINEA DE ARRIBA HACE TODO MENOS CONSULTAS
+            base.execSQL(SQL);
 
             Toast.makeText(this, "SE INSERTO CON EXITO", Toast.LENGTH_LONG).show();
 
             nombre.setText("");
             domicilio.setText("");
+            puesto.setText("");
+            sueldo.setText("");
+            fecha.setText("");
 
             base.close();
 
