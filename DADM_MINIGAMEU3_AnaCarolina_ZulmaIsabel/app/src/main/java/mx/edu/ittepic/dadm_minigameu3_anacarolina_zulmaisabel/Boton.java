@@ -3,9 +3,8 @@ package mx.edu.ittepic.dadm_minigameu3_anacarolina_zulmaisabel;
 import android.graphics.Bitmap;
 
 /**
- * Created by mario on 25/10/2017.
+ * Created by UsuarioPrueba on 22/10/2017.
  */
-
 public class Boton {
     Bitmap imagen;
     float x, y,tam;

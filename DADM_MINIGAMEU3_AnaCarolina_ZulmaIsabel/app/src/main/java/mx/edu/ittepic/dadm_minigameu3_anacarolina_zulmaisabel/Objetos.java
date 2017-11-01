@@ -10,7 +10,7 @@ import android.view.Display;
 import android.view.WindowManager;
 
 /**
- * Created by mario on 27/10/2017.
+ * Created by UsuarioPrueba on 22/10/2017.
  */
 
 public class Objetos {
