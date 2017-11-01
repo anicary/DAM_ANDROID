@@ -27,6 +27,8 @@ public class Insertar extends AppCompatActivity {
         puesto = (EditText) findViewById(R.id.puesto);
         fecha = (EditText) findViewById(R.id.fecha);
         conyugue = (EditText) findViewById(R.id.conyugue);
+
+        db = new BD(this,"prueba1",null,1);
     }
 
     public boolean onCreateOptionsMenu(Menu m) {
@@ -67,8 +69,11 @@ public class Insertar extends AppCompatActivity {
                     idtrabajadorUltimo=resultado.getString(0);
                 } while (resultado.moveToNext());
             }
-            String query3 = "INSERT INTO CONYUGE VALUES (IDCONYUGUE,'NOMBRE',"+idtrabajadorUltimo+")";
+            String query3 = "INSERT INTO CONYUGE VALUES (1,'NOMBRE',"+idtrabajadorUltimo+")";
+
+            query3 = query3.replace("NOMBRE",nombre.getText().toString());
             base.execSQL(query3); //no retorna nada
+
 
 
             Toast.makeText(this, "SE INSERTO CON EXITO", Toast.LENGTH_LONG).show();
