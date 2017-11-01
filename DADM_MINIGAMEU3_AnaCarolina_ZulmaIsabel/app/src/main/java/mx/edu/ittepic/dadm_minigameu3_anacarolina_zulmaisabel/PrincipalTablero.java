@@ -51,7 +51,6 @@ public class PrincipalTablero extends AppCompatActivity {
         super.onPause();
         reproductor.detener();
     }
-
     public class Tablero extends View {
         CountDownTimer quitar;
         Icono imgA[], imgB[], imagentocada;
@@ -220,7 +219,5 @@ public class PrincipalTablero extends AppCompatActivity {
             xv = size.x;
             yv = size.y;
         }
-
     }
-
 }
