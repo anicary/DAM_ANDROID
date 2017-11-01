@@ -23,7 +23,7 @@ public class Actualizar extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem elegido){
         switch (elegido.getItemId()){
             case R.id.opcactualizar:
-                //TODO CODIGO ACTUALIZAR
+
                 break;
             case R.id.salir:
                 finish();

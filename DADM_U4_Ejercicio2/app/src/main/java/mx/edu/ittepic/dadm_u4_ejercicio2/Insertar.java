@@ -36,9 +36,7 @@ public class Insertar extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem elegido) {
         switch (elegido.getItemId()) {
             case R.id.opcinsertar:
-
                 insertarDatos();
-
                 break;
             case R.id.salir:
                 finish();
@@ -47,19 +45,20 @@ public class Insertar extends AppCompatActivity {
         return true;
     }
 
-
     private void insertarDatos() {
         try {
             SQLiteDatabase base = db.getWritableDatabase();
-            String SQL = "INSERT INTO TRABAJADOR VALUES (IDTRABAJADOR,'NOMBRE','DOMICILIO','PUESTO','SUELDO','FECHAINGRESO')";
+            String query1 = "INSERT INTO TRABAJADOR VALUES (IDTRABAJADOR,'NOMBRE','DOMICILIO','PUESTO','SUELDO','FECHAINGRESO')";
+            String query2 = "SELECT MAX(IDTRABAJADOR) FROM TRABAJADOR";
 
-            SQL = SQL.replace("NOMBRE",nombre.getText().toString());
-            SQL = SQL.replace("DOMICILIO", domicilio.getText().toString());
-            SQL = SQL.replace("PUESTO", puesto.getText().toString());
-            SQL = SQL.replace("SUELDO",sueldo.getText().toString());
-            SQL = SQL.replace("FECHAINGRESO",fecha.getText().toString());
+            query1 = query1.replace("NOMBRE",nombre.getText().toString());
+            query1 = query1.replace("DOMICILIO", domicilio.getText().toString());
+            query1 = query1.replace("PUESTO", puesto.getText().toString());
+            query1 = query1.replace("SUELDO",sueldo.getText().toString());
+            query1 = query1.replace("FECHAINGRESO",fecha.getText().toString());
 
-            base.execSQL(SQL);
+            base.execSQL(query1); //no retorna nada
+            base.rawQuery(query2,null); //retorna un cursor
 
             Toast.makeText(this, "SE INSERTO CON EXITO", Toast.LENGTH_LONG).show();
 
