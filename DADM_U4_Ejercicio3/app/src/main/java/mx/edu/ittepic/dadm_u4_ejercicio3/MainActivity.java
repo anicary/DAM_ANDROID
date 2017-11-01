@@ -66,9 +66,6 @@ public class MainActivity extends AppCompatActivity {
     }
     private void insertarDatos(){
         try{
-
-
-
             SQLiteDatabase base =db.getWritableDatabase();
             /* METODO LARGO SIMPLE*/
            /* String cam1,cam2,cam3,cam4,cam5;
