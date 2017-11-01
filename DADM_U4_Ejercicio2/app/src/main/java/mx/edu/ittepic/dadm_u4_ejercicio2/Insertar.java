@@ -56,7 +56,8 @@ public class Insertar extends AppCompatActivity {
             SQL = SQL.replace("NOMBRE",nombre.getText().toString());
             SQL = SQL.replace("DOMICILIO", domicilio.getText().toString());
             SQL = SQL.replace("PUESTO", puesto.getText().toString());
-            SQL = SQL.replace("SUELDO", Float.parseFloat(sueldo.getText().toString()));
+            SQL = SQL.replace("SUELDO",sueldo.getText().toString());
+            SQL = SQL.replace("FECHAINGRESO",fecha.getText().toString());
 
 
             base.execSQL(SQL);//AQUI SE ESTA REALIZANDO EL INSERT
