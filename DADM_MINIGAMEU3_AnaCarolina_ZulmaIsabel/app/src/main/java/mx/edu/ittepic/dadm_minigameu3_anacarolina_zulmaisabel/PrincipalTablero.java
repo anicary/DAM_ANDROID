@@ -22,6 +22,9 @@ import java.util.Random;
 public class PrincipalTablero extends AppCompatActivity {
     Vibrator sistemavibrador;
     Musica reproductor;
+    boolean juego=true;
+    CountDownTimer global;
+    Musica pikaerror,pikacorrecto;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +36,8 @@ public class PrincipalTablero extends AppCompatActivity {
         reproductor= new Musica(getApplicationContext(),R.raw.memu,true);
         reproductor.setVolumen((float)0.3);
         reproductor.reproducir();
+        pikaerror=new Musica(getApplicationContext(),R.raw.pikadeath,false);
+        pikacorrecto=new Musica(getApplicationContext(),R.raw.pipika,false);
     }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -152,6 +157,18 @@ public class PrincipalTablero extends AppCompatActivity {
 
                 }
             };
+            global= new CountDownTimer(1000,1) {
+                @Override
+                public void onTick(long millisUntilFinished) {
+
+                }
+
+                @Override
+                public void onFinish() {
+                    juego=true;
+                    invalidate();
+                }
+            };
         }
         public void onDraw(Canvas c) {
             Paint p = new Paint();
@@ -169,42 +186,53 @@ public class PrincipalTablero extends AppCompatActivity {
         }
         public boolean onTouchEvent(MotionEvent me) {
             if (me.getAction() == MotionEvent.ACTION_DOWN) {
-                for (int i = 0; i < imgB.length; i++) {
-                    if (imgB[i].estaenArea(me.getX(), me.getY())) {
-                        if(!imgB[i].getActivo()){
-                            if (turno <= 2) {
-                                carta2 = i;
-                                numeros = i;
-                                if (turno == 0) {
-                                    carta1 = carta2;
+                if(juego)
+                {
+                    for (int i = 0; i < imgB.length; i++) {
+                        if (imgB[i].estaenArea(me.getX(), me.getY())) {
+                            if(!imgB[i].getActivo() &&  !imgB[i].getVisible()){
+                                if (turno <= 2) {
+                                    carta2 = i;
+                                    numeros = i;
+                                    if (turno == 0) {
+                                        carta1 = carta2;
+                                    }
+                                    imgB[carta2].setVisible(true);
+                                    invalidate();
+                                    turno++;
                                 }
-                                imgB[carta2].setVisible(true);
-                                invalidate();
-                                turno++;
                             }
                         }
-                    }
 
+                    }
                 }
             }
             if (me.getAction() == MotionEvent.ACTION_UP) {
-                if (turno >=2) {
-                    System.out.println("C"+imgB[carta1].getPar() +" "+imgB[carta2].getPar() );
-                    if (imgB[carta1].getPar() == imgB[carta2].getPar()) {
-                        System.out.println("CORRECTO");
-                        imgA[carta1].setVisible(false);
-                        imgA[carta2].setVisible(false);
-                        imgB[carta1].setActivo(true);
-                        imgB[carta2].setActivo(true);
-                        turno=0;
-                        invalidate();
-                    }
-                    else
-                    {
-                        sistemavibrador.vibrate(500);
-                        turno=0;
-                        imgB[carta2].setVisible(false);
-                        imgB[carta1].setVisible(false);
+                if(juego)
+                {
+                    if (turno >=2) {
+                        System.out.println("C"+imgB[carta1].getPar() +" "+imgB[carta2].getPar() );
+                        if (imgB[carta1].getPar() == imgB[carta2].getPar()) {
+                            System.out.println("CORRECTO");
+                            imgA[carta1].setVisible(false);
+                            imgA[carta2].setVisible(false);
+                            imgB[carta1].setActivo(true);
+                            imgB[carta2].setActivo(true);
+                            turno=0;
+                            pikacorrecto.reproducir();
+                            invalidate();
+                        }
+                        else
+                        {
+                            pikaerror.reproducir();
+                            global.start();
+                            System.out.println("ERROR");
+                            sistemavibrador.vibrate(500);
+                            turno=0;
+                            imgB[carta2].setVisible(false);
+                            imgB[carta1].setVisible(false);
+                            juego=false;
+                        }
                     }
                 }
             }
