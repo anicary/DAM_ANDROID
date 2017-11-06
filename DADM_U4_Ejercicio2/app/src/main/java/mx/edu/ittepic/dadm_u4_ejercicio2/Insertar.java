@@ -52,7 +52,7 @@ public class Insertar extends AppCompatActivity {
     private void insertarDatos() {
         try {
             SQLiteDatabase base = db.getWritableDatabase();
-            String query1 = "INSERT INTO TRABAJADOR VALUES (1,'NOMBRE','DOMICILIO','PUESTO','SUELDO','FECHAINGRESO')";
+            String query1 = "INSERT INTO TRABAJADOR VALUES (null,'NOMBRE','DOMICILIO','PUESTO','SUELDO','FECHAINGRESO')";
             String query2 = "SELECT MAX(IDTRABAJADOR) FROM TRABAJADOR";
 
             query1 = query1.replace("NOMBRE",nombre.getText().toString());
@@ -69,7 +69,7 @@ public class Insertar extends AppCompatActivity {
                     idtrabajadorUltimo=resultado.getString(0);
                 } while (resultado.moveToNext());
             }
-            String query3 = "INSERT INTO CONYUGE VALUES (1,'NOMBRE',"+idtrabajadorUltimo+")";
+            String query3 = "INSERT INTO CONYUGE VALUES (null,'NOMBRE',"+idtrabajadorUltimo+")";
 
             query3 = query3.replace("NOMBRE",nombre.getText().toString());
             base.execSQL(query3); //no retorna nada

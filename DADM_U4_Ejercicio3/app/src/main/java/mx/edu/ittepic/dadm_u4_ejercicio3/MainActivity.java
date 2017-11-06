@@ -24,7 +24,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     EditText equipo1,anotacion1,equipo2,anotacion2,fecha;
     Button btninsertar,btneliminar;
-    String idtrabajadorUltimo="";
     BD db;
     BroadcastReceiver receptor;
     IntentFilter filtro;
