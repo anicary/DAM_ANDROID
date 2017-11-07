@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
     Random pc,jugador;
     int dadoj1num=0,dadoj2num=0;
     int sumj=0,sumcpu=0;
-    Thread thread;
     boolean jugando=false,p=false,cpu=false;
     int pos=0,pos2=0;
     @Override
@@ -39,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
         tirar =(Button)findViewById(R.id.tirar);
         turno=(TextView)findViewById(R.id.turno);
         turno.setText("TURNO JUGADOR");
-
         new Thread() {
             public void run() {
                 while (true) {
@@ -72,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
                                                 total2.setText(""+sumj);
                                                 turno.setText("TURNO CPU");
                                                 p=false;
-                                                // jugando=false;
                                                 pos=0;
                                                 pos2=0;
                                                 cpu=true;
@@ -80,20 +77,17 @@ public class MainActivity extends AppCompatActivity {
                                                 return;
                                             }
                                             pos++;
-                                            //Toast.makeText(MainActivity.this,"EL JUGADOR GANA",Toast.LENGTH_SHORT).show();
                                         }
                                         if(cpu)
                                         {
 
                                             if(pos2==0)
                                             {
-                                                //Toast.makeText(MainActivity.this,"CPU",Toast.LENGTH_SHORT).show();
                                                 dadoj1num=jugador.nextInt(6)+1;
                                                 dado1.setText(""+dadoj1num);
                                             }
                                             if(pos2==1)
                                             {
-                                                // Toast.makeText(MainActivity.this,"CPU",Toast.LENGTH_SHORT).show();
                                                 dadoj2num=jugador.nextInt(6)+1;
                                                 sumcpu+=dadoj1num+dadoj2num;
                                                 dado2.setText(""+dadoj2num);
@@ -103,8 +97,6 @@ public class MainActivity extends AppCompatActivity {
                                             {
                                                 total1.setText(""+sumcpu);
                                                 turno.setText("TURNO JUGADOR");
-                                                // p=true;
-                                                //  jugando=false;
                                                 pos=0;
                                                 pos2=0;
                                                 cpu=false;
@@ -113,7 +105,6 @@ public class MainActivity extends AppCompatActivity {
                                                 return;
                                             }
                                             pos2++;
-                                            //Toast.makeText(MainActivity.this,"EL JUGADOR GANA",Toast.LENGTH_SHORT).show();
                                         }
 
                                     }else
@@ -133,8 +124,6 @@ public class MainActivity extends AppCompatActivity {
                                         sumcpu=0;
                                         turnojugada=0;
                                     }
-
-
                                 }
                             }
                         });
@@ -145,7 +134,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }.start();
-
         tirar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -160,49 +148,7 @@ public class MainActivity extends AppCompatActivity {
                     total2.setText("");
                     total1.setText("");
                 }
-                if(turnojugada<3)
-                {
-                    /*
-                    tirar.setEnabled(false);
-                    dadoj1num=jugador.nextInt(6)+1;
-                    dadoj2num=jugador.nextInt(6)+1;
-                    sumj+=dadoj1num+dadoj2num;
-                    dadoJ1.setText(""+dadoj1num);
-                    dadoJ2.setText(""+dadoj2num);
-                    total2.setText(""+sumj);
-                    turno.setText("TURNO CPU");
-                    cpu();
-                    turnojugada++;*/
-                }
             }
         });
-
     }
-    public void cpu()
-    {
-      /*
-        if(turnojugada>=2)
-        {
-            if(sumj>sumcpu)
-            {
-                Toast.makeText(MainActivity.this,"EL JUGADOR GANA",Toast.LENGTH_SHORT).show();
-            }else
-            {
-                Toast.makeText(MainActivity.this,"LA CPU GANA",Toast.LENGTH_SHORT).show();
-            }
-            sumj=0;
-            dadoJ1.setText("");
-            dadoJ2.setText("");
-            total2.setText("");
-            sumcpu=0;
-            dado1.setText("");
-            dado2.setText("");
-            total1.setText("");
-
-
-            turnojugada=0;
-        }
-        System.out.println(""+turnojugada);*/
-    }
-
 }
