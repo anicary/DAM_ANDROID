@@ -56,21 +56,22 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             float z = valores[2];
             //MULTIPLICAS LAS POSICIONES Y SE DIVIDE  POR EL SENSOR DE LA TIERRA Y GRAVEDAD
             float aceleracionraiz = ((x * x + y * y + z * z)/(SensorManager.GRAVITY_EARTH * SensorManager.GRAVITY_EARTH));
+          //  System.out.println("SHAKEEE"+aceleracionraiz);
             long tiempoactual = sensorEvent.timestamp; //ASIGNA EL TIEMPO EN EL QUE OCURRIO EL TOQUE
             if (aceleracionraiz >= 2) //OCURRE UN SHAKE
             {
-                if (tiempoactual - ultimaact < 200) {
+                if (tiempoactual - ultimaact < 600) {
                     System.out.println("SHAKEEE");
-                    for (int i=0;i<imgenes.length;i++){
-                        posiciones[i][0]=posicionesOriginales[i][0];
-                        posiciones[i][1]=posicionesOriginales[i][1];
-                        mover[i]=false;
-                    }
+
                     return;
                 }
+                System.out.println("SHAKEEE dddd");
+                for (int i=0;i<imgenes.length;i++){
+                    posiciones[i][0]=posicionesOriginales[i][0];
+                    posiciones[i][1]=posicionesOriginales[i][1];
+                    mover[i]=false;
+                }
                 ultimaact = tiempoactual;
-
-
             }
             System.out.println("x"+x);
         }
