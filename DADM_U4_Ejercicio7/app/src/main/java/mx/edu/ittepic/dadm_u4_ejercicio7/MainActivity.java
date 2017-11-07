@@ -9,106 +9,74 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     EditText contador;
-    Button iniciar,pausar,despausar,terminar;
-    Thread thread,hilo;
-    int cont=1,pau;
-    boolean ejecutar=true;
-
+    Button iniciar, pausar, despausar, terminar;
+    Thread thread;
+    int cont = 1;
+    boolean ejecutar = false, pausa = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        contador =(EditText)findViewById(R.id.contador);
-
-        iniciar =(Button)findViewById(R.id.iniciar);
-        pausar =(Button)findViewById(R.id.pausar);
-        despausar =(Button)findViewById(R.id.despausar);
-        terminar =(Button)findViewById(R.id.terminar);
-
-        thread = new Thread(){
-
+        contador = (EditText) findViewById(R.id.contador);
+        iniciar = (Button) findViewById(R.id.iniciar);
+        pausar = (Button) findViewById(R.id.pausar);
+        despausar = (Button) findViewById(R.id.despausar);
+        terminar = (Button) findViewById(R.id.terminar);
+        thread = new Thread() {
             public void run() {
-                //el metodo run se ejecuta en segundo plano y se ejecuta 1 sola vez
-                while (ejecutar) {
+                while (true) {
+                    if (ejecutar) {
+                        if (pausa) {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    contador.setText("" + cont);
+                                }
+                            });
+                            try {
+                                sleep(300);
+                            } catch (InterruptedException e) {
 
-                    runOnUiThread(new Runnable() {
-                        //EJECUTAR HILO EN INTERFAZ DE USUARIO
-                        @Override
-                        public void run() {
-                            contador.setText(""+cont);
+                            }
+                            cont++;
                         }
-                    });
-                    try {
-                        sleep(300);
-                    }catch (InterruptedException e){
-
                     }
-                    cont++;
                 }
             }
         };
-        hilo = new Thread(){
+        try {
+            thread.start();
 
-            public void run() {
-                //el metodo run se ejecuta en segundo plano y se ejecuta 1 sola vez
-                while (ejecutar) {
-
-                    runOnUiThread(new Runnable() {
-                        //EJECUTAR HILO EN INTERFAZ DE USUARIO
-                        @Override
-                        public void run() {
-                            contador.setText(""+cont);
-                        }
-                    });
-                    try {
-                        sleep(300);
-                    }catch (InterruptedException e){
-
-                    }
-                    cont++;
-                }
-            }
-        };
+        } catch (Exception e) {
+            Toast.makeText(MainActivity.this, "ERROR YA QUEMASTE TU CARTUCHO", Toast.LENGTH_SHORT).show();
+        }
         iniciar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try{
-                    thread.start();
-
-                }catch (Exception e){
-                    Toast.makeText(MainActivity.this,"ERROR YA QUEMASTE TU CARTUCHO",Toast.LENGTH_SHORT).show();
+                if (!ejecutar) {
+                    ejecutar = true;
                 }
             }
         });
         pausar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ejecutar =false;
-                if (ejecutar=false){
-                    pau+=cont;
-                }
+                pausa = false;
             }
         });
-
         despausar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ejecutar=true;
-                try{
-                    hilo.start();
-
-                }catch (Exception e){
-                    Toast.makeText(MainActivity.this,"ERROR YA QUEMASTE TU CARTUCHO",Toast.LENGTH_SHORT).show();
-                }
+                pausa = true;
 
             }
         });
-
         terminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                ejecutar = false;
+                cont = 0;
+                contador.setText("");
             }
         });
     }
