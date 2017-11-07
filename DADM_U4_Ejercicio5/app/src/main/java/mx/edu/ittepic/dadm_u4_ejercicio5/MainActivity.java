@@ -90,11 +90,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         super.onPause();
         sensores.unregisterListener(this);
     }
-
     public class Lienzo extends View {
-
-
-
         public Lienzo(Context context) {
             super(context);
             imgenes= new Bitmap[4];
