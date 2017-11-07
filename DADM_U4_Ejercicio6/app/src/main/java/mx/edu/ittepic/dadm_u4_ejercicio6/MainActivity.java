@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                     total2.setText(""+sumj);
                     turno.setText("TURNO CPU");
                     cpu();
-                    //turnojugada++;
+                    turnojugada++;
                 }
             }
         });
@@ -63,9 +63,15 @@ public class MainActivity extends AppCompatActivity {
         total1.setText(""+sumcpu);
         tirar.setEnabled(true);
         turno.setText("TURNO JUGADOR");
-        turnojugada++;
-        if(turnojugada>3)
+        if(turnojugada>=2)
         {
+            if(sumj>sumcpu)
+            {
+                Toast.makeText(MainActivity.this,"EL JUGADOR GANA",Toast.LENGTH_SHORT).show();
+            }else
+            {
+                Toast.makeText(MainActivity.this,"LA CPU GANA",Toast.LENGTH_SHORT).show();
+            }
             sumj=0;
             dadoJ1.setText("");
             dadoJ2.setText("");
@@ -75,16 +81,10 @@ public class MainActivity extends AppCompatActivity {
             dado2.setText("");
             total1.setText("");
 
-            if(sumj>sumcpu)
-            {
-                Toast.makeText(MainActivity.this,"EL JUGADOR GANA",Toast.LENGTH_SHORT).show();
-            }else
-            {
-                Toast.makeText(MainActivity.this,"LA CPU GANA",Toast.LENGTH_SHORT).show();
-            }
+
             turnojugada=0;
         }
-
+        System.out.println(""+turnojugada);
     }
 
 }
