@@ -60,13 +60,15 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             if (aceleracionraiz >= 5) //OCURRE UN SHAKE
             {
                 if (tiempoactual - ultimaact < 200) {
-                    for (int i=0;i<imgenes.length;i++){
-                        posiciones[i][0]=posicionesOriginales[i][0];
-                        mover[i]=false;
-                    }
-                    System.out.println("SHAKEEE");
+
                     return;
                 }
+                for (int i=0;i<imgenes.length;i++){
+                    posiciones[i][0]=posicionesOriginales[i][0];
+                    posiciones[i][1]=posicionesOriginales[i][1];
+                    mover[i]=false;
+                }
+                System.out.println("SHAKEEE");
             }
         }
     }
@@ -127,7 +129,13 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                                 posiciones[3][0]+=5;
                                 posiciones[3][1]+=5;
                             }
-                            invalidate();
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    invalidate();
+                                }
+                            });
+
                         }
                     } catch (InterruptedException e) {
                         e.printStackTrace();

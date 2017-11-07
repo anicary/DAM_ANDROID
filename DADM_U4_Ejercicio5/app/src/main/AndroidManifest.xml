@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="mx.edu.ittepic.dadm_u4_ejercicio5">
-
+    <uses-permission android:name="android.hardware.sensor.gyroscope" />
+    <uses-permission android:name="android.hardware.sensor.accelerometer" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
