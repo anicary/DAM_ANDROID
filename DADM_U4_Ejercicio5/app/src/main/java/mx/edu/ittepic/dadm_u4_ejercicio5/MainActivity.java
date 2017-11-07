@@ -57,22 +57,24 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             //MULTIPLICAS LAS POSICIONES Y SE DIVIDE  POR EL SENSOR DE LA TIERRA Y GRAVEDAD
             float aceleracionraiz = ((x * x + y * y + z * z)/(SensorManager.GRAVITY_EARTH * SensorManager.GRAVITY_EARTH));
             long tiempoactual = sensorEvent.timestamp; //ASIGNA EL TIEMPO EN EL QUE OCURRIO EL TOQUE
-            if (aceleracionraiz >= 5) //OCURRE UN SHAKE
+            if (aceleracionraiz >= 2) //OCURRE UN SHAKE
             {
                 if (tiempoactual - ultimaact < 200) {
-
+                    System.out.println("SHAKEEE");
+                    for (int i=0;i<imgenes.length;i++){
+                        posiciones[i][0]=posicionesOriginales[i][0];
+                        posiciones[i][1]=posicionesOriginales[i][1];
+                        mover[i]=false;
+                    }
                     return;
                 }
-                for (int i=0;i<imgenes.length;i++){
-                    posiciones[i][0]=posicionesOriginales[i][0];
-                    posiciones[i][1]=posicionesOriginales[i][1];
-                    mover[i]=false;
-                }
-                System.out.println("SHAKEEE");
+                ultimaact = tiempoactual;
+
+
             }
+            System.out.println("x"+x);
         }
     }
-
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {
 
@@ -104,30 +106,31 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                     try {
                         while(true) {
                             sleep(50);
-                            System.out.println("ME EJECUTO");
-                            if(mover[0])
-                            {
-                               posiciones[0][0]-=5;
-                                posiciones[0][1]-=5;
-                            }
-                            if(mover[1])
-                            {
-                                posiciones[1][0]+=5;
-                                posiciones[1][1]-=5;
-                            }
-                            if(mover[2])
-                            {
-                                posiciones[2][0]-=5;
-                                posiciones[2][1]+=5;
-                            }
-                            if(mover[3])
-                            {
-                                posiciones[3][0]+=5;
-                                posiciones[3][1]+=5;
-                            }
+
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
+                               //     System.out.println("ME EJECUTO");
+                                    if(mover[0])
+                                    {
+                                        posiciones[0][0]-=5;
+                                        posiciones[0][1]-=5;
+                                    }
+                                    if(mover[1])
+                                    {
+                                        posiciones[1][0]+=5;
+                                        posiciones[1][1]-=5;
+                                    }
+                                    if(mover[2])
+                                    {
+                                        posiciones[2][0]-=5;
+                                        posiciones[2][1]+=5;
+                                    }
+                                    if(mover[3])
+                                    {
+                                        posiciones[3][0]+=5;
+                                        posiciones[3][1]+=5;
+                                    }
                                     invalidate();
                                 }
                             });
