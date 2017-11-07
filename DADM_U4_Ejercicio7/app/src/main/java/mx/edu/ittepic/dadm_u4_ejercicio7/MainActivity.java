@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ejecutar = false;
+                pausa=true;
                 cont = 0;
                 contador.setText("");
             }
