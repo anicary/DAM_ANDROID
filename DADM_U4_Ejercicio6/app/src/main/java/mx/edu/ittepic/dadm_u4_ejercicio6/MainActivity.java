@@ -50,72 +50,95 @@ public class MainActivity extends AppCompatActivity {
                             public void run() {
                                 if(jugando)
                                 {
-                                    if(p)
+                                    if(turnojugada<3)
                                     {
-                                        tirar.setEnabled(false);
-                                        if(pos==0)
+                                        if(p)
                                         {
-                                            dadoj1num=jugador.nextInt(6)+1;
-                                            dadoJ1.setText(""+dadoj1num);
-                                        }
-                                        if(pos==1)
-                                        {
-                                            dadoj2num=jugador.nextInt(6)+1;
-                                            sumj+=dadoj1num+dadoj2num;
-                                            dadoJ2.setText(""+dadoj2num);
+                                            tirar.setEnabled(false);
+                                            if(pos==0)
+                                            {
+                                                dadoj1num=jugador.nextInt(6)+1;
+                                                dadoJ1.setText(""+dadoj1num);
+                                            }
+                                            if(pos==1)
+                                            {
+                                                dadoj2num=jugador.nextInt(6)+1;
+                                                sumj+=dadoj1num+dadoj2num;
+                                                dadoJ2.setText(""+dadoj2num);
 
+                                            }
+                                            if(pos==2)
+                                            {
+                                                total2.setText(""+sumj);
+                                                turno.setText("TURNO CPU");
+                                                p=false;
+                                                // jugando=false;
+                                                pos=0;
+                                                pos2=0;
+                                                cpu=true;
+
+                                                return;
+                                            }
+                                            pos++;
+                                            //Toast.makeText(MainActivity.this,"EL JUGADOR GANA",Toast.LENGTH_SHORT).show();
                                         }
-                                        if(pos==2)
+                                        if(cpu)
                                         {
-                                            total2.setText(""+sumj);
-                                            turno.setText("TURNO CPU");
-                                            p=false;
-                                           // jugando=false;
-                                            pos=0;
-                                            pos2=0;
-                                            cpu=true;
-                                            return;
+
+                                            if(pos2==0)
+                                            {
+                                                //Toast.makeText(MainActivity.this,"CPU",Toast.LENGTH_SHORT).show();
+                                                dadoj1num=jugador.nextInt(6)+1;
+                                                dado1.setText(""+dadoj1num);
+                                            }
+                                            if(pos2==1)
+                                            {
+                                                // Toast.makeText(MainActivity.this,"CPU",Toast.LENGTH_SHORT).show();
+                                                dadoj2num=jugador.nextInt(6)+1;
+                                                sumcpu+=dadoj1num+dadoj2num;
+                                                dado2.setText(""+dadoj2num);
+
+                                            }
+                                            if(pos2==2)
+                                            {
+                                                total1.setText(""+sumcpu);
+                                                turno.setText("TURNO JUGADOR");
+                                                // p=true;
+                                                //  jugando=false;
+                                                pos=0;
+                                                pos2=0;
+                                                cpu=false;
+                                                turnojugada++;
+                                                tirar.setEnabled(true);
+                                                return;
+                                            }
+                                            pos2++;
+                                            //Toast.makeText(MainActivity.this,"EL JUGADOR GANA",Toast.LENGTH_SHORT).show();
                                         }
-                                        pos++;
-                                        //Toast.makeText(MainActivity.this,"EL JUGADOR GANA",Toast.LENGTH_SHORT).show();
-                                    }
-                                    if(cpu)
+
+                                    }else
                                     {
-
-                                        if(pos2==0)
+                                        if(sumj>sumcpu)
                                         {
-                                            //Toast.makeText(MainActivity.this,"CPU",Toast.LENGTH_SHORT).show();
-                                            dadoj1num=jugador.nextInt(6)+1;
-                                            dado1.setText(""+dadoj1num);
-                                        }
-                                        if(pos2==1)
+                                            Toast.makeText(MainActivity.this,"EL JUGADOR GANA",Toast.LENGTH_SHORT).show();
+                                        }else
                                         {
-                                           // Toast.makeText(MainActivity.this,"CPU",Toast.LENGTH_SHORT).show();
-                                            dadoj2num=jugador.nextInt(6)+1;
-                                            sumcpu+=dadoj1num+dadoj2num;
-                                            dado2.setText(""+dadoj2num);
-
+                                            Toast.makeText(MainActivity.this,"LA CPU GANA",Toast.LENGTH_SHORT).show();
                                         }
-                                        if(pos2==2)
-                                        {
-                                            total1.setText(""+sumcpu);
-                                            turno.setText("TURNO JUGADOR");
-                                           // p=true;
-                                          //  jugando=false;
-                                            pos=0;
-                                            pos2=0;
-                                            cpu=false;
-                                            tirar.setEnabled(true);
-                                            return;
-                                        }
-                                        pos2++;
-                                        //Toast.makeText(MainActivity.this,"EL JUGADOR GANA",Toast.LENGTH_SHORT).show();
+                                        jugando=false;
+                                        p=false;
+                                        cpu=false;
+                                        tirar.setEnabled(true);
+                                        sumj=0;
+                                        sumcpu=0;
+                                        turnojugada=0;
                                     }
+
 
                                 }
                             }
                         });
-                        Thread.sleep(1000);
+                        Thread.sleep(500);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -128,6 +151,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 jugando=true;
                 p=true;
+                if(turnojugada==0)
+                {
+                    dadoJ1.setText("");
+                    dadoJ2.setText("");
+                    dado1.setText("");
+                    dado2.setText("");
+                    total2.setText("");
+                    total1.setText("");
+                }
                 if(turnojugada<3)
                 {
                     /*
