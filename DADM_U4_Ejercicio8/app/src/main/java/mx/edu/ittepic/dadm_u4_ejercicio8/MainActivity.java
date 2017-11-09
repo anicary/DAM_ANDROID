@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             });
                         }
-                        sleep(3000);
+                        sleep(1000);
                     }
                 } catch (InterruptedException e) {
                 }
@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
                             });
 
                         }
-                        sleep(3000);
+                        sleep(2000);
                     }
                 } catch (InterruptedException e) {
                 }
@@ -191,7 +191,7 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             });
                         }
-                        sleep(3000);
+                        sleep(4000);
                     }
                 } catch (InterruptedException e) {
                 }
