@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 try {
                     while (true) {
+                        sleep(2000);
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -81,11 +82,28 @@ public class MainActivity extends AppCompatActivity {
                                         }
                                     }
                                 }else {
-                                    Toast.makeText(MainActivity.this,"El ganador es",Toast.LENGTH_SHORT).show();
+                                    if(  totales[0] >   totales[1] &&  totales[0] >   totales[2] &&  totales[0] >   totales[3]){
+                                        Toast.makeText(MainActivity.this,"El ganador es jugador 1",Toast.LENGTH_SHORT).show();
+                                    }else{
+                                        if(totales[1] > totales[0] &&  totales[1] > totales[2] &&  totales[1]> totales[3]){
+                                            Toast.makeText(MainActivity.this,"El ganador es jugador 2",Toast.LENGTH_SHORT).show();
+                                        }else{
+                                            if(totales[2] > totales[0] && totales[2] > totales[1] && totales[2] > totales[3]){
+                                                Toast.makeText(MainActivity.this,"El ganador es jugador 3",Toast.LENGTH_SHORT).show();
+                                            }else
+                                                Toast.makeText(MainActivity.this,"El ganador es jugador 4",Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                    jugar=false;
+                                    turno=0;
+                                    for(int i=0;i<totales.length;i++)
+                                    {
+                                        totales[i]=0;
+                                    }
                                 }
                             }
                         });
-                        sleep(1000);
+
                     }
                 } catch (InterruptedException e) {
                 }
@@ -95,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 try {
                     while (true) {
+                        sleep(2000);
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -114,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             }
                         });
-                        sleep(1000);
+
                     }
                 } catch (InterruptedException e) {
                 }
@@ -124,6 +143,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 try {
                     while (true) {
+                        sleep(1000);
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -143,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             }
                         });
-                        sleep(1000);
+
                     }
                 } catch (InterruptedException e) {
                 }
@@ -153,6 +173,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 try {
                     while (true) {
+                        sleep(1000);
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -173,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             }
                         });
-                        sleep(1000);
+
                     }
                 } catch (InterruptedException e) {
                 }
