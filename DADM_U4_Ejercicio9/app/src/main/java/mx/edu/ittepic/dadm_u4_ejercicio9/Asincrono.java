@@ -3,6 +3,7 @@ package mx.edu.ittepic.dadm_u4_ejercicio9;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.widget.ProgressBar;
 
 /**
  * Created by UsuarioPrueba on 09/11/2017.
@@ -20,7 +21,7 @@ public class Asincrono extends AsyncTask <Integer,String, int[]> {
     //y aqui tambien seria pollito p
     MainActivity puntero;
     int[]vector;
-    //ProgressDialog dialog;
+   // ProgressBar dialog;
     public Asincrono(MainActivity p){
         //va dirijido a la clase si la clase se llama pollito entonces seria pollito puntero
         puntero = p;
@@ -41,7 +42,7 @@ public class Asincrono extends AsyncTask <Integer,String, int[]> {
             vector[i]=(int) (Math.random()*99+1);
         }
 
-        return new int[0];
+        return vector;
 
     }
 

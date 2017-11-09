@@ -2,6 +2,7 @@ package mx.edu.ittepic.dadm_u4_ejercicio9;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -20,6 +21,14 @@ public class MainActivity extends AppCompatActivity {
         etiqueta=(TextView)findViewById(R.id.etiqueta);
 
         asin = new Asincrono(this); //CUANDO PASA A THIS PASA LA DIRECCION DE MEMORIA DE LA CLASE
+
+        ejecutar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                asin= new Asincrono(MainActivity.this); //PARA EJECUTARLO MUCHAS VECES
+                asin.execute(20);
+            }
+        });
 
 
     }
