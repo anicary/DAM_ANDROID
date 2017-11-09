@@ -21,15 +21,19 @@ public class Asincrono extends AsyncTask <Integer,String, int[]> {
     //y aqui tambien seria pollito p
     MainActivity puntero;
     int[]vector;
-   // ProgressBar dialog;
+    //ProgressBar dialog;
+    ProgressDialog dialog;
     public Asincrono(MainActivity p){
         //va dirijido a la clase si la clase se llama pollito entonces seria pollito puntero
         puntero = p;
     }
     public  void onPreExecute(){
         //SE INVOCA DESPUES DEL CONSTRUCTOR EN ESTE CASO DE PUBLIC ASINCRONO
-       // dialog = new ProgressDialog(puntero);
-        //dialog.show("ATENCION","Procesando...");
+        super.onPreExecute();
+        dialog = new ProgressDialog(puntero);
+        dialog.setTitle("ATENCION");
+        dialog.setMessage("Procesando");
+        dialog.show();
     }
     @Override
     //doibackgroun es polimorfico porque depende de lo que mandas como resultado para que defeniAS EL TIPO DE PARAMETRO
@@ -37,23 +41,20 @@ public class Asincrono extends AsyncTask <Integer,String, int[]> {
     protected int[] doInBackground(Integer... integers) {
         //LO QUE SE DEFINE EN LA OTRA CLASE LO PUEDO USAR AQUI A TRAVEZ DE UN PUNTERO
         vector = new int[integers[0]];
-
         for (int i=0;i<vector.length;i++){
             vector[i]=(int) (Math.random()*99+1);
         }
-
         return vector;
-
     }
-
-    public void onPosExecute(int[] v){
+    public void onPostExecute(int[] v){
         //DEBE DE SER DEL TIPO DEL RESULTADO
         String resultado="";
         for (int i=0; i< v.length;i++){
             resultado += v[i]+"   ";
-            puntero.etiqueta.setText(resultado);
-        }
 
+        }
+        puntero.etiqueta.setText(resultado);
+        dialog.dismiss();
     }
 
 }
