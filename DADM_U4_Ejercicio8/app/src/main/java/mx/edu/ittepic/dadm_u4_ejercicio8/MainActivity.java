@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                                 public void run() {
                                     if (turno < 3) {
                                         if (jugar) {
-                                            if (jugadas[0]) {
+
                                                 puntos[0][0] = pc.nextInt(6) + 1;
                                                 puntos[0][1] = pc.nextInt(6) + 1;
                                                 dadosImagenes[0][0].setImageDrawable(getResources().getDrawable(dados[puntos[0][0] - 1]));
@@ -79,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
                                                 txtTotales[0].setText("" + totales[0]);
                                                 jugadas[0] = false;
                                                 jugadas[1] = true;
-                                            }
                                         }
                                     } else {
                                         if (totales[0] > totales[1] && totales[0] > totales[2] && totales[0] > totales[3]) {
@@ -119,7 +118,6 @@ public class MainActivity extends AppCompatActivity {
                                 public void run() {
                                     if (turno < 3) {
                                         if (jugar) {
-                                            if (jugadas[1]) {
                                                 puntos[1][0] = pc.nextInt(6) + 1;
                                                 dadosImagenes[1][0].setImageDrawable(getResources().getDrawable(dados[puntos[1][0] - 1]));
                                                 puntos[1][1] = pc.nextInt(6) + 1;
@@ -128,7 +126,6 @@ public class MainActivity extends AppCompatActivity {
                                                 txtTotales[1].setText("" + totales[1]);
                                                 jugadas[1] = false;
                                                 jugadas[2] = true;
-                                            }
                                         }
                                     }
                                 }
@@ -146,13 +143,11 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     while (true) {
                         if (jugadas[2]) {
-
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
                                     if (turno < 3) {
                                         if (jugar) {
-                                            if (jugadas[2]) {
                                                 puntos[2][0] = pc.nextInt(6) + 1;
                                                 dadosImagenes[2][0].setImageDrawable(getResources().getDrawable(dados[puntos[2][0] - 1]));
                                                 puntos[2][1] = pc.nextInt(6) + 1;
@@ -161,7 +156,6 @@ public class MainActivity extends AppCompatActivity {
                                                 txtTotales[2].setText("" + totales[2]);
                                                 jugadas[2] = false;
                                                 jugadas[3] = true;
-                                            }
                                         }
                                     }
                                 }
