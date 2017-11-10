@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     Thread[] jugadores;
     Random pc;
     Button inicar;
-    boolean jugar = false;
+    //boolean jugar = false;
     boolean[] jugadas;
     int[][] puntos;
     int[] totales;
@@ -31,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
         inicar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!jugar) {
-                    jugar = true;
+                if (!jugadas[0]) {
+                    //  jugar = true;
                     jugadas[0] = true;
                     jugadas[1] = false;
                     jugadas[2] = false;
@@ -65,12 +65,12 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     while (true) {
                         if (jugadas[0]) {
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    if (turno < 3) {
-                                        if (jugar) {
 
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        if (turno < 3) {
+                                            //  if (jugar) {
                                                 puntos[0][0] = pc.nextInt(6) + 1;
                                                 puntos[0][1] = pc.nextInt(6) + 1;
                                                 dadosImagenes[0][0].setImageDrawable(getResources().getDrawable(dados[puntos[0][0] - 1]));
@@ -79,28 +79,31 @@ public class MainActivity extends AppCompatActivity {
                                                 txtTotales[0].setText("" + totales[0]);
                                                 jugadas[0] = false;
                                                 jugadas[1] = true;
-                                        }
-                                    } else {
-                                        if (totales[0] > totales[1] && totales[0] > totales[2] && totales[0] > totales[3]) {
-                                            Toast.makeText(MainActivity.this, "El ganador es jugador 1", Toast.LENGTH_SHORT).show();
+                                            //  }
                                         } else {
-                                            if (totales[1] > totales[0] && totales[1] > totales[2] && totales[1] > totales[3]) {
-                                                Toast.makeText(MainActivity.this, "El ganador es jugador 2", Toast.LENGTH_SHORT).show();
+                                            if (totales[0] > totales[1] && totales[0] > totales[2] && totales[0] > totales[3]) {
+                                                Toast.makeText(MainActivity.this, "El ganador es jugador 1", Toast.LENGTH_SHORT).show();
                                             } else {
-                                                if (totales[2] > totales[0] && totales[2] > totales[1] && totales[2] > totales[3]) {
-                                                    Toast.makeText(MainActivity.this, "El ganador es jugador 3", Toast.LENGTH_SHORT).show();
-                                                } else
-                                                    Toast.makeText(MainActivity.this, "El ganador es jugador 4", Toast.LENGTH_SHORT).show();
+                                                if (totales[1] > totales[0] && totales[1] > totales[2] && totales[1] > totales[3]) {
+                                                    Toast.makeText(MainActivity.this, "El ganador es jugador 2", Toast.LENGTH_SHORT).show();
+                                                } else {
+                                                    if (totales[2] > totales[0] && totales[2] > totales[1] && totales[2] > totales[3]) {
+                                                        Toast.makeText(MainActivity.this, "El ganador es jugador 3", Toast.LENGTH_SHORT).show();
+                                                    } else
+                                                        Toast.makeText(MainActivity.this, "El ganador es jugador 4", Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                            //jugar = false;
+                                            jugadas[0] = false;
+                                            turno = 0;
+                                            for (int i = 0; i < totales.length; i++) {
+                                                totales[i] = 0;
                                             }
                                         }
-                                        jugar = false;
-                                        turno = 0;
-                                        for (int i = 0; i < totales.length; i++) {
-                                            totales[i] = 0;
-                                        }
                                     }
-                                }
-                            });
+
+                                });
+
                         }
                         sleep(1000);
                     }
@@ -117,22 +120,22 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     if (turno < 3) {
-                                        if (jugar) {
-                                                puntos[1][0] = pc.nextInt(6) + 1;
-                                                dadosImagenes[1][0].setImageDrawable(getResources().getDrawable(dados[puntos[1][0] - 1]));
-                                                puntos[1][1] = pc.nextInt(6) + 1;
-                                                dadosImagenes[1][1].setImageDrawable(getResources().getDrawable(dados[puntos[1][1] - 1]));
-                                                totales[1] += puntos[1][0] + puntos[1][1];
-                                                txtTotales[1].setText("" + totales[1]);
-                                                jugadas[1] = false;
-                                                jugadas[2] = true;
-                                        }
+                                        // if (jugar) {
+                                        puntos[1][0] = pc.nextInt(6) + 1;
+                                        dadosImagenes[1][0].setImageDrawable(getResources().getDrawable(dados[puntos[1][0] - 1]));
+                                        puntos[1][1] = pc.nextInt(6) + 1;
+                                        dadosImagenes[1][1].setImageDrawable(getResources().getDrawable(dados[puntos[1][1] - 1]));
+                                        totales[1] += puntos[1][0] + puntos[1][1];
+                                        txtTotales[1].setText("" + totales[1]);
+                                        jugadas[1] = false;
+                                        jugadas[2] = true;
+                                        //   }
                                     }
                                 }
                             });
 
                         }
-                        sleep(2000);
+                        sleep(1000);
                     }
                 } catch (InterruptedException e) {
                 }
@@ -147,21 +150,21 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     if (turno < 3) {
-                                        if (jugar) {
-                                                puntos[2][0] = pc.nextInt(6) + 1;
-                                                dadosImagenes[2][0].setImageDrawable(getResources().getDrawable(dados[puntos[2][0] - 1]));
-                                                puntos[2][1] = pc.nextInt(6) + 1;
-                                                dadosImagenes[2][1].setImageDrawable(getResources().getDrawable(dados[puntos[2][1] - 1]));
-                                                totales[2] += puntos[2][0] + puntos[2][1];
-                                                txtTotales[2].setText("" + totales[2]);
-                                                jugadas[2] = false;
-                                                jugadas[3] = true;
-                                        }
+                                        //   if (jugar) {
+                                        puntos[2][0] = pc.nextInt(6) + 1;
+                                        dadosImagenes[2][0].setImageDrawable(getResources().getDrawable(dados[puntos[2][0] - 1]));
+                                        puntos[2][1] = pc.nextInt(6) + 1;
+                                        dadosImagenes[2][1].setImageDrawable(getResources().getDrawable(dados[puntos[2][1] - 1]));
+                                        totales[2] += puntos[2][0] + puntos[2][1];
+                                        txtTotales[2].setText("" + totales[2]);
+                                        jugadas[2] = false;
+                                        jugadas[3] = true;
+                                        //      }
                                     }
                                 }
                             });
                         }
-                        sleep(3000);
+                        sleep(1000);
                     }
                 } catch (InterruptedException e) {
                 }
@@ -176,22 +179,22 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     if (turno < 3) {
-                                        if (jugar) {
-                                            puntos[3][0] = pc.nextInt(6) + 1;
-                                            dadosImagenes[3][0].setImageDrawable(getResources().getDrawable(dados[puntos[3][0] - 1]));
-                                            puntos[3][1] = pc.nextInt(6) + 1;
-                                            dadosImagenes[3][1].setImageDrawable(getResources().getDrawable(dados[puntos[3][1] - 1]));
-                                            totales[3] += puntos[3][0] + puntos[3][1];
-                                            txtTotales[3].setText("" + totales[3]);
-                                            jugadas[3] = false;
-                                            jugadas[0] = true;
-                                            turno++;
-                                        }
+                                        //    if (jugar) {
+                                        puntos[3][0] = pc.nextInt(6) + 1;
+                                        dadosImagenes[3][0].setImageDrawable(getResources().getDrawable(dados[puntos[3][0] - 1]));
+                                        puntos[3][1] = pc.nextInt(6) + 1;
+                                        dadosImagenes[3][1].setImageDrawable(getResources().getDrawable(dados[puntos[3][1] - 1]));
+                                        totales[3] += puntos[3][0] + puntos[3][1];
+                                        txtTotales[3].setText("" + totales[3]);
+                                        jugadas[3] = false;
+                                        jugadas[0] = true;
+                                        turno++;
+                                        //  }
                                     }
                                 }
                             });
                         }
-                        sleep(4000);
+                        sleep(3000);
                     }
                 } catch (InterruptedException e) {
                 }
