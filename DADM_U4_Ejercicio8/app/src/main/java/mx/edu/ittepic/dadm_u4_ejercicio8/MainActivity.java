@@ -9,7 +9,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Random;
-import java.util.concurrent.ExecutionException;
 public class MainActivity extends AppCompatActivity {
     int dados[] = {R.drawable.d1, R.drawable.d2, R.drawable.d3, R.drawable.d4, R.drawable.d5, R.drawable.d6};
     Thread[] jugadores;
@@ -206,7 +205,6 @@ public class MainActivity extends AppCompatActivity {
                                             dadosImagenes[3][1].setImageDrawable(getResources().getDrawable(dados[puntos[3][1] - 1]));
                                             totales[3] += puntos[3][0] + puntos[3][1];
                                             txtTotales[3].setText("" + totales[3]);
-
                                         }
                                     }
                                 }
