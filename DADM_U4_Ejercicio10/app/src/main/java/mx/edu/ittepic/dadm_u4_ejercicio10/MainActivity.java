@@ -10,6 +10,7 @@ public class MainActivity extends AppCompatActivity {
     TextView etiqueta;
     EditText numero;
     Button validar;
+    Asincrono asin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
