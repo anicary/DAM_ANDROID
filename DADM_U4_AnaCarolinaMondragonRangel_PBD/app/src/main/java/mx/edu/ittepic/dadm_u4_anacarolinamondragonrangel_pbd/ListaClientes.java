@@ -41,12 +41,15 @@ public class ListaClientes extends AppCompatActivity {
         SQLiteDatabase base = conexion.getReadableDatabase();
         Cursor c = base.rawQuery("SELECT * FROM cliente", null);
         ArrayList<Cliente> elementos = new ArrayList<Cliente>();
-        if (c.moveToFirst() == true) {
-            elementos.add(new Cliente(Integer.parseInt(c.getString(0)),c.getString(1),c.getString(2),c.getString(3)));
-        }else
+    //    if (c.moveToFirst() == true) {
+           // c.moveToFirst();
+            while(c.moveToNext()){
+                elementos.add(new Cliente(Integer.parseInt(c.getString(0)),c.getString(1),c.getString(2),c.getString(3)));
+            }
+     /*   }else
         {
-          //  elementos.add(new Cliente(1,"NO EXISTEN CLIENTES","  "," "));
-        }
+
+        }*/
         return elementos;
     }
 }

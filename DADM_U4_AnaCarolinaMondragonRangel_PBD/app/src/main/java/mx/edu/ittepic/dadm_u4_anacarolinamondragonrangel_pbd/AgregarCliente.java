@@ -1,5 +1,6 @@
 package mx.edu.ittepic.dadm_u4_anacarolinamondragonrangel_pbd;
 
+import android.content.Intent;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
@@ -14,7 +15,7 @@ public class AgregarCliente extends AppCompatActivity {
     EditText nombre, dom, col;
     String name, domicilio, colonia;
     Button agregar;
-
+    Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +47,9 @@ public class AgregarCliente extends AppCompatActivity {
                     query1 = query1.replace("COLONIA", colonia);
 
                     base.execSQL(query1); //no retorna nada
+                    intent = new Intent(AgregarCliente.this, ListaClientes.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
                     finish();
                 }catch (SQLException e){
                     Toast.makeText(AgregarCliente.this, e.getMessage(), Toast.LENGTH_LONG).show();

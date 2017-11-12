@@ -91,13 +91,13 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btnEditar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="EDITAR" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/btnELIMINAR"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="ELIMINAR" />
