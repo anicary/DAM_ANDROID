@@ -42,7 +42,7 @@ public class ListaClientes extends AppCompatActivity {
                 startActivity(intento);
             }
         });
-        adater = new ADcliente(this, elemento, new ADcliente.botonEditar() {
+        adater = new ADcliente(this, elemento, new ADcliente.botonClick() {
             @Override
             public void onBtnClick(int position) {
                 Intent intento = new Intent(ListaClientes.this,EditarCliente.class);
@@ -52,7 +52,7 @@ public class ListaClientes extends AppCompatActivity {
                 intento.putExtra("colonia",elementos.get(position).getColonia() );
                 startActivity(intento);
             }
-        }, new ADcliente.botonEliminar() {
+        }, new ADcliente.botonClick() {
             @Override
             public void onBtnClick(int position) {
                 idClienteborrar= elementos.get(position).getIdcliente();

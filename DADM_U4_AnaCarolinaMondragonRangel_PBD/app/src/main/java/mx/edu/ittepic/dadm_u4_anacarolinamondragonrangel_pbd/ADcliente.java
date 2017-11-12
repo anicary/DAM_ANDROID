@@ -17,18 +17,15 @@ public class ADcliente  extends BaseAdapter {
     Cliente elemento;
     TextView id;
     View vista;
-    private botonEditar btnEditar = null;
-    private botonEliminar btnEliminar = null;
-    public ADcliente(Activity actividad, ArrayList<Cliente> elementos,botonEditar btnEditarOido,botonEliminar btnEliminarOido) {
+    private botonClick btnEditar = null,btnEliminar=null;
+
+    public ADcliente(Activity actividad, ArrayList<Cliente> elementos,botonClick btnEditarOido,botonClick btnEliminarOido) {
         this.actividad = actividad;
         this.elementos = elementos;
         btnEditar = btnEditarOido;
         btnEliminar=btnEliminarOido;
     }
-    public interface botonEditar {
-        public abstract void onBtnClick(int position);
-    }
-    public interface botonEliminar {
+    public interface botonClick {
         public abstract void onBtnClick(int position);
     }
     @Override
