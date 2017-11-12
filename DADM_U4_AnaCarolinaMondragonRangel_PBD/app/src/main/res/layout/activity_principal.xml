@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/fondo"
+    android:background="@drawable/fondodentro"
     tools:context="mx.edu.ittepic.dadm_u4_anacarolinamondragonrangel_pbd.Principal">
 
     <LinearLayout
