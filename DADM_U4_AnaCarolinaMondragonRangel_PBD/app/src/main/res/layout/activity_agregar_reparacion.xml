@@ -7,7 +7,12 @@
     android:orientation="vertical"
     android:background="@drawable/fonod"
     tools:context="mx.edu.ittepic.dadm_u4_anacarolinamondragonrangel_pbd.AgregarReparacion">
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="40dp"
+    android:layout_marginRight="40dp"
+    android:layout_marginLeft="40dp">
     <EditText
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -16,7 +21,15 @@
         android:gravity="center"
         android:hint="FECHA REPARACION"
         android:textColor="@android:color/background_light"
-        android:textColorHint="#ffffff" />/>
+        android:textColorHint="#ffffff" />
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp">
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -26,18 +39,32 @@
         android:hint="COSTO"
         android:textColor="@android:color/background_light"
         android:textColorHint="#ffffff" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp">
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:id="@+id/spinnerCliente">
-        <Button
-            android:id="@+id/agregar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/ovalo3"
-            android:text="AGREGAR REPARACION"
-            android:textColor="#000000" />
     </Spinner>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp">
+    <Button
+        android:id="@+id/agregar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ovalo3"
+        android:text="AGREGAR REPARACION"
+        android:textColor="#000000" />
+    </LinearLayout>
 </LinearLayout>
