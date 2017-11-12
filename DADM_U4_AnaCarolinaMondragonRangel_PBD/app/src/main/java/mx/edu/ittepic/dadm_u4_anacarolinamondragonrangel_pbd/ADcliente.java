@@ -11,21 +11,30 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-
 public class ADcliente  extends BaseAdapter {
     private Activity actividad;
     private ArrayList<Cliente> elementos;
-
-    public ADcliente(Activity actividad, ArrayList<Cliente> elementos) {
+    Cliente elemento;
+    TextView id;
+    View vista;
+    private botonEditar btnEditar = null;
+    private botonEliminar btnEliminar = null;
+    public ADcliente(Activity actividad, ArrayList<Cliente> elementos,botonEditar btnEditarOido,botonEliminar btnEliminarOido) {
         this.actividad = actividad;
         this.elementos = elementos;
+        btnEditar = btnEditarOido;
+        btnEliminar=btnEliminarOido;
     }
-
+    public interface botonEditar {
+        public abstract void onBtnClick(int position);
+    }
+    public interface botonEliminar {
+        public abstract void onBtnClick(int position);
+    }
     @Override
     public int getCount() {
         return elementos.size();
     }
-
     @Override
     public Object getItem(int position) {
         return elementos.get(position);
@@ -37,13 +46,13 @@ public class ADcliente  extends BaseAdapter {
     }
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View vista = convertView;
+        vista = convertView;
         if (vista == null) {
             LayoutInflater inflater = (LayoutInflater) actividad.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             vista = inflater.inflate(R.layout.cliente_list, null);
         }
-        Cliente elemento = elementos.get(position);
-        TextView id = (TextView) vista.findViewById(R.id.idCliente);
+        elemento = elementos.get(position);
+        id = (TextView) vista.findViewById(R.id.idCliente);
         id.setText(""+elemento.getIdcliente());
         TextView nombre = (TextView) vista.findViewById(R.id.txtNombre);
         nombre.setText(elemento.getNombre());
@@ -52,10 +61,21 @@ public class ADcliente  extends BaseAdapter {
         TextView colonia = (TextView) vista.findViewById(R.id.txtColonia);
         colonia.setText(elemento.getColonia());
         Button editar =(Button) vista.findViewById(R.id.btnEditar);
+        editar.setTag(position);
         editar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                System.out.println("Holis");
+            public void onClick(View v) {
+                if(btnEditar != null)
+                    btnEditar.onBtnClick((Integer) v.getTag());
+            }
+        });
+        Button eliminar =(Button) vista.findViewById(R.id.btnELIMINAR);
+        eliminar.setTag(position);
+        eliminar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(btnEliminar != null)
+                    btnEliminar.onBtnClick((Integer) v.getTag());
             }
         });
         return vista;

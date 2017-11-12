@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <item
+        android:id="@+id/agregar_clientemenu"
+        android:icon="@drawable/ic_person_add_black_24dp"
+        android:title="Agregar Cliente"
+        app:showAsAction="always"
+        />
+    <item android:id="@+id/volveralmenu"
+        android:title="Volver al menu"
+       />
+</menu>

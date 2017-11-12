@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".ListaClientes" />
         <activity android:name=".ListaOrdenes" />
-        <activity android:name=".AgregarCliente"></activity>
+        <activity android:name=".AgregarCliente" />
+        <activity android:name=".EditarCliente"></activity>
     </application>
 
 </manifest>
