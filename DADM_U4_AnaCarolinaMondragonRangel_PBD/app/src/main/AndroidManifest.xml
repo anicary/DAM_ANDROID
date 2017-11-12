@@ -19,7 +19,8 @@
         <activity android:name=".ListaClientes" />
         <activity android:name=".ListaOrdenes" />
         <activity android:name=".AgregarCliente" />
-        <activity android:name=".EditarCliente"></activity>
+        <activity android:name=".EditarCliente" />
+        <activity android:name=".AgregarReparacion"></activity>
     </application>
 
 </manifest>

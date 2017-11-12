@@ -5,15 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/fonod"
     tools:context="mx.edu.ittepic.dadm_u4_anacarolinamondragonrangel_pbd.ListaOrdenes">
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/btnCrear"
+        android:layout_marginLeft="20dp"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:background="@drawable/ovalo3"
         android:text="CREAR REPARACION"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="-30dp" />
+        android:textColor="#000000" />
 
     <ListView
         android:id="@+id/idlistareparacion"
