@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ListaClientes" />
-        <activity android:name=".ListaOrdenes"></activity>
+        <activity android:name=".ListaOrdenes" />
+        <activity android:name=".AgregarCliente"></activity>
     </application>
 
 </manifest>
