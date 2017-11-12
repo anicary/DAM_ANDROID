@@ -60,7 +60,7 @@
         android:layout_marginRight="40dp"
         android:layout_marginLeft="40dp">
     <Button
-        android:id="@+id/agregar"
+        android:id="@+id/btnagregar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/ovalo3"
