@@ -33,7 +33,8 @@ public class Principal extends AppCompatActivity {
         Reparacion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                intento =new Intent(Principal.this,ListaOrdenes.class);
+                startActivity(intento);
             }
         });
     }
