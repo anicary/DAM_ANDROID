@@ -18,11 +18,9 @@ public class AgregarReparacion extends AppCompatActivity {
 
         db = new BD(AgregarReparacion.this, "reparacionCelular", null, 1);
 
-        ed1=(EditText)findViewById(R.id.ed1);
-        ed2=(EditText)findViewById(R.id.ed2);
+        ed1=(EditText)findViewById(R.id.fecha);
+        ed2=(EditText)findViewById(R.id.costo);
 
         SpinnerCliente=(Spinner)findViewById(R.id.spinnerCliente);
-
-
     }
 }
