@@ -16,11 +16,13 @@ public class AgregarReparacion extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agregar_reparacion);
 
+        db = new BD(AgregarReparacion.this, "reparacionCelular", null, 1);
+
         ed1=(EditText)findViewById(R.id.ed1);
         ed2=(EditText)findViewById(R.id.ed2);
 
         SpinnerCliente=(Spinner)findViewById(R.id.spinnerCliente);
-        
+
 
     }
 }
