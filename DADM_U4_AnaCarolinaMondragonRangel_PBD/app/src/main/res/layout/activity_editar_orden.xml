@@ -1,9 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+android:background="@drawable/fonod"
+tools:context="mx.edu.ittepic.dadm_u4_anacarolinamondragonrangel_pbd.EditarOrden">
+<LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="mx.edu.ittepic.dadm_u4_anacarolinamondragonrangel_pbd.EditarOrden">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="40dp"
+    android:layout_marginRight="40dp"
+    android:layout_marginLeft="40dp">
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/fecha"
+        android:background="@drawable/ovalo1"
+        android:gravity="center"
+        android:hint="FECHA REPARACION"
+        android:textColor="@android:color/background_light"
+        android:clickable="true"
+        android:editable="false"
+        android:textColorHint="#ffffff" />
+</LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="40dp"
+    android:layout_marginRight="40dp"
+    android:layout_marginLeft="40dp">
 
-</android.support.constraint.ConstraintLayout>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/costor"
+        android:background="@drawable/ovalo1"
+        android:gravity="center"
+        android:hint="COSTO"
+        android:textColor="@android:color/background_light"
+        android:textColorHint="#ffffff" />
+</LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="40dp"
+    android:layout_marginRight="40dp"
+    android:layout_marginLeft="40dp">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/rdescrpcionr"
+        android:background="@drawable/ovalo1"
+        android:gravity="center"
+        android:hint="DESCRIPCION"
+        android:textColor="@android:color/background_light"
+        android:textColorHint="#ffffff" />
+</LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="40dp"
+    android:layout_marginRight="40dp"
+    android:layout_marginLeft="40dp"
+    android:background="@drawable/ovalo1">
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:id="@+id/spinnerClienter">
+    </Spinner>
+</LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="40dp"
+    android:layout_marginRight="40dp"
+    android:layout_marginLeft="40dp">
+    <Button
+        android:id="@+id/btnagregarr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ovalo3"
+        android:text="AGREGAR REPARACION"
+        android:textColor="#000000" />
+</LinearLayout>
+</LinearLayout>
