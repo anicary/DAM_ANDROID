@@ -68,7 +68,7 @@ Button botonAgregar;
                                     elementos.remove(poslista);
                                     Menu_lista.setAdapter(adater);
                                     SQLiteDatabase base = conexion.getWritableDatabase();
-                                    String query1 = "DELETE FROM cliente  where idcliente=" + idClienteborrar + ";";
+                                    String query1 = "DELETE FROM orden_reparacion  where idordenreparacion=" + idClienteborrar + ";";
                                     base.execSQL(query1);
                                 } catch (SQLException e) {
                                     Toast.makeText(ListaOrdenes.this, e.getMessage(), Toast.LENGTH_LONG).show();
