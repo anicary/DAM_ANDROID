@@ -2,7 +2,7 @@
 /* DATOS DEL SERVIDOR */
 $contrasna="Carolina21";
 $usuario="u146418920_caro";
-$host="mysql.hostinger.mx";
+$host="localhost";
 $base="u146418920_andro";
 
 /* CONECTANDO AL SERVIDOR */
@@ -22,7 +22,7 @@ $domicilio=$_POST["domicilio"];
 $telefono=$_POST["telefono"];
 $correo=$_POST["correo"];
 /* INSERTAR EN LA BASE*/
-$resultadoInsertar=mysqli_query($conexion,"INSERT INTO Persona values(0,'$nombre','$domicilio','$telefono','$correo')");
+$resultadoInsertar=mysqli_query($conexion,"SELECT FROM Persona values(0,'$nombre','$domicilio','$telefono','$correo')");
 if($resultadoInsertar){
 	 /*SI SE INSERTO*/
 }else{
