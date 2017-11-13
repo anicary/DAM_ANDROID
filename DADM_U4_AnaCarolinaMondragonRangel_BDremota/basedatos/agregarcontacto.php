@@ -1,9 +1,9 @@
 <?php
 /* DATOS DEL SERVIDOR */
 $contrasna="Carolina21";
-$usuario="u146418920_caro";
-$host="mysql.hostinger.mx";
-$base="u146418920_andro";
+$usuario="id165952_carobox";
+$host="anicary.000webhostapp.com";
+$base="id165952_android";
 
 /* CONECTANDO AL SERVIDOR */
 $conexion=mysqli_connect($host,$usuario,$contrasna);
