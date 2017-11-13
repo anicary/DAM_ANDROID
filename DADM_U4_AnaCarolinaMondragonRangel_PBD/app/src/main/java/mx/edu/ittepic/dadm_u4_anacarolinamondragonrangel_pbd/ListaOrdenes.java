@@ -53,7 +53,32 @@ Button botonAgregar;
         }, new ADorden.botonClick() {
             @Override
             public void onBtnClick(int position) {
-
+                idClienteborrar= elementos.get(position).getIdcliente();
+                poslista=position;
+                alertaBorrar = new AlertDialog.Builder(ListaOrdenes.this);
+                alertaBorrar.setIcon(R.drawable.ic_delete_forever_black_24dp)
+                        .setTitle("Eliminar a esta orden")
+                        .setMessage("fecha: "+  elementos.get(position).getNombre())
+                        .setPositiveButton("ELIMINAR", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                try {
+                                    System.out.println(""+idClienteborrar);
+                                    elementos.remove(poslista);
+                                    Menu_lista.setAdapter(adater);
+                                    SQLiteDatabase base = conexion.getWritableDatabase();
+                                    String query1 = "DELETE FROM cliente  where idcliente=" + idClienteborrar + ";";
+                                    base.execSQL(query1);
+                                } catch (SQLException e) {
+                                    Toast.makeText(ListaOrdenes.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        })
+                        .setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertaBorrar.show();
             }
         });
         Menu_lista.setAdapter(adater);
