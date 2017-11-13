@@ -22,11 +22,21 @@ $domicilio=$_POST["domicilio"];
 $telefono=$_POST["telefono"];
 $correo=$_POST["correo"];
 /* INSERTAR EN LA BASE*/
-$resultadoInsertar=mysqli_query($conexion,"SELECT FROM Persona values(0,'$nombre','$domicilio','$telefono','$correo')");
-if($resultadoInsertar){
+$resultado=mysqli_query($conexion,"SELECT * from Persona;");
+if($resultado){
 	 /*SI SE INSERTO*/
+	 $datos = array();
+	 $i=0;
+	 while($renglon = mysqli_fetch_array($resultado))
+	 {
+			 $datos[$i] = $renglon;
+			 $i++;
+	 }
+	 echo json_encode($datos);
 }else{
 	 /*NO SE INSERTO*/
 	echo "ERROR";
 }
+
+
 ?>
