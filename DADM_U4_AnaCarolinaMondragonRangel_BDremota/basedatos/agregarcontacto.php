@@ -1,9 +1,9 @@
 <?php
 /* DATOS DEL SERVIDOR */
 $contrasna="Carolina21";
-$usuario="id165952_carobox";
-$host="localhost";
-$base="id165952_android";
+$usuario="caroli41_caro";
+$host="198.91.81.4";
+$base="caroli41_android";
 
 /* CONECTANDO AL SERVIDOR */
 $conexion=mysqli_connect($host,$usuario,$contrasna);
