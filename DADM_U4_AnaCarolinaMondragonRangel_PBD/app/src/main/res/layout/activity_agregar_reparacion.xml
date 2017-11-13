@@ -21,6 +21,8 @@
         android:gravity="center"
         android:hint="FECHA REPARACION"
         android:textColor="@android:color/background_light"
+        android:clickable="true"
+        android:editable="false"
         android:textColorHint="#ffffff" />
 </LinearLayout>
     <LinearLayout
