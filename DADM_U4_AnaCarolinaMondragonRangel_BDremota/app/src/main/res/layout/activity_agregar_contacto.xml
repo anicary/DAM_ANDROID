@@ -7,4 +7,29 @@
     android:orientation="vertical"
     tools:context="mx.edu.ittepic.dadm_u4_anacarolinamondragonrangel_bdremota.AgregarContacto">
 
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="NOMBRE"
+        android:id="@+id/nombre"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="DOMICILIO"
+        android:id="@+id/dom"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="TELEFONO"
+        android:id="@+id/tel"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="CORREO"
+        android:id="@+id/correo"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="AGREGAR CONTACTO"
+        android:id="@+id/btnagregar"/>
 </LinearLayout>
