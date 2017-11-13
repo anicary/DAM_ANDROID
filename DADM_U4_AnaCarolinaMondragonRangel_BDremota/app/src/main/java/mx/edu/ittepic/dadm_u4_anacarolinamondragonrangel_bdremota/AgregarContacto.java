@@ -28,13 +28,12 @@ public class AgregarContacto extends AppCompatActivity {
         agregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 try{
                     con.agregarValores("nombre",nombre.getText().toString());
                     con.agregarValores("domicilio",domicilio.getText().toString());
                     con.agregarValores("telefono",telefono.getText().toString());
                     con.agregarValores("correo",correo.getText().toString());
-                    con.execute(new URL(""));
+                    con.execute(new URL("www.carolinaowl.esy.es/android/agregarcontato.php"));
                 }catch (MalformedURLException e){
                     AlertDialog.Builder error=new AlertDialog.Builder(AgregarContacto.this);
                     error.setMessage(""+e.getMessage()) .setTitle("Error").show();
