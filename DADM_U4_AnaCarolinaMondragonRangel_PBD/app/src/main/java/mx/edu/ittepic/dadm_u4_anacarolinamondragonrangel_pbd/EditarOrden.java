@@ -41,7 +41,7 @@ public class EditarOrden extends AppCompatActivity {
                 descrip= desc.getText().toString();
                 try {
                     SQLiteDatabase base = db.getWritableDatabase();
-                    String query1 = "UPDATE orden SET fechaingreso='FECHA',costo='COSTO', observaciones='DESCRIPCION' where idordenreparacion=" + idordenreparacion + ";";
+                    String query1 = "UPDATE orden_reparacion SET fechaingreso='FECHA',costo='COSTO', observaciones='DESCRIPCION' where idordenreparacion=" + idordenreparacion + ";";
                     query1 = query1.replace("FECHA", daytime);
                     query1 = query1.replace("COSTO",cos);
                     query1 = query1.replace("DESCRIPCION", descrip);
