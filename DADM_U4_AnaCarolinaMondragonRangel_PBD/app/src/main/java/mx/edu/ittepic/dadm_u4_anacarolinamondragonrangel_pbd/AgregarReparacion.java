@@ -63,7 +63,6 @@ public class AgregarReparacion extends AppCompatActivity {
                 miCalendario.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                 ed1.setText(""+miCalendario.get(Calendar.YEAR)+"-"+miCalendario.get(Calendar.MONTH)+"-"+miCalendario.get(Calendar.DAY_OF_MONTH));
             }
-
         };
         ed1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,7 +70,6 @@ public class AgregarReparacion extends AppCompatActivity {
                 new DatePickerDialog(AgregarReparacion.this, fecha, miCalendario
                         .get(Calendar.YEAR), miCalendario.get(Calendar.MONTH),
                         miCalendario.get(Calendar.DAY_OF_MONTH)).show();
-
             }
         });
         btnagregarCliente.setOnClickListener(new View.OnClickListener() {
@@ -84,7 +82,6 @@ public class AgregarReparacion extends AppCompatActivity {
                     query1 = query1.replace("COSTO", ed2.getText().toString());
                     query1 = query1.replace("FECHA", ed1.getText().toString());
                     query1 = query1.replace("DESCRIP", ed2.getText().toString());
-
                     base.execSQL(query1);
                     Intent intent = new Intent(AgregarReparacion.this, ListaOrdenes.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
