@@ -24,10 +24,11 @@ public class AgregarContacto extends AppCompatActivity {
         domicilio =(EditText)findViewById(R.id.dom);
         telefono =(EditText)findViewById(R.id.tel);
         correo =(EditText)findViewById(R.id.correo);
+        con= new ConexionRemota(AgregarContacto.this);
         agregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                con = new ConexionRemota();
+
                 try{
                     con.agregarValores("nombre",nombre.getText().toString());
                     con.agregarValores("domicilio",domicilio.getText().toString());

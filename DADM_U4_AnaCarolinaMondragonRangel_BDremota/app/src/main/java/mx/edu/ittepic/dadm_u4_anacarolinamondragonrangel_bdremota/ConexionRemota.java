@@ -20,15 +20,15 @@ import java.util.List;
  */
 
 public class ConexionRemota extends AsyncTask<URL,Void,String> {
-    List<String[]> variables;
-    MainActivity puntero;
-    AgregarContacto agregar;
-    public void ConexionRemota(MainActivity p)
+    public List<String[]> variables;
+    public MainActivity puntero;
+    public AgregarContacto agregar;
+    public  ConexionRemota(MainActivity p)
     {
         variables= new ArrayList<>();
         puntero=p;
     }
-    public void ConexionRemota(AgregarContacto p)
+    public  ConexionRemota(AgregarContacto p)
     {
         variables= new ArrayList<>();
         agregar=p;
