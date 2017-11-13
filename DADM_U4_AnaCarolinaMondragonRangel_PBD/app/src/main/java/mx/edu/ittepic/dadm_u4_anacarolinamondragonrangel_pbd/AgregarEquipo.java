@@ -34,6 +34,7 @@ public class AgregarEquipo extends AppCompatActivity {
             public void onClick(View view) {
 
                 idordenreparacion = (getIntent().getExtras().getInt("idordenreparacion"));
+                description =descripcion.getText().toString();
                 type = tipo.getText().toString();
                 try {
                     SQLiteDatabase base = db.getWritableDatabase();
@@ -41,7 +42,7 @@ public class AgregarEquipo extends AppCompatActivity {
                     query1 = query1.replace("DESCRIPCION", description);
                     query1 = query1.replace("TIPO",type);
                     base.execSQL(query1);
-                    intent = new Intent(AgregarEquipo.this, ListaClientes.class);
+                    intent = new Intent(AgregarEquipo.this, ListaOrdenes.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                     finish();
