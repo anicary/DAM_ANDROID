@@ -1,89 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:orientation="vertical"
-android:background="@drawable/fonod"
-tools:context="mx.edu.ittepic.dadm_u4_anacarolinamondragonrangel_pbd.EditarOrden">
-<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ddd"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="40dp"
-    android:layout_marginRight="40dp"
-    android:layout_marginLeft="40dp">
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:id="@+id/fecha"
-        android:background="@drawable/ovalo1"
-        android:gravity="center"
-        android:hint="FECHA REPARACION"
-        android:textColor="@android:color/background_light"
-        android:clickable="true"
-        android:editable="false"
-        android:textColorHint="#ffffff" />
-</LinearLayout>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="40dp"
-    android:layout_marginRight="40dp"
-    android:layout_marginLeft="40dp">
+    android:layout_height="match_parent"
+    android:background="@drawable/fonod"
+    android:orientation="vertical"
+    tools:context="mx.edu.ittepic.dadm_u4_anacarolinamondragonrangel_pbd.EditarOrden">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:id="@+id/costor"
-        android:background="@drawable/ovalo1"
-        android:gravity="center"
-        android:hint="COSTO"
-        android:textColor="@android:color/background_light"
-        android:textColorHint="#ffffff" />
-</LinearLayout>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="40dp"
-    android:layout_marginRight="40dp"
-    android:layout_marginLeft="40dp">
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:id="@+id/rdescrpcionr"
-        android:background="@drawable/ovalo1"
-        android:gravity="center"
-        android:hint="DESCRIPCION"
-        android:textColor="@android:color/background_light"
-        android:textColorHint="#ffffff" />
-</LinearLayout>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="40dp"
-    android:layout_marginRight="40dp"
-    android:layout_marginLeft="40dp"
-    android:background="@drawable/ovalo1">
-    <Spinner
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:id="@+id/spinnerClienter">
-    </Spinner>
-</LinearLayout>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="40dp"
-    android:layout_marginRight="40dp"
-    android:layout_marginLeft="40dp">
-    <Button
-        android:id="@+id/btnagregarr"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/ovalo3"
-        android:text="AGREGAR REPARACION"
-        android:textColor="#000000" />
-</LinearLayout>
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="40dp">
+
+        <EditText
+            android:id="@+id/fechar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/ovalo1"
+            android:clickable="true"
+            android:editable="false"
+            android:gravity="center"
+            android:hint="FECHA REPARACION"
+            android:textColor="@android:color/background_light"
+            android:textColorHint="#ffffff" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="40dp">
+
+        <EditText
+            android:id="@+id/costor"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/ovalo1"
+            android:gravity="center"
+            android:hint="COSTO"
+            android:textColor="@android:color/background_light"
+            android:textColorHint="#ffffff" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="40dp">
+
+        <EditText
+            android:id="@+id/rdescrpcionr"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/ovalo1"
+            android:gravity="center"
+            android:hint="DESCRIPCION"
+            android:textColor="@android:color/background_light"
+            android:textColorHint="#ffffff" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/ovalo1">
+
+        <Spinner
+            android:id="@+id/spinnerClienter"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:visibility="gone"></Spinner>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="40dp">
+
+        <Button
+            android:id="@+id/btnagregarr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ovalo3"
+            android:text="AGREGAR REPARACION"
+            android:textColor="#000000" />
+    </LinearLayout>
 </LinearLayout>
