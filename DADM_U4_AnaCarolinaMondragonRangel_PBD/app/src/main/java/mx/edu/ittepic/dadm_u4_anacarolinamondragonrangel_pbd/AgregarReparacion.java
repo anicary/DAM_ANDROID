@@ -1,7 +1,9 @@
 package mx.edu.ittepic.dadm_u4_anacarolinamondragonrangel_pbd;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +14,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -73,7 +76,20 @@ public class AgregarReparacion extends AppCompatActivity {
         btnagregarCliente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SpinnerCliente.getSelectedItemPosition();
+                try {
+                    int posid= idclientes[ SpinnerCliente.getSelectedItemPosition()];
+                    SQLiteDatabase base = db.getWritableDatabase();
+                    String query1 = "INSERT INTO orden_reparacion VALUES ("+posid+",'FECHA','COSTO')";
+                    query1 = query1.replace("COSTO", ed2.getText().toString());
+                    query1 = query1.replace("FECHA", ed1.getText().toString());
+                    base.execSQL(query1);
+                    Intent intent = new Intent(AgregarReparacion.this, ListaOrdenes.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                    finish();
+                }catch (SQLException e){
+                    Toast.makeText(AgregarReparacion.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
