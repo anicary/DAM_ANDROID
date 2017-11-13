@@ -27,7 +27,7 @@ public class AgregarContacto extends AppCompatActivity {
         agregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                con = new ConexionRemota(AgregarContacto.this);
+                con = new ConexionRemota();
                 try{
                     con.agregarValores("nombre",nombre.getText().toString());
                     con.agregarValores("domicilio",domicilio.getText().toString());

@@ -23,12 +23,12 @@ public class ConexionRemota extends AsyncTask<URL,Void,String> {
     List<String[]> variables;
     MainActivity puntero;
     AgregarContacto agregar;
-    public void ConexionWeb(MainActivity p)
+    public void ConexionRemota(MainActivity p)
     {
         variables= new ArrayList<>();
         puntero=p;
     }
-    public void ConexionWeb(AgregarContacto p)
+    public void ConexionRemota(AgregarContacto p)
     {
         variables= new ArrayList<>();
         agregar=p;
