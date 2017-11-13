@@ -38,7 +38,7 @@ Button botonAgregar;
     }
     private ArrayList<Cliente> getElemento() {
         SQLiteDatabase base = conexion.getReadableDatabase();
-        Cursor c = base.rawQuery("SELECT * FROM cliente", null);
+        Cursor c = base.rawQuery("SELECT * FROM orden_reparacion", null);
         elementos = new ArrayList<Cliente>();
         while (c.moveToNext()) {
             elementos.add(new Cliente(Integer.parseInt(c.getString(0)), c.getString(1), c.getString(2), c.getString(3)));
