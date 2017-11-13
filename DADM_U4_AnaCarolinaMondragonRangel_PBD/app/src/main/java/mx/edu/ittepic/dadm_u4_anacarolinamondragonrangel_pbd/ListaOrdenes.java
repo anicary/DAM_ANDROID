@@ -43,7 +43,9 @@ Button botonAgregar;
         adater = new ADorden(this, elemento, new ADorden.botonClick() {
             @Override
             public void onBtnClick(int position) {
-
+                Intent intento = new Intent(ListaOrdenes.this,AgregarEquipo.class);
+                intento.putExtra("idordenreparacion",elementos.get(position).getIdcliente() );
+                startActivity(intento);
             }
         }, new ADorden.botonClick() {
             @Override
