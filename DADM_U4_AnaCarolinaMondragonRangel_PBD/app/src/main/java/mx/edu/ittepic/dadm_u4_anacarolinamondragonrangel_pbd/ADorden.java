@@ -47,7 +47,7 @@ public class ADorden   extends BaseAdapter {
         vista = convertView;
         if (vista == null) {
             LayoutInflater inflater = (LayoutInflater) actividad.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            vista = inflater.inflate(R.layout.cliente_list, null);
+            vista = inflater.inflate(R.layout.orden_list, null);
         }
         elemento = elementos.get(position);
         id = (TextView) vista.findViewById(R.id.idCliente);
@@ -58,7 +58,7 @@ public class ADorden   extends BaseAdapter {
         domicilio.setText(elemento.getDomicilio());
         TextView colonia = (TextView) vista.findViewById(R.id.txtColonia);
         colonia.setText(elemento.getColonia());
-        Button editar =(Button) vista.findViewById(R.id.btnEditar);
+        Button editar =(Button) vista.findViewById(R.id.btnEditarOrden);
         editar.setTag(position);
         editar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,9 +67,18 @@ public class ADorden   extends BaseAdapter {
                     btnEditar.onBtnClick((Integer) v.getTag());
             }
         });
-        Button eliminar =(Button) vista.findViewById(R.id.btnELIMINAR);
+        Button eliminar =(Button) vista.findViewById(R.id.btnEliminarOrden);
         eliminar.setTag(position);
         eliminar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(btnEliminar != null)
+                    btnEliminar.onBtnClick((Integer) v.getTag());
+            }
+        });
+        Button agregar =(Button) vista.findViewById(R.id.btnAgregarEquipoa);
+        agregar.setTag(position);
+        agregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(btnEliminar != null)

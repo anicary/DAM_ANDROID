@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class ListaOrdenes extends AppCompatActivity {
 Button botonAgregar;
-    ADcliente adater;
+    ADorden adater;
     ArrayList<Cliente> elemento;
     BD conexion;
     ArrayList<Cliente> elementos;
@@ -40,29 +40,30 @@ Button botonAgregar;
         });
         Menu_lista = (ListView) findViewById(R.id.idlistareparacion);
         elemento = getElemento();
-        adater = new ADcliente(this, elemento, new ADcliente.botonClick() {
+        adater = new ADcliente(this, elemento, new ADorden.botonClick() {
+        }, new ADcliente.botonClick() {
             @Override
             public void onBtnClick(int position) {
-                Intent intento = new Intent(ListaOrdenes.this,EditarCliente.class);
-                intento.putExtra("idcliente",elementos.get(position).getIdcliente() );
-                intento.putExtra("nombre",elementos.get(position).getNombre() );
-                intento.putExtra("domicilio",elementos.get(position).getDomicilio() );
-                intento.putExtra("colonia",elementos.get(position).getColonia() );
+                Intent intento = new Intent(ListaOrdenes.this, EditarCliente.class);
+                intento.putExtra("idcliente", elementos.get(position).getIdcliente());
+                intento.putExtra("nombre", elementos.get(position).getNombre());
+                intento.putExtra("domicilio", elementos.get(position).getDomicilio());
+                intento.putExtra("colonia", elementos.get(position).getColonia());
                 startActivity(intento);
             }
         }, new ADcliente.botonClick() {
             @Override
             public void onBtnClick(int position) {
-                idClienteborrar= elementos.get(position).getIdcliente();
-                poslista=position;
+                idClienteborrar = elementos.get(position).getIdcliente();
+                poslista = position;
                 alertaBorrar = new AlertDialog.Builder(ListaOrdenes.this);
                 alertaBorrar.setIcon(R.drawable.ic_delete_forever_black_24dp)
                         .setTitle("Eliminar a este cliente")
-                        .setMessage("Nombre: "+  elementos.get(position).getNombre())
+                        .setMessage("Nombre: " + elementos.get(position).getNombre())
                         .setPositiveButton("ELIMINAR", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 try {
-                                    System.out.println(""+idClienteborrar);
+                                    System.out.println("" + idClienteborrar);
                                     elementos.remove(poslista);
                                     Menu_lista.setAdapter(adater);
                                     SQLiteDatabase base = conexion.getWritableDatabase();
