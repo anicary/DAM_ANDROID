@@ -40,7 +40,7 @@ Button botonAgregar;
         });
         Menu_lista = (ListView) findViewById(R.id.idlistareparacion);
         elemento = getElemento();
-        adater = new ADcliente(this, elemento, new ADorden.botonClick() {
+        adater = new ADorden(this, elemento, new ADorden.botonClick() {
         }, new ADcliente.botonClick() {
             @Override
             public void onBtnClick(int position) {
