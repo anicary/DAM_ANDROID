@@ -11,7 +11,7 @@ public class MainActivity extends AppCompatActivity {
     ListView lista;
     Button agregarcontacto;
     Intent intento;
-
+    ConexionRemota con;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,5 +28,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intento);
             }
         });
+        con= new ConexionRemota(MainActivity.this);
     }
 }

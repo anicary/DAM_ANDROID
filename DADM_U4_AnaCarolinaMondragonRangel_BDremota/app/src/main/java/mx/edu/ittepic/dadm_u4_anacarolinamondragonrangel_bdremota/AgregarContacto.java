@@ -1,5 +1,6 @@
 package mx.edu.ittepic.dadm_u4_anacarolinamondragonrangel_bdremota;
 
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -33,7 +34,11 @@ public class AgregarContacto extends AppCompatActivity {
                     con.agregarValores("domicilio",domicilio.getText().toString());
                     con.agregarValores("telefono",telefono.getText().toString());
                     con.agregarValores("correo",correo.getText().toString());
-                    con.execute(new URL("https://anicary.000webhostapp.com/android/agregarcontacto.php"));
+                    con.execute(new URL("http://carolina.x10host.com/agregarcontacto.php"));
+                    Intent intent = new Intent(AgregarContacto.this, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                    finish();
                 }catch (MalformedURLException e){
                     AlertDialog.Builder error=new AlertDialog.Builder(AgregarContacto.this);
                     error.setMessage(""+e.getMessage()).setIcon(R.drawable.ic_error_red_24dp).setTitle("Error").show();
