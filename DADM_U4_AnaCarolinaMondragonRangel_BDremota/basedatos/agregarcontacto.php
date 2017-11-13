@@ -2,7 +2,7 @@
 /* DATOS DEL SERVIDOR */
 $contrasna="Carolina21";
 $usuario="id165952_carobox";
-$host="anicary.000webhostapp.com";
+$host="localhost";
 $base="id165952_android";
 
 /* CONECTANDO AL SERVIDOR */
