@@ -10,7 +10,8 @@ $conexion=mysqli_connect($host,$usuario,$contrasna);
 if(!$conexion){
 	echo "La conexion fallo";
 	return;
-}tBD=mysqli_select_db($conexion,$base);
+}
+$selectBD=mysqli_select_db($conexion,$base);
 if(!$selectBD){
 	echo "Base de datos no encontrada";
 	return;
