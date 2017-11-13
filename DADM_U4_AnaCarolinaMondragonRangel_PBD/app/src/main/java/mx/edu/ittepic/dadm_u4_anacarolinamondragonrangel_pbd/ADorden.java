@@ -18,13 +18,14 @@ public class ADorden   extends BaseAdapter {
     Cliente elemento;
     TextView id;
     View vista;
-    private ADcliente.botonClick btnEditar = null,btnEliminar=null;
+    private ADorden.botonClick btnEditar = null,btnEliminar=null,btnAgregar;
 
-    public ADorden(Activity actividad, ArrayList<Cliente> elementos, ADcliente.botonClick btnEditarOido, ADcliente.botonClick btnEliminarOido) {
+    public ADorden(Activity actividad, ArrayList<Cliente> elementos, ADorden.botonClick btnAgregar, ADorden.botonClick btnEditarOido, ADorden.botonClick btnEliminarOido) {
         this.actividad = actividad;
         this.elementos = elementos;
         btnEditar = btnEditarOido;
         btnEliminar=btnEliminarOido;
+        this.btnAgregar=btnAgregar;
     }
     public interface botonClick {
         public abstract void onBtnClick(int position);
@@ -81,8 +82,8 @@ public class ADorden   extends BaseAdapter {
         agregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(btnEliminar != null)
-                    btnEliminar.onBtnClick((Integer) v.getTag());
+                if(btnAgregar != null)
+                    btnAgregar.onBtnClick((Integer) v.getTag());
             }
         });
         return vista;
