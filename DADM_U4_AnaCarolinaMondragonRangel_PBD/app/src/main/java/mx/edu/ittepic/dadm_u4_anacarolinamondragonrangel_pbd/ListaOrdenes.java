@@ -50,11 +50,11 @@ Button botonAgregar;
         }, new ADorden.botonClick() {
             @Override
             public void onBtnClick(int position) {
-                Intent intento = new Intent(ListaClientes.this,EditarCliente.class);
-                intento.putExtra("idcliente",elementos.get(position).getIdcliente() );
-                intento.putExtra("nombre",elementos.get(position).getNombre() );
-                intento.putExtra("domicilio",elementos.get(position).getDomicilio() );
-                intento.putExtra("colonia",elementos.get(position).getColonia() );
+                Intent intento = new Intent(ListaOrdenes.this,EditarOrden.class);
+                intento.putExtra("idordenreparacion",elementos.get(position).getIdcliente() );
+                intento.putExtra("fechaingreso",elementos.get(position).getNombre() );
+                intento.putExtra("costo",elementos.get(position).getDomicilio() );
+                intento.putExtra("observaciones",elementos.get(position).getColonia() );
                 startActivity(intento);
             }
         }, new ADorden.botonClick() {
