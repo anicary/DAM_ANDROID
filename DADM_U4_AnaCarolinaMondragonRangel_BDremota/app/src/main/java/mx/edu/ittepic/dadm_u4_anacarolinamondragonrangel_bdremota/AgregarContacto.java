@@ -24,7 +24,6 @@ public class AgregarContacto extends AppCompatActivity {
         domicilio =(EditText)findViewById(R.id.dom);
         telefono =(EditText)findViewById(R.id.tel);
         correo =(EditText)findViewById(R.id.correo);
-        
         agregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -34,7 +33,6 @@ public class AgregarContacto extends AppCompatActivity {
                     con.agregarValores("domicilio",domicilio.getText().toString());
                     con.agregarValores("telefono",telefono.getText().toString());
                     con.agregarValores("correo",correo.getText().toString());
-
                     con.execute(new URL(""));
                 }catch (MalformedURLException e){
                     AlertDialog.Builder error=new AlertDialog.Builder(AgregarContacto.this);
@@ -42,6 +40,5 @@ public class AgregarContacto extends AppCompatActivity {
                 }
             }
         });
-
     }
 }
