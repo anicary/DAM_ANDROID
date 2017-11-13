@@ -21,7 +21,8 @@
         <activity android:name=".AgregarCliente" />
         <activity android:name=".EditarCliente" />
         <activity android:name=".AgregarReparacion" />
-        <activity android:name=".AgregarEquipo"></activity>
+        <activity android:name=".AgregarEquipo" />
+        <activity android:name=".EditarOrden"></activity>
     </application>
 
 </manifest>

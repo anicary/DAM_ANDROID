@@ -50,7 +50,12 @@ Button botonAgregar;
         }, new ADorden.botonClick() {
             @Override
             public void onBtnClick(int position) {
-
+                Intent intento = new Intent(ListaClientes.this,EditarCliente.class);
+                intento.putExtra("idcliente",elementos.get(position).getIdcliente() );
+                intento.putExtra("nombre",elementos.get(position).getNombre() );
+                intento.putExtra("domicilio",elementos.get(position).getDomicilio() );
+                intento.putExtra("colonia",elementos.get(position).getColonia() );
+                startActivity(intento);
             }
         }, new ADorden.botonClick() {
             @Override
