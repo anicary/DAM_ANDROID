@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    android:layout_marginTop="120dp"
+    android:orientation="horizontal"
+    android:weightSum="1">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_weight="0.52"
+        card_view:cardBackgroundColor="#414e57"
+        card_view:cardCornerRadius="4dp"
+        card_view:cardElevation="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/idCliente"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="ID"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15px"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtNombre"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="TextView"
+                        android:textAlignment="textStart"
+                        android:textColor="@android:color/background_light"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtDomicilio"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/background_light"
+                        android:textSize="12sp"
+                        android:textStyle="italic" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtColonia"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/background_light"
+                        android:textSize="12sp"
+                        android:textStyle="italic" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="116dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btnAgregarEquipo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="AGREGAR EQUIPOS" />
+
+                <Button
+                    android:id="@+id/btnEditarOrden"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="EDITAR" />
+
+                <Button
+                    android:id="@+id/btnEliminarOrden"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="ELIMINAR" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+</LinearLayout>
