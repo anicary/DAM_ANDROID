@@ -1,7 +1,7 @@
 <?php
 /* DATOS DEL SERVIDOR */
 $contrasna="Carolina21";
-$ususario="u146418920_caro";
+$usuario="u146418920_caro";
 $host="mysql.hostinger.mx";
 $base="u146418920_andro";
 
