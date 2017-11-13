@@ -21,7 +21,7 @@ import java.util.Calendar;
 import java.util.List;
 
 public class AgregarReparacion extends AppCompatActivity {
-    EditText ed1,ed2;
+    EditText ed1,ed2,ed3;
     Spinner SpinnerCliente;
     Button btnagregarCliente;
     BD db;
@@ -37,6 +37,7 @@ public class AgregarReparacion extends AppCompatActivity {
         db = new BD(AgregarReparacion.this, "reparacionCelular", null, 1);
         ed1=(EditText)findViewById(R.id.fecha);
         ed2=(EditText)findViewById(R.id.costo);
+        ed2=(EditText)findViewById(R.id.rdescrpcion);
         btnagregarCliente=(Button) findViewById(R.id.btnagregar);
         SpinnerCliente=(Spinner)findViewById(R.id.spinnerCliente);
         miCalendario = Calendar.getInstance();
@@ -79,9 +80,11 @@ public class AgregarReparacion extends AppCompatActivity {
                 try {
                     int posid= idclientes[ SpinnerCliente.getSelectedItemPosition()];
                     SQLiteDatabase base = db.getWritableDatabase();
-                    String query1 = "INSERT INTO orden_reparacion VALUES ("+posid+",'FECHA','COSTO')";
+                    String query1 = "INSERT INTO orden_reparacion VALUES ("+posid+",'FECHA','COSTO','DESCRIP')";
                     query1 = query1.replace("COSTO", ed2.getText().toString());
                     query1 = query1.replace("FECHA", ed1.getText().toString());
+                    query1 = query1.replace("DESCRIP", ed2.getText().toString());
+
                     base.execSQL(query1);
                     Intent intent = new Intent(AgregarReparacion.this, ListaOrdenes.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
