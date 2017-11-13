@@ -1,5 +1,5 @@
-<?php>
-	$nomb = $_POST["nombre"];
+<?php
+	$nom = $_POST["nombre"];
 	$dom = $_POST["domicilio"];
 	$sex = $_POST["sexo"];
 
