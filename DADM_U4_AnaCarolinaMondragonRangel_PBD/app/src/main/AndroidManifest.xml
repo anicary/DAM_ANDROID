@@ -23,7 +23,6 @@
         <activity android:name=".AgregarReparacion" />
         <activity android:name=".AgregarEquipo" />
         <activity android:name=".EditarOrden" />
-        <activity android:name=".EditarContacto"></activity>
     </application>
 
 </manifest>

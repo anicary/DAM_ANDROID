@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="mx.edu.ittepic.dadm_u4_anacarolinamondragonrangel_pbd.EditarContacto">
-
+    tools:context="mx.edu.ittepic.dadm_u4_anacarolinamondragonrangel_bdremota.EditarContacto">
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,7 +40,5 @@
             android:layout_height="wrap_content"
             android:text="ACTUALIZAR"
             android:id="@+id/actualizar"/>
-
-    </LinearLayout>
-
+        </LinearLayout>
 </LinearLayout>
