@@ -107,4 +107,16 @@ public class ConexionRemota extends AsyncTask<URL,Void,String> {
         }
         return Respuesta;
     }
+    protected void onPostExecute(String respuesta){
+        if(puntero!=null)
+        {
+           // puntero.obtenerDatos(respuesta);
+            limpiarVariables();
+        }
+        if(agregar!=null)
+        {
+            limpiarVariables();
+        }
+
+    }
 }
