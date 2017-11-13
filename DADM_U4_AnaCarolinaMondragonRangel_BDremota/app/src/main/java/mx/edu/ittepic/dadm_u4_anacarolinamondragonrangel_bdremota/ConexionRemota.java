@@ -22,11 +22,16 @@ import java.util.List;
 public class ConexionRemota extends AsyncTask<URL,Void,String> {
     List<String[]> variables;
     MainActivity puntero;
-
+    AgregarContacto agregar;
     public void ConexionWeb(MainActivity p)
     {
         variables= new ArrayList<>();
         puntero=p;
+    }
+    public void ConexionWeb(AgregarContacto p)
+    {
+        variables= new ArrayList<>();
+        agregar=p;
     }
     public void agregarValores(String indentificador,String Datos)
     {
