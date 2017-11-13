@@ -27,6 +27,7 @@ public class EditarOrden extends AppCompatActivity {
         desc=(EditText)findViewById(R.id.rdescrpcionr);
         btnagregar=(Button)findViewById(R.id.btnagregarr);
 
+        idordenreparacion=(getIntent().getExtras().getInt("idordenreparacion"));
         fecha.setText(getIntent().getExtras().getString("fechaingreso"));
         costo.setText(getIntent().getExtras().getString("costo"));
         desc.setText(getIntent().getExtras().getString("observaciones"));
