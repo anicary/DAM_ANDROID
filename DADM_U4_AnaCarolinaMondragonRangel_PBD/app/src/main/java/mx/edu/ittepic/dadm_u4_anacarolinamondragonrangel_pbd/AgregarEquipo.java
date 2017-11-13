@@ -37,11 +37,9 @@ public class AgregarEquipo extends AppCompatActivity {
                 type = tipo.getText().toString();
                 try {
                     SQLiteDatabase base = db.getWritableDatabase();
-                    String query1 = "INSERT INTO aparato VALUES (null,'DESCRIPCION','TIPO',IDREPACACION)";
+                    String query1 = "INSERT INTO aparato VALUES (null,'DESCRIPCION','TIPO',"+idordenreparacion+")";
                     query1 = query1.replace("DESCRIPCION", description);
                     query1 = query1.replace("TIPO",type);
-                    query1 = query1.replace();
-
                     base.execSQL(query1);
                     intent = new Intent(AgregarEquipo.this, ListaClientes.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
