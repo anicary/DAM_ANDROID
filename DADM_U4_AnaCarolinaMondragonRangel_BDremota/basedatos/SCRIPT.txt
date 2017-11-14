@@ -1,0 +1,20 @@
+
+-- -----------------------------------------------------
+-- Schema baseAndroid
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `baseAndroid` DEFAULT CHARACTER SET utf8 ;
+USE `baseAndroid` ;
+
+-- -----------------------------------------------------
+-- Table `baseAndroid`.`Persona`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `baseAndroid`.`Persona` (
+  `idPersona` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(100) NULL,
+  `domicilio` VARCHAR(100) NULL,
+  `telefono` VARCHAR(30) NULL,
+  `correo` VARCHAR(50) NULL,
+  PRIMARY KEY (`idPersona`)) ;
+
+
+
