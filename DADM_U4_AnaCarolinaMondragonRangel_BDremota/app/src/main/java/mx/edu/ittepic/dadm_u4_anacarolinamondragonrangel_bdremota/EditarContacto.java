@@ -39,6 +39,7 @@ public class EditarContacto extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try{
+                    con.agregarValores("idPersona",""+idpersonba);
                     con.agregarValores("nombre",nombre.getText().toString());
                     con.agregarValores("domicilio",domicilio.getText().toString());
                     con.agregarValores("telefono",telefono.getText().toString());

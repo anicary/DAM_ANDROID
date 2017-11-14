@@ -17,12 +17,13 @@ if(!$selectBD){
 	return;
 }
 /*OBTENER DATOS DEL ANDROD POST*/
+$idPersona$_POST["idPersona"];
 $nombre=$_POST["nombre"];
 $domicilio=$_POST["domicilio"];
 $telefono=$_POST["telefono"];
 $correo=$_POST["correo"];
 /* INSERTAR EN LA BASE*/
-$resultadoInsertar=mysqli_query($conexion,"UPDATE   Persona set nombre ='$nombre',domicilio='$domicilio',telefono='$telefono',correo='$correo')");
+$resultadoInsertar=mysqli_query($conexion,"UPDATE   Persona set nombre ='$nombre',domicilio='$domicilio',telefono='$telefono',correo='$correo' where idPersona=$idPersona");
 if($resultadoInsertar){
 	 /*SI SE INSERTO*/
 }else{
