@@ -17,7 +17,7 @@ if(!$selectBD){
 	return;
 }
 /*OBTENER DATOS DEL ANDROD POST*/
-$idPersona$_POST["idPersona"];
+$idPersona=$_POST["idPersona"];
 $nombre=$_POST["nombre"];
 $domicilio=$_POST["domicilio"];
 $telefono=$_POST["telefono"];
