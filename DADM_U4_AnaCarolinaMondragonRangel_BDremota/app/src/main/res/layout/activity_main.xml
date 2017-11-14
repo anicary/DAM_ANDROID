@@ -6,17 +6,18 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="mx.edu.ittepic.dadm_u4_anacarolinamondragonrangel_bdremota.MainActivity">
+
+    <Button
+        android:id="@+id/agregarcon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="AGREGAR CONTACTO" />
+
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/lista">
 
     </ListView>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="AGREGAR CONTACTO"
-        android:id="@+id/agregarcon"
-        />
 
 </LinearLayout>

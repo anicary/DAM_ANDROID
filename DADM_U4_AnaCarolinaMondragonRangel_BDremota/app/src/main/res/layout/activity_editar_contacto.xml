@@ -6,6 +6,25 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="mx.edu.ittepic.dadm_u4_anacarolinamondragonrangel_bdremota.EditarContacto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnborrar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BORRAR" />
+
+        <Button
+            android:id="@+id/actualizar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ACTUALIZAR" />
+    </LinearLayout>
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,19 +45,4 @@
         android:layout_height="wrap_content"
         android:hint="CORREO"
         android:id="@+id/correo"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="BORRAR"
-            android:id="@+id/btnborrar"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ACTUALIZAR"
-            android:id="@+id/actualizar"/>
-        </LinearLayout>
 </LinearLayout>
