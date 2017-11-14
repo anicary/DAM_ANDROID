@@ -23,6 +23,7 @@ public class ConexionRemota extends AsyncTask<URL,Void,String> {
     public List<String[]> variables;
     public MainActivity puntero;
     public AgregarContacto agregar;
+    public EditarContacto editareliminar;
     public  ConexionRemota(MainActivity p)
     {
         variables= new ArrayList<>();
@@ -32,6 +33,11 @@ public class ConexionRemota extends AsyncTask<URL,Void,String> {
     {
         variables= new ArrayList<>();
         agregar=p;
+    }
+    public  ConexionRemota(EditarContacto p)
+    {
+        variables= new ArrayList<>();
+        editareliminar=p;
     }
     public void agregarValores(String indentificador,String Datos)
     {
@@ -117,6 +123,11 @@ public class ConexionRemota extends AsyncTask<URL,Void,String> {
         {
             limpiarVariables();
         }
+        if(editareliminar!=null)
+        {
+            limpiarVariables();
+        }
+
 
     }
 }
