@@ -4,32 +4,72 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo"
     android:orientation="vertical"
     tools:context="mx.edu.ittepic.dadm_u4_anacarolinamondragonrangel_bdremota.AgregarContacto">
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="40dp"
+    android:layout_marginTop="40dp"
+    android:layout_marginLeft="40dp">
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="NOMBRE"
+        android:textColorHint="#000000"
         android:id="@+id/nombre"/>
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp">
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColorHint="#000000"
         android:hint="DOMICILIO"
         android:id="@+id/dom"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp">
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColorHint="#000000"
         android:hint="TELEFONO"
         android:id="@+id/tel"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp">
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColorHint="#000000"
         android:hint="CORREO"
         android:id="@+id/correo"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="20dp">
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="AGREGAR CONTACTO"
-        android:id="@+id/btnagregar"/>
+        android:id="@+id/btnagregar"
+        android:background="@drawable/ovalo"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:textSize="20dp"/>
+    </LinearLayout>
 </LinearLayout>

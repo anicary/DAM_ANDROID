@@ -5,13 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/fondo"
     tools:context="mx.edu.ittepic.dadm_u4_anacarolinamondragonrangel_bdremota.MainActivity">
 
     <Button
         android:id="@+id/agregarcon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="AGREGAR CONTACTO" />
+        android:text="AGREGAR CONTACTO"
+        android:background="@drawable/ovalo"
+        android:textColor="#ffffff"
+        android:textSize="20dp"
+        android:textStyle="bold"/>
 
     <ListView
         android:layout_width="match_parent"

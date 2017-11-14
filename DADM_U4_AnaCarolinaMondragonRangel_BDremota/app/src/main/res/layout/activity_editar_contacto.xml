@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo"
     android:orientation="vertical"
     tools:context="mx.edu.ittepic.dadm_u4_anacarolinamondragonrangel_bdremota.EditarContacto">
 
@@ -11,38 +12,74 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="40dp">
         <Button
             android:id="@+id/btnborrar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="BORRAR" />
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:text="BORRAR"
+            android:background="@drawable/ovalo3"/>
 
         <Button
             android:id="@+id/actualizar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ACTUALIZAR" />
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:text="ACTUALIZAR"
+            android:background="@drawable/ovalo2"/>
+        </LinearLayout>
     </LinearLayout>
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp">
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="NOMBRE"
+        android:textColorHint="#000000"
         android:id="@+id/nombre"/>
+        </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp">
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="DOMICILIO"
+        android:textColorHint="#000000"
         android:id="@+id/dom"/>
+        </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp">
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColorHint="#000000"
         android:hint="TELEFONO"
         android:id="@+id/tel"/>
+        </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp">
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="CORREO"
+        android:textColorHint="#000000"
         android:id="@+id/correo"/>
+        </LinearLayout>
 </LinearLayout>
