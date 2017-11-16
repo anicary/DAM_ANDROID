@@ -76,10 +76,12 @@ public class ConexionWeb extends AsyncTask<URL,String,String> {
         HttpURLConnection conexion = null;
         try{
             conexion = (HttpURLConnection) urls[0].openConnection();//con esta linea ya se esta conectando a la direccion
-            conexion.setDoInput(true); //ACTIVA EL MODO POST
+           // conexion.setDoInput(true); //ACTIVA EL MODO POST
+            conexion.setDoOutput(true);
+
             conexion.setFixedLengthStreamingMode(POST.length()); //indicas que tamaño o cuantas letras vas a mandar
             publishProgress("Enviando datos..."); //SI NO LO PONEMOS NO IMPORTA
-
+            conexion.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             //la creacion de flujo de salida que sirve para enviar la cadena POST
             //fujosalida tiene un write a nivel de red          //para amarrar la conexion
             OutputStream flujoSalida = new BufferedOutputStream(conexion.getOutputStream());
