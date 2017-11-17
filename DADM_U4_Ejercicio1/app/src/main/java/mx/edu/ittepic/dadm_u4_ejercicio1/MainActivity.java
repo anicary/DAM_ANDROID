@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 EditText identificador,nombre,domicilio;
+    String id,nom,dom;
     Button insertar,consultar,actualizar,eliminar;
     BaseDatos db;
     @Override
@@ -60,14 +61,17 @@ EditText identificador,nombre,domicilio;
         });
     }
     private void insertarDatos(){//Es privado porque solo se va a utilizar dentro de la clase
+        nom = nombre.getText().toString();
+        id= identificador.getText().toString();
+        dom = domicilio.getText().toString();
         try{
                                 //INSERT DELETE UPDATE
             SQLiteDatabase base =db.getWritableDatabase(); //insertar o delete
             String sentenciaSQL = "INSERT INTO PERSONA VALUES (ID,'NOMBRE','DOMICILIO')";
 
-            sentenciaSQL = sentenciaSQL.replace("ID",identificador.getText().toString());
-            sentenciaSQL=sentenciaSQL.replace("NOMBRE",nombre.getText().toString());
-            sentenciaSQL=sentenciaSQL.replace("DOMICILIO",domicilio.getText().toString());
+            sentenciaSQL = sentenciaSQL.replace("ID",id);
+            sentenciaSQL=sentenciaSQL.replace("NOMBRE",nom);
+            sentenciaSQL=sentenciaSQL.replace("DOMICILIO",dom);
 
             base.execSQL(sentenciaSQL);//AQUI SE ESTA REALIZANDO EL INSERT
             //LA LINEA DE ARRIBA HACE TODO MENOS CONSULTAS
@@ -85,9 +89,10 @@ EditText identificador,nombre,domicilio;
         }
     }
     private void consultarDatos(){
+        id = identificador.getText().toString();
         try{
             SQLiteDatabase base =db.getReadableDatabase();//LECTURA PORQUE ES CONSULTA, no es subsetible a daños
-            String sentenciaSQL = "SELECT * FROM PERSONA WHERE ID="+identificador.getText().toString();
+            String sentenciaSQL = "SELECT * FROM PERSONA WHERE ID="+id;
             //ejecuta una sensentencia especificamente en un query un query es un select y te regrese un objeto
             //tipo cursor
            Cursor resultadoConsulta = base.rawQuery(sentenciaSQL,null);
