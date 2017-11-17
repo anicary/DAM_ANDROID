@@ -16,7 +16,7 @@ if (!$conBD) {
   return;
 }
 
-$SQL ="INSERT INTO MOVILES VALUES('$modelo','$fabricante','descripcion',$precio,$ram)";
+$SQL ="INSERT INTO id165952_dadm.moviles VALUES('$modelo','$fabricante','descripcion',$precio,$ram)";
 $respuesta = mysqli_query($con,$SQL);
 if ($respuesta) {
   echo "Se inserto correctamente el registro";
