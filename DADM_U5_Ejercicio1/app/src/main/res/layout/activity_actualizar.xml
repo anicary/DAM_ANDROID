@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="mx.edu.ittepic.dadm_u5_ejercicio1.actualizar">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="MODELO A ACTUALIZAR"
+        android:id="@+id/clave"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="buscar"
+        android:id="@+id/buscar"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fabricante"
+        android:hint="FABRICANTE SE OBTENDRA TRAS CONSULTA"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/descripcion"
+        android:hint="DESCRIPCION SE OBTENDRA TRAS CONSULTA"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/precio"
+        android:hint="PRECIO SE OBTENDRA TRAS CONSULTA"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ram"
+        android:hint="RAM SE OBTENDRA TRAS CONSULTA"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="aplicar actualizacion"
+        android:id="@+id/aplicar"/>
+
+</LinearLayout>

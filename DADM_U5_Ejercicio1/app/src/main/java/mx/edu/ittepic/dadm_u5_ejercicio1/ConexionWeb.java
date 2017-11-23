@@ -18,18 +18,14 @@ import java.util.List;
 
 public class ConexionWeb extends AsyncTask<URL,String,String> {
     List<String[]> variables; //vector dinamico
-    MainActivity puntero;
-    ProgressDialog dialogo;
+    AsyncResponse delegado;
 
 
-    public ConexionWeb(MainActivity p){
-        puntero = p;
+    public ConexionWeb(AsyncResponse p){
+        delegado = p;
         variables = new ArrayList<>();
     }
 
-    public void onPreExecute(){
-        dialogo = ProgressDialog.show(puntero,"PROCESANDO...","CONECTANDO CON SERVIDOR");
-    }
 
     public void agregarVariables(String nombreVariable, String contenidoVariable){
         String[] temporal ={nombreVariable,contenidoVariable};
@@ -44,15 +40,11 @@ public class ConexionWeb extends AsyncTask<URL,String,String> {
                 //nombre                                    //juanaperez
             }
         }catch (Exception e){
-            Toast.makeText(puntero,"NO SE PUDO CONVERTIR A URL", Toast.LENGTH_LONG).show();
+
         }
         post=post.trim(); //qita los esácion es blancos antes y despues de la cadena
         post = post.replaceAll(" ","&");
         return post;
-    }
-    protected void onProgressUpdate(String... s){
-        //SIRVE PARA ESTAR ACTUALIZANDO EL PROGRESO
-        dialogo.setMessage(s[0]);
     }
 
     /*
@@ -102,11 +94,9 @@ public class ConexionWeb extends AsyncTask<URL,String,String> {
                 return "ERROR_400"; //en caso de que ocurra un error aqui cacha los errores en caso que sea diferente de 200
             }
         }catch (UnknownHostException e){
-            dialogo.dismiss();
             //la esepcion se disparara cuando escribiste mal la direccion web o cuando el server se caiga
             respuesta = "ERROR_404";
         }catch (IOException e){
-            dialogo.dismiss();
             //INPUTOUTPUT tiene que ver con el envio, se dispara cuando no se puede enviar o recibir datos
             respuesta = "ERROR_405";
         }finally {
@@ -119,8 +109,7 @@ public class ConexionWeb extends AsyncTask<URL,String,String> {
         return respuesta; //envia la respuesta del servidor leida anteriormente
     }
     public void onPostExecute(String r){
-        dialogo.dismiss();//PARA QUITARLO
-        puntero.etiqueta.setText(r); // es la que nos va a mostrar la contestacion del servidor
-        //ETIQUETA ESTA EN EL MAINACTIVITY DECLARADA
+      //REDIRECCIONAMIENTO AL METODO PROCESARRESPUESTA
+        delegado.procesarRespuesta(r);
     }
 }
