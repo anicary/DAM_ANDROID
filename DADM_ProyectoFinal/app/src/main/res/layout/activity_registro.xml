@@ -21,11 +21,18 @@
         android:gravity="center"
         android:fontFamily="monospace"/>
     </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="40dp"
-        android:layout_marginLeft="40dp"
         android:layout_marginTop="20dp">
         <EditText
             android:layout_width="300dp"
@@ -41,8 +48,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="40dp"
-        android:layout_marginLeft="40dp"
         android:layout_marginTop="10dp">
         <EditText
             android:layout_width="300dp"
@@ -50,7 +55,7 @@
             android:id="@+id/apellidoregistro"
             android:paddingLeft="30dp"
             android:background="@drawable/ovalo4"
-            android:hint="Ingrese su(s) apellido(s)"
+            android:hint="Ingrese su apellido"
             android:textColorHint="#000000"
             android:textColor="#000000"
             android:fontFamily="monospace"/>
@@ -58,13 +63,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="40dp"
-        android:layout_marginLeft="40dp"
         android:layout_marginTop="10dp">
         <EditText
             android:layout_width="300dp"
             android:layout_height="50dp"
-            android:inputType="textPassword"
             android:id="@+id/correoregistro"
             android:paddingLeft="30dp"
             android:background="@drawable/ovalo4"
@@ -76,12 +78,86 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="40dp"
-        android:layout_marginLeft="40dp"
         android:layout_marginTop="10dp">
        <Spinner
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"></Spinner>
+           android:layout_width="300dp"
+           android:layout_height="50dp"
+           android:paddingLeft="30dp"
+           android:id="@+id/sexoregistro"
+           android:background="@drawable/ovalo4"
+           android:entries="@array/opcion"></Spinner>
     </LinearLayout>
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:inputType="textPassword"
+            android:id="@+id/contraregistro"
+            android:paddingLeft="30dp"
+            android:background="@drawable/ovalo4"
+            android:hint="Ingrese su contraseña"
+            android:textColorHint="#000000"
+            android:textColor="#000000"
+            android:fontFamily="monospace"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:inputType="textPassword"
+            android:id="@+id/rcontraregistro"
+            android:paddingLeft="30dp"
+            android:background="@drawable/ovalo4"
+            android:hint="Repita su contraseña"
+            android:textColorHint="#000000"
+            android:textColor="#000000"
+            android:fontFamily="monospace"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+        <Spinner
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:paddingLeft="30dp"
+            android:id="@+id/estadoregistro"
+            android:background="@drawable/ovalo4"></Spinner>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+        <Spinner
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:paddingLeft="30dp"
+            android:id="@+id/municipioregistro"
+            android:background="@drawable/ovalo4"></Spinner>
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+            <Button
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:id="@+id/registro"
+                android:textStyle="bold"
+                android:background="@drawable/ovalo2"
+                android:text="REGISTRARSE"
+                android:gravity="center"
+                android:textColor="#FFFFFF"
+                android:fontFamily="monospace"
+                android:textSize="18dp"/>
+        </LinearLayout>
+    </LinearLayout>
+    </ScrollView>
 </LinearLayout>
+
