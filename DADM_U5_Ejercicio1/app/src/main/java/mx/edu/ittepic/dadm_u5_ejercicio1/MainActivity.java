@@ -2,10 +2,13 @@ package mx.edu.ittepic.dadm_u5_ejercicio1;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -90,16 +93,37 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse{
         dialog.dismiss();
         etiqueta.setText(r);
     }
-   private void realizarConsulta(String clave){
-        try{
-            conexionWeb = new ConexionWeb(this);
-            conexionWeb.agregarVariables("modelo", clave);
-            dialog=ProgressDialog.show(this,"ATENCION","CONSULTANDO...");
-            URL direcciopn = new URL("https://anicary.000webhostapp.com/movilesconsultar.php");
-            conexionWeb.execute(direcciopn);
+   private void realizarConsulta(String clave) {
+       try {
+           conexionWeb = new ConexionWeb(this);
+           conexionWeb.agregarVariables("modelo", clave);
+           dialog = ProgressDialog.show(this, "ATENCION", "CONSULTANDO...");
+           URL direcciopn = new URL("https://anicary.000webhostapp.com/movilesconsultar.php");
+           conexionWeb.execute(direcciopn);
 
-        }catch (MalformedURLException e){
-            Toast.makeText(MainActivity.this,e.getMessage(),Toast.LENGTH_LONG).show();
-        }
-    }
-}
+       } catch (MalformedURLException e) {
+           Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+       }
+   }
+       public boolean onCreateOptionsMenu(Menu m){
+           getMenuInflater().inflate(R.menu.menuopci,m);
+           return true;
+       }
+
+
+       public boolean onOptionsItemSelected(MenuItem mi){
+           switch (mi.getItemId()){
+               case R.id.insertar:
+                   Intent insert = new Intent(this,actualizar.class);
+                   startActivity(insert);
+                   break;
+               case R.id.consultar:
+                   Intent consult = new Intent(this,eliminar.class);
+                   startActivity(consult);
+                   break;
+           }
+           return true;
+       }
+
+   }
+
