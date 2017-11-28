@@ -38,7 +38,7 @@
         android:textColorHint="#FFFFFF"
         android:textStyle="bold"
         android:background="@drawable/ovalo"
-        android:hint="USUARIO"
+        android:hint="CORREO"
         android:gravity="center"
         android:textColor="#FFFFFF"
         android:fontFamily="monospace"/>

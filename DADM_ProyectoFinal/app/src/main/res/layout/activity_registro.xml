@@ -68,6 +68,7 @@
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:id="@+id/correoregistro"
+            android:inputType="textEmailAddress"
             android:paddingLeft="30dp"
             android:background="@drawable/ovalo4"
             android:hint="Ingrese su correo"
