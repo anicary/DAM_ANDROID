@@ -1,7 +1,9 @@
 package mx.edu.ittepic.dadm_proyectofinal;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,13 +11,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
-public class registro extends AppCompatActivity {
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+
+public class registro extends AppCompatActivity  implements AsyncResponse{
     EditText rnombre,rapellido,rcorreo,rcontrasena,rrcontrasena;
     String name,apell,mail,passw,passw2,datos="";
     Spinner sexo,estado,municipio;
     Button registrarse;
-
+    ConexionWeb conexionWeb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,8 +42,6 @@ public class registro extends AppCompatActivity {
         estado = (Spinner)findViewById(R.id.estadoregistro);
         municipio = (Spinner)findViewById(R.id.municipioregistro);
 
-
-
         registrarse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -46,6 +53,18 @@ public class registro extends AppCompatActivity {
                 if (!name.equals("") || !apell.equals("") || !mail.equals("") || !passw.equals("") || !passw2.equals("")){
                     //TODO PENDIENTE
                     if (passw.equals(passw2)){
+                        try{
+                            conexionWeb = new ConexionWeb(registro.this);
+                            conexionWeb.agregarVariables("nombre",name);
+                            conexionWeb.agregarVariables("apellidos",apell);
+                            conexionWeb.agregarVariables("correo",mail);
+                            conexionWeb.agregarVariables("contrasena",passw);
+                            URL direccion = new URL("http://carolina.x10host.com/index.php/Sistema/registro_usuario");
+                            conexionWeb.execute(direccion);
+                        }catch (MalformedURLException e){
+                            Toast.makeText(registro.this,e.getMessage(),Toast.LENGTH_LONG).show();
+
+                        }
                     }else{
                         datos+="LAS CONTRASEÑAS NO COINCIDEN";
                         AlertDialog.Builder alerta = new AlertDialog.Builder(registro.this);
@@ -89,5 +108,23 @@ public class registro extends AppCompatActivity {
                 }
             }
         });
+    }
+    @Override
+    public void procesarRespuesta(String r) {
+
+        try{
+            JSONArray arrayjson = new JSONArray(r);
+            for(int i = 0; i < arrayjson.length(); i++){
+                SharedPreferences.Editor editor = getSharedPreferences("INFO_USUARIO", MODE_PRIVATE).edit();
+                editor.putString("nombre",arrayjson.getJSONObject(i).getString("nombre"));
+                editor.putString("apellidos",arrayjson.getJSONObject(i).getString("apellidos"));
+                editor.putInt("idusuarios",Integer.parseInt(arrayjson.getJSONObject(i).getString("idusuarios")));
+                editor.apply();
+                Intent Ventanaregistro = new Intent(registro.this,Inicio.class);
+                startActivity(Ventanaregistro);
+            }
+        }catch (JSONException e){
+            Toast.makeText(registro.this,e.getMessage(),Toast.LENGTH_LONG).show();
+        }
     }
 }

@@ -1,0 +1,24 @@
+{
+	"sProcessing":     "Procesando...",
+	"sLengthMenu":     "Mostrar _MENU_ usuarios",
+	"sZeroRecords":    "No se encontraron resultados",
+	"sEmptyTable":     "Ningún usuario disponible en esta tabla",
+	"sInfo":           "Mostrando usuarios del _START_ al _END_ de un total <br> de _TOTAL_ usuarios",
+	"sInfoEmpty":      "Mostrando usuarios del 0 al 0 de un total de <br> 0 usuarios",
+	"sInfoFiltered":   "(filtrado de un total de _MAX_ usuarios)",
+	"sInfoPostFix":    "",
+	"sSearch":         "Buscar:",
+	"sUrl":            "",
+	"sInfoThousands":  ",",
+	"sLoadingRecords": "Cargando...",
+	"oPaginate": {
+		"sFirst":    "Primero",
+		"sLast":     "Último",
+		"sNext":     "Siguiente <i class='fa fa-forward' aria-hidden='true'></i>",
+		"sPrevious": "<i class='fa fa-backward' aria-hidden='true'></i> Anterior"
+	},
+	"oAria": {
+		"sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+		"sSortDescending": ": Activar para ordenar la columna de manera descendente"
+	}
+}

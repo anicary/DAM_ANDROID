@@ -35,10 +35,8 @@ public class Inicio extends AppCompatActivity {
             public void onClick(View view) {
                 user=usuario.getText().toString();
                 password=contraseña.getText().toString();
-
                 if (!user.equals("") && !password.equals("")){
-                    Intent Ventanaregistro = new Intent(Inicio.this,registro.class);
-                    startActivity(Ventanaregistro);
+
                 }else{
                     AlertDialog.Builder alerta = new AlertDialog.Builder(Inicio.this);
                     alerta.setTitle("ATENCION")
@@ -51,9 +49,15 @@ public class Inicio extends AppCompatActivity {
                                 }
                             }).show();
                 }
+            }
+        });
+        registro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent Ventanaregistro = new Intent(Inicio.this,registro.class);
+                startActivity(Ventanaregistro);
 
             }
         });
-
     }
 }
