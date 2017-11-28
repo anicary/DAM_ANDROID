@@ -36,6 +36,8 @@ public class Inicio extends AppCompatActivity {
                 user=usuario.getText().toString();
                 password=contraseña.getText().toString();
                 if (!user.equals("") && !password.equals("")){
+                    Intent Ventanaregistro = new Intent(Inicio.this,MainActivity.class);
+                    startActivity(Ventanaregistro);
 
                 }else{
                     AlertDialog.Builder alerta = new AlertDialog.Builder(Inicio.this);
