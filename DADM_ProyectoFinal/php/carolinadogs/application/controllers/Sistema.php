@@ -21,7 +21,7 @@ class Sistema extends CI_Controller {
 	}
 	public function menu_sistema()
 	{
-		$this->load->view('inicio');
+		$this->load->view('menu');
 	}
 	public function registro_usuario()
 	{
@@ -39,14 +39,33 @@ class Sistema extends CI_Controller {
 				'municipio' =>"Tepic"
 			);
 			$correo=$this->input->post('correo');
-			$contrasena=sha1($this->input->post('contrasena'));
-			$this->Usuarios->insertarUsuario($datos);
-			$datos=$this->Usuarios->loginusuario($correo,$contrasena);
-			$this->Usuarios->actualizarultima_sesion($datos[0]->idusuarios,"".date('Y-m-d H:i:s'));
-			echo json_encode($datos);
+			if(!$this->Usuarios->verificarCorreo($correo)){
+				$contrasena=sha1($this->input->post('contrasena'));
+				$this->Usuarios->insertarUsuario($datos);
+				$datos=$this->Usuarios->loginusuario($correo,$contrasena);
+				if ($datos) {
+					$this->Usuarios->actualizarultima_sesion($datos[0]->idusuarios,"".date('Y-m-d H:i:s'));
+					echo json_encode($datos);
+				}
+			}else {
+				echo "duplicado";
+			}
 		}
 		// $datos=$this->Usuarios->loginusuario('caro@mail.com',sha1("Carolina21"));
 		// $this->Usuarios->actualizarultima_sesion($datos[0]->idusuarios,"".date('Y-m-d H:i:s'));
 		// echo json_encode($datos);
+	}
+	public function usuarios()
+	{
+		$this->load->view('usuarios');
+
+	}
+	public function salir() {
+		if ($this->session->userdata('tipo')=='1') {
+			$this->session->sess_destroy();
+			redirect(base_url().'index.php/');
+		}else {
+			redirect(base_url().'index.php');
+		}
 	}
 }

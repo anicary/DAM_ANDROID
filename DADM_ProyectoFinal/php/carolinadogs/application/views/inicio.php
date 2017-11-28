@@ -17,11 +17,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<link href="<?php echo base_url(); ?>css/animate.css" type="text/css" rel="stylesheet" />
 	<link href="<?php echo base_url(); ?>css/fontello.css" type="text/css" rel="stylesheet" />
 	<link href="<?php echo base_url(); ?>css/perritoslogin.css" type="text/css" rel="stylesheet" />
-	<style>
-	.html{
-		overflow-y: hidden;
-	}
-	</style>
 </head>
 <body>
 	<div class="row">

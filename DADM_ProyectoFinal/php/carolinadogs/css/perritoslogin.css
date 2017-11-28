@@ -1,4 +1,8 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
+body{
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
 .form input {
   font-family: "Roboto", sans-serif;
   outline: 0;
