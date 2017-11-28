@@ -111,20 +111,34 @@ public class registro extends AppCompatActivity  implements AsyncResponse{
     }
     @Override
     public void procesarRespuesta(String r) {
-
-        try{
-            JSONArray arrayjson = new JSONArray(r);
-            for(int i = 0; i < arrayjson.length(); i++){
-                SharedPreferences.Editor editor = getSharedPreferences("INFO_USUARIO", MODE_PRIVATE).edit();
-                editor.putString("nombre",arrayjson.getJSONObject(i).getString("nombre"));
-                editor.putString("apellidos",arrayjson.getJSONObject(i).getString("apellidos"));
-                editor.putInt("idusuarios",Integer.parseInt(arrayjson.getJSONObject(i).getString("idusuarios")));
-                editor.apply();
-                Intent Ventanaregistro = new Intent(registro.this,Inicio.class);
-                startActivity(Ventanaregistro);
+        if(r.equals("duplicado")){
+            AlertDialog.Builder alerta = new AlertDialog.Builder(registro.this);
+            alerta.setTitle("ATENCION")
+                    .setMessage("EL CORREO YA ESTA REGISTRADO POR OTRO USUARIO.")
+                    .setIcon(R.drawable.ic_error_black_24dp)
+                    .setPositiveButton("ENTENDIDO", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int i) {
+                            dialog.dismiss();
+                        }
+                    }).show();
+        }else
+        {
+            try{
+                JSONArray arrayjson = new JSONArray(r);
+                for(int i = 0; i < arrayjson.length(); i++){
+                    SharedPreferences.Editor editor = getSharedPreferences("INFO_USUARIO", MODE_PRIVATE).edit();
+                    editor.putString("nombre",arrayjson.getJSONObject(i).getString("nombre"));
+                    editor.putString("apellidos",arrayjson.getJSONObject(i).getString("apellidos"));
+                    editor.putInt("idusuarios",Integer.parseInt(arrayjson.getJSONObject(i).getString("idusuarios")));
+                    editor.apply();
+                    Intent Ventanaregistro = new Intent(registro.this,Inicio.class);
+                    startActivity(Ventanaregistro);
+                }
+            }catch (JSONException e){
+                Toast.makeText(registro.this,e.getMessage(),Toast.LENGTH_LONG).show();
             }
-        }catch (JSONException e){
-            Toast.makeText(registro.this,e.getMessage(),Toast.LENGTH_LONG).show();
         }
+
     }
 }
