@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="opcion2">
+        <item>HEMBRA</item>
+        <item>MACHO</item>
+    </string-array>
+</resources>

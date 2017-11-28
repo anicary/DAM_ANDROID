@@ -1,9 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/fondomas"
     tools:context="mx.edu.ittepic.dadm_proyectofinal.agregar_mascota">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="AGREGAR MASCOTA"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:gravity="center"
+            android:fontFamily="monospace"/>
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="40dp"
+        android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:id="@+id/nombremascota"
+            android:paddingLeft="30dp"
+            android:background="@drawable/ovalo4"
+            android:hint="Nombre mascota"
+            android:textColorHint="#000000"
+            android:textColor="#000000"
+            android:fontFamily="monospace"/>
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+            <Spinner
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:paddingLeft="30dp"
+                android:entries="@array/opcion2"
+                android:id="@+id/sexomascota"
+                android:background="@drawable/ovalo4"></Spinner>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+            <EditText
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:inputType="number"
+                android:id="@+id/edadmascota"
+                android:paddingLeft="30dp"
+                android:background="@drawable/ovalo4"
+                android:hint="Edad mascota"
+                android:textColorHint="#000000"
+                android:textColor="#000000"
+                android:fontFamily="monospace"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+            <Spinner
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:paddingLeft="30dp"
+                android:id="@+id/tipomascota"
+                android:background="@drawable/ovalo4"></Spinner>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+            <Spinner
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:paddingLeft="30dp"
+                android:id="@+id/razamascota"
+                android:background="@drawable/ovalo4"></Spinner>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+            <Button
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:id="@+id/agregar"
+                android:textStyle="bold"
+                android:background="@drawable/ovalo2"
+                android:text="AGREGAR"
+                android:gravity="center"
+                android:textColor="#FFFFFF"
+                android:fontFamily="monospace"
+                android:textSize="18dp"/>
+        </LinearLayout>
+    </LinearLayout>
+    </ScrollView>
 
-</android.support.constraint.ConstraintLayout>
+
+</LinearLayout>
