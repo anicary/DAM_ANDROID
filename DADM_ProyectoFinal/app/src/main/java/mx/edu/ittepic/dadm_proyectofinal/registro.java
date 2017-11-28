@@ -132,7 +132,7 @@ public class registro extends AppCompatActivity  implements AsyncResponse{
                     editor.putString("apellidos",arrayjson.getJSONObject(i).getString("apellidos"));
                     editor.putInt("idusuarios",Integer.parseInt(arrayjson.getJSONObject(i).getString("idusuarios")));
                     editor.apply();
-                    Intent Ventanaregistro = new Intent(registro.this,Inicio.class);
+                    Intent Ventanaregistro = new Intent(registro.this,MainActivity.class);
                     startActivity(Ventanaregistro);
                 }
             }catch (JSONException e){
