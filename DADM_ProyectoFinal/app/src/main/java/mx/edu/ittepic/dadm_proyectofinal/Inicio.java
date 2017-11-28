@@ -1,6 +1,8 @@
 package mx.edu.ittepic.dadm_proyectofinal;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +14,7 @@ import android.widget.EditText;
 public class Inicio extends AppCompatActivity {
     Button registro, inicio;
     EditText usuario,contraseña;
+    String user,password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,11 +30,28 @@ public class Inicio extends AppCompatActivity {
         usuario = (EditText) findViewById(R.id.usuario);
         contraseña = (EditText) findViewById(R.id.contrasena);
 
-        registro.setOnClickListener(new View.OnClickListener() {
+        inicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent Ventanaregistro = new Intent(Inicio.this,registro.class);
-                startActivity(Ventanaregistro);
+                user=usuario.getText().toString();
+                password=contraseña.getText().toString();
+
+                if (!user.equals("") && !password.equals("")){
+                    Intent Ventanaregistro = new Intent(Inicio.this,registro.class);
+                    startActivity(Ventanaregistro);
+                }else{
+                    AlertDialog.Builder alerta = new AlertDialog.Builder(Inicio.this);
+                    alerta.setTitle("ATENCION")
+                            .setMessage("HAY CAMPOS VACIOS")
+                            .setIcon(R.drawable.ic_error_black_24dp)
+                            .setPositiveButton("ENTENDIDO", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int i) {
+                                    dialog.dismiss();
+                                }
+                            }).show();
+                }
+
             }
         });
 

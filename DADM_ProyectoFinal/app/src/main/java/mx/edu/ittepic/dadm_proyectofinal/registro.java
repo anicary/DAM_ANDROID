@@ -1,5 +1,8 @@
 package mx.edu.ittepic.dadm_proyectofinal;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +12,7 @@ import android.widget.Spinner;
 
 public class registro extends AppCompatActivity {
     EditText rnombre,rapellido,rcorreo,rcontrasena,rrcontrasena;
+    String name,apell,mail,passw,passw2,datos="";
     Spinner sexo,estado,municipio;
     Button registrarse;
 
@@ -29,11 +33,59 @@ public class registro extends AppCompatActivity {
         estado = (Spinner)findViewById(R.id.estadoregistro);
         municipio = (Spinner)findViewById(R.id.municipioregistro);
 
+
+
         registrarse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (rnombre !=null){
+                name=rnombre.getText().toString();
+                apell=rapellido.getText().toString();
+                mail=rcorreo.getText().toString();
+                passw=rcontrasena.getText().toString();
+                passw2=rrcontrasena.getText().toString();
+                if (!name.equals("") || !apell.equals("") || !mail.equals("") || !passw.equals("") || !passw2.equals("")){
+                    //TODO PENDIENTE
+                    if (passw.equals(passw2)){
+                    }else{
+                        datos+="LAS CONTRASEÑAS NO COINCIDEN";
+                        AlertDialog.Builder alerta = new AlertDialog.Builder(registro.this);
+                        alerta.setTitle("ATENCION")
+                                .setMessage("LAS CONTRASEÑAS NO COINCIDEN")
+                                .setIcon(R.drawable.ic_error_black_24dp)
+                                .setPositiveButton("ENTENDIDO", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int i) {
+                                        dialog.dismiss();
+                                    }
+                                }).show();
+                    }
 
+                }else{
+                    if (name.equals("") || name.equals(" ")){
+                        datos+="\n EL NOMBRE ESTA VACIO";
+                    }
+                    if (apell.equals("") || apell.equals(" ")){
+                        datos+="\n El APELLIDO ESTA VACIO";
+                    }
+                    if (mail.equals("") || mail.equals(" ")){
+                        datos+="\n El CORREO ESTA VACIO";
+                    }
+                    if (passw.equals("")|| passw.equals(" ")){
+                        datos+="\n LA CONTRASEÑA ESTA VACIA";
+                    }
+                    if (passw2.equals("") || passw2.equals(" ")){
+                        datos+="\n ES NECESARIO REPETIR LA CONTRASEÑA";
+                    }
+                   AlertDialog.Builder alerta2 = new AlertDialog.Builder(registro.this);
+                    alerta2.setTitle("ATENCION")
+                            .setMessage("LOS SIGUIENTES CAMPOS ESTAN VACIOS  "+datos)
+                            .setIcon(R.drawable.ic_error_black_24dp)
+                            .setPositiveButton("ENTENDIDO", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int i) {
+                                    dialog.dismiss();
+                                }
+                            }).show();
                 }
             }
         });
