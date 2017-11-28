@@ -25,11 +25,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<div class="card">
 					<div class="card-body">
 						<div class="row">
-							<div class="col-md-9">
+							<div class="col-md-7">
 								<h4 class="card-title"><i class="fa fa-server" aria-hidden="true"></i> MENU ADMINISTRACION</h4>
 							</div>
-							<div class="col-md-3">
-								<a class="btn btn-danger"  href="<?php echo base_url(); ?>index.php/Sistema/salir"><i class="fa fa-sign-out" aria-hidden="true"></i> CERRAR SESION</a>
+							<div class="col-md-5">
+								<a class="btn btn-danger"  href="<?php echo base_url(); ?>index.php/Sistema/salir"><i class="fa fa-sign-out" aria-hidden="true"></i> <?php echo "".$this->session->userdata('nombre'); ?> CERRAR SESION</a>
 							</div>
 						</div>
 						<div class="row">

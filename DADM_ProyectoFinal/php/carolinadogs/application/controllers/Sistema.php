@@ -9,27 +9,55 @@ class Sistema extends CI_Controller {
 	}
 	public function index()
 	{
-		$this->load->view('inicio');
+		if ($this->session->userdata('tipo')=='1') {
+			redirect(base_url().'index.php/Sistema/menu_sistema');
+		}else {
+			$this->load->view('inicio');
+		}
 	}
 	public function inicio_sesion()
 	{
 		$correo_usuario = $this->input->post('correo');
 		$contrasena= sha1($this->input->post('contrasena'));
 		$datosusuario=$this->Usuarios->loginusuario($correo_usuario,$contrasena);
-		if ($datosusuario == TRUE) {
+		if ($datosusuario) {
 			$datos = array(
 				'is_logued_in' => TRUE,
 				'idusuarios' => $datosusuario[0]->idusuarios,
 				'nombre' =>$datosusuario[0]->nombre." ".$datosusuario[0]->apellidos,
-				'correo' => $verificarusuario[0]->correo,
-				'tipo' => $verificarusuario[0]->tipo,
+				'correo' => $datosusuario[0]->correo,
+				'tipo' => $datosusuario[0]->tipo,
 			);
-		$this->Usuarios->actualizarultima_sesion($datosusuario[0]->idusuarios,"".date('Y-m-d H:i:s'));
-		redirect(base_url().'index.php/Sistema/menu_sistema');
+			$this->session->set_userdata($datos);
+			$this->Usuarios->actualizarultima_sesion($datosusuario[0]->idusuarios,"".date('Y-m-d H:i:s'));
+			redirect(base_url().'index.php/Sistema/menu_sistema');
+		}else {
+		$this->load->view('inicio');
+		}
+	}
+	public function inicio_sesion_android()
+	{
+		$correo_usuario = $this->input->post('correo');
+		$contrasena= sha1($this->input->post('contrasena'));
+		$datosusuario=$this->Usuarios->loginusuario($correo_usuario,$contrasena);
+		if ($datosusuario) {
+			if($datosusuario[0]->estado != 0){
+				$this->Usuarios->actualizarultima_sesion($datosusuario[0]->idusuarios,"".date('Y-m-d H:i:s'));
+				 echo json_encode($datosusuario);
+			}else {
+				echo "usuario-desactivado";
+			}
+		}else {
+		 echo "error-inicio";
+		}
 	}
 	public function menu_sistema()
 	{
-		$this->load->view('menu');
+		if ($this->session->userdata('tipo')=='1') {
+			$this->load->view('menu');
+		}else {
+	redirect(base_url().'index.php');
+		}
 	}
 	public function registro_usuario()
 	{
@@ -59,15 +87,15 @@ class Sistema extends CI_Controller {
 				echo "duplicado";
 			}
 		}
-		// $datos=$this->Usuarios->loginusuario('caro@mail.com',sha1("Carolina21"));
-		// $this->Usuarios->actualizarultima_sesion($datos[0]->idusuarios,"".date('Y-m-d H:i:s'));
-		// echo json_encode($datos);
 	}
 	public function usuarios()
 	{
-		$datos["USUARIOS"]=$this->Usuarios->cargarUsuarios();
-		$this->load->view('usuarios',$datos);
-
+		if ($this->session->userdata('tipo')=='1') {
+			$datos["USUARIOS"]=$this->Usuarios->cargarUsuarios();
+			$this->load->view('usuarios',$datos);
+		}else {
+			redirect(base_url().'index.php');
+		}
 	}
 	public function salir() {
 		if ($this->session->userdata('tipo')=='1') {
