@@ -41,7 +41,7 @@ class Sistema extends CI_Controller {
 		$contrasena= sha1($this->input->post('contrasena'));
 		$datosusuario=$this->Usuarios->loginusuario($correo_usuario,$contrasena);
 		if ($datosusuario) {
-			if($datosusuario[0]->estado != 0){
+			if($datosusuario[0]->activo != 0){
 				$this->Usuarios->actualizarultima_sesion($datosusuario[0]->idusuarios,"".date('Y-m-d H:i:s'));
 				 echo json_encode($datosusuario);
 			}else {
