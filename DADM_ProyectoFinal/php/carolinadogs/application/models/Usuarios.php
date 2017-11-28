@@ -46,4 +46,14 @@ class Usuarios extends CI_Model {
         return false;
     }
   }
+  public function cargarUsuarios()
+  {
+    $DBcon = $this->load->database('default', TRUE);
+    $query=$DBcon->query("SELECT * FROM usuarios");
+    if ($query->num_rows() > 0) {
+        return $query->result();
+    } else {
+        return false;
+    }
+  }
 }

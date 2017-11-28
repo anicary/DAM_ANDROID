@@ -26,13 +26,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<div class="card-body">
 						<div class="row">
 							<div class="col-md-9">
-								<h4 class="card-title">MENU ADMINISTRACION</h4>
+								<h4 class="card-title"><i class="fa fa-server" aria-hidden="true"></i> MENU ADMINISTRACION</h4>
 							</div>
 							<div class="col-md-3">
 								<a class="btn btn-danger"  href="<?php echo base_url(); ?>index.php/Sistema/salir"><i class="fa fa-sign-out" aria-hidden="true"></i> CERRAR SESION</a>
 							</div>
 						</div>
-
 						<div class="row">
 							<div class="col-md-6">
 								<a href="<?php echo base_url(); ?>index.php/Sistema/usuarios">

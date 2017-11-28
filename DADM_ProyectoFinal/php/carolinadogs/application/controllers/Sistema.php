@@ -15,8 +15,16 @@ class Sistema extends CI_Controller {
 	{
 		$correo_usuario = $this->input->post('correo');
 		$contrasena= sha1($this->input->post('contrasena'));
-		$datos=$this->Usuarios->loginusuario($correo_usuario,$contrasena);
-		$this->Usuarios->actualizarultima_sesion($datos[0]->idusuarios,"".date('Y-m-d H:i:s'));
+		$datosusuario=$this->Usuarios->loginusuario($correo_usuario,$contrasena);
+		if ($datosusuario == TRUE) {
+			$datos = array(
+				'is_logued_in' => TRUE,
+				'idusuarios' => $datosusuario[0]->idusuarios,
+				'nombre' =>$datosusuario[0]->nombre." ".$datosusuario[0]->apellidos,
+				'correo' => $verificarusuario[0]->correo,
+				'tipo' => $verificarusuario[0]->tipo,
+			);
+		$this->Usuarios->actualizarultima_sesion($datosusuario[0]->idusuarios,"".date('Y-m-d H:i:s'));
 		redirect(base_url().'index.php/Sistema/menu_sistema');
 	}
 	public function menu_sistema()
@@ -39,7 +47,7 @@ class Sistema extends CI_Controller {
 				'municipio' =>"Tepic"
 			);
 			$correo=$this->input->post('correo');
-			if(!$this->Usuarios->verificarCorreo($correo)){
+			if($this->Usuarios->verificarCorreo($correo)==false){
 				$contrasena=sha1($this->input->post('contrasena'));
 				$this->Usuarios->insertarUsuario($datos);
 				$datos=$this->Usuarios->loginusuario($correo,$contrasena);
@@ -57,7 +65,8 @@ class Sistema extends CI_Controller {
 	}
 	public function usuarios()
 	{
-		$this->load->view('usuarios');
+		$datos["USUARIOS"]=$this->Usuarios->cargarUsuarios();
+		$this->load->view('usuarios',$datos);
 
 	}
 	public function salir() {
