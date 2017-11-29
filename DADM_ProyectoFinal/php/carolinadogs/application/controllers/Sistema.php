@@ -32,7 +32,7 @@ class Sistema extends CI_Controller {
 			$this->Usuarios->actualizarultima_sesion($datosusuario[0]->idusuarios,"".date('Y-m-d H:i:s'));
 			redirect(base_url().'index.php/Sistema/menu_sistema');
 		}else {
-		$this->load->view('inicio');
+			$this->load->view('inicio');
 		}
 	}
 	public function inicio_sesion_android()
@@ -43,12 +43,12 @@ class Sistema extends CI_Controller {
 		if ($datosusuario) {
 			if($datosusuario[0]->activo != 0){
 				$this->Usuarios->actualizarultima_sesion($datosusuario[0]->idusuarios,"".date('Y-m-d H:i:s'));
-				 echo json_encode($datosusuario);
+				echo json_encode($datosusuario);
 			}else {
 				echo "usuario-desactivado";
 			}
 		}else {
-		 echo "error-inicio";
+			echo "error-inicio";
 		}
 	}
 	public function menu_sistema()
@@ -56,7 +56,7 @@ class Sistema extends CI_Controller {
 		if ($this->session->userdata('tipo')=='1') {
 			$this->load->view('menu');
 		}else {
-	redirect(base_url().'index.php');
+			redirect(base_url().'index.php');
 		}
 	}
 	public function registro_usuario()
@@ -71,8 +71,8 @@ class Sistema extends CI_Controller {
 				'tipo' => 2,
 				'activo' => 1,
 				'fecha_creacion' => date('Y-m-d H:i:s'),
-				'estado' => "Nayarit",
-				'municipio' =>"Tepic"
+				'estado' => $this->input->post('estado'),
+				'municipio' =>$this->input->post('municipio')
 			);
 			$correo=$this->input->post('correo');
 			if($this->Usuarios->verificarCorreo($correo)==false){
