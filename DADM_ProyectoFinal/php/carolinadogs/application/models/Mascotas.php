@@ -14,7 +14,7 @@ class Mascotas extends CI_Model {
     public function obtenerUltmas()
     {
       $DBcon = $this->load->database('default', TRUE);
-      $query=$DBcon->query("SELECT MAX(idmascota) FROM mascota");
+      $query=$DBcon->query("SELECT MAX(idmascota) as maximo FROM mascota");
       if ($query->num_rows() > 0) {
           return $query->result();
       } else {

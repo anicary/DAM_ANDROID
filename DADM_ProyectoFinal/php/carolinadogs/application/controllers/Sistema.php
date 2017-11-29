@@ -125,11 +125,10 @@ class Sistema extends CI_Controller {
 			$tempId = $this->Mascotas->obtenerUltmas();
 			$datos2= array(
 				'usuarios_idusuarios' => $this->input->post('idusuarios'),
-				'mascota_idmascota' =>$tempId[0]->idmascota,
+				'mascota_idmascota' =>$tempId[0]->maximo,
 						'fecha_agregado' =>date('Y-m-d H:i:s')
 			);
 			$this->Mascotas->insertarMascotasRelacion($datos2);
-
 		}
 	}
 }
