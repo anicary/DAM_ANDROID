@@ -22,6 +22,7 @@
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:background="@drawable/ovalo5"
+            android:id="@+id/nombreperfil"
             android:text="Nombre"
             android:gravity="center"
             android:textSize="20dp"
@@ -51,6 +52,7 @@
                 android:layout_width="300dp"
                 android:layout_height="50dp"
                 android:background="@drawable/ovalo5"
+                android:id="@+id/apellidoperfil"
                 android:text="Apellido"
                 android:gravity="center"
                 android:textSize="20dp"
@@ -79,6 +81,7 @@
             <TextView
                 android:layout_width="300dp"
                 android:layout_height="50dp"
+                android:id="@+id/correoperfil"
                 android:background="@drawable/ovalo5"
                 android:text="Correo"
                 android:gravity="center"
