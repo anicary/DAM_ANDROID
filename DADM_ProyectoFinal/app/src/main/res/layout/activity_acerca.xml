@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondoacerca"
     tools:context="mx.edu.ittepic.dadm_proyectofinal.acerca"
-    android:orientation="vertical"
-     android:background="@drawable/fondoacerca">
+    android:orientation="vertical">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -55,23 +55,6 @@
                 android:fontFamily="sans-serif-condensed"
                 android:textColor="#b35bdf"
                 android:textStyle="bold"
-                android:layout_gravity="center"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Instituto Tecnologico de Tepic"
-                android:layout_marginTop="30dp"
-                android:textSize="20dp"
-                android:fontFamily="sans-serif-condensed"
-                android:textColor="#000000"
-                android:textStyle="bold"
-                android:layout_gravity="center"/>
-            <ImageView
-                android:id="@+id/tec"
-                android:layout_width="164dp"
-                android:layout_height="176dp"
-                android:src="@drawable/tec"
                 android:layout_gravity="center"/>
             <TextView
                 android:layout_width="wrap_content"

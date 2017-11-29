@@ -24,7 +24,7 @@
             android:icon="@drawable/ic_mood_black_24dp"
             android:title="DESESTRESATE" />
         <item
-            android:id="@+id/nav_acerca"
+            android:id="@+id/nav_de"
             android:icon="@drawable/ic_live_help_black_24dp"
             android:title="ACERCA DE..." />
         <item

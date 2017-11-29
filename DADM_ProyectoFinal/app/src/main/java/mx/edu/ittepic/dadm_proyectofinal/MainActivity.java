@@ -103,9 +103,9 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         if (id == R.id.nav_perfil) {
             Intent perfil = new Intent(MainActivity.this, Perfil.class);
             startActivity(perfil);
-        } else if (id == R.id.nav_acerca) {
-            Intent acerca = new Intent(MainActivity.this, acerca.class);
-            startActivity(acerca);
+        } else if (id == R.id.nav_de) {
+            Intent acde = new Intent(MainActivity.this, acerca.class);
+            startActivity(acde);
 
         } else if (id == R.id.nav_sesion) {
 
