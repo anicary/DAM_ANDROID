@@ -148,6 +148,16 @@ public class Inicio extends AppCompatActivity implements AsyncResponse {
         SQLiteDatabase base = dbinterna.getReadableDatabase();
         Cursor c = base.rawQuery("SELECT * FROM usuario", null);
         if(c.getCount()>0){
+            while (c.moveToNext()) {
+                SharedPreferences.Editor editor = getSharedPreferences("INFO_USUARIO", MODE_PRIVATE).edit();
+                editor.putString("nombre",c.getString(1));
+        /*    editor.putString("apellidos",arrayjson.getJSONObject(i).getString("apellidos"));
+            editor.putString("correo",arrayjson.getJSONObject(i).getString("correo"));
+            editor.putInt("idusuarios",Integer.parseInt(arrayjson.getJSONObject(i).getString("idusuarios")));*/
+                editor.apply();
+            }
+
+
             return true;
         }else
         {

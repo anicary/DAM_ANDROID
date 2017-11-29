@@ -87,6 +87,7 @@ public class registro extends AppCompatActivity implements AsyncResponse {
                             conexionWeb.agregarVariables("correo", mail);
                             conexionWeb.agregarVariables("estado",  estado.getSelectedItem().toString());
                             conexionWeb.agregarVariables("municipio", municipio.getSelectedItem().toString());
+                            conexionWeb.agregarVariables("contrasena", passw);
                             URL direccion = new URL("http://carolina.x10host.com/index.php/Sistema/registro_usuario");
                             conexionWeb.execute(direccion);
                         } catch (MalformedURLException e) {
