@@ -92,6 +92,9 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_sesion) {
 
+        } else if(id ==R.id.nav_shake){
+            Intent shake = new Intent(MainActivity.this, Perfil.class);
+            startActivity(shake);
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

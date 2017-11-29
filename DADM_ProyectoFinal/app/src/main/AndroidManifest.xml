@@ -25,7 +25,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Perfil" />
         <activity android:name=".agregar_mascota" />
-        <activity android:name=".acerca"></activity>
+        <activity android:name=".acerca" />
+        <activity android:name=".desestres"></activity>
     </application>
 
 </manifest>
