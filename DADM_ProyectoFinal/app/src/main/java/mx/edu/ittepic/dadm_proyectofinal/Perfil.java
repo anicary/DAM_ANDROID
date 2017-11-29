@@ -17,9 +17,9 @@ public class Perfil extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil);
 
-        nombre=(TextView)findViewById(R.id.nombreperfil);
-        apellido=(TextView)findViewById(R.id.apellidoperfil);
-        correo=(TextView)findViewById(R.id.correoperfil);
+        nombre=(TextView)findViewById(R.id.vnombreperfil);
+        apellido=(TextView)findViewById(R.id.vapellidoperfil);
+        correo=(TextView)findViewById(R.id.vcorreoperfil);
 
         SharedPreferences prefs =
                 getSharedPreferences("INFO_USUARIO", Context.MODE_PRIVATE);
