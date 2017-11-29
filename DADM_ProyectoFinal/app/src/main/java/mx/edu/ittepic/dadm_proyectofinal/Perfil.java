@@ -23,7 +23,6 @@ public class Perfil extends AppCompatActivity {
         return true;
     }
 
-
     public boolean onOptionsItemSelected(MenuItem mi){
         switch (mi.getItemId()){
             case R.id.editar:
