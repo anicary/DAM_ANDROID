@@ -4,6 +4,8 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -36,7 +38,7 @@ public class registro extends AppCompatActivity implements AsyncResponse {
     Button registrarse;
     ConexionWeb conexionWeb;
     List<String[]> listtasMunicipios = new ArrayList<String[]>();
-
+    BDInterna dbinterna;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +49,7 @@ public class registro extends AppCompatActivity implements AsyncResponse {
         rcorreo = (EditText) findViewById(R.id.correoregistro);
         rcontrasena = (EditText) findViewById(R.id.contraregistro);
         rrcontrasena = (EditText) findViewById(R.id.rcontraregistro);
-
+        dbinterna = new BDInterna(registro.this, "baseinterna", null, 1);
         registrarse = (Button) findViewById(R.id.registro);
 
         sexo = (Spinner) findViewById(R.id.sexoregistro);
@@ -189,10 +191,22 @@ public class registro extends AppCompatActivity implements AsyncResponse {
                     if (arrayjson.getJSONObject(0).has("nombre")) {
                         for (int i = 0; i < arrayjson.length(); i++) {
                             SharedPreferences.Editor editor = getSharedPreferences("INFO_USUARIO", MODE_PRIVATE).edit();
-                            editor.putString("nombre", arrayjson.getJSONObject(i).getString("nombre"));
-                            editor.putString("apellidos", arrayjson.getJSONObject(i).getString("apellidos"));
-                            editor.putInt("idusuarios", Integer.parseInt(arrayjson.getJSONObject(i).getString("idusuarios")));
+                            editor.putString("nombre",arrayjson.getJSONObject(i).getString("nombre"));
+                            editor.putString("apellidos",arrayjson.getJSONObject(i).getString("apellidos"));
+                            editor.putString("correo",arrayjson.getJSONObject(i).getString("correo"));
+                            editor.putInt("idusuarios",Integer.parseInt(arrayjson.getJSONObject(i).getString("idusuarios")));
                             editor.apply();
+                            try {
+                                SQLiteDatabase base = dbinterna.getWritableDatabase();
+                                String query1 = "INSERT INTO usuario VALUES (idusuarios,'nombre','apellidos','correo')";
+                                query1 = query1.replace("idusuarios",arrayjson.getJSONObject(i).getString("idusuarios"));
+                                query1 = query1.replace("nombre", arrayjson.getJSONObject(i).getString("nombre"));
+                                query1 = query1.replace("apellidos",arrayjson.getJSONObject(i).getString("apellidos"));
+                                query1 = query1.replace("correo",arrayjson.getJSONObject(i).getString("correo"));
+                                base.execSQL(query1);
+                            }catch (SQLException e){
+                                Toast.makeText(registro.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                            }
                             Intent Ventanaregistro = new Intent(registro.this, MainActivity.class);
                             startActivity(Ventanaregistro);
                         }

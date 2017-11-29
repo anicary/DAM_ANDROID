@@ -126,7 +126,7 @@ public class Inicio extends AppCompatActivity implements AsyncResponse {
                         editor.apply();
                         try {
                             SQLiteDatabase base = dbinterna.getWritableDatabase();
-                            String query1 = "INSERT INTO orden_reparacion VALUES (idusuarios,'nombre','apellidos','correo')";
+                            String query1 = "INSERT INTO usuario VALUES (idusuarios,'nombre','apellidos','correo')";
                             query1 = query1.replace("idusuarios",arrayjson.getJSONObject(i).getString("idusuarios"));
                             query1 = query1.replace("nombre", arrayjson.getJSONObject(i).getString("nombre"));
                             query1 = query1.replace("apellidos",arrayjson.getJSONObject(i).getString("apellidos"));
