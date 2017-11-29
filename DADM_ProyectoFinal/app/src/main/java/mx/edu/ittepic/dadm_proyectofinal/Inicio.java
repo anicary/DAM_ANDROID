@@ -3,6 +3,9 @@ package mx.edu.ittepic.dadm_proyectofinal;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,6 +27,7 @@ public class Inicio extends AppCompatActivity implements AsyncResponse {
     EditText usuario,contraseña;
     String user,password;
     ConexionWeb conexionWeb;
+    BDInterna dbinterna;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +41,13 @@ public class Inicio extends AppCompatActivity implements AsyncResponse {
 
         usuario = (EditText) findViewById(R.id.usuario);
         contraseña = (EditText) findViewById(R.id.contrasena);
+
+        dbinterna = new BDInterna(Inicio.this, "baseinterna", null, 1);
+
+        if(verificarLogin()){
+            Intent Ventanaregistro = new Intent(Inicio.this,MainActivity.class);
+            startActivity(Ventanaregistro);
+        }
 
         inicio.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,8 +121,20 @@ public class Inicio extends AppCompatActivity implements AsyncResponse {
                         SharedPreferences.Editor editor = getSharedPreferences("INFO_USUARIO", MODE_PRIVATE).edit();
                         editor.putString("nombre",arrayjson.getJSONObject(i).getString("nombre"));
                         editor.putString("apellidos",arrayjson.getJSONObject(i).getString("apellidos"));
+                        editor.putString("correo",arrayjson.getJSONObject(i).getString("correo"));
                         editor.putInt("idusuarios",Integer.parseInt(arrayjson.getJSONObject(i).getString("idusuarios")));
                         editor.apply();
+                        try {
+                            SQLiteDatabase base = dbinterna.getWritableDatabase();
+                            String query1 = "INSERT INTO orden_reparacion VALUES (idusuarios,'nombre','apellidos','correo')";
+                            query1 = query1.replace("idusuarios",arrayjson.getJSONObject(i).getString("idusuarios"));
+                            query1 = query1.replace("nombre", arrayjson.getJSONObject(i).getString("nombre"));
+                            query1 = query1.replace("apellidos",arrayjson.getJSONObject(i).getString("apellidos"));
+                            query1 = query1.replace("correo",arrayjson.getJSONObject(i).getString("correo"));
+                            base.execSQL(query1);
+                        }catch (SQLException e){
+                            Toast.makeText(Inicio.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
                         Intent Ventanaregistro = new Intent(Inicio.this,MainActivity.class);
                         startActivity(Ventanaregistro);
                     }
@@ -120,5 +143,16 @@ public class Inicio extends AppCompatActivity implements AsyncResponse {
                 }
             }
         }
+    }
+    public boolean verificarLogin(){
+        SQLiteDatabase base = dbinterna.getReadableDatabase();
+        Cursor c = base.rawQuery("SELECT * FROM usuario", null);
+        if(c.getCount()>0){
+            return true;
+        }else
+        {
+            return false;
+        }
+
     }
 }

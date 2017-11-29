@@ -13,9 +13,7 @@ public class BDInterna  extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE usuario(idusuarios INTEGER, nombre VARCHAR(400), apellidos VARCHAR(400),correo VARCHAR(400));");
-
     }
-
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
 

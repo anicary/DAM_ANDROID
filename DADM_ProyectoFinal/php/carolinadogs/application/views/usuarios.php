@@ -22,7 +22,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 </head>
 <body>
-	<div class="container">
+	<div class="">
 		<div class="row">
 			<div class="col-md-12">
 				<div class="card">
@@ -97,7 +97,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 																		<div class="dropdown-menu">
 																			<a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Sistema/editarUsuario/<?php  echo $valores->idusuarios;?>"><i class="fa fa-pencil-square-o colorEditar" aria-hidden="true"></i> EDITAR</a>
 																			<?php
-																			if($valores->idusuarios >=1 && $valores->idusuarios<=11)
+																			if($valores->tipo ==1)
 																			{
 																				?>
 																				<?php
