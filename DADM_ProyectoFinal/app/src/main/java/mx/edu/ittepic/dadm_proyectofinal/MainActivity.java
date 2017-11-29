@@ -87,6 +87,8 @@ public class MainActivity extends AppCompatActivity
             Intent perfil = new Intent(MainActivity.this, Perfil.class);
             startActivity(perfil);
         } else if (id == R.id.nav_acerca) {
+            Intent acerca = new Intent(MainActivity.this, acerca.class);
+            startActivity(acerca);
 
         } else if (id == R.id.nav_sesion) {
 

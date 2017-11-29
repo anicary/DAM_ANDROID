@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="mx.edu.ittepic.dadm_proyectofinal.acerca"
-    android:orientation="vertical">
+    android:orientation="vertical"
+     android:background="@drawable/fondoacerca">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -26,7 +27,7 @@
                 android:layout_gravity="center"/>
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/caro"
                 android:layout_width="164dp"
                 android:layout_height="176dp"
                 android:src="@drawable/caro"
@@ -41,7 +42,7 @@
                 android:textStyle="bold"
                 android:layout_gravity="center"/>
             <ImageView
-                android:id="@+id/imageVie"
+                android:id="@+id/zulma"
                 android:layout_width="164dp"
                 android:layout_height="176dp"
                 android:src="@drawable/zulma"
@@ -72,12 +73,10 @@
                 android:layout_height="176dp"
                 android:src="@drawable/tec"
                 android:layout_gravity="center"/>
-
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="FLUFFY GAMES (C)"
+                android:text="PET WORLD (C)"
                 android:layout_marginTop="30dp"
                 android:textSize="20dp"
                 android:fontFamily="sans-serif-condensed"
@@ -89,4 +88,3 @@
     </ScrollView>
 </LinearLayout>
 
-</LinearLayout>
