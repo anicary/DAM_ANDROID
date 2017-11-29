@@ -88,6 +88,11 @@ class Sistema extends CI_Controller {
 			}
 		}
 	}
+	public function borrarUsuario($id)
+	{
+		$this->Usuarios->borrarUSUARIO($id);
+			redirect(base_url().'index.php/Sistema/usuarios');
+	}
 	public function usuarios()
 	{
 		if ($this->session->userdata('tipo')=='1') {

@@ -56,4 +56,9 @@ class Usuarios extends CI_Model {
         return false;
     }
   }
+  function borrarUSUARIO($usuario) {
+    $DB2 = $this->load->database('default', TRUE);
+    $DB2->where('idusuarios', $usuario );
+    $DB2->delete('usuarios');
+  }
 }

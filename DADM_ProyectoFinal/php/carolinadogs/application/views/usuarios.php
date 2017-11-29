@@ -44,6 +44,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 													<th>CORREO</th>
 													<th>TIPO DE USUARIO</th>
 													<th>ULTIMA CONEXION</th>
+													<th>LUGAR</th>
 													<th>ESTADO</th>
 													<th>OPCIONES</th>
 												</tr>
@@ -65,6 +66,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 																	<td colspan=""><i class="fa fa-user" aria-hidden="true"></i> NORMAL</td>
 																	<?php
 																} ?>
+																<td colspan=""><?php echo $valores->municipio .",". $valores->estado;?></td>
 																<td colspan=""><?php if($valores->ultima_conexion!=""){echo $valores->ultima_conexion;}else{echo "-";} ?></td>
 																<?php if($valores->estado =="1"){ ?>
 																	<td>
@@ -90,7 +92,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 																			<i class="fa fa-bars" aria-hidden="true"></i> OPCIONES
 																		</button>
 																		<div class="dropdown-menu">
-																			<a class="dropdown-item" href="<?php echo base_url(); ?>index.php/panel_administracion/editarUsuario/<?php  echo $valores->idusuarios;?>"><i class="fa fa-pencil-square-o colorEditar" aria-hidden="true"></i> EDITAR</a>
+																			<a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Sistema/editarUsuario/<?php  echo $valores->idusuarios;?>"><i class="fa fa-pencil-square-o colorEditar" aria-hidden="true"></i> EDITAR</a>
 																			<?php
 																			if($valores->idusuarios >=1 && $valores->idusuarios<=11)
 																			{
@@ -98,9 +100,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 																				<?php
 																			}else {
 																				?>
-																				<button  onclick="eliminarusuario(<?php  echo $valores->idusuarios;?>);" type="button" class="dropdown-item" data-toggle="modal" data-target="#modalEliminar">
+																				<a  href="<?php echo base_url(); ?>index.php/Sistema/borrarUsuario/<?php  echo $valores->idusuarios;?>" class="dropdown-item"  >
 																					<i class="fa fa-trash colorBorrar" aria-hidden="true"></i> ELIMINAR
-																				</button>
+																				</a>
 																				<?php
 																			}
 																			?>
