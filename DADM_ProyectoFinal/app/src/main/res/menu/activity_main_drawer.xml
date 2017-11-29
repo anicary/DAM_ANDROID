@@ -20,7 +20,7 @@
             android:icon="@drawable/ic_whatshot_black_24dp"
             android:title="TINDER PET" />
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/nav_acerca"
             android:icon="@drawable/ic_live_help_black_24dp"
             android:title="ACERCA DE..." />
         <item

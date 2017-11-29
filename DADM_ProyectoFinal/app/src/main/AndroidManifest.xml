@@ -14,6 +14,7 @@
         <activity android:name=".Inicio">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -23,7 +24,8 @@
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Perfil" />
-        <activity android:name=".agregar_mascota"></activity>
+        <activity android:name=".agregar_mascota" />
+        <activity android:name=".acerca"></activity>
     </application>
 
 </manifest>
