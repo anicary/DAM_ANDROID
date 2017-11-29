@@ -126,7 +126,7 @@ class Sistema extends CI_Controller {
 			$datos2= array(
 				'usuarios_idusuarios' => $this->input->post('idusuarios'),
 				'mascota_idmascota' => $this->input->post(''.$tempId[0]->idmascota),
-						'usuarios_idusuarios' =>date('Y-m-d H:i:s')
+						'fecha_agregado' =>date('Y-m-d H:i:s')
 			);
 			$this->Mascotas->insertarMascotasRelacion($datos2);
 
