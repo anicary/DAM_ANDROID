@@ -5,12 +5,22 @@ class Mascotas extends CI_Model {
     parent::__construct();
   }
 
-  public function insertarUsuario($datos)
+  public function insertarMascotas($datos)
   {
     $DB2 = $this->load->database('default', TRUE);
-    $DB2->insert('usuarios',$datos);
+    $DB2->insert('mascota',$datos);
   }
 
+    public function obtenerUltmas()
+    {
+      $DBcon = $this->load->database('default', TRUE);
+      $query=$DBcon->query("SELECT MAX(idmascota) FROM mascota");
+      if ($query->num_rows() > 0) {
+          return $query->result();
+      } else {
+          return false;
+      }
+    }
   public function cargarUsuarios()
   {
     $DBcon = $this->load->database('default', TRUE);

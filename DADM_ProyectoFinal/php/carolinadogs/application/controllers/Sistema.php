@@ -4,6 +4,7 @@ class Sistema extends CI_Controller {
 	function __construct() {
 		parent::__construct();
 		$this->load->model('Usuarios');
+		$this->load->model('Mascotas');
 		$this->load->helper(array('url', 'form'));
 		$this->load->library(array('session', 'form_validation'));
 	}
@@ -120,7 +121,14 @@ class Sistema extends CI_Controller {
 				'tipo_mascota_idtipo_mascota' => $this->input->post('tipo_mascota_idtipo_mascota'),
 				'razamascota_idrazamascota' => $this->input->post('razamascota_idrazamascota')
 			);
-			
+			$this->Mascotas->insertarMascotas($datos);
+			$tempId = $this->Mascotas->obtenerUltmas();
+			$datos= array(
+				'usuarios_idusuarios' => $this->input->post('idusuarios'),
+				'mascota_idmascota' => $this->input->post(''.$tempId[0]->idmascota),
+						'usuarios_idusuarios' =>date('Y-m-d H:i:s')
+			);
+
 		}
 	}
 }
