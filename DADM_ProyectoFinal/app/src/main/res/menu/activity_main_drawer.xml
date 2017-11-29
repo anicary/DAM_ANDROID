@@ -2,32 +2,33 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
+
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
+            android:id="@+id/nav_perfil"
+            android:icon="@drawable/ic_person_black_24dp"
             android:title="PERFIL DEL USUARIO" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
+            android:id="@+id/nav_mascota"
+            android:icon="@drawable/ic_pets_black_24dp"
             android:title="MASCOTAS" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="CITAS" />
+            android:id="@+id/nav_petpedia"
+            android:icon="@drawable/ic_library_books_black_24dp"
+            android:title="PETPEDIA" />
+        <item
+            android:id="@+id/nav_tinder"
+            android:icon="@drawable/ic_whatshot_black_24dp"
+            android:title="TINDER PET" />
         <item
             android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="TINDER DOGGY" />
+            android:icon="@drawable/ic_live_help_black_24dp"
+            android:title="ACERCA DE..." />
+        <item
+            android:id="@+id/nav_sesion"
+            android:icon="@drawable/ic_cancel_black_24dp"
+            android:title="CERRAR SESION" />
+
     </group>
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="SALIR " />
-
-        </menu>
-    </item>
 
 </menu>
