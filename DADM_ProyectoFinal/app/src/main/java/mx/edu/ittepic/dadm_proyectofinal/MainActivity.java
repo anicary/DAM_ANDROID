@@ -1,5 +1,6 @@
 package mx.edu.ittepic.dadm_proyectofinal;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -18,7 +19,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
-    String nombre="";
+    String nombre="",apellidos="",correo="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,13 +27,13 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
       //  SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-        SharedPreferences preferences = getSharedPreferences("INFO_USUARIO", MODE_PRIVATE);
 
-        String restoredText = preferences.getString("text", null);
-        if (restoredText != null) {
-             nombre = preferences.getString("nombre", "Sin nombre");//"No name defined" is the default value.
-          //  int idName = prefs.getInt("idName", 0); //0 is the default value.
-        }
+        SharedPreferences prefs =
+                getSharedPreferences("INFO_USUARIO", Context.MODE_PRIVATE);
+
+         nombre = prefs.getString("nombre", "por_defecto@email.com");
+        nombre = prefs.getString("apellidos", "por_defecto@email.com");
+        nombre = prefs.getString("correo", "por_defecto@email.com");
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -55,7 +56,10 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         navigationView.setNavigationItemSelectedListener(this);
         View v = navigationView.getHeaderView(0);
         TextView nombrenav = (TextView) v.findViewById(R.id.nombrenav);
-        nombrenav.setText(""+nombre);
+        nombrenav.setText(""+nombre+" "+apellidos);
+        TextView navcorreo = (TextView) v.findViewById(R.id.navcorreo);
+        navcorreo.setText(""+correo);
+
     }
 
     @Override
