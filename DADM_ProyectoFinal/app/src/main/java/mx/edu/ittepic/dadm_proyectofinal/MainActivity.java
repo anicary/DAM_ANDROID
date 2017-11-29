@@ -31,9 +31,9 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         SharedPreferences prefs =
                 getSharedPreferences("INFO_USUARIO", Context.MODE_PRIVATE);
 
-         nombre = prefs.getString("nombre", "por_defecto@email.com");
-        nombre = prefs.getString("apellidos", "por_defecto@email.com");
-        nombre = prefs.getString("correo", "por_defecto@email.com");
+         nombre = prefs.getString("nombre", "Nombre");
+         apellidos = prefs.getString("apellidos", "apellidos");
+         correo = prefs.getString("correo", "correo@email.com");
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

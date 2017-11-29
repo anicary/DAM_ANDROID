@@ -151,6 +151,9 @@ public class Inicio extends AppCompatActivity implements AsyncResponse {
             while (c.moveToNext()) {
                 SharedPreferences.Editor editor = getSharedPreferences("INFO_USUARIO", MODE_PRIVATE).edit();
                 editor.putString("nombre",c.getString(1));
+                editor.putString("correo",c.getString(3));
+                editor.putString("apelidos",c.getString(2));
+                editor.putString("idusuarios",c.getString(0));
         /*    editor.putString("apellidos",arrayjson.getJSONObject(i).getString("apellidos"));
             editor.putString("correo",arrayjson.getJSONObject(i).getString("correo"));
             editor.putInt("idusuarios",Integer.parseInt(arrayjson.getJSONObject(i).getString("idusuarios")));*/
