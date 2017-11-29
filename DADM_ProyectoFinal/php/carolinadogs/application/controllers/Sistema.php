@@ -91,7 +91,7 @@ class Sistema extends CI_Controller {
 	public function borrarUsuario($id)
 	{
 		$this->Usuarios->borrarUSUARIO($id);
-			redirect(base_url().'index.php/Sistema/usuarios');
+		redirect(base_url().'index.php/Sistema/usuarios');
 	}
 	public function usuarios()
 	{
@@ -108,6 +108,18 @@ class Sistema extends CI_Controller {
 			redirect(base_url().'index.php/');
 		}else {
 			redirect(base_url().'index.php');
+		}
+	}
+	public function registro_mascota()
+	{
+		if($this->input->post('nombre')!=""){
+			$datos= array(
+				'nombre' => $this->input->post('nombre'),
+				'sexo' => $this->input->post('sexo'),
+				'edad' => $this->input->post('edad'),
+				'tipo_mascota_idtipo_mascota' => $this->input->post('tipo_mascota_idtipo_mascota'),
+				'razamascota_idrazamascota' => $this->input->post('razamascota_idrazamascota')
+			);
 		}
 	}
 }

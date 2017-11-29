@@ -57,7 +57,8 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         View v = navigationView.getHeaderView(0);
         TextView nombrenav = (TextView) v.findViewById(R.id.nombrenav);
         nombrenav.setText(""+nombre+" "+apellidos);
-        TextView navcorreo = (TextView) v.findViewById(R.id.navcorreo);
+        View v2 = navigationView.getHeaderView(0);
+        TextView navcorreo = (TextView) v2.findViewById(R.id.navcorreo);
         navcorreo.setText(""+correo);
 
     }
