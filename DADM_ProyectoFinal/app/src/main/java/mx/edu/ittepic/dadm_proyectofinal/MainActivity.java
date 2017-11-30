@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         imagen = prefs.getString("imagen", "http://carolina.x10host.com/archivos/fotos/perfil.jpg");
         idusuarios = prefs.getString("idusuarios", "0");
         dbinterna = new BDInterna(MainActivity.this, "baseinterna", null, 1);
-
+        setTitle("Bienvenida "+nombre);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
