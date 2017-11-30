@@ -34,7 +34,7 @@ import static android.R.attr.data;
 
 public class registro extends AppCompatActivity implements AsyncResponse {
     EditText rnombre, rapellido, rcorreo, rcontrasena, rrcontrasena;
-    String name, apell, mail, passw, passw2, datos = "",idusuarios="";
+    String name, apell, mail, passw, passw2, datos = "";
     Spinner sexo, estado, municipio;
     Button registrarse;
     ConexionWeb conexionWeb;
@@ -55,10 +55,6 @@ public class registro extends AppCompatActivity implements AsyncResponse {
 
 
 
-        SharedPreferences prefs =
-                getSharedPreferences("INFO_USUARIO", Context.MODE_PRIVATE);
-
-        idusuarios = prefs.getString("idusuarios", "0");
 
         sexo = (Spinner) findViewById(R.id.sexoregistro);
         estado = (Spinner) findViewById(R.id.estadoregistro);
@@ -90,7 +86,6 @@ public class registro extends AppCompatActivity implements AsyncResponse {
                     if (passw.equals(passw2)) {
                         try {
                             conexionWeb = new ConexionWeb(registro.this);
-                            conexionWeb.agregarVariables("idusuarios",idusuarios);
                             conexionWeb.agregarVariables("nombre", name);
                             conexionWeb.agregarVariables("apellidos", apell);
                             conexionWeb.agregarVariables("correo", mail);
