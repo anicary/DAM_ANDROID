@@ -92,4 +92,5 @@
                 android:layout_height="100dp"
                 android:src="@drawable/ic_add_circle_black_24dp"/>
     </LinearLayout>
+        </LinearLayout>
 </LinearLayout>
