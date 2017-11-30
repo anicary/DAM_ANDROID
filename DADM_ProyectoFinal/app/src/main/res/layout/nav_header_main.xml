@@ -8,8 +8,8 @@
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
 
+    android:paddingRight="@dimen/activity_horizontal_margin"
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     android:weightSum="1">
 
@@ -18,7 +18,8 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_weight="0.73"
+        android:layout_marginTop="50dp"
+        android:layout_weight="0.78"
         app:srcCompat="@android:drawable/sym_def_app_icon" />
 
     <TextView

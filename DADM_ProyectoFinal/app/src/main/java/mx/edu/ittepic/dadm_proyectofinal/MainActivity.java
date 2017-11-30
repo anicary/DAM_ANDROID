@@ -68,12 +68,8 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         View v = navigationView.getHeaderView(0);
         TextView nombrenav = (TextView) v.findViewById(R.id.nombrenav);
         nombrenav.setText(""+nombre+" "+apellidos);
-       /* ImageView navperfil=(ImageView) v.findViewById(R.id.nav_perfil);
-*/
-        new DownloadImageTask((ImageView) v.findViewById(R.id.navimagenperfil))
+        new DescargarImagenes((ImageView) v.findViewById(R.id.navimagenperfil))
                 .execute(""+imagen);
-
-      /*  navperfil.setImageDrawable(cargarImagen(imagen));*/
         View v2 = navigationView.getHeaderView(0);
         TextView navcorreo = (TextView) v2.findViewById(R.id.navcorreo);
         navcorreo.setText(""+correo);
@@ -135,10 +131,10 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+    private class DescargarImagenes extends AsyncTask<String, Void, Bitmap> {
         ImageView bmImage;
 
-        public DownloadImageTask(ImageView bmImage) {
+        public DescargarImagenes(ImageView bmImage) {
             this.bmImage = bmImage;
         }
 
