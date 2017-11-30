@@ -73,7 +73,8 @@ class Sistema extends CI_Controller {
 				'activo' => 1,
 				'fecha_creacion' => date('Y-m-d H:i:s'),
 				'estado' => $this->input->post('estado'),
-				'municipio' =>$this->input->post('municipio')
+				'municipio' =>$this->input->post('municipio'),
+				'perfil_foto' =>"http://carolina.x10host.com/archivos/fotos/perfil.jpg"
 			);
 			$correo=$this->input->post('correo');
 			if($this->Usuarios->verificarCorreo($correo)==false){

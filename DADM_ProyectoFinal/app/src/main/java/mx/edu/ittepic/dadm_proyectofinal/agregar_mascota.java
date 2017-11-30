@@ -1,6 +1,8 @@
 package mx.edu.ittepic.dadm_proyectofinal;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,7 +17,7 @@ import java.net.URL;
 
 public class agregar_mascota extends AppCompatActivity implements AsyncResponse {
     EditText nombre, edad;
-    String name, sex, edad1;
+    String name, sex, edad1,idusuarios="";;
     Spinner tipo, raza, sexo;
     Button agregar;
     ConexionWeb conexionWeb;
@@ -31,6 +33,11 @@ public class agregar_mascota extends AppCompatActivity implements AsyncResponse 
         raza = (Spinner) findViewById(R.id.razamascota);
         agregar = (Button) findViewById(R.id.agregar);
 
+        SharedPreferences prefs =
+                getSharedPreferences("INFO_USUARIO", Context.MODE_PRIVATE);
+
+        idusuarios = prefs.getString("idusuarios", "0");
+
         agregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -42,6 +49,7 @@ public class agregar_mascota extends AppCompatActivity implements AsyncResponse 
                     //TODO PENDIENTE
                     try {
                         conexionWeb = new ConexionWeb(agregar_mascota.this);
+                        conexionWeb.agregarVariables("idusuarios",idusuarios);
                         conexionWeb.agregarVariables("nombre", name);
                         conexionWeb.agregarVariables("sexo", sex);
                         conexionWeb.agregarVariables("edad", edad1);
