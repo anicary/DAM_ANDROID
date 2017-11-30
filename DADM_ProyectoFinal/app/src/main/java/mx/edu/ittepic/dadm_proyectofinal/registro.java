@@ -201,7 +201,7 @@ public class registro extends AppCompatActivity implements AsyncResponse {
                             editor.putString("apellidos",arrayjson.getJSONObject(i).getString("apellidos"));
                             editor.putString("correo",arrayjson.getJSONObject(i).getString("correo"));
                             editor.putInt("idusuarios",Integer.parseInt(arrayjson.getJSONObject(i).getString("idusuarios")));
-                            editor.putInt("imagen",Integer.parseInt(arrayjson.getJSONObject(i).getString("perfil_foto")));
+                            editor.putString("imagen",arrayjson.getJSONObject(i).getString("perfil_foto"));
                             editor.apply();
                             try {
                                 SQLiteDatabase base = dbinterna.getWritableDatabase();

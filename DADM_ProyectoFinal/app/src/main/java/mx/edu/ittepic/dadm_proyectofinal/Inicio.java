@@ -122,8 +122,8 @@ public class Inicio extends AppCompatActivity implements AsyncResponse {
                         editor.putString("nombre",arrayjson.getJSONObject(i).getString("nombre"));
                         editor.putString("apellidos",arrayjson.getJSONObject(i).getString("apellidos"));
                         editor.putString("correo",arrayjson.getJSONObject(i).getString("correo"));
-                        editor.putInt("idusuarios",Integer.parseInt(arrayjson.getJSONObject(i).getString("idusuarios")));
-                        editor.putInt("imagen",Integer.parseInt(arrayjson.getJSONObject(i).getString("perfil_foto")));
+                        editor.putString("idusuarios",(arrayjson.getJSONObject(i).getString("idusuarios")));
+                        editor.putString("imagen",arrayjson.getJSONObject(i).getString("perfil_foto"));
                         editor.apply();
                         try {
                             SQLiteDatabase base = dbinterna.getWritableDatabase();
