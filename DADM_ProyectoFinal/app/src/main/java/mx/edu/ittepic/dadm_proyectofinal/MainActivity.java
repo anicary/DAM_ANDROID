@@ -3,6 +3,8 @@ package mx.edu.ittepic.dadm_proyectofinal;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
@@ -23,12 +25,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.InputStream;
 import java.net.URL;
 
 public class MainActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
-    String nombre="",apellidos="",correo="",imagen="";
+    String nombre="",apellidos="",correo="",imagen="",idusuarios="";
+    BDInterna dbinterna;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +48,8 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
          apellidos = prefs.getString("apellidos", "apellidos");
         correo = prefs.getString("correo", "correo@email.com");
         imagen = prefs.getString("imagen", "http://carolina.x10host.com/archivos/fotos/perfil.jpg");
-
+        idusuarios = prefs.getString("idusuarios", "0");
+        dbinterna = new BDInterna(MainActivity.this, "baseinterna", null, 1);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -123,11 +128,11 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
         } else if (id == R.id.nav_sesion) {
             try {
-                SQLiteDatabase base = conexion.getWritableDatabase();
-                String query1 = "DELETE FROM cliente  where idcliente=" + idClienteborrar + ";";
+                SQLiteDatabase base = dbinterna.getWritableDatabase();
+                String query1 = "DELETE FROM usuarios  where idusuarios=" + idusuarios + ";";
                 base.execSQL(query1);
             } catch (SQLException e) {
-                Toast.makeText(ListaClientes.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
             }
         } else if(id ==R.id.nav_shake){
             Intent shake = new Intent(MainActivity.this, desestres.class);
