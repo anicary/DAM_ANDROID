@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="mx.edu.ittepic.dadm_proyectofinal">
+
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:hardwareAccelerated="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Inicio">
             <intent-filter>
@@ -17,8 +19,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".registro"  android:windowSoftInputMode="stateHidden|adjustResize|adjustPan"
-            />
+        <activity
+            android:name=".registro"
+            android:windowSoftInputMode="stateHidden|adjustResize|adjustPan" />
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
@@ -26,7 +29,8 @@
         <activity android:name=".Perfil" />
         <activity android:name=".agregar_mascota" />
         <activity android:name=".acerca" />
-        <activity android:name=".desestres"></activity>
+        <activity android:name=".desestres" />
+        <activity android:name=".editarPerfilusuario"></activity>
     </application>
 
 </manifest>
