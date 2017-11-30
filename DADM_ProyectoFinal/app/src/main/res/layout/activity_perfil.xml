@@ -10,20 +10,18 @@
     android:weightSum="1">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imgPer"
         android:layout_width="166dp"
-        android:layout_height="35dp"
+        android:layout_height="166dp"
         android:layout_gravity="center"
         android:layout_marginTop="5dp"
-        app:srcCompat="@drawable/caro"
-        android:layout_weight="1.37" />
+        app:srcCompat="@drawable/caro" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_weight="1.70">
+        android:layout_marginRight="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -126,7 +124,7 @@
 
                 <TextView
                     android:id="@+id/vcorreoperfil"
-                    android:layout_width="300dp"
+                    android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:background="@drawable/ovalo6"
                     android:fontFamily="monospace"
