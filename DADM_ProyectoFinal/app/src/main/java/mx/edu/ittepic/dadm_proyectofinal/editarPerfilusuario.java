@@ -80,6 +80,7 @@ public class editarPerfilusuario extends AppCompatActivity implements AsyncRespo
         correo.setText(correoa);
     }
     public void procesarRespuesta(String r) {
+        Toast.makeText(editarPerfilusuario.this,"CAMBIOS GUARDADOS",Toast.LENGTH_LONG).show();
         SharedPreferences.Editor editor = getSharedPreferences("INFO_USUARIO", MODE_PRIVATE).edit();
         editor.putString("nombre",nombrea);
         editor.putString("apellidos",apellidosa);
@@ -92,5 +93,8 @@ public class editarPerfilusuario extends AppCompatActivity implements AsyncRespo
         }catch (SQLException e){
             Toast.makeText(editarPerfilusuario.this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
+        Intent intent = new Intent(editarPerfilusuario.this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 }
