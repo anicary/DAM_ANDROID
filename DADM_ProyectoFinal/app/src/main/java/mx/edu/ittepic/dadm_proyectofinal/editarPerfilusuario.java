@@ -3,6 +3,8 @@ package mx.edu.ittepic.dadm_proyectofinal;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -78,6 +80,17 @@ public class editarPerfilusuario extends AppCompatActivity implements AsyncRespo
         correo.setText(correoa);
     }
     public void procesarRespuesta(String r) {
-
+        SharedPreferences.Editor editor = getSharedPreferences("INFO_USUARIO", MODE_PRIVATE).edit();
+        editor.putString("nombre",nombrea);
+        editor.putString("apellidos",apellidosa);
+        editor.putString("correo",correoa);
+        editor.apply();
+        try {
+            SQLiteDatabase base = dbinterna.getWritableDatabase();
+            String query1 = "UPDATE usuario SET nombre='"+nombrea+"', apellidos='"+apellidosa+"' correo='"+correoa+"' ;";
+            base.execSQL(query1);
+        }catch (SQLException e){
+            Toast.makeText(editarPerfilusuario.this, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
     }
 }

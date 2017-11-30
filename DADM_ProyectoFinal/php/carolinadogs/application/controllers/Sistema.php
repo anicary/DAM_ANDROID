@@ -100,7 +100,9 @@ class Sistema extends CI_Controller {
 				'correo' => $this->input->post('correo')
 			);
 			$this->Usuarios->editarUsuario($datos,$id);
-		}	
+		}
+
+
 	}
 	public function borrarUsuario($id)
 	{

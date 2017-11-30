@@ -29,7 +29,7 @@ class Usuarios extends CI_Model {
   public function editarUsuario($datos,$id)
   {
     $DB2 = $this->load->database('default', TRUE);
-    $DB2->where('idusuario',$id);
+    $DB2->where('idusuarios',$id);
     $DB2->update('usuarios',$datos);
   }
   public function loginusuario($correo,$contrasena)
