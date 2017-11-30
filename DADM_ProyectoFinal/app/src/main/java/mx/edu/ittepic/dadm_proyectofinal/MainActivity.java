@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         nombrenav.setText(""+nombre+" "+apellidos);
        /* ImageView navperfil=(ImageView) v.findViewById(R.id.nav_perfil);
 */
-        new DownloadImageTask((ImageView) findViewById(R.id.navperfil))
+        new DownloadImageTask((ImageView) v.findViewById(R.id.navimagenperfil))
                 .execute(""+imagen);
 
       /*  navperfil.setImageDrawable(cargarImagen(imagen));*/
