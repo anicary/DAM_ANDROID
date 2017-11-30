@@ -127,7 +127,7 @@ public class Inicio extends AppCompatActivity implements AsyncResponse {
                         editor.apply();
                         try {
                             SQLiteDatabase base = dbinterna.getWritableDatabase();
-                            String query1 = "INSERT INTO usuario VALUES (idusuarios,'nombre','apellidos','correo')";
+                            String query1 = "INSERT INTO usuario VALUES (idusuarios,'nombre','apellidos','correo','imagen')";
                             query1 = query1.replace("idusuarios",arrayjson.getJSONObject(i).getString("idusuarios"));
                             query1 = query1.replace("nombre", arrayjson.getJSONObject(i).getString("nombre"));
                             query1 = query1.replace("apellidos",arrayjson.getJSONObject(i).getString("apellidos"));
@@ -156,7 +156,7 @@ public class Inicio extends AppCompatActivity implements AsyncResponse {
                 editor.putString("correo",c.getString(3));
                 editor.putString("apelidos",c.getString(2));
                 editor.putString("idusuarios",c.getString(0));
-                editor.putString("imagen",c.getString(12));
+                editor.putString("imagen",c.getString(4));
         /*    editor.putString("apellidos",arrayjson.getJSONObject(i).getString("apellidos"));
             editor.putString("correo",arrayjson.getJSONObject(i).getString("correo"));
             editor.putInt("idusuarios",Integer.parseInt(arrayjson.getJSONObject(i).getString("idusuarios")));*/
