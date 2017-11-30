@@ -38,7 +38,7 @@ public class Perfil extends AppCompatActivity {
         nombre.setText(nombrea);
         apellido.setText(apellidosa);
         correo.setText(correoa);
-        new Perfil.DescargarImagenes((ImageView) v.findViewById(R.id.imgPer))
+        new Perfil.DescargarImagenes((ImageView) findViewById(R.id.imgPer))
                 .execute(""+imagen);
     }
     public boolean onCreateOptionsMenu(Menu m){
