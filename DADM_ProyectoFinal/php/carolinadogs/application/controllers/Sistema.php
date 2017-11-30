@@ -90,6 +90,17 @@ class Sistema extends CI_Controller {
 			}
 		}
 	}
+	public function editar_usuario()
+	{
+		if($this->input->post('nombre')!=""){
+			$id = $this->input->post("idusuarios");
+			$datos= array(
+				'nombre' => $this->input->post('nombre'),
+				'apellidos' => $this->input->post('apellidos'),
+				'correo' => $this->input->post('correo')
+			);
+				$this->Usuarios->editarUsuario($datos,$id);		
+	}
 	public function borrarUsuario($id)
 	{
 		$this->Usuarios->borrarUSUARIO($id);

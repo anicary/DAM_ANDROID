@@ -23,6 +23,7 @@ import java.net.URL;
 
 public class editarPerfilusuario extends AppCompatActivity implements AsyncResponse {
     String nombrea="",apellidosa="",correoa="",imagen="";
+    String idusuarios="";
     EditText nombre,apellido,correo;
     Button actualizar;
     ConexionWeb conexionWeb;
@@ -52,6 +53,7 @@ public class editarPerfilusuario extends AppCompatActivity implements AsyncRespo
                         conexionWeb.agregarVariables("nombre", nombrea);
                         conexionWeb.agregarVariables("apellidos", apellidosa);
                         conexionWeb.agregarVariables("correo", correoa);
+                        conexionWeb.agregarVariables("idusuarios", idusuarios);
                         URL direccion = new URL("http://carolina.x10host.com/index.php/Sistema/editar_usuario");
                         conexionWeb.execute(direccion);
                     } catch (MalformedURLException e) {
@@ -64,6 +66,8 @@ public class editarPerfilusuario extends AppCompatActivity implements AsyncRespo
 
         SharedPreferences prefs =
                 getSharedPreferences("INFO_USUARIO", Context.MODE_PRIVATE);
+
+        idusuarios = prefs.getString("idusuarios", "0");
 
         nombrea = prefs.getString("nombre", "Nombre");
         apellidosa = prefs.getString("apellidos", "apellidos");
