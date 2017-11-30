@@ -3,11 +3,15 @@ package mx.edu.ittepic.dadm_proyectofinal;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -38,7 +42,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
          nombre = prefs.getString("nombre", "Nombre");
          apellidos = prefs.getString("apellidos", "apellidos");
-         correo = prefs.getString("correo", "correo@email.com");
+        correo = prefs.getString("correo", "correo@email.com");
         imagen = prefs.getString("imagen", "http://carolina.x10host.com/archivos/fotos/perfil.jpg");
 
 
@@ -64,8 +68,12 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         View v = navigationView.getHeaderView(0);
         TextView nombrenav = (TextView) v.findViewById(R.id.nombrenav);
         nombrenav.setText(""+nombre+" "+apellidos);
-        ImageView navperfil=(ImageView) v.findViewById(R.id.nav_perfil);
-        navperfil.setImageDrawable(cargarImagen(imagen));
+       /* ImageView navperfil=(ImageView) v.findViewById(R.id.nav_perfil);
+*/
+        new DownloadImageTask((ImageView) findViewById(R.id.navperfil))
+                .execute(""+imagen);
+
+      /*  navperfil.setImageDrawable(cargarImagen(imagen));*/
         View v2 = navigationView.getHeaderView(0);
         TextView navcorreo = (TextView) v2.findViewById(R.id.navcorreo);
         navcorreo.setText(""+correo);
@@ -127,13 +135,28 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-    public static Drawable cargarImagen(String url) {
-        try {
-            InputStream is = (InputStream) new URL(url).getContent();
-            Drawable d = Drawable.createFromStream(is, "http://carolina.x10host.com/archivos/fotos/perfil.jpg");
-            return d;
-        } catch (Exception e) {
-            return null;
+    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+        ImageView bmImage;
+
+        public DownloadImageTask(ImageView bmImage) {
+            this.bmImage = bmImage;
+        }
+
+        protected Bitmap doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return mIcon11;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            bmImage.setImageBitmap(result);
         }
     }
 }
