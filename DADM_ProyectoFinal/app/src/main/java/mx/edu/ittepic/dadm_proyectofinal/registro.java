@@ -201,14 +201,16 @@ public class registro extends AppCompatActivity implements AsyncResponse {
                             editor.putString("apellidos",arrayjson.getJSONObject(i).getString("apellidos"));
                             editor.putString("correo",arrayjson.getJSONObject(i).getString("correo"));
                             editor.putInt("idusuarios",Integer.parseInt(arrayjson.getJSONObject(i).getString("idusuarios")));
+                            editor.putInt("imagen",Integer.parseInt(arrayjson.getJSONObject(i).getString("perfil_foto")));
                             editor.apply();
                             try {
                                 SQLiteDatabase base = dbinterna.getWritableDatabase();
-                                String query1 = "INSERT INTO usuario VALUES (idusuarios,'nombre','apellidos','correo')";
+                                String query1 = "INSERT INTO usuario VALUES (idusuarios,'nombre','apellidos','correo','imagen')";
                                 query1 = query1.replace("idusuarios",arrayjson.getJSONObject(i).getString("idusuarios"));
                                 query1 = query1.replace("nombre", arrayjson.getJSONObject(i).getString("nombre"));
                                 query1 = query1.replace("apellidos",arrayjson.getJSONObject(i).getString("apellidos"));
                                 query1 = query1.replace("correo",arrayjson.getJSONObject(i).getString("correo"));
+                                query1 = query1.replace("imagen",arrayjson.getJSONObject(i).getString("perfil_foto"));
                                 base.execSQL(query1);
                             }catch (SQLException e){
                                 Toast.makeText(registro.this, e.getMessage(), Toast.LENGTH_LONG).show();
