@@ -53,6 +53,7 @@ public class registro extends AppCompatActivity implements AsyncResponse {
         dbinterna = new BDInterna(registro.this, "baseinterna", null, 1);
         registrarse = (Button) findViewById(R.id.registro);
 
+ setTitle("REGISTRO DE USUARIO");
 
 
 
