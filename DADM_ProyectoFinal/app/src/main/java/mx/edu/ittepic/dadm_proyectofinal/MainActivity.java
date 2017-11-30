@@ -122,7 +122,13 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
             startActivity(acde);
 
         } else if (id == R.id.nav_sesion) {
-
+            try {
+                SQLiteDatabase base = conexion.getWritableDatabase();
+                String query1 = "DELETE FROM cliente  where idcliente=" + idClienteborrar + ";";
+                base.execSQL(query1);
+            } catch (SQLException e) {
+                Toast.makeText(ListaClientes.this, e.getMessage(), Toast.LENGTH_LONG).show();
+            }
         } else if(id ==R.id.nav_shake){
             Intent shake = new Intent(MainActivity.this, desestres.class);
             startActivity(shake);
