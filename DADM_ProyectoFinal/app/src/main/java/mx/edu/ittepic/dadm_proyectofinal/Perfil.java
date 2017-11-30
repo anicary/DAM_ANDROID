@@ -49,6 +49,8 @@ public class Perfil extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem mi){
         switch (mi.getItemId()){
             case R.id.editar:
+                Intent editarperfil = new Intent(Perfil.this,editarPerfilusuario.class);
+                startActivity(editarperfil);
 
                 break;
             case R.id.cerrarse:
