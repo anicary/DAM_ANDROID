@@ -7,158 +7,189 @@
     android:orientation="vertical"
     android:background="@drawable/registrofondo"
     tools:context="mx.edu.ittepic.dadm_proyectofinal.registro">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="REGISTRO"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        android:textColor="#000000"
-        android:gravity="center"
-        android:fontFamily="monospace"/>
-    </LinearLayout>
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="40dp"
         android:orientation="vertical">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp">
-        <EditText
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:id="@+id/nombreregistro"
-            android:paddingLeft="30dp"
-            android:background="@drawable/ovalo4"
-            android:hint="Ingrese su nombre"
-            android:textColorHint="#000000"
-            android:textColor="#000000"
-            android:fontFamily="monospace"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
-        <EditText
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:id="@+id/apellidoregistro"
-            android:paddingLeft="30dp"
-            android:background="@drawable/ovalo4"
-            android:hint="Ingrese su apellido"
-            android:textColorHint="#000000"
-            android:textColor="#000000"
-            android:fontFamily="monospace"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
-        <EditText
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:id="@+id/correoregistro"
-            android:inputType="textEmailAddress"
-            android:paddingLeft="30dp"
-            android:background="@drawable/ovalo4"
-            android:hint="Ingrese su correo"
-            android:textColorHint="#000000"
-            android:textColor="#000000"
-            android:fontFamily="monospace"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
-       <Spinner
-           android:layout_width="300dp"
-           android:layout_height="50dp"
-           android:paddingLeft="30dp"
-           android:id="@+id/sexoregistro"
-           android:background="@drawable/ovalo4"
-           android:entries="@array/opcion"></Spinner>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
-        <EditText
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:inputType="textPassword"
-            android:id="@+id/contraregistro"
-            android:paddingLeft="30dp"
-            android:background="@drawable/ovalo4"
-            android:hint="Ingrese su contraseña"
-            android:textColorHint="#000000"
-            android:textColor="#000000"
-            android:fontFamily="monospace"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
-        <EditText
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:inputType="textPassword"
-            android:id="@+id/rcontraregistro"
-            android:paddingLeft="30dp"
-            android:background="@drawable/ovalo4"
-            android:hint="Repita su contraseña"
-            android:textColorHint="#000000"
-            android:textColor="#000000"
-            android:fontFamily="monospace"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
-        <Spinner
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:paddingLeft="30dp"
-            android:id="@+id/estadoregistro"
-            android:background="@drawable/ovalo4"></Spinner>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
-        <Spinner
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:paddingLeft="30dp"
-            android:id="@+id/municipioregistro"
-            android:background="@drawable/ovalo4"></Spinner>
-    </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
-            <Button
-                android:layout_width="300dp"
-                android:layout_height="50dp"
-                android:id="@+id/registro"
-                android:textStyle="bold"
-                android:background="@drawable/ovalo2"
-                android:text="REGISTRARSE"
-                android:gravity="center"
-                android:textColor="#FFFFFF"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:fontFamily="monospace"
-                android:textSize="18dp"/>
+                android:gravity="center"
+                android:text="REGISTRO"
+                android:textColor="#000000"
+                android:textSize="30dp"
+                android:textStyle="bold" />
         </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="40dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp">
+
+                    <EditText
+                        android:id="@+id/nombreregistro"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/ovalo4"
+                        android:fontFamily="monospace"
+                        android:hint="Ingrese su nombre"
+                        android:paddingLeft="30dp"
+                        android:textColor="#000000"
+                        android:textColorHint="#000000" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <EditText
+                        android:id="@+id/apellidoregistro"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/ovalo4"
+                        android:fontFamily="monospace"
+                        android:hint="Ingrese su apellido"
+                        android:paddingLeft="30dp"
+                        android:textColor="#000000"
+                        android:textColorHint="#000000" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <EditText
+                        android:id="@+id/correoregistro"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/ovalo4"
+                        android:fontFamily="monospace"
+                        android:hint="Ingrese su correo"
+                        android:inputType="textEmailAddress"
+                        android:paddingLeft="30dp"
+                        android:textColor="#000000"
+                        android:textColorHint="#000000" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <Spinner
+                        android:id="@+id/sexoregistro"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/ovalo4"
+                        android:entries="@array/opcion"
+                        android:paddingLeft="30dp"></Spinner>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <EditText
+                        android:id="@+id/contraregistro"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/ovalo4"
+                        android:fontFamily="monospace"
+                        android:hint="Ingrese su contraseña"
+                        android:inputType="textPassword"
+                        android:paddingLeft="30dp"
+                        android:textColor="#000000"
+                        android:textColorHint="#000000" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <EditText
+                        android:id="@+id/rcontraregistro"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/ovalo4"
+                        android:fontFamily="monospace"
+                        android:hint="Repita su contraseña"
+                        android:inputType="textPassword"
+                        android:paddingLeft="30dp"
+                        android:textColor="#000000"
+                        android:textColorHint="#000000" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <Spinner
+                        android:id="@+id/estadoregistro"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/ovalo4"
+                        android:paddingLeft="30dp"></Spinner>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <Spinner
+                        android:id="@+id/municipioregistro"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/ovalo4"
+                        android:paddingLeft="30dp"></Spinner>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <Button
+                        android:id="@+id/registro"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/ovalo2"
+                        android:fontFamily="monospace"
+                        android:gravity="center"
+                        android:text="REGISTRARSE"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
     </LinearLayout>
-    </ScrollView>
+
 </LinearLayout>
 
