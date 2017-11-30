@@ -129,8 +129,11 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         } else if (id == R.id.nav_sesion) {
             try {
                 SQLiteDatabase base = dbinterna.getWritableDatabase();
-                String query1 = "DELETE FROM usuarios  where idusuarios=" + idusuarios + ";";
+                String query1 = "DELETE FROM usuario  where idusuarios=" + idusuarios + ";";
                 base.execSQL(query1);
+                Intent intent = new Intent(MainActivity.this, Inicio.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
             } catch (SQLException e) {
                 Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
             }
