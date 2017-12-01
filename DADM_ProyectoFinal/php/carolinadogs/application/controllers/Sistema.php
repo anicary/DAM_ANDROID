@@ -152,7 +152,7 @@ class Sistema extends CI_Controller {
 		if($this->input->post('idusuarios')!=""){
 			$datos=$this->Mascotas->obtenerMascoasUsuario($this->input->post('idusuarios'));
 			if($datos){
-
+echo json_encode($datos);
 			}else {
 				echo "no-mascotas";
 			}

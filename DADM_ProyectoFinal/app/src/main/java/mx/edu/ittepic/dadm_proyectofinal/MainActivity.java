@@ -93,8 +93,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
         Menu_lista = (ListView) findViewById(R.id.lista_mascotas);
         elemento = getElemento();
-        adater= new MascotaAdaptador(this,elementos);
-        Menu_lista.setAdapter(adater);
+
 
     }
     private ArrayList<mascota> getElemento() {
@@ -194,7 +193,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     @Override
     public void procesarRespuesta(String r) {
         if(r.equals("no-mascotas")){
-
+            Toast.makeText(MainActivity.this,"Aun no tienes mascotas", Toast.LENGTH_LONG).show();
         }else
         {
             try{
@@ -202,6 +201,8 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
                 for(int i = 0; i < arrayjson.length(); i++){
                     elementos.add(new mascota(Integer.parseInt(arrayjson.getJSONObject(i).getString("idmascota")),arrayjson.getJSONObject(i).getString("nombre"),arrayjson.getJSONObject(i).getString("edad"),arrayjson.getJSONObject(i).getString("sexo"),arrayjson.getJSONObject(i).getString("sexo"),arrayjson.getJSONObject(i).getString("foto_mas")));
                 }
+                adater= new MascotaAdaptador(this,elementos);
+                Menu_lista.setAdapter(adater);
             }catch (JSONException e){
 
             }
