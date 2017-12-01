@@ -24,15 +24,21 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
     String nombre="",apellidos="",correo="",imagen="",idusuarios="";
+    MascotaAdaptador adater;
     BDInterna dbinterna;
+    ArrayList<mascota> elemento;
+    ArrayList<mascota> elementos;
+    ListView Menu_lista;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,8 +85,18 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         TextView navcorreo = (TextView) v2.findViewById(R.id.navcorreo);
         navcorreo.setText(""+correo);
 
-    }
+        Menu_lista = (ListView) findViewById(R.id.lista_mascotas);
+        elemento = getElemento();
+        adater= new MascotaAdaptador(this,elementos);
+        Menu_lista.setAdapter(adater);
 
+    }
+    private ArrayList<mascota> getElemento() {
+        elementos = new ArrayList<mascota>();
+        elementos.add(new mascota(1,"MAX","","","","http://carolina.x10host.com/archivos/fotos/perfilpet.jpg"));
+        elementos.add(new mascota(2,"MAX 2","","","","http://carolina.x10host.com/archivos/fotos/perfilpet.jpg"));
+        return elementos;
+    }
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -147,11 +163,9 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     }
     private class DescargarImagenes extends AsyncTask<String, Void, Bitmap> {
         ImageView bmImage;
-
         public DescargarImagenes(ImageView bmImage) {
             this.bmImage = bmImage;
         }
-
         protected Bitmap doInBackground(String... urls) {
             String urldisplay = urls[0];
             Bitmap mIcon11 = null;
@@ -164,7 +178,6 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
             }
             return mIcon11;
         }
-
         protected void onPostExecute(Bitmap result) {
             bmImage.setImageBitmap(result);
         }

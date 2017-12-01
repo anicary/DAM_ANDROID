@@ -133,6 +133,7 @@ class Sistema extends CI_Controller {
 				'nombre' => $this->input->post('nombre'),
 				'sexo' => $this->input->post('sexo'),
 				'edad' => $this->input->post('edad'),
+				'foto_mas' => "http://carolina.x10host.com/archivos/fotos/perfilpet.jpg",
 				'tipo_mascota_idtipo_mascota' => $this->input->post('tipo_mascota_idtipo_mascota'),
 				'razamascota_idrazamascota' => $this->input->post('razamascota_idrazamascota')
 			);
