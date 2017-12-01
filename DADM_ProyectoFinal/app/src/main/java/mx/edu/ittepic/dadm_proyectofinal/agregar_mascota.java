@@ -125,11 +125,10 @@ public class agregar_mascota extends AppCompatActivity implements AsyncResponse 
             imageView.setImageBitmap(bmp);
         }
         if (requestCode == 7 && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            Uri uri = data.getData();
             try {
+                Uri uri = data.getData();
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                 imageView.setImageBitmap(bitmap);
-
             } catch (IOException e) {
 
                 e.printStackTrace();
