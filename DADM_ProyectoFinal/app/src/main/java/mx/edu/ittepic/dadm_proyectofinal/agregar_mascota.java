@@ -33,12 +33,8 @@ public class agregar_mascota extends AppCompatActivity implements AsyncResponse 
         tipo = (Spinner) findViewById(R.id.tipomascota);
         raza = (Spinner) findViewById(R.id.razamascota);
         agregar = (Button) findViewById(R.id.agregar);
-
-        SharedPreferences prefs =
-                getSharedPreferences("INFO_USUARIO", Context.MODE_PRIVATE);
-
+        SharedPreferences prefs = getSharedPreferences("INFO_USUARIO", Context.MODE_PRIVATE);
         idusuarios = prefs.getString("idusuarios", "0");
-
         agregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
