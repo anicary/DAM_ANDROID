@@ -96,8 +96,6 @@ public class agregar_mascota extends AppCompatActivity implements AsyncResponse 
         camara.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-             /*   Intent  intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(intent, 7);*/
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(intent, 7);
             }
@@ -109,38 +107,25 @@ public class agregar_mascota extends AppCompatActivity implements AsyncResponse 
         if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
             Uri selectedImage = data.getData();
             String[] filePathColumn = { MediaStore.Images.Media.DATA };
-
             Cursor cursor = getContentResolver().query(selectedImage,
                     filePathColumn, null, null, null);
             cursor.moveToFirst();
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
             String picturePath = cursor.getString(columnIndex);
             cursor.close();
-
             Bitmap bmp = null;
             try {
                 bmp = getBitmapFromUri(selectedImage);
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
             imageView.setImageBitmap(bmp);
         }
         if (requestCode == 7 && resultCode == RESULT_OK && data != null ) {
-           // try {
                 Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
                 imageView.setImageBitmap(thumbnail);
-             /*   Uri uri = data.getData();
-                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri); */
-            //    imageView.setImageBitmap(bitmap);
-          /*  } catch () {
-
-                e.printStackTrace();
-            }*/
         }
     }
-
-
 
     private Bitmap getBitmapFromUri(Uri uri) throws IOException {
         ParcelFileDescriptor parcelFileDescriptor =
