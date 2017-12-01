@@ -96,7 +96,9 @@ public class agregar_mascota extends AppCompatActivity implements AsyncResponse 
         camara.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent  intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+             /*   Intent  intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent, 7);*/
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(intent, 7);
             }
         });
@@ -124,15 +126,17 @@ public class agregar_mascota extends AppCompatActivity implements AsyncResponse 
             }
             imageView.setImageBitmap(bmp);
         }
-        if (requestCode == 7 && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            try {
-                Uri uri = data.getData();
-                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-                imageView.setImageBitmap(bitmap);
-            } catch (IOException e) {
+        if (requestCode == 7 && resultCode == RESULT_OK && data != null ) {
+           // try {
+                Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+                imageView.setImageBitmap(thumbnail);
+             /*   Uri uri = data.getData();
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri); */
+            //    imageView.setImageBitmap(bitmap);
+          /*  } catch () {
 
                 e.printStackTrace();
-            }
+            }*/
         }
     }
 
