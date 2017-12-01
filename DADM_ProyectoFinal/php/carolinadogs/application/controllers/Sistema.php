@@ -129,11 +129,23 @@ class Sistema extends CI_Controller {
 	public function registro_mascota()
 	{
 		if($this->input->post('nombre')!=""){
+			$tempId = $this->Mascotas->obtenerUltmas();
+			$nom;
+			if($tempId[0]->maximo){
+				$nom=$tempId[0]->maximo;
+			}else {
+				$nom=1;
+			}
+			//$archivo="archivos/fotos/mascotas/";
+			//$archivo="";
+			$decoded=base64_decode($this->input->post('foto_mas'));
+			file_put_contents($archivo."".$this->input->post('idusuarios')."mascota".$nom.".jpg",$decoded);
+			$urlenvarserver=base_url()."".$this->input->post('idusuarios')."mascota".$nom.".jpg";
 			$datos= array(
 				'nombre' => $this->input->post('nombre'),
 				'sexo' => $this->input->post('sexo'),
 				'edad' => $this->input->post('edad'),
-				'foto_mas' => "http://carolina.x10host.com/archivos/fotos/perfilpet.jpg",
+				'foto_mas' => $urlenvarserver,
 				'tipo_mascota_idtipo_mascota' => $this->input->post('tipo_mascota_idtipo_mascota'),
 				'razamascota_idrazamascota' => $this->input->post('razamascota_idrazamascota')
 			);
@@ -142,7 +154,7 @@ class Sistema extends CI_Controller {
 			$datos2= array(
 				'usuarios_idusuarios' => $this->input->post('idusuarios'),
 				'mascota_idmascota' =>$tempId[0]->maximo,
-						'fecha_agregado' =>date('Y-m-d H:i:s')
+				'fecha_agregado' =>date('Y-m-d H:i:s')
 			);
 			$this->Mascotas->insertarMascotasRelacion($datos2);
 		}
@@ -152,7 +164,7 @@ class Sistema extends CI_Controller {
 		if($this->input->post('idusuarios')!=""){
 			$datos=$this->Mascotas->obtenerMascoasUsuario($this->input->post('idusuarios'));
 			if($datos){
-echo json_encode($datos);
+				echo json_encode($datos);
 			}else {
 				echo "no-mascotas";
 			}

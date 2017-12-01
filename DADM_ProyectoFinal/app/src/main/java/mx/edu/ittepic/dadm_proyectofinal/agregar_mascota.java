@@ -65,17 +65,16 @@ public class agregar_mascota extends AppCompatActivity implements AsyncResponse 
                 if (!name.equals("") || !sex.equals("") || !edad1.equals("")) {
                     //TODO PENDIENTE
                     try {
-
+                        String imagebase64string="";
                         try {
                             ByteArrayOutputStream baos = new ByteArrayOutputStream();
                             imagenenviar.compress(Bitmap.CompressFormat.JPEG, 100, baos);
 
                             byte[] byteArrayImage = baos.toByteArray();
-                            String imagebase64string = Base64.encodeToString(byteArrayImage, Base64.DEFAULT);
+                             imagebase64string = Base64.encodeToString(byteArrayImage, Base64.DEFAULT);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
-
                         conexionWeb = new ConexionWeb(agregar_mascota.this);
                         conexionWeb.agregarVariables("idusuarios",idusuarios);
                         conexionWeb.agregarVariables("nombre", name);
@@ -83,6 +82,7 @@ public class agregar_mascota extends AppCompatActivity implements AsyncResponse 
                         conexionWeb.agregarVariables("edad", edad1);
                         conexionWeb.agregarVariables("tipo_mascota_idtipo_mascota", "1");
                         conexionWeb.agregarVariables("razamascota_idrazamascota", "1");
+                        conexionWeb.agregarVariables("foto_mas",imagebase64string);
                         URL direccion = new URL("http://carolina.x10host.com/index.php/Sistema/registro_mascota");
                         Intent inicio = new Intent(agregar_mascota.this,MainActivity.class);
                         startActivity(inicio);
@@ -134,7 +134,6 @@ public class agregar_mascota extends AppCompatActivity implements AsyncResponse 
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         }
         if (requestCode == 7 && resultCode == RESULT_OK && data != null ) {
                 Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
