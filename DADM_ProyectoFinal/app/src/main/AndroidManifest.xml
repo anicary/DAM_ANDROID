@@ -22,14 +22,20 @@
         <activity
             android:name=".registro"
             android:windowSoftInputMode="stateHidden|adjustResize|adjustPan" />
+
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Perfil" />
-        <activity android:name=".agregar_mascota" />
+
+        <activity android:name=".agregar_mascota"
+            android:windowSoftInputMode="stateHidden|adjustResize|adjustPan"/>
+
         <activity android:name=".acerca" />
-        <activity android:name=".desestres" />
+
+        <activity android:name=".desestres"/>
+
         <activity android:name=".editarPerfilusuario"></activity>
     </application>
 
