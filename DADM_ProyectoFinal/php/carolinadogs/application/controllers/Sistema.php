@@ -147,4 +147,15 @@ class Sistema extends CI_Controller {
 			$this->Mascotas->insertarMascotasRelacion($datos2);
 		}
 	}
+	public function cargarMascotas()
+	{
+		if($this->input->post('idusuarios')!=""){
+			$datos=$this->Mascotas->obtenerMascoasUsuario($this->input->post('idusuarios'));
+			if($datos){
+
+			}else {
+				echo "no-mascotas";
+			}
+		}
+	}
 }

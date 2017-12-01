@@ -28,17 +28,23 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener,AsyncResponse {
     String nombre="",apellidos="",correo="",imagen="",idusuarios="";
     MascotaAdaptador adater;
     BDInterna dbinterna;
     ArrayList<mascota> elemento;
     ArrayList<mascota> elementos;
     ListView Menu_lista;
+    ConexionWeb conexionWeb;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,8 +99,8 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     }
     private ArrayList<mascota> getElemento() {
         elementos = new ArrayList<mascota>();
-        elementos.add(new mascota(1,"MAX","","","","http://carolina.x10host.com/archivos/fotos/perfilpet.jpg"));
-        elementos.add(new mascota(2,"MAX 2","","","","http://carolina.x10host.com/archivos/fotos/perfilpet.jpg"));
+        cargarMascotas();
+
         return elementos;
     }
     @Override
@@ -109,19 +115,13 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -132,7 +132,6 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.nav_perfil) {
@@ -180,6 +179,32 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         }
         protected void onPostExecute(Bitmap result) {
             bmImage.setImageBitmap(result);
+        }
+    }
+    public void cargarMascotas() {
+        try {
+            conexionWeb = new ConexionWeb(MainActivity.this);
+            conexionWeb.agregarVariables("idusuarios", idusuarios);
+            URL direcciopn = new URL("http://carolina.x10host.com/index.php/Sistema/cargarMascotas");
+            conexionWeb.execute(direcciopn);
+        } catch (MalformedURLException e) {
+            Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
+    @Override
+    public void procesarRespuesta(String r) {
+        if(r.equals("no-mascotas")){
+
+        }else
+        {
+            try{
+                JSONArray arrayjson = new JSONArray(r);
+                for(int i = 0; i < arrayjson.length(); i++){
+                    elementos.add(new mascota(Integer.parseInt(arrayjson.getJSONObject(i).getString("idmascota")),arrayjson.getJSONObject(i).getString("nombre"),arrayjson.getJSONObject(i).getString("edad"),arrayjson.getJSONObject(i).getString("sexo"),arrayjson.getJSONObject(i).getString("sexo"),arrayjson.getJSONObject(i).getString("foto_mas")));
+                }
+            }catch (JSONException e){
+
+            }
         }
     }
 }

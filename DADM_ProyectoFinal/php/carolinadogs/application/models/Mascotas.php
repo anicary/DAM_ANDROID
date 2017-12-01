@@ -26,10 +26,10 @@ class Mascotas extends CI_Model {
     $DB2 = $this->load->database('default', TRUE);
     $DB2->insert('mascota_usuarios',$datos);
   }
-  public function cargarUsuarios()
+  public function obtenerMascoasUsuario($idusuarios)
   {
     $DBcon = $this->load->database('default', TRUE);
-    $query=$DBcon->query("SELECT * FROM usuarios");
+    $query=$DBcon->query("SELECT * FROM mascota as ma,mascota_usuarios as mu where mu.usuarios_idusuarios=$idusuarios and mu.mascota_idmascota=ma.idmascota");
     if ($query->num_rows() > 0) {
       return $query->result();
     } else {
