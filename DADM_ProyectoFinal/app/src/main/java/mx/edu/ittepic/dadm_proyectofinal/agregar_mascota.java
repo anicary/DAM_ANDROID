@@ -25,6 +25,7 @@ public class agregar_mascota extends AppCompatActivity implements AsyncResponse 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("Registra a tu mascota");
         setContentView(R.layout.activity_agregar_mascota);
         nombre = (EditText) findViewById(R.id.nombremascota);
         edad = (EditText) findViewById(R.id.edadmascota);

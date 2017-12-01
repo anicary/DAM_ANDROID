@@ -35,6 +35,7 @@ public class editarPerfilusuario extends AppCompatActivity implements AsyncRespo
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("Editar Perfil");
         setContentView(R.layout.activity_editar_perfilusuario);
 
         nombre = (EditText) findViewById(R.id.veunombreperfil);

@@ -35,6 +35,7 @@ public class desestres extends AppCompatActivity implements SensorEventListener 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("DIVIERTETE");
         setContentView(new Dibujo(this));
 
         sensores = (SensorManager) getSystemService(SENSOR_SERVICE); //OBTIENE EL SENSOR DE TELEFONO

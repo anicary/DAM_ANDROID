@@ -8,6 +8,7 @@ public class acerca extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("Acerca de...");
         setContentView(R.layout.activity_acerca);
     }
 }
