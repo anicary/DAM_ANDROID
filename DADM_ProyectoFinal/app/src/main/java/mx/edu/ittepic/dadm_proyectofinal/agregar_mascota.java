@@ -13,6 +13,7 @@ import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileDescriptor;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -35,7 +37,7 @@ public class agregar_mascota extends AppCompatActivity implements AsyncResponse 
     ConexionWeb conexionWeb;
     private static int RESULT_LOAD_IMAGE = 1;
     ImageView imageView;
-    Bitmap bitmap;
+    Bitmap imagenenviar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +65,17 @@ public class agregar_mascota extends AppCompatActivity implements AsyncResponse 
                 if (!name.equals("") || !sex.equals("") || !edad1.equals("")) {
                     //TODO PENDIENTE
                     try {
+
+                        try {
+                            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                            imagenenviar.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+
+                            byte[] byteArrayImage = baos.toByteArray();
+                            String imagebase64string = Base64.encodeToString(byteArrayImage, Base64.DEFAULT);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
                         conexionWeb = new ConexionWeb(agregar_mascota.this);
                         conexionWeb.agregarVariables("idusuarios",idusuarios);
                         conexionWeb.agregarVariables("nombre", name);
@@ -105,24 +118,27 @@ public class agregar_mascota extends AppCompatActivity implements AsyncResponse 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
-            Uri selectedImage = data.getData();
-            String[] filePathColumn = { MediaStore.Images.Media.DATA };
-            Cursor cursor = getContentResolver().query(selectedImage,
-                    filePathColumn, null, null, null);
-            cursor.moveToFirst();
-            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            String picturePath = cursor.getString(columnIndex);
-            cursor.close();
-            Bitmap bmp = null;
             try {
+                Uri selectedImage = data.getData();
+                String[] filePathColumn = { MediaStore.Images.Media.DATA };
+                Cursor cursor = getContentResolver().query(selectedImage,
+                        filePathColumn, null, null, null);
+                cursor.moveToFirst();
+                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                String picturePath = cursor.getString(columnIndex);
+                cursor.close();
+                Bitmap bmp = null;
                 bmp = getBitmapFromUri(selectedImage);
+                imagenenviar=bmp;
+                imageView.setImageBitmap(bmp);
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            imageView.setImageBitmap(bmp);
+
         }
         if (requestCode == 7 && resultCode == RESULT_OK && data != null ) {
                 Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+            imagenenviar=thumbnail;
                 imageView.setImageBitmap(thumbnail);
         }
     }
