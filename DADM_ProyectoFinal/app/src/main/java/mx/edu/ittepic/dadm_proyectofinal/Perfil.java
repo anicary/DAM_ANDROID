@@ -22,6 +22,7 @@ public class Perfil extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("Perfil");
         setContentView(R.layout.activity_perfil);
 
         nombre=(TextView)findViewById(R.id.vnombreperfil);
