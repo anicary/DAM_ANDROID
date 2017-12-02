@@ -170,4 +170,11 @@ class Sistema extends CI_Controller {
 			}
 		}
 	}
+	public function eliminar_mascota()
+{
+	if ($this->input->post('idmascota')!="") {
+		$this->Mascotas->borrarmascota(	$this->input->post('idmascota'),$this->input->post('idusuarios'));
+		echo "eliminado";
+	}
+}
 }
