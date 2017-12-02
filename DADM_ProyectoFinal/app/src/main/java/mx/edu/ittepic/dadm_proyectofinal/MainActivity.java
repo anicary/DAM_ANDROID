@@ -90,16 +90,14 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         View v2 = navigationView.getHeaderView(0);
         TextView navcorreo = (TextView) v2.findViewById(R.id.navcorreo);
         navcorreo.setText(""+correo);
-
+        cargarMascotas();
         Menu_lista = (ListView) findViewById(R.id.lista_mascotas);
-        elemento = getElemento();
+
 
 
     }
     private ArrayList<mascota> getElemento() {
         elementos = new ArrayList<mascota>();
-        cargarMascotas();
-
         return elementos;
     }
     @Override
@@ -192,6 +190,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     }
     @Override
     public void procesarRespuesta(String r) {
+        elemento = getElemento();
         if(r.equals("no-mascotas")){
             Toast.makeText(MainActivity.this,"Aun no tienes mascotas", Toast.LENGTH_LONG).show();
         }else

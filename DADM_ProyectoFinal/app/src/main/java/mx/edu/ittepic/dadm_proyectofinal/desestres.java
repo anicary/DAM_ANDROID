@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 
 import java.util.Random;
 
@@ -32,6 +33,7 @@ public class desestres extends AppCompatActivity implements SensorEventListener 
     int contadorshake=0;
     float x=0,y=0;
     Bitmap imagen;
+    int resulusionx,resulusiony;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,8 +115,9 @@ public class desestres extends AppCompatActivity implements SensorEventListener 
                     global.start();
                 }
             };
+            Resolucion();
             imagen=BitmapFactory.decodeResource(getResources(),R.drawable.forndosacude);
-            imagen=escalado(imagen,1920,false);
+            imagen=escalado(imagen,(float)((resulusiony+200)*1930)/1930,false);
             global.start();
         }
 
@@ -134,6 +137,16 @@ public class desestres extends AppCompatActivity implements SensorEventListener 
             int height = Math.round((float) ratio * imgentrada.getHeight());
             Bitmap nuevaImagen = Bitmap.createScaledBitmap(imgentrada, width, height, filtro);
             return nuevaImagen;
+        }
+        public void Resolucion() {
+            WindowManager wm = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
+            Display display = wm.getDefaultDisplay();
+            Point size = new Point();
+            display.getSize(size);
+            resulusionx = size.x;
+            resulusiony = size.y;
+            System.out.println("RESOLUCION "+resulusionx+","+resulusiony);
+
         }
         public boolean onTouchEvent(MotionEvent motionEvent) {
 

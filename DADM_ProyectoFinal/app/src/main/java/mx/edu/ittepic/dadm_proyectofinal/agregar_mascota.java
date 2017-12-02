@@ -69,7 +69,6 @@ public class agregar_mascota extends AppCompatActivity implements AsyncResponse 
                         try {
                             ByteArrayOutputStream baos = new ByteArrayOutputStream();
                             imagenenviar.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-
                             byte[] byteArrayImage = baos.toByteArray();
                              imagebase64string = Base64.encodeToString(byteArrayImage, Base64.DEFAULT);
                         } catch (Exception e) {
