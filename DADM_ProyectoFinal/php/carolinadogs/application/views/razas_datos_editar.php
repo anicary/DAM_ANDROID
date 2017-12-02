@@ -47,16 +47,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 											<div class="form-group">
 												<label for="exampleFormControlTextarea1">Salud:</label>
 												<textarea class="form-control" id="salud" name="salud" rows="3">
+													<?php echo $RAZAS[0]->salud; ?>
 												</textarea>
 											</div>
 											<div class="form-group">
 												<label for="exampleFormControlTextarea1">Caracteristicas:</label>
 												<textarea class="form-control" id="caracteristicas" name="caracteristicas" rows="3">
+													<?php echo $RAZAS[0]->caracteristicas; ?>
 												</textarea>
 											</div>
 											<div class="form-group">
 												<label for="exampleFormControlTextarea1">Utilidad:</label>
 												<textarea class="form-control" id="utilidad" name="utilidad" rows="3">
+													<?php echo $RAZAS[0]->utilidad; ?>
 												</textarea>
 											</div>
 											<div class="form-group">
