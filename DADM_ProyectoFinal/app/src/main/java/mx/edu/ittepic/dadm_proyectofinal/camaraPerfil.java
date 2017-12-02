@@ -47,7 +47,7 @@ ImageView imagen;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camara_perfil);
-
+        dbinterna = new BDInterna(camaraPerfil.this, "baseinterna", null, 1);
          prefs =getSharedPreferences("INFO_USUARIO", Context.MODE_PRIVATE);
         tomarf=(Button)findViewById(R.id.tomarfoto);
         guardarf=(Button)findViewById(R.id.guardarfoto);
