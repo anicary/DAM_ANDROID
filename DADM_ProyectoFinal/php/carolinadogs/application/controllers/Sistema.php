@@ -128,10 +128,16 @@ class Sistema extends CI_Controller {
 	}
 	public function cambiar_foto()
 	{
-		$decoded=base64_decode($this->input->post('foto'));
-		file_put_contents($archivo."".$this->input->post('idusuarios')."fotoperfil.jpg",$decoded);
-		$urlenvarserver=base_url()."".$this->input->post('idusuarios')."fotoperfil.jpg";
-		
+		if($this->input->post('idusuarios')!=""){
+			$id = $this->input->post("idusuarios");
+			$decoded=base64_decode($this->input->post('foto'));
+			file_put_contents($archivo."".$this->input->post('idusuarios')."fotoperfil.jpg",$decoded);
+			$urlenvarserver=base_url()."".$this->input->post('idusuarios')."fotoperfil.jpg";
+			$datos= array(
+				'perfil_foto' => $urlenvarserver
+			);
+			$this->Usuarios->editarUsuario($datos,$id);
+		}
 	}
 	public function registro_mascota()
 	{
