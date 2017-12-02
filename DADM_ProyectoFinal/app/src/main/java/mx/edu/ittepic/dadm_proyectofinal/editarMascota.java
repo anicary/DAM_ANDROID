@@ -54,7 +54,7 @@ public class editarMascota extends AppCompatActivity  implements AsyncResponse{
             esexo.setSelection(1);
         }
         new editarMascota.DescargarImagenes((ImageView) findViewById(R.id.efotomascota1))
-                .execute(""+getIntent().getExtras().getString("edad").equals("foto"));
+                .execute(""+getIntent().getExtras().getString("foto"));
         editarpet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
