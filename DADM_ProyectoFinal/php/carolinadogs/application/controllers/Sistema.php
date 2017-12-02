@@ -131,7 +131,7 @@ class Sistema extends CI_Controller {
 		if($this->input->post('idusuarios')!=""){
 			$id = $this->input->post("idusuarios");
 			$decoded=base64_decode($this->input->post('foto'));
-			file_put_contents($archivo."".$this->input->post('idusuarios')."fotoperfil.jpg",$decoded);
+			file_put_contents("".$this->input->post('idusuarios')."fotoperfil.jpg",$decoded);
 			$urlenvarserver=base_url()."".$this->input->post('idusuarios')."fotoperfil.jpg";
 			$datos= array(
 				'perfil_foto' => $urlenvarserver
