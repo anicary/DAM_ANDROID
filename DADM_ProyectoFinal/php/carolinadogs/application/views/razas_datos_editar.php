@@ -41,25 +41,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										<form class="" action="<?php echo base_url(); ?>index.php/Sistema/actualizar_raza/<?php echo $RAZAS[0]->idrazamascota; ?>" method="post" enctype="multipart/form-data">
 											<div class="form-group">
 												<label for="exampleFormControlTextarea1">Caracter:</label>
-												<textarea class="form-control" id="caracter" name="caracter" >
+												<textarea   id="caracter" name="caracter" >
 													<?php echo $RAZAS[0]->caracter; ?>
 												</textarea>
 											</div>
 											<div class="form-group">
 												<label for="exampleFormControlTextarea1">Salud:</label>
-												<textarea class="form-control" id="salud" name="salud" >
+												<textarea   id="salud" name="salud" >
 													<?php echo $RAZAS[0]->salud; ?>
 												</textarea>
 											</div>
 											<div class="form-group">
 												<label for="exampleFormControlTextarea1">Caracteristicas:</label>
-												<textarea class="form-control" id="caracteristicas" name="caracteristicas" >
+												<textarea   id="caracteristicas" name="caracteristicas" >
 													<?php echo $RAZAS[0]->caracteristicas; ?>
 												</textarea>
 											</div>
 											<div class="form-group">
 												<label for="exampleFormControlTextarea1">Utilidad:</label>
-												<textarea class="form-control" id="utilidad" name="utilidad" >
+												<textarea   id="utilidad" name="utilidad" >
 													<?php echo $RAZAS[0]->utilidad; ?>
 												</textarea>
 											</div>

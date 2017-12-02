@@ -218,11 +218,10 @@ class Sistema extends CI_Controller {
 	public function actualizar_raza($id)
 	{
 		if ($this->session->userdata('tipo')=='1') {
-			if($this->input->post('foto')!=""){
+			if(true){
 				$config['upload_path'] = "archivos/fotos/";
 				$config['allowed_types'] = 'gif|jpg|png|jpeg';
 				$this->load->library('upload', $config);
-
 				if (!$this->upload->do_upload('foto')){
 					echo $this->upload->display_errors('<p>', '</p>');
 				}else{
