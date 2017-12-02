@@ -2,6 +2,7 @@ package mx.edu.ittepic.dadm_proyectofinal;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -14,6 +15,7 @@ import android.os.AsyncTask;
 import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
@@ -32,7 +34,7 @@ import java.net.URL;
 
 public class camaraPerfil extends AppCompatActivity  implements AsyncResponse {
 ImageView imagen;
-    Button tomarf;
+    Button tomarf,guardarf;
     Bitmap enviar;
     ConexionWeb conexionWeb;
     SharedPreferences prefs;
@@ -43,6 +45,7 @@ ImageView imagen;
 
          prefs =getSharedPreferences("INFO_USUARIO", Context.MODE_PRIVATE);
         tomarf=(Button)findViewById(R.id.tomarfoto);
+        guardarf=(Button)findViewById(R.id.guardarfoto);
 
         imagen=(ImageView) findViewById(R.id.imgPernew);
         new camaraPerfil.DescargarImagenes((ImageView) findViewById(R.id.imgPernew))
@@ -52,6 +55,11 @@ ImageView imagen;
             public void onClick(View v) {
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(intent, 7);
+            }
+        });
+        guardarf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 try {
                     String imagebase64string="";
                     try {
@@ -134,11 +142,22 @@ ImageView imagen;
     }
     public void procesarRespuesta(String r) {
         if(r.equals("actualizado")){
+            Toast.makeText(this,"LA FOTO SE ACTUALIZO CORRECTAMENTE",Toast.LENGTH_LONG).show();
             Intent intent = new Intent(camaraPerfil.this, editarPerfilusuario.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         }else
         {
+            AlertDialog.Builder alerta = new AlertDialog.Builder(this);
+            alerta.setTitle("AVISO")
+                    .setMessage("ERROR,FOTO NO ACTUALIZADA")
+                    .setIcon(R.drawable.ic_error_black_24dp)
+                    .setPositiveButton("ENTENDIDO", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    }).show();
 
         }
     }

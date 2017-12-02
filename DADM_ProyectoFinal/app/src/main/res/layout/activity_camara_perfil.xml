@@ -17,10 +17,22 @@
         android:id="@+id/tomarfoto"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:background="@drawable/ovalo8"
+        android:fontFamily="monospace"
+        android:gravity="center"
+        android:text="TOMAR FOTO"
+        android:textColor="#FFFFFF"
+        android:textSize="18dp"
+        android:textStyle="bold" />
+    <Button
+        android:id="@+id/guardarfoto"
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:background="@drawable/ovalo2"
         android:fontFamily="monospace"
         android:gravity="center"
-        android:text="TOMAR FOTO Y GUARDAR"
+        android:text="guardar"
         android:textColor="#FFFFFF"
         android:textSize="18dp"
         android:textStyle="bold" />
