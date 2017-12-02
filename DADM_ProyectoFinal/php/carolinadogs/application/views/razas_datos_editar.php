@@ -66,6 +66,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 											<div class="form-group">
 												<label for="exampleFormControlFile1">Foto:</label>
 												<input type="file" class="form-control-file" name="foto" id="foto">
+												<img src="<?php echo $RAZAS[0]->foto_raza; ?>" alt="">
 											</div>
 											<button type="submit"  class="btn btn-success" name="button">GUARDAR</button>
 										</form>
