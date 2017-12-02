@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     ArrayList<mascota> elementos;
     ListView Menu_lista;
     ConexionWeb conexionWeb;
-
+    JSONArray arrayjson;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -193,19 +193,29 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
             Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
+    String idtemp="";
     @Override
     public void procesarRespuesta(String r) {
+
         elemento = getElemento();
         if(r.equals("no-mascotas")){
             Toast.makeText(MainActivity.this,"Aun no tienes mascotas", Toast.LENGTH_LONG).show();
         }else
         {
             try{
-                JSONArray arrayjson = new JSONArray(r);
+                 arrayjson = new JSONArray(r);
                 for(int i = 0; i < arrayjson.length(); i++){
+                    idtemp=arrayjson.getJSONObject(i).getString("idmascota");
                     elementos.add(new mascota(Integer.parseInt(arrayjson.getJSONObject(i).getString("idmascota")),arrayjson.getJSONObject(i).getString("nombre"),arrayjson.getJSONObject(i).getString("edad"),arrayjson.getJSONObject(i).getString("sexo"),arrayjson.getJSONObject(i).getString("sexo"),arrayjson.getJSONObject(i).getString("foto_mas")));
                 }
-                adater= new MascotaAdaptador(this,elementos);
+                adater= new MascotaAdaptador(this, elementos, new MascotaAdaptador.botonClick() {
+                    @Override
+                    public void onBtnClick(int position) {
+                        Intent acde = new Intent(MainActivity.this, editarMascota.class);
+                        acde.putExtra("idmascota",elementos.get(position).getidmascota());
+                        startActivity(acde);
+                    }
+                });
                 Menu_lista.setAdapter(adater);
             }catch (JSONException e){
 

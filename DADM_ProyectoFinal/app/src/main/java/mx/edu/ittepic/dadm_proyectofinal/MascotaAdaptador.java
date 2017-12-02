@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,10 +26,14 @@ public class MascotaAdaptador extends BaseAdapter {
     private ArrayList<mascota>elementos;
     mascota elemento;
     View vista;
-    public MascotaAdaptador(Activity actividad, ArrayList<mascota> elementos) {
+    private botonClick btnMasinfo = null;
+    public MascotaAdaptador(Activity actividad, ArrayList<mascota> elementos,botonClick btnMasinfo) {
         this.actividad = actividad;
         this.elementos = elementos;
-
+        this.btnMasinfo=btnMasinfo;
+    }
+    public interface botonClick {
+        public abstract void onBtnClick(int position);
     }
     @Override
     public int getCount() {
@@ -51,6 +56,17 @@ public class MascotaAdaptador extends BaseAdapter {
             vista = inflater.inflate(R.layout.kardex, null);
         }
         elemento = elementos.get(position);
+        ImageView pata = (ImageView) vista.findViewById(R.id.idpatita);
+        pata.setTag(position);
+        pata.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    if(btnMasinfo != null){
+                        btnMasinfo.onBtnClick((Integer) view.getTag());
+                    }
+
+            }
+        });
         TextView nombre = (TextView) vista.findViewById(R.id.vnombrekardex);
         nombre.setText(elemento.getnombre());
         TextView edad = (TextView) vista.findViewById(R.id.vedadkardex);
@@ -60,6 +76,8 @@ public class MascotaAdaptador extends BaseAdapter {
        // ImageView raza = (ImageView) vista.findViewById(R.id.vkardesfoto);
         new MascotaAdaptador.DescargarImagenes((ImageView) vista.findViewById(R.id.vkardesfoto))
                 .execute(""+elemento.getfoto());
+
+
         return vista;
     }
     private class DescargarImagenes extends AsyncTask<String, Void, Bitmap> {
