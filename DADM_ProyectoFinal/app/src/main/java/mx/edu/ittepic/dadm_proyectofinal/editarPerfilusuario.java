@@ -12,6 +12,8 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -80,6 +82,21 @@ public class editarPerfilusuario extends AppCompatActivity implements AsyncRespo
         apellido.setText(apellidosa);
         correo.setText(correoa);
     }
+    public boolean onCreateOptionsMenu(Menu m){
+        getMenuInflater().inflate(R.menu.camara,m);
+        return true;
+    }
+
+
+    public boolean onOptionsItemSelected(MenuItem mi){
+        switch (mi.getItemId()){
+            case R.id.tomar:
+                
+                break;
+        }
+        return true;
+    }
+
     public void procesarRespuesta(String r) {
         Toast.makeText(editarPerfilusuario.this,"CAMBIOS GUARDADOS",Toast.LENGTH_LONG).show();
         SharedPreferences.Editor editor = getSharedPreferences("INFO_USUARIO", MODE_PRIVATE).edit();

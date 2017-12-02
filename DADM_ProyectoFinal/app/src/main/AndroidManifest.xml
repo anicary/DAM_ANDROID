@@ -46,7 +46,8 @@
         <activity
             android:name=".curiosidades"
             android:label="@string/title_activity_curiosidades"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".camaraPerfil"></activity>
     </application>
 
 </manifest>
