@@ -119,7 +119,9 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
+        if (id == R.id.curiosidades) {
+            Intent curiosidad = new Intent(MainActivity.this,curiosidades.class);
+            startActivity(curiosidad);
             return true;
         }
 

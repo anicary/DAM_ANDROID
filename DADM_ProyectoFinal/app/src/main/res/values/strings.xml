@@ -1,4 +1,32 @@
 <resources>
+    <string name="curiosidades">Actividad física es igual a salud. Los perros necesitan salir a pasear un par de veces aunque sea unos 20 minutos. Por supuesto en casa deberíamos mantenerlo activo (pidiéndole que nos traiga cosas, jugando, etc.)</string>
+    <string name="curiosidades2">Los perros y gatos con sobrepeso son algo ya habitual. No es cuestión de matarlos de hambre pero tampoco de cebarlos. A menudo tenemos la obsesión de que a más gorditos están más sanos.
+Es importante asesorarnos por nuestro veterinario de qué pueden y no pueden comer (a todo el mundo le hace gracia ver como su animalito se come tal o cual cosa, a más extraña mejor).
+Hay que vigilar el nivel de proteínas ya que, al igual que nos ocurre a nosotros, un exceso de proteínas sobre carga los riñones y acidifica el organismo.
+Aumentar el consumo de alimentos frescos (verduras, arroz, frutas, pescado y carne) en lugar de darles siempre piensos. Muchos animalitos mejoran de alergias, problemas de piel y otras enfermedades al introducirles alimentos cocinados por nosotros.
+Además como aumentaremos la cantidad de fibra le estaremos ayudando a perder peso y estar más sanos.
+Es como si nosotros comiéramos siempre comida seca y en plan industrial.
+Una opción es añadir a su pienso un poco de alimento fresco (preguntad a vuestro veterinario).
+</string>
+    <string name="curiosidades3">Si tu mascota es adulta, llévala a un chequeo anual con el veterinario. Los perros y los gatos deben ser vacunados una vez al año contra las enfermedades más comunes (rabia, distemper, parainfluenza, parvovirus, entre otras). En algunos casos específicos, se debe vacunar contra otras enfermedades, como es en Brasil, en donde es recomendable la vacunación contra la Leishmania.
+Tu veterinario recomendará qué tan seguido debes desparasitar a tu mascota contra los parásitos internos. La desparasitación es común hacerla a través de la administración de una pastilla cada tres meses. El tipo de desparasitación dependerá de donde vives, ya que diferentes parásitos se pueden dar en diferentes lugares. Por ejemplo, es común encontrar casos del gusano del corazón en lugares tropicales cerca de la playa.
+</string>
+    <string name="curiosidades4">El color de la caca de un perro puede aportarnos mucha más información de la que creemos, desde pistas sobre su estado de salud y/o tipo de alimentación, hasta advertirnos de la presencia de posibles parásitos y/o problemas digestivos</string>
+    <string name="curiosidades5">Heces de color blanco o blanquecinas
+Normalmente son cacas de perros que se alimentan de comida natural (BARF) y que se decolora en pocas horas, quedando de color blanco. También pueden ser debidas a un exceso de calcio en la alimentación, exceso de huesos o cáscaras de huevos.
+    </string>
+    <string name="curiosidades6">Cacas de color negro o marrón oscuro
+Una alta cantidad de carne en la dieta de nuestro perro, puede producir que sus heces sean de un color muy oscuro o negro. Pero también la sangre coagulada puede aportar ese color a las cacas de un perro, por lo que siempre es recomendable consulta con el veterinario si nuestro perro hace cacas de este color de forma habitual.
+    </string>
+    <string name="curiosidades7">Cacas de consistencia dura
+Los perros alimentados con una alimentación natural suelen hacer cacas de una consistencia que podría catalogarse cómo normal. Sus cacas son duras y poco olorosas.
+</string>
+    <string name="curiosidades8">Cacas de consistencia acuosa – diarreica
+Cuando algo falla en el sistema digestivo de nuestro perro, normalmente se manifiesta mediante la aparición de heces acuosas, diarreicas y por lo general muy malolientes. Los motivos pueden ser múltiples pero nunca se han de interpretar cómo una deposición normal o sana.
+</string>
+    <string name="curiosidades9">Cacas muy brillantes, con mucosidad y/o gusanos
+Las cacas muy brillantes nos indican que hay un exceso de grasa en la alimentación, algo que puede dañar el páncreas del perro a medio plazo. Si su aspecto es acuoso o mucoso, puede indicar la presencia de alguna bacteria intestinal que ocasione el desprendimiento de la flora. Pero también podría ser que indique la presencia de algunos parásitos intestinales cómo las giardias.
+</string>
     <string name="app_name">DADM_ProyectoFinal</string>
     <string name="title_activity_main">MainActivity</string>
 
@@ -96,4 +124,5 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
+    <string name="title_activity_curiosidades">curiosidades</string>
 </resources>
