@@ -16,12 +16,14 @@ import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileDescriptor;
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,13 +35,13 @@ ImageView imagen;
     Button tomarf;
     Bitmap enviar;
     ConexionWeb conexionWeb;
+    SharedPreferences prefs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camara_perfil);
 
-        SharedPreferences prefs =
-                getSharedPreferences("INFO_USUARIO", Context.MODE_PRIVATE);
+         prefs =getSharedPreferences("INFO_USUARIO", Context.MODE_PRIVATE);
         tomarf=(Button)findViewById(R.id.tomarfoto);
 
         imagen=(ImageView) findViewById(R.id.imgPernew);
@@ -51,8 +53,17 @@ ImageView imagen;
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(intent, 7);
                 try {
+                    String imagebase64string="";
+                    try {
+                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                        enviar.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                        byte[] byteArrayImage = baos.toByteArray();
+                        imagebase64string = Base64.encodeToString(byteArrayImage, Base64.DEFAULT);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     conexionWeb = new ConexionWeb(camaraPerfil.this);
-                    conexionWeb.agregarVariables("foto", "");
+                    conexionWeb.agregarVariables("foto", imagebase64string);
                     conexionWeb.agregarVariables("idusuarios", prefs.getString("idusuarios", "0"));
                     URL direccion = new URL("http://carolina.x10host.com/index.php/Sistema/cambiar_foto");
                     conexionWeb.execute(direccion);
@@ -62,8 +73,7 @@ ImageView imagen;
                 }
             }
         });
-        ActivityCompat.requestPermissions(this,
-                new String[]{ Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE },
+        ActivityCompat.requestPermissions(this, new String[]{ Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE },
                 1);
     }
     private class DescargarImagenes extends AsyncTask<String, Void, Bitmap> {
@@ -114,7 +124,6 @@ ImageView imagen;
             imagen.setImageBitmap(thumbnail);
         }
     }
-
     private Bitmap getBitmapFromUri(Uri uri) throws IOException {
         ParcelFileDescriptor parcelFileDescriptor =
                 getContentResolver().openFileDescriptor(uri, "r");
@@ -125,7 +134,9 @@ ImageView imagen;
     }
     public void procesarRespuesta(String r) {
         if(r.equals("actualizado")){
-
+            Intent intent = new Intent(camaraPerfil.this, editarPerfilusuario.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
         }else
         {
 
