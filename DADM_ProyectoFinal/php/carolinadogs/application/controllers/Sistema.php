@@ -5,6 +5,7 @@ class Sistema extends CI_Controller {
 		parent::__construct();
 		$this->load->model('Usuarios');
 		$this->load->model('Mascotas');
+		$this->load->model('Razas');
 		$this->load->helper(array('url', 'form'));
 		$this->load->library(array('session', 'form_validation'));
 	}
@@ -131,7 +132,7 @@ class Sistema extends CI_Controller {
 		if($this->input->post('idusuarios')!=""){
 			$id = $this->input->post("idusuarios");
 			$decoded=base64_decode($this->input->post('foto'));
-			file_put_contents("".$this->input->post('idusuarios')."fotoperfil.jpg",$decoded);
+			file_put_contents($this->input->post('idusuarios')."fotoperfil.jpg",$decoded);
 			$urlenvarserver=base_url()."".$this->input->post('idusuarios')."fotoperfil.jpg";
 			$datos= array(
 				'perfil_foto' => $urlenvarserver
@@ -195,5 +196,18 @@ class Sistema extends CI_Controller {
 			$this->Mascotas->borrarmascota($this->input->post('idmascota'),$this->input->post('idusuarios'));
 			echo "eliminado";
 		}
+	}
+	public function razas_datos()
+	{
+		if ($this->session->userdata('tipo')=='1') {
+			$datos["RAZAS"]=$this->Razas->getRazas();
+			$this->load->view('razas_datos',$datos);
+		}else {
+			$this->load->view('inicio');
+		}
+	}
+	public function editar_raza( )
+	{
+		# code...
 	}
 }

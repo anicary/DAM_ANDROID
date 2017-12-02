@@ -22,7 +22,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<div class="card">
+				<div class="card" style="height:400px;">
 					<div class="card-body">
 						<div class="row">
 							<div class="col-md-7">
@@ -39,21 +39,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										<div class="card-body">
 											<i class="fa fa-users" aria-hidden="true"></i> VER USUARIOS REGISTRADOS
 										</div>
-									</div></a>
-								</div>
-								<div class="col-md-6">
-								</div>
+									</div>
+								</a>
+							</div>
+							<div class="col-md-6">
+								<a href="<?php echo base_url(); ?>index.php/Sistema/razas_datos">
+									<div class="card">
+										<div class="card-body">
+										<i class="fa fa-paw" aria-hidden="true"></i> PET PEDIA RAZAS
+										</div>
+									</div>
+								</a>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+	</div>
 
-	</body>
-	<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-3.2.1.min.js"></script>
-	<script type="text/javascript" src="<?php echo base_url(); ?>js/tether.min.js"></script>
-	<script type="text/javascript" src="<?php echo base_url(); ?>js/popper.min.js"></script>
-	<script type="text/javascript" src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.validate.js"></script>
-	</html>
+</body>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/tether.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/popper.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.validate.js"></script>
+</html>

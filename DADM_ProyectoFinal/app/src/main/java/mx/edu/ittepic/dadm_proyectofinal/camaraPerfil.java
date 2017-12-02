@@ -36,25 +36,26 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class camaraPerfil extends AppCompatActivity  implements AsyncResponse {
-ImageView imagen;
-    Button tomarf,guardarf;
+public class camaraPerfil extends AppCompatActivity implements AsyncResponse {
+    ImageView imagen;
+    Button tomarf, guardarf;
     Bitmap enviar;
     ConexionWeb conexionWeb;
     BDInterna dbinterna;
     SharedPreferences prefs;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camara_perfil);
         dbinterna = new BDInterna(camaraPerfil.this, "baseinterna", null, 1);
-         prefs =getSharedPreferences("INFO_USUARIO", Context.MODE_PRIVATE);
-        tomarf=(Button)findViewById(R.id.tomarfoto);
-        guardarf=(Button)findViewById(R.id.guardarfoto);
+        prefs = getSharedPreferences("INFO_USUARIO", Context.MODE_PRIVATE);
+        tomarf = (Button) findViewById(R.id.tomarfoto);
+        guardarf = (Button) findViewById(R.id.guardarfoto);
 
-        imagen=(ImageView) findViewById(R.id.imgPernew);
+        imagen = (ImageView) findViewById(R.id.imgPernew);
         new camaraPerfil.DescargarImagenes((ImageView) findViewById(R.id.imgPernew))
-                .execute(""+ prefs.getString("imagen", "http://carolina.x10host.com/archivos/fotos/perfil.jpg"));
+                .execute("" + prefs.getString("imagen", "http://carolina.x10host.com/archivos/fotos/perfil.jpg"));
         tomarf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,7 +67,7 @@ ImageView imagen;
             @Override
             public void onClick(View view) {
                 try {
-                    String imagebase64string="";
+                    String imagebase64string = "";
                     try {
                         ByteArrayOutputStream baos = new ByteArrayOutputStream();
                         enviar.compress(Bitmap.CompressFormat.JPEG, 100, baos);
@@ -82,18 +83,20 @@ ImageView imagen;
                     conexionWeb.execute(direccion);
                 } catch (MalformedURLException e) {
                     Toast.makeText(camaraPerfil.this, e.getMessage(), Toast.LENGTH_LONG).show();
-
                 }
             }
         });
-        ActivityCompat.requestPermissions(this, new String[]{ Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE },
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE},
                 1);
     }
+
     private class DescargarImagenes extends AsyncTask<String, Void, Bitmap> {
         ImageView bmImage;
+
         public DescargarImagenes(ImageView bmImage) {
             this.bmImage = bmImage;
         }
+
         protected Bitmap doInBackground(String... urls) {
             String urldisplay = urls[0];
             Bitmap mIcon11 = null;
@@ -106,17 +109,19 @@ ImageView imagen;
             }
             return mIcon11;
         }
+
         protected void onPostExecute(Bitmap result) {
             bmImage.setImageBitmap(result);
         }
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == RESULT_OK && null != data) {
             try {
                 Uri selectedImage = data.getData();
-                String[] filePathColumn = { MediaStore.Images.Media.DATA };
+                String[] filePathColumn = {MediaStore.Images.Media.DATA};
                 Cursor cursor = getContentResolver().query(selectedImage,
                         filePathColumn, null, null, null);
                 cursor.moveToFirst();
@@ -125,18 +130,19 @@ ImageView imagen;
                 cursor.close();
                 Bitmap bmp = null;
                 bmp = getBitmapFromUri(selectedImage);
-                enviar=bmp;
+                enviar = bmp;
                 imagen.setImageBitmap(bmp);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        if (requestCode == 7 && resultCode == RESULT_OK && data != null ) {
+        if (requestCode == 7 && resultCode == RESULT_OK && data != null) {
             Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
-            enviar=thumbnail;
+            enviar = thumbnail;
             imagen.setImageBitmap(thumbnail);
         }
     }
+
     private Bitmap getBitmapFromUri(Uri uri) throws IOException {
         ParcelFileDescriptor parcelFileDescriptor =
                 getContentResolver().openFileDescriptor(uri, "r");
@@ -145,9 +151,10 @@ ImageView imagen;
         parcelFileDescriptor.close();
         return image;
     }
+
     public void procesarRespuesta(String r) {
-        if(r.equals("actualizado")){
-            Toast.makeText(this,"LA FOTO SE ACTUALIZO CORRECTAMENTE",Toast.LENGTH_LONG).show();
+        if (r.equals("actualizado")) {
+            Toast.makeText(this, "LA FOTO SE ACTUALIZO CORRECTAMENTE", Toast.LENGTH_LONG).show();
             try {
                 conexionWeb = new ConexionWeb(camaraPerfil.this);
                 conexionWeb.agregarVariables("idusuarios", prefs.getString("idusuarios", "0"));
@@ -156,28 +163,27 @@ ImageView imagen;
             } catch (MalformedURLException e) {
                 Toast.makeText(camaraPerfil.this, e.getMessage(), Toast.LENGTH_LONG).show();
             }
-        }else
-        {
-            if(isJSONValid(r)){
+        } else {
+            if (isJSONValid(r)) {
                 try {
                     JSONArray arrayjson = new JSONArray(r);
                     SharedPreferences.Editor editor = getSharedPreferences("INFO_USUARIO", MODE_PRIVATE).edit();
-                    editor.putString("imagen",arrayjson.getJSONObject(0).getString("perfil_foto"));
+                    editor.putString("imagen", arrayjson.getJSONObject(0).getString("perfil_foto"));
                     editor.apply();
                     try {
                         SQLiteDatabase base = dbinterna.getWritableDatabase();
-                        String query1 = "UPDATE usuario SET imagen='"+arrayjson.getJSONObject(0).getString("perfil_foto")+"';";
+                        String query1 = "UPDATE usuario SET imagen='" + arrayjson.getJSONObject(0).getString("perfil_foto") + "';";
                         base.execSQL(query1);
-                    }catch (SQLException e){
+                    } catch (SQLException e) {
                         Toast.makeText(camaraPerfil.this, e.getMessage(), Toast.LENGTH_LONG).show();
                     }
-                    Intent intent = new Intent(camaraPerfil.this, editarPerfilusuario.class);
+                    Intent intent = new Intent(camaraPerfil.this, MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
-                }catch (JSONException e) {
+                } catch (JSONException e) {
                     Toast.makeText(camaraPerfil.this, e.getMessage(), Toast.LENGTH_LONG).show();
                 }
-            }else {
+            } else {
                 AlertDialog.Builder alerta = new AlertDialog.Builder(this);
                 alerta.setTitle("AVISO")
                         .setMessage("ERROR,FOTO NO ACTUALIZADA")
@@ -191,6 +197,7 @@ ImageView imagen;
             }
         }
     }
+
     public boolean isJSONValid(String test) {
         try {
             new JSONObject(test);
