@@ -137,6 +137,7 @@ class Sistema extends CI_Controller {
 				'perfil_foto' => $urlenvarserver
 			);
 			$this->Usuarios->editarUsuario($datos,$id);
+			echo "actualizado";
 		}
 	}
 	public function registro_mascota()
