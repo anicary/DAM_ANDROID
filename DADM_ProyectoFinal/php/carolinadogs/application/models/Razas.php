@@ -28,6 +28,6 @@ class Razas extends CI_Model {
   {
     $DB2 = $this->load->database('default', TRUE);
     $DB2->where('idrazamascota', $id );
-    $DB2->update('usuarios',$datos);
+    $DB2->update('razamascota',$datos);
   }
 }
