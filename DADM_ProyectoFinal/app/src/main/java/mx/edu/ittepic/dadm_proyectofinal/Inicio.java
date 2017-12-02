@@ -45,8 +45,9 @@ public class Inicio extends AppCompatActivity implements AsyncResponse {
         dbinterna = new BDInterna(Inicio.this, "baseinterna", null, 1);
 
         if(verificarLogin()){
-            Intent Ventanaregistro = new Intent(Inicio.this,MainActivity.class);
-            startActivity(Ventanaregistro);
+            Intent intent = new Intent(Inicio.this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
         }
 
         inicio.setOnClickListener(new View.OnClickListener() {
