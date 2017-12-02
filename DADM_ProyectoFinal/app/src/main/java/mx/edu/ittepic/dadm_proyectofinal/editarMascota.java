@@ -64,6 +64,7 @@ public class editarMascota extends AppCompatActivity  implements AsyncResponse{
                 if (!nombrea.equals("") || !edada.equals("") || !sexoa.equals("")) {
                     try {
                         conexionWeb = new ConexionWeb(editarMascota.this);
+                        conexionWeb.agregarVariables("idmascota", getIntent().getExtras().getString("idmascota"));
                         conexionWeb.agregarVariables("nombre", nombrea);
                         conexionWeb.agregarVariables("edad",edada);
                         conexionWeb.agregarVariables("sexo", sexoa);
@@ -80,7 +81,6 @@ public class editarMascota extends AppCompatActivity  implements AsyncResponse{
                 getSharedPreferences("INFO_USUARIO", Context.MODE_PRIVATE);
 
         idusuarios = prefs.getString("idusuarios", "0");
-
     }
     public void procesarRespuesta(String r) {
         if(r.equals("actualizado")){
@@ -92,7 +92,9 @@ public class editarMascota extends AppCompatActivity  implements AsyncResponse{
 
         }else
         {
+            if (r.equals("eliminado")){
 
+            }
         }
 
     }
@@ -114,7 +116,15 @@ public class editarMascota extends AppCompatActivity  implements AsyncResponse{
     public boolean onOptionsItemSelected(MenuItem mi){
         switch (mi.getItemId()){
             case R.id.eliminarpet:
-
+                try {
+                    conexionWeb = new ConexionWeb(editarMascota.this);
+                    conexionWeb.agregarVariables("idmascota", getIntent().getExtras().getString("idmascota"));
+                    conexionWeb.agregarVariables("idusuarios", idusuarios);
+                    URL direccion = new URL("http://carolina.x10host.com/index.php/Sistema/eliminar_mascota");
+                    conexionWeb.execute(direccion);
+                } catch (MalformedURLException e) {
+                    Toast.makeText(editarMascota.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                }
                 break;
         }
         return true;
