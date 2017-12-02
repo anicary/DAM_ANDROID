@@ -55,7 +55,7 @@
                     android:paddingLeft="15dp"
                     android:fontFamily="monospace"
                     android:gravity="center"
-                    android:text="Tipo"
+                    android:text="Sexo"
                     android:textColor="#000000"
                     android:textSize="15dp"
                     android:textStyle="bold" />
@@ -95,11 +95,19 @@
                     android:textSize="15dp"
                     android:textStyle="bold" />
         </LinearLayout>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:src="@drawable/ic_pets_black_24dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_marginBottom="40dp"
+                android:weightSum="1">
+                <ImageView
+                    android:layout_width="65dp"
+                    android:layout_height="41dp"
+                    android:src="@drawable/vermas" />
+            </LinearLayout>
+
     </LinearLayout>
         </LinearLayout>
 
