@@ -1,6 +1,7 @@
 package mx.edu.ittepic.dadm_proyectofinal;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.SQLException;
@@ -8,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -119,15 +121,30 @@ public class editarMascota extends AppCompatActivity  implements AsyncResponse{
     public boolean onOptionsItemSelected(MenuItem mi){
         switch (mi.getItemId()){
             case R.id.eliminarpet:
-                try {
-                    conexionWeb = new ConexionWeb(editarMascota.this);
-                    conexionWeb.agregarVariables("idmascota", ""+id);
-                    conexionWeb.agregarVariables("idusuarios", idusuarios);
-                    URL direccion = new URL("http://carolina.x10host.com/index.php/Sistema/eliminar_mascota");
-                    conexionWeb.execute(direccion);
-                } catch (MalformedURLException e) {
-                    Toast.makeText(editarMascota.this, e.getMessage(), Toast.LENGTH_LONG).show();
-                }
+                AlertDialog.Builder alerta = new AlertDialog.Builder(this);
+                alerta.setTitle("ATENCION")
+                        .setMessage("¿ESTAS SEGURO DE ELIMINAR ESTA MASCOTA?")
+                        .setIcon(R.drawable.ic_error_black_24dp)
+                        .setPositiveButton("SI", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                try {
+                                    conexionWeb = new ConexionWeb(editarMascota.this);
+                                    conexionWeb.agregarVariables("idmascota", ""+id);
+                                    conexionWeb.agregarVariables("idusuarios", idusuarios);
+                                    URL direccion = new URL("http://carolina.x10host.com/index.php/Sistema/eliminar_mascota");
+                                    conexionWeb.execute(direccion);
+                                } catch (MalformedURLException e) {
+                                    Toast.makeText(editarMascota.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        }).setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                }).show();
+
                 break;
         }
         return true;
