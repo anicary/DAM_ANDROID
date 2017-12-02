@@ -91,6 +91,8 @@ public class editarPerfilusuario extends AppCompatActivity implements AsyncRespo
     public boolean onOptionsItemSelected(MenuItem mi){
         switch (mi.getItemId()){
             case R.id.tomar:
+                Intent camara = new Intent(editarPerfilusuario.this,camaraPerfil.class);
+                startActivity(camara);
 
                 break;
         }
