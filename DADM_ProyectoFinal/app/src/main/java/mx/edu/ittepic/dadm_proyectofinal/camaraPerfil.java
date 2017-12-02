@@ -25,6 +25,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
 import java.io.FileDescriptor;
 import java.io.IOException;
@@ -37,6 +41,7 @@ ImageView imagen;
     Button tomarf,guardarf;
     Bitmap enviar;
     ConexionWeb conexionWeb;
+    BDInterna dbinterna;
     SharedPreferences prefs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,22 +148,59 @@ ImageView imagen;
     public void procesarRespuesta(String r) {
         if(r.equals("actualizado")){
             Toast.makeText(this,"LA FOTO SE ACTUALIZO CORRECTAMENTE",Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(camaraPerfil.this, editarPerfilusuario.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
+            try {
+                conexionWeb = new ConexionWeb(camaraPerfil.this);
+                conexionWeb.agregarVariables("idusuarios", prefs.getString("idusuarios", "0"));
+                URL direccion = new URL("http://carolina.x10host.com/index.php/Sistema/obtenerdatosusuario");
+                conexionWeb.execute(direccion);
+            } catch (MalformedURLException e) {
+                Toast.makeText(camaraPerfil.this, e.getMessage(), Toast.LENGTH_LONG).show();
+            }
         }else
         {
-            AlertDialog.Builder alerta = new AlertDialog.Builder(this);
-            alerta.setTitle("AVISO")
-                    .setMessage("ERROR,FOTO NO ACTUALIZADA")
-                    .setIcon(R.drawable.ic_error_black_24dp)
-                    .setPositiveButton("ENTENDIDO", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.dismiss();
-                        }
-                    }).show();
-
+            if(isJSONValid(r)){
+                try {
+                    JSONArray arrayjson = new JSONArray(r);
+                    SharedPreferences.Editor editor = getSharedPreferences("INFO_USUARIO", MODE_PRIVATE).edit();
+                    editor.putString("imagen",arrayjson.getJSONObject(0).getString("perfil_foto"));
+                    editor.apply();
+                    try {
+                        SQLiteDatabase base = dbinterna.getWritableDatabase();
+                        String query1 = "UPDATE usuario SET imagen='"+arrayjson.getJSONObject(0).getString("perfil_foto")+"';";
+                        base.execSQL(query1);
+                    }catch (SQLException e){
+                        Toast.makeText(camaraPerfil.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                    Intent intent = new Intent(camaraPerfil.this, editarPerfilusuario.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                }catch (JSONException e) {
+                    Toast.makeText(camaraPerfil.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            }else {
+                AlertDialog.Builder alerta = new AlertDialog.Builder(this);
+                alerta.setTitle("AVISO")
+                        .setMessage("ERROR,FOTO NO ACTUALIZADA")
+                        .setIcon(R.drawable.ic_error_black_24dp)
+                        .setPositiveButton("ENTENDIDO", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                            }
+                        }).show();
+            }
         }
+    }
+    public boolean isJSONValid(String test) {
+        try {
+            new JSONObject(test);
+        } catch (JSONException ex) {
+            try {
+                new JSONArray(test);
+            } catch (JSONException ex1) {
+                return false;
+            }
+        }
+        return true;
     }
 }
