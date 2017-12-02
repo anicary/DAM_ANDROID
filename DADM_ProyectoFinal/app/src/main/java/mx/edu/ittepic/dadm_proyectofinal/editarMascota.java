@@ -25,7 +25,7 @@ public class editarMascota extends AppCompatActivity  implements AsyncResponse{
     Spinner etipo, eraza, esexo;
     Button editarpet;
     ConexionWeb conexionWeb;
-
+    String id="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +39,14 @@ public class editarMascota extends AppCompatActivity  implements AsyncResponse{
         etipo = (Spinner) findViewById(R.id.etipomascota);
         eraza = (Spinner) findViewById(R.id.erazamascota);
 
+        id=getIntent().getExtras().getString("idmascota");
+        enombre.setText(getIntent().getExtras().getString("nombre"));
+        eedad.setText(getIntent().getExtras().getString("edad"));
+        if(getIntent().getExtras().getString("edad").equals("HEMBRA")){
+            esexo.setSelection(0);
+        }else{
+            esexo.setSelection(1);
+        }
         editarpet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -213,6 +213,9 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
                     public void onBtnClick(int position) {
                         Intent acde = new Intent(MainActivity.this, editarMascota.class);
                         acde.putExtra("idmascota",elementos.get(position).getidmascota());
+                        acde.putExtra("nombre",elementos.get(position).getnombre());
+                        acde.putExtra("foto",elementos.get(position).getfoto());
+                        acde.putExtra("edad",elementos.get(position).getedad());
                         startActivity(acde);
                     }
                 });
