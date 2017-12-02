@@ -140,6 +140,11 @@ class Sistema extends CI_Controller {
 			echo "actualizado";
 		}
 	}
+	public function obtenerdatosusuario()
+	{
+		$datos=	$this->Usuarios->datosdelusuario($id = $this->input->post("idusuarios"));
+		echo json_encode($datos);
+	}
 	public function registro_mascota()
 	{
 		if($this->input->post('nombre')!=""){
@@ -186,7 +191,7 @@ class Sistema extends CI_Controller {
 	}
 	public function eliminar_mascota()
 	{
-	if ($this->input->post('idmascota')!="") {
+		if ($this->input->post('idmascota')!="") {
 			$this->Mascotas->borrarmascota($this->input->post('idmascota'),$this->input->post('idusuarios'));
 			echo "eliminado";
 		}

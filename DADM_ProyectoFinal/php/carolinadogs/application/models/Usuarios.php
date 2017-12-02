@@ -42,6 +42,16 @@ class Usuarios extends CI_Model {
         return false;
     }
   }
+  public function datosdelusuario($id)
+  {
+    $DBcon = $this->load->database('default', TRUE);
+    $query=$DBcon->query("SELECT * FROM usuarios where idusuarios=$id");
+    if ($query->num_rows() > 0) {
+        return $query->result();
+    } else {
+        return false;
+    }
+  }
   public function verificarCorreo($correo)
   {
     $DBcon = $this->load->database('default', TRUE);
