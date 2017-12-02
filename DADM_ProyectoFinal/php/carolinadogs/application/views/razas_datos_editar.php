@@ -42,6 +42,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 											<div class="form-group">
 												<label for="exampleFormControlTextarea1">Caracter:</label>
 												<textarea class="form-control" id="caracter" name="caracter" rows="3">
+													<?php echo $RAZAS[0]->caracter; ?>
 												</textarea>
 											</div>
 											<div class="form-group">

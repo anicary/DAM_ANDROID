@@ -208,11 +208,20 @@ class Sistema extends CI_Controller {
 	}
 	public function editar_raza($id)
 	{
-		$datos["RAZAS"]=$this->Razas->getRazasID($id);
-		$this->load->view('razas_datos_editar',$datos);
+		if ($this->session->userdata('tipo')=='1') {
+			$datos["RAZAS"]=$this->Razas->getRazasID($id);
+			$this->load->view('razas_datos_editar',$datos);
+		}else {
+			$this->load->view('inicio');
+		}
 	}
 	public function actualizar_raza()
 	{
-		# code...
+		if ($this->session->userdata('tipo')=='1') {
+
+				redirect(base_url().'index.php/Sistema/razas_datos');
+		}else {
+			redirect(base_url().'index.php/Sistema/');
+		}
 	}
 }
