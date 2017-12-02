@@ -206,7 +206,12 @@ class Sistema extends CI_Controller {
 			$this->load->view('inicio');
 		}
 	}
-	public function editar_raza( )
+	public function editar_raza($id)
+	{
+		$datos["RAZAS"]=$this->Razas->getRazasID($id);
+		$this->load->view('razas_datos_editar',$datos);
+	}
+	public function actualizar_raza()
 	{
 		# code...
 	}
