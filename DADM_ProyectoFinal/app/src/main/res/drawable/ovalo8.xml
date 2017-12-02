@@ -9,7 +9,7 @@
         android:bottomLeftRadius="100dp">
     </corners>
     <solid
-        android:color="#e2a91414">
+        android:color="#e22f63b7">
 
     </solid>
 
