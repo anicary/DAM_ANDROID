@@ -34,8 +34,14 @@
         <activity android:name=".acerca" />
         <activity android:name=".desestres" />
         <activity android:name=".editarPerfilusuario" />
-        <activity android:name=".editarMascota"
+        <activity
+            android:name=".editarMascota"
             android:windowSoftInputMode="stateHidden|adjustResize|adjustPan" />
+        <activity android:name=".pet_pedia" />
+        <activity
+            android:name=".Pet_pedia_info"
+            android:label="@string/title_activity_pet_pedia_info"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

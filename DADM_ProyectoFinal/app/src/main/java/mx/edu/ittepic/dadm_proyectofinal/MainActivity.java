@@ -138,7 +138,12 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
             Intent acde = new Intent(MainActivity.this, acerca.class);
             startActivity(acde);
 
-        } else if (id == R.id.nav_sesion) {
+        }
+        else if (id == R.id.nav_petpedia) {
+            Intent acde = new Intent(MainActivity.this, pet_pedia.class);
+            startActivity(acde);
+        }
+        else if (id == R.id.nav_sesion) {
             try {
                 SQLiteDatabase base = dbinterna.getWritableDatabase();
                 String query1 = "DELETE FROM usuario  where idusuarios=" + idusuarios + ";";
