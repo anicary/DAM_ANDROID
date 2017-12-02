@@ -215,21 +215,29 @@ class Sistema extends CI_Controller {
 			$this->load->view('inicio');
 		}
 	}
-	public function actualizar_raza()
+	public function actualizar_raza($id)
 	{
 		if ($this->session->userdata('tipo')=='1') {
-			  $config['upload_path'] = "archivos/fotos/";
-		    $config['allowed_types'] = 'gif|jpg|png|jpeg';
-		    $this->load->library('upload', $config);
-		    if (!$this->upload->do_upload('foto')){
-		        echo $this->upload->display_errors('<p>', '</p>');
-		    }else{
-		     //   $this->student_model->set_newstudent($this->upload->data('full_path'),$this->input->post());
-		   //     $this->load->view('students/success');
-			 		redirect(base_url().'index.php/Sistema/razas_datos');
-		    }
-	}else {
-		redirect(base_url().'index.php/Sistema/');
+			$config['upload_path'] = "archivos/fotos/";
+			$config['allowed_types'] = 'gif|jpg|png|jpeg';
+			$this->load->library('upload', $config);
+			if (!$this->upload->do_upload('foto')){
+				echo $this->upload->display_errors('<p>', '</p>');
+			}else{
+				$datos= array(
+					'caracter' => $this->input->post('caracter'),
+					'salud' => $this->input->post('salud'),
+					'caracteristicas' => $this->input->post('caracteristicas'),
+					'utilidad' => $this->input->post('utilidad'),
+					'foto_raza' =>$this->upload->data('full_path')
+				);
+				$this->Razas->actRaza($id,$datos);
+				//   $this->student_model->set_newstudent($this->upload->data('full_path'),$this->input->post());
+				//     $this->load->view('students/success');
+				redirect(base_url().'index.php/Sistema/razas_datos');
+			}
+		}else {
+			redirect(base_url().'index.php/Sistema/');
+		}
 	}
-}
 }
