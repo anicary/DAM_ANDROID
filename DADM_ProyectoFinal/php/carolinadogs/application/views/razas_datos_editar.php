@@ -38,7 +38,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<div class="col-md-12">
 								<div class="card">
 									<div class="card-body">
-										<form class="" action="<?php echo base_url(); ?>index.php/Sistema/actualizar_raza/<?php echo $RAZAS[0]->idrazamascota; ?>" method="post">
+										<form class="" action="<?php echo base_url(); ?>index.php/Sistema/actualizar_raza/<?php echo $RAZAS[0]->idrazamascota; ?>" method="post" enctype="multipart/form-data">
 											<div class="form-group">
 												<label for="exampleFormControlTextarea1">Caracter:</label>
 												<textarea class="form-control" id="caracter" name="caracter" rows="3">
