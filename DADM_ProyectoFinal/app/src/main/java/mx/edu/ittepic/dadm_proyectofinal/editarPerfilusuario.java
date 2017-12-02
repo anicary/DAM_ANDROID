@@ -64,7 +64,7 @@ public class editarPerfilusuario extends AppCompatActivity implements AsyncRespo
                     } catch (MalformedURLException e) {
                         Toast.makeText(editarPerfilusuario.this, e.getMessage(), Toast.LENGTH_LONG).show();
 
-                    }
+                }
                 }
             }
         });

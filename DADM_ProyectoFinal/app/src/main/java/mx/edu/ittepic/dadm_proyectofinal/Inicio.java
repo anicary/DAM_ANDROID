@@ -158,13 +158,8 @@ public class Inicio extends AppCompatActivity implements AsyncResponse {
                 editor.putString("apelidos",c.getString(2));
                 editor.putString("idusuarios",c.getString(0));
                 editor.putString("imagen",c.getString(4));
-        /*    editor.putString("apellidos",arrayjson.getJSONObject(i).getString("apellidos"));
-            editor.putString("correo",arrayjson.getJSONObject(i).getString("correo"));
-            editor.putInt("idusuarios",Integer.parseInt(arrayjson.getJSONObject(i).getString("idusuarios")));*/
                 editor.apply();
             }
-
-
             return true;
         }else
         {

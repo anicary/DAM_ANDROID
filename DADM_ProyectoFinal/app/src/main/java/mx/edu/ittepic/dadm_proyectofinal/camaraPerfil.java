@@ -1,34 +1,43 @@
 package mx.edu.ittepic.dadm_proyectofinal;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.io.FileDescriptor;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 
-public class camaraPerfil extends AppCompatActivity {
+public class camaraPerfil extends AppCompatActivity  implements AsyncResponse {
 ImageView imagen;
     Button tomarf;
     Bitmap enviar;
+    ConexionWeb conexionWeb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camara_perfil);
+
         SharedPreferences prefs =
                 getSharedPreferences("INFO_USUARIO", Context.MODE_PRIVATE);
         tomarf=(Button)findViewById(R.id.tomarfoto);
@@ -41,9 +50,21 @@ ImageView imagen;
             public void onClick(View v) {
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(intent, 7);
+                try {
+                    conexionWeb = new ConexionWeb(camaraPerfil.this);
+                    conexionWeb.agregarVariables("foto", "");
+                    conexionWeb.agregarVariables("idusuarios", prefs.getString("idusuarios", "0"));
+                    URL direccion = new URL("http://carolina.x10host.com/index.php/Sistema/cambiar_foto");
+                    conexionWeb.execute(direccion);
+                } catch (MalformedURLException e) {
+                    Toast.makeText(camaraPerfil.this, e.getMessage(), Toast.LENGTH_LONG).show();
 
+                }
             }
         });
+        ActivityCompat.requestPermissions(this,
+                new String[]{ Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE },
+                1);
     }
     private class DescargarImagenes extends AsyncTask<String, Void, Bitmap> {
         ImageView bmImage;
@@ -101,5 +122,13 @@ ImageView imagen;
         Bitmap image = BitmapFactory.decodeFileDescriptor(fileDescriptor);
         parcelFileDescriptor.close();
         return image;
+    }
+    public void procesarRespuesta(String r) {
+        if(r.equals("actualizado")){
+
+        }else
+        {
+
+        }
     }
 }
