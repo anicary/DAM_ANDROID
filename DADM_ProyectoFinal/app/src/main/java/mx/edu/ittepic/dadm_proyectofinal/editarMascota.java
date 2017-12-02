@@ -51,7 +51,7 @@ public class editarMascota extends AppCompatActivity  implements AsyncResponse{
         Intent intento = getIntent();
 
         id=getIntent().getExtras().getInt("idmascota");
-        enombre.setText(getIntent().getExtras().getString("idmascota"));
+        enombre.setText(getIntent().getExtras().getString("nombre"));
         eedad.setText(getIntent().getExtras().getString("edad"));
         if(getIntent().getExtras().getString("edad").equals("HEMBRA")){
             esexo.setSelection(0);

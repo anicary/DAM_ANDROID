@@ -5,9 +5,9 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:navigationBarColor">@color/colorAccent</item>
-        <item name="android:statusBarColor">@color/colorAccent</item>
+        <item name="colorAccent">@android:color/holo_orange_light</item>
+        <item name="android:navigationBarColor">@android:color/holo_orange_light</item>
+        <item name="android:statusBarColor">@android:color/holo_orange_light</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
