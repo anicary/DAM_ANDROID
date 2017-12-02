@@ -31,12 +31,16 @@ public class editarMascota extends AppCompatActivity  implements AsyncResponse{
     Spinner etipo, eraza, esexo;
     Button editarpet;
     ConexionWeb conexionWeb;
-    String id="";
+    int id=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle("Editar Mascota");
         setContentView(R.layout.activity_editar_mascota);
+        SharedPreferences prefs =
+                getSharedPreferences("INFO_USUARIO", Context.MODE_PRIVATE);
+        idusuarios = prefs.getString("idusuarios", "0");
+
 
         enombre = (EditText) findViewById(R.id.enombremascota);
         eedad = (EditText) findViewById(R.id.eedadmascota);
@@ -44,9 +48,10 @@ public class editarMascota extends AppCompatActivity  implements AsyncResponse{
         esexo = (Spinner) findViewById(R.id.esexomascota);
         etipo = (Spinner) findViewById(R.id.etipomascota);
         eraza = (Spinner) findViewById(R.id.erazamascota);
+        Intent intento = getIntent();
 
-        id=getIntent().getExtras().getString("idmascota");
-        enombre.setText(getIntent().getExtras().getString("nombre"));
+        id=getIntent().getExtras().getInt("idmascota");
+        enombre.setText(getIntent().getExtras().getString("idmascota"));
         eedad.setText(getIntent().getExtras().getString("edad"));
         if(getIntent().getExtras().getString("edad").equals("HEMBRA")){
             esexo.setSelection(0);
@@ -77,10 +82,7 @@ public class editarMascota extends AppCompatActivity  implements AsyncResponse{
                 }
             }
         });
-        SharedPreferences prefs =
-                getSharedPreferences("INFO_USUARIO", Context.MODE_PRIVATE);
 
-        idusuarios = prefs.getString("idusuarios", "0");
     }
     public void procesarRespuesta(String r) {
         if(r.equals("actualizado")){
@@ -89,7 +91,6 @@ public class editarMascota extends AppCompatActivity  implements AsyncResponse{
             Intent intent = new Intent(editarMascota.this, MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
-
         }else
         {
             if (r.equals("eliminado")){
@@ -120,7 +121,7 @@ public class editarMascota extends AppCompatActivity  implements AsyncResponse{
             case R.id.eliminarpet:
                 try {
                     conexionWeb = new ConexionWeb(editarMascota.this);
-                    conexionWeb.agregarVariables("idmascota", getIntent().getExtras().getString("idmascota"));
+                    conexionWeb.agregarVariables("idmascota", ""+id);
                     conexionWeb.agregarVariables("idusuarios", idusuarios);
                     URL direccion = new URL("http://carolina.x10host.com/index.php/Sistema/eliminar_mascota");
                     conexionWeb.execute(direccion);

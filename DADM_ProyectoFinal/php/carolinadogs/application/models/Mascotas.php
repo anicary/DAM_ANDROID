@@ -42,11 +42,13 @@ class Mascotas extends CI_Model {
     $DB2->delete('usuarios');
   }
   public function borrarmascota($mascota,$usuario)
-	{
-		$DB2 = $this->load->database('default', TRUE);
-		$DB2->where('mascota_idmascota', $usuario );
-		$DB2->delete('mascota_usuarios');
-		$DB2->where('idmascota', $mascota );
-		$DB2->delete('mascota');
-	}
+  {
+    $DB2 = $this->load->database('default', TRUE);
+    $DB2->where('usuarios_idusuarios', $usuario );
+    $DB2->where('mascota_idmascota', $mascota );
+    $DB2->delete('mascota_usuarios');
+
+    $DB2->where('idmascota', $mascota );
+    $DB2->delete('mascota');
+  }
 }
