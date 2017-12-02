@@ -95,7 +95,7 @@ $(document).ready(function() {
 		"language": {
 			"url": "<?php echo base_url(); ?>js/datatables/usuarios.json"
 		},
-		"order": [[ 4, "desc" ]]
+		"order": [[ 0, "desc" ]]
 	});
 } );
 </script>
