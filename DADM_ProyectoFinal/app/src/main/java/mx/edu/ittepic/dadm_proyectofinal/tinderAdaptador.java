@@ -57,8 +57,8 @@ public class tinderAdaptador extends BaseAdapter {
             LayoutInflater inflater = (LayoutInflater) actividad.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             vista = inflater.inflate(R.layout.tinder, null);
         }
-      //  elemento = elementos.get(position);
-        ImageView pata = (ImageView) vista.findViewById(R.id.vermas);
+        elemento = elementos.get(position);
+      /* ImageView pata = (ImageView) vista.findViewById(R.id.vermas);
         pata.setTag(position);
         pata.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,11 +67,11 @@ public class tinderAdaptador extends BaseAdapter {
                     botonMatch.onBtnClick((Integer) view.getTag());
                 }
             }
-        });
+        });*/
         TextView a = (TextView) vista.findViewById(R.id.vnombretinder);
         a.setText(elemento.getnombre());
         TextView b = (TextView) vista.findViewById(R.id.vedadtinder);
-        a.setText(elemento.getedad());
+        b.setText(elemento.getedad());
         /*TextView c = (TextView) vista.findViewById(R.id.vwikinkardex);
         c.setText(elemento.getcaracter());*/
         ImageView tinderfoto = (ImageView) vista.findViewById(R.id.fotot);
