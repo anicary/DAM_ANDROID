@@ -218,28 +218,33 @@ class Sistema extends CI_Controller {
 	public function actualizar_raza($id)
 	{
 		if ($this->session->userdata('tipo')=='1') {
+			$fotoenviar="";
 			if(true){
 				$config['upload_path'] = "archivos/fotos/";
 				$config['allowed_types'] = 'gif|jpg|png|jpeg';
 				$this->load->library('upload', $config);
 				if (!$this->upload->do_upload('foto')){
 					echo $this->upload->display_errors('<p>', '</p>');
+			//		$fotoenviar="http://carolina.x10host.com/archivos/fotos/perfilpet.jpg";
 				}else{
-					$datos= array(
-						'caracter' => $this->input->post('caracter'),
-						'salud' => $this->input->post('salud'),
-						'caracteristicas' => $this->input->post('caracteristicas'),
-						'utilidad' => $this->input->post('utilidad'),
-						'foto_raza' =>base_url()."archivos/fotos/".$this->upload->data('file_name')
-					);
-					$this->Razas->actRaza($id,$datos);
+						$fotoenviar="".base_url()."archivos/fotos/".$this->upload->data('file_name');
 				}
+			}
+			if($fotoenviar==""){
+				$datos= array(
+					'caracter' => $this->input->post('caracter'),
+					'salud' => $this->input->post('salud'),
+					'caracteristicas' => $this->input->post('caracteristicas'),
+					'utilidad' => $this->input->post('utilidad'),
+				);
+				$this->Razas->actRaza($id,$datos);
 			}else {
 				$datos= array(
 					'caracter' => $this->input->post('caracter'),
 					'salud' => $this->input->post('salud'),
 					'caracteristicas' => $this->input->post('caracteristicas'),
-					'utilidad' => $this->input->post('utilidad')
+					'utilidad' => $this->input->post('utilidad'),
+					'foto_raza' =>$fotoenviar
 				);
 				$this->Razas->actRaza($id,$datos);
 			}

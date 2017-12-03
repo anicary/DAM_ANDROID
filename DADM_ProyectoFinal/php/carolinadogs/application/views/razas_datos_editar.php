@@ -19,6 +19,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<link href="<?php echo base_url(); ?>css/perritoslogin.css" type="text/css" rel="stylesheet" />
 	<link href="<?php echo base_url(); ?>css/dataTables.bootstrap4.min.css" type="text/css" rel="stylesheet" />
 	<link href="<?php echo base_url(); ?>css/responsive.bootstrap4.min.css" type="text/css" rel="stylesheet" />
+	<style media="screen">
+	textarea {
+		width: 600px;
+		height: 150px;
+	}
+</style>
 </head>
 <body>
 	<div class="">
@@ -39,36 +45,60 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<div class="card">
 									<div class="card-body">
 										<form class="" action="<?php echo base_url(); ?>index.php/Sistema/actualizar_raza/<?php echo $RAZAS[0]->idrazamascota; ?>" method="post" enctype="multipart/form-data">
-											<div class="form-group">
-												<label for="exampleFormControlTextarea1">Caracter:</label>
-												<textarea   id="caracter" name="caracter" >
-													<?php echo $RAZAS[0]->caracter; ?>
-												</textarea>
+											<div class="row">
+												<div class="col-md-6">
+													<div class="form-group">
+														<label for="exampleFormControlTextarea1">Caracter:</label> <br>
+														<textarea   id="caracter" name="caracter" >
+															<?php echo $RAZAS[0]->caracter; ?>
+														</textarea>
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="form-group">
+														<label for="exampleFormControlTextarea1">Salud:</label> <br>
+														<textarea  id="salud" name="salud" >
+															<?php echo $RAZAS[0]->salud; ?>
+														</textarea>
+													</div>
+												</div>
 											</div>
-											<div class="form-group">
-												<label for="exampleFormControlTextarea1">Salud:</label>
-												<textarea   id="salud" name="salud" >
-													<?php echo $RAZAS[0]->salud; ?>
-												</textarea>
+											<div class="row">
+												<div class="col-md-6">
+													<div class="form-group">
+														<label for="exampleFormControlTextarea1">Caracteristicas:</label> <br>
+														<textarea   id="caracteristicas" name="caracteristicas" >
+															<?php echo $RAZAS[0]->caracteristicas; ?>
+														</textarea>
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="form-group">
+														<label for="exampleFormControlTextarea1">Utilidad:</label> <br>
+														<textarea   id="utilidad" name="utilidad" >
+															<?php echo $RAZAS[0]->utilidad; ?>
+														</textarea>
+													</div>
+												</div>
 											</div>
-											<div class="form-group">
-												<label for="exampleFormControlTextarea1">Caracteristicas:</label>
-												<textarea   id="caracteristicas" name="caracteristicas" >
-													<?php echo $RAZAS[0]->caracteristicas; ?>
-												</textarea>
+											<div class="row">
+												<div class="col-md-6">
+													<div class="form-group">
+														<div class="row">
+															<div class="col-md-6">
+																<label for="exampleFormControlFile1">Foto:</label>
+																<input type="file" class="form-control-file" name="foto" id="foto">
+															</div>
+															<div class="col-md-6">
+																<img class="img-fluid"  width="100" height="50" src="<?php echo $RAZAS[0]->foto_raza; ?>" alt="">
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-6">
+													<button type="submit"  class="btn  btn-lg btn-block btn-success" name="button">GUARDAR</button>
+												</div>
 											</div>
-											<div class="form-group">
-												<label for="exampleFormControlTextarea1">Utilidad:</label>
-												<textarea   id="utilidad" name="utilidad" >
-													<?php echo $RAZAS[0]->utilidad; ?>
-												</textarea>
-											</div>
-											<div class="form-group">
-												<label for="exampleFormControlFile1">Foto:</label>
-												<input type="file" class="form-control-file" name="foto" id="foto">
-												<img class="img-fluid"  width="100" height="50" src="<?php echo $RAZAS[0]->foto_raza; ?>" alt="">
-											</div>
-											<button type="submit"  class="btn btn-success" name="button">GUARDAR</button>
 										</form>
 									</div>
 								</div>
