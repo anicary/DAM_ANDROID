@@ -31,6 +31,7 @@ public class pet_pedia extends AppCompatActivity implements AsyncResponse {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("Pet Pedia");
         setContentView(R.layout.activity_pet_pedia);
         lista = (ListView) findViewById(R.id.lista);
         cargarRazas();
