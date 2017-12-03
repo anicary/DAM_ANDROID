@@ -157,6 +157,11 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
             startActivity(acde);
 
         }
+        else if (id == R.id.nav_tinder) {
+            Intent acde = new Intent(MainActivity.this, tinderpet.class);
+            startActivity(acde);
+
+        }
         else if (id == R.id.nav_petpedia) {
             Intent acde = new Intent(MainActivity.this, pet_pedia.class);
             startActivity(acde);
