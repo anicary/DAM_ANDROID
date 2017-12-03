@@ -46,7 +46,7 @@ public class Pet_pedia_info extends AppCompatActivity implements AsyncResponse{
         util = (TextView) findViewById(R.id.utilidad);
         fo = (ImageView) findViewById(R.id.foto_info);
         if(getIntent().getExtras().getBoolean("cargar")){
-            cargarDatos(getIntent().getExtras().getInt("razaid"));
+            cargarDatos(getIntent().getExtras().getString("razaid"));
         }else
         {
             setTitle(""+getIntent().getExtras().getString("nombre_raza"));
@@ -100,10 +100,10 @@ public class Pet_pedia_info extends AppCompatActivity implements AsyncResponse{
         }
 
     }
-    public void cargarDatos(int ia){
+    public void cargarDatos(String ia){
         try {
             conexionWeb = new ConexionWeb(Pet_pedia_info.this);
-            conexionWeb.agregarVariables("idraza",""+ 1);
+            conexionWeb.agregarVariables("idraza",""+ia);
             URL direcciopn = new URL("http://carolina.x10host.com/index.php/Sistema/razas_datos_android_id");
             conexionWeb.execute(direcciopn);
         } catch (MalformedURLException e) {
