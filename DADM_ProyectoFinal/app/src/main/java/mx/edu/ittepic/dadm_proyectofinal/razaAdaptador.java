@@ -13,6 +13,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.io.InputStream;
 import java.util.ArrayList;
 
@@ -70,9 +72,10 @@ public class razaAdaptador extends BaseAdapter {
         a.setText(elemento.getnombrer());
         /*TextView c = (TextView) vista.findViewById(R.id.vwikinkardex);
         c.setText(elemento.getcaracter());*/
-        // ImageView raza = (ImageView) vista.findViewById(R.id.vkardesfoto);
-        new razaAdaptador.DescargarImagenes((ImageView) vista.findViewById(R.id.vwikikardesfoto))
-                .execute(""+elemento.getfotor());
+        ImageView raza = (ImageView) vista.findViewById(R.id.vwikikardesfoto);
+        Picasso.with(actividad).load(elemento.getfotor()).into(raza);
+     /*   new razaAdaptador.DescargarImagenes((ImageView) vista.findViewById(R.id.vwikikardesfoto))
+                .execute(""+elemento.getfotor());*/
         return vista;
     }
     private class DescargarImagenes extends AsyncTask<String, Void, Bitmap> {
