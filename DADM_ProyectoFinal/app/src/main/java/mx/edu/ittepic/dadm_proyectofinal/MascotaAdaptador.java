@@ -14,6 +14,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.io.InputStream;
 import java.util.ArrayList;
 
@@ -73,35 +75,8 @@ public class MascotaAdaptador extends BaseAdapter {
         edad.setText(elemento.getedad());
         TextView raza = (TextView) vista.findViewById(R.id.vtipokardex);
         raza.setText(elemento.getraza());
-       // ImageView raza = (ImageView) vista.findViewById(R.id.vkardesfoto);
-        new MascotaAdaptador.DescargarImagenes((ImageView) vista.findViewById(R.id.vkardesfoto))
-                .execute(""+elemento.getfoto());
-
-
+        ImageView razaa = (ImageView) vista.findViewById(R.id.vkardesfoto);
+        Picasso.with(actividad).load(elemento.getfoto()).into(razaa);
         return vista;
-    }
-    private class DescargarImagenes extends AsyncTask<String, Void, Bitmap> {
-        ImageView bmImage;
-
-        public DescargarImagenes(ImageView bmImage) {
-            this.bmImage = bmImage;
-        }
-
-        protected Bitmap doInBackground(String... urls) {
-            String urldisplay = urls[0];
-            Bitmap mIcon11 = null;
-            try {
-                InputStream in = new java.net.URL(urldisplay).openStream();
-                mIcon11 = BitmapFactory.decodeStream(in);
-            } catch (Exception e) {
-                Log.e("Error", e.getMessage());
-                e.printStackTrace();
-            }
-            return mIcon11;
-        }
-
-        protected void onPostExecute(Bitmap result) {
-            bmImage.setImageBitmap(result);
-        }
     }
 }
