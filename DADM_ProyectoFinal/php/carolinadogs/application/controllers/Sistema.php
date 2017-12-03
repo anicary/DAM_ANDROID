@@ -225,9 +225,9 @@ class Sistema extends CI_Controller {
 				$this->load->library('upload', $config);
 				if (!$this->upload->do_upload('foto')){
 					echo $this->upload->display_errors('<p>', '</p>');
-			//		$fotoenviar="http://carolina.x10host.com/archivos/fotos/perfilpet.jpg";
+					//		$fotoenviar="http://carolina.x10host.com/archivos/fotos/perfilpet.jpg";
 				}else{
-						$fotoenviar="".base_url()."archivos/fotos/".$this->upload->data('file_name');
+					$fotoenviar="".base_url()."archivos/fotos/".$this->upload->data('file_name');
 				}
 			}
 			if($fotoenviar==""){
@@ -252,5 +252,10 @@ class Sistema extends CI_Controller {
 		}else {
 			redirect(base_url().'index.php/Sistema/');
 		}
+	}
+	public function razas_datos_android()
+	{
+		$datos =$this->Razas->getRazas();
+		echo json_encode($datos);
 	}
 }
