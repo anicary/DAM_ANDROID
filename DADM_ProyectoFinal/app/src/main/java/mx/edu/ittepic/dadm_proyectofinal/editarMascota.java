@@ -84,7 +84,7 @@ public class editarMascota extends AppCompatActivity  implements AsyncResponse{
                 edada = eedad.getText().toString();
                 sexoa = esexo.getSelectedItem().toString();
                 if (!nombrea.equals("") || !edada.equals("") || !sexoa.equals("")) {
-                    try {
+/*                    try {
                         conexionWeb = new ConexionWeb(editarMascota.this);
                         conexionWeb.agregarVariables("idmascota", getIntent().getExtras().getString("idmascota"));
                         conexionWeb.agregarVariables("nombre", nombrea);
@@ -97,7 +97,7 @@ public class editarMascota extends AppCompatActivity  implements AsyncResponse{
                         conexionWeb.execute(direccion);
                     } catch (MalformedURLException e) {
                         Toast.makeText(editarMascota.this, e.getMessage(), Toast.LENGTH_LONG).show();
-                    }
+                    }*/
                 }
             }
         });
