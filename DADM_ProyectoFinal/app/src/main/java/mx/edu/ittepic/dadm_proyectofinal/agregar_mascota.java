@@ -166,7 +166,7 @@ public class agregar_mascota extends AppCompatActivity implements AsyncResponse 
                 List<String> spinnerArray =  new ArrayList<String>();
 
                 for (int i = 0; i < arrayjson.length(); i++) {
-                    spinnerArray.add(arrayjson.getJSONObject(i).getString("nombre"));
+                    spinnerArray.add(Integer.parseInt(arrayjson.getJSONObject(i).getString("idtipo_mascota")),arrayjson.getJSONObject(i).getString("nombre"));
                 }
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                         this, android.R.layout.simple_spinner_item, spinnerArray);
