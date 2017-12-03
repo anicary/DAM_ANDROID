@@ -68,8 +68,8 @@ public class razaAdaptador extends BaseAdapter {
         });
         TextView a = (TextView) vista.findViewById(R.id.wikikardexraza);
         a.setText(elemento.getnombrer());
-        TextView c = (TextView) vista.findViewById(R.id.vwikinkardex);
-        c.setText(elemento.getcaracter());
+        /*TextView c = (TextView) vista.findViewById(R.id.vwikinkardex);
+        c.setText(elemento.getcaracter());*/
         // ImageView raza = (ImageView) vista.findViewById(R.id.vkardesfoto);
         new razaAdaptador.DescargarImagenes((ImageView) vista.findViewById(R.id.vwikikardesfoto))
                 .execute(""+elemento.getfotor());
