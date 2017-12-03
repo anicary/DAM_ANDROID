@@ -288,6 +288,27 @@ class Sistema extends CI_Controller {
 	}
 	public function editar_mascota()
 	{
-		# code...
+		if($this->input->post('nombre')!=""){
+			$this->input->post('idmascota');
+			$decoded=base64_decode($this->input->post('foto_mas'));
+			file_put_contents($archivo."".$this->input->post('idusuarios')."mascota".$nom.".jpg",$decoded);
+			$urlenvarserver=base_url()."".$this->input->post('idusuarios')."mascota".$nom.".jpg";
+			$datos= array(
+				'nombre' => $this->input->post('nombre'),
+				'sexo' => $this->input->post('sexo'),
+				'edad' => $this->input->post('edad'),
+				'foto_mas' => $urlenvarserver,
+				'tipo_mascota_idtipo_mascota' => $this->input->post('tipo_mascota_idtipo_mascota'),
+				'razamascota_idrazamascota' => $this->input->post('razamascota_idrazamascota')
+			);
+			$this->Mascotas->insertarMascotas($datos);
+			$tempId = $this->Mascotas->obtenerUltmas();
+			$datos2= array(
+				'usuarios_idusuarios' => $this->input->post('idusuarios'),
+				'mascota_idmascota' =>$tempId[0]->maximo,
+				'fecha_agregado' =>date('Y-m-d H:i:s')
+			);
+			$this->Mascotas->insertarMascotasRelacion($datos2);
+		}
 	}
 }
