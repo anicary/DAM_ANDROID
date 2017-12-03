@@ -28,6 +28,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -85,8 +87,12 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         View v = navigationView.getHeaderView(0);
         TextView nombrenav = (TextView) v.findViewById(R.id.nombrenav);
         nombrenav.setText(""+nombre+" "+apellidos);
-        new DescargarImagenes((ImageView) v.findViewById(R.id.navimagenperfil))
-                .execute(""+imagen);
+       /* new DescargarImagenes((ImageView) v.findViewById(R.id.navimagenperfil))
+                .execute(""+imagen);*/
+        ImageView imagenperfil=(ImageView) v.findViewById(R.id.navimagenperfil) ;
+        Picasso.with(MainActivity.this).load(imagen).into(imagenperfil);
+
+
         View v2 = navigationView.getHeaderView(0);
         TextView navcorreo = (TextView) v2.findViewById(R.id.navcorreo);
         navcorreo.setText(""+correo);
