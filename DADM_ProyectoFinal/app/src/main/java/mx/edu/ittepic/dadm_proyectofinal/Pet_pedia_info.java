@@ -40,10 +40,10 @@ public class Pet_pedia_info extends AppCompatActivity {
         caracte = (TextView) findViewById(R.id.caracteristicas);
         util = (TextView) findViewById(R.id.utilidad);
         fo = (ImageView) findViewById(R.id.foto_info);
-        cara.setText("TEMPERAMENTO\n"+caracter);
-        sal.setText("SALUD/CUIDADOS\n"+salud);
-        caracte.setText("CARACTERISTICAS\n"+caracteristicas);
-        util.setText("UTILIDAD\n"+utlidad);
+        cara.setText(caracter);
+        sal.setText(salud);
+        caracte.setText(caracteristicas);
+        util.setText(utlidad);
         Picasso.with(Pet_pedia_info.this).load(foto).into(fo);
     /*    new Pet_pedia_info.DescargarImagenes((ImageView) findViewById(R.id.foto))
                 .execute("" + foto); */

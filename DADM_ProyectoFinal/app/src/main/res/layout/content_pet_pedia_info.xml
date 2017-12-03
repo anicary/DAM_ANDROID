@@ -12,26 +12,61 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
         <ImageView
             android:id="@+id/foto_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PERSONALIDAD"
+            android:fontFamily="monospace"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="15dp"
+            android:textStyle="bold"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/text_margin"
             android:id="@+id/caracter" />
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SALUD Y CUIDADOS"
+            android:fontFamily="monospace"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="15dp"
+            android:textStyle="bold"/>
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/text_margin"
             android:id="@+id/salud"/>
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CARACTERISTICAS"
+            android:fontFamily="monospace"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="15dp"
+            android:textStyle="bold"/>
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/text_margin"
             android:id="@+id/caracteristicas" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="UTILIDAD"
+            android:fontFamily="monospace"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="15dp"
+            android:textStyle="bold"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
