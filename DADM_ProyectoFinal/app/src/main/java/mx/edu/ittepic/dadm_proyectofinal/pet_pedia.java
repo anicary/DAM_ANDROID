@@ -85,11 +85,11 @@ public class pet_pedia extends AppCompatActivity implements AsyncResponse {
                 public void onBtnClick(int position) {
                     Intent acde = new Intent(pet_pedia.this,Pet_pedia_info.class);
                     acde.putExtra("idraza", elementos.get(position).getidrazamascota());
-                    acde.putExtra("caracter", elementos.get(position).getidrazamascota());
-                    acde.putExtra("salud", elementos.get(position).getidrazamascota());
-                    acde.putExtra("caracteristicas", elementos.get(position).getidrazamascota());
-                    acde.putExtra("utilidad", elementos.get(position).getidrazamascota());
-                    acde.putExtra("foto", elementos.get(position).getidrazamascota());
+                    acde.putExtra("caracter", elementos.get(position).getcaracter());
+                    acde.putExtra("salud", elementos.get(position).getsalud());
+                    acde.putExtra("caracteristicas", elementos.get(position).getcaracteristicas());
+                    acde.putExtra("utilidad", elementos.get(position).getutilidad());
+                    acde.putExtra("foto", elementos.get(position).getfotor());
                     startActivity(acde);
                 }
             });

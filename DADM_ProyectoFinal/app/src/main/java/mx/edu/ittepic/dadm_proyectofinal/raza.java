@@ -34,5 +34,8 @@ public class raza {
     public String getfotor(){
         return fotor;
     }
+    public String getcaracteristicas(){
+        return caracteristicas;
+    }
 
 }
