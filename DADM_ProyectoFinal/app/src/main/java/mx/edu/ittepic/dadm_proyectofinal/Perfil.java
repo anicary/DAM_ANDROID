@@ -17,6 +17,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
 import java.io.InputStream;
 
 public class Perfil extends AppCompatActivity {
@@ -45,8 +47,8 @@ public class Perfil extends AppCompatActivity {
         nombre.setText(nombrea);
         apellido.setText(apellidosa);
         correo.setText(correoa);
-        new Perfil.DescargarImagenes((ImageView) findViewById(R.id.imgPer))
-                .execute(""+imagen);
+        ImageView imageView=(ImageView)findViewById(R.id.imgPer) ;
+        Picasso.with(Perfil.this).load(imagen).into(imageView);
     }
     public boolean onCreateOptionsMenu(Menu m){
         getMenuInflater().inflate(R.menu.menu,m);

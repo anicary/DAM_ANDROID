@@ -80,7 +80,6 @@ public class MascotaAdaptador extends BaseAdapter {
         TextView raza = (TextView) vista.findViewById(R.id.vtipokardex);
         raza.setText(elemento.getraza());
         razaa = (ImageView) vista.findViewById(R.id.vkardesfoto);
-
         Picasso.with(actividad).load(elemento.getfoto()).into(razaa);
         return vista;
     }
