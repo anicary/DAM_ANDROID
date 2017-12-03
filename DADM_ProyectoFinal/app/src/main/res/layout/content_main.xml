@@ -2,10 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/contenedor"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/colorAccent"
+    android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="mx.edu.ittepic.dadm_proyectofinal.MainActivity"
     tools:showIn="@layout/app_bar_main">
@@ -14,4 +15,10 @@
         android:id="@+id/lista_mascotas"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+    <ImageView
+        android:id="@+id/expanded_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        android:contentDescription="" />
 </LinearLayout>

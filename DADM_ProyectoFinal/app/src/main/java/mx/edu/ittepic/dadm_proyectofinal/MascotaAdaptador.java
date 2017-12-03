@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.ClipDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -28,6 +31,7 @@ public class MascotaAdaptador extends BaseAdapter {
     private ArrayList<mascota>elementos;
     mascota elemento;
     View vista;
+    ImageView razaa;
     private botonClick btnMasinfo = null;
     public MascotaAdaptador(Activity actividad, ArrayList<mascota> elementos,botonClick btnMasinfo) {
         this.actividad = actividad;
@@ -37,7 +41,7 @@ public class MascotaAdaptador extends BaseAdapter {
     public interface botonClick {
         public abstract void onBtnClick(int position);
     }
-    @Override
+     @Override
     public int getCount() {
         return elementos.size();
     }
@@ -75,7 +79,8 @@ public class MascotaAdaptador extends BaseAdapter {
         edad.setText(elemento.getedad());
         TextView raza = (TextView) vista.findViewById(R.id.vtipokardex);
         raza.setText(elemento.getraza());
-        ImageView razaa = (ImageView) vista.findViewById(R.id.vkardesfoto);
+        razaa = (ImageView) vista.findViewById(R.id.vkardesfoto);
+
         Picasso.with(actividad).load(elemento.getfoto()).into(razaa);
         return vista;
     }
