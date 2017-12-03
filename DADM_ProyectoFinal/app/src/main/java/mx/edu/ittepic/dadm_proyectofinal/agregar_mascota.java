@@ -17,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -46,6 +47,7 @@ public class agregar_mascota extends AppCompatActivity implements AsyncResponse 
     private static int RESULT_LOAD_IMAGE = 1;
     ImageView imageView;
     Bitmap imagenenviar;
+    String idtipos[],idraza[];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +63,19 @@ public class agregar_mascota extends AppCompatActivity implements AsyncResponse 
         tipo = (Spinner) findViewById(R.id.tipomascota);
         raza = (Spinner) findViewById(R.id.razamascota);
         agregar = (Button) findViewById(R.id.agregar);
-         imageView = (ImageView) findViewById(R.id.fotomascota1);
+        imageView = (ImageView) findViewById(R.id.fotomascota1);
+        tipo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                cargarRazas(idtipos[position]);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+
+            }
+        });
+
         SharedPreferences prefs = getSharedPreferences("INFO_USUARIO", Context.MODE_PRIVATE);
         idusuarios = prefs.getString("idusuarios", "0");
         agregar.setOnClickListener(new View.OnClickListener() {
@@ -88,8 +102,8 @@ public class agregar_mascota extends AppCompatActivity implements AsyncResponse 
                         conexionWeb.agregarVariables("nombre", name);
                         conexionWeb.agregarVariables("sexo", sex);
                         conexionWeb.agregarVariables("edad", edad1);
-                        conexionWeb.agregarVariables("tipo_mascota_idtipo_mascota", "1");
-                        conexionWeb.agregarVariables("razamascota_idrazamascota", "1");
+                        conexionWeb.agregarVariables("tipo_mascota_idtipo_mascota", idtipos[tipo.getSelectedItemPosition()]);
+                        conexionWeb.agregarVariables("razamascota_idrazamascota",  idraza[raza.getSelectedItemPosition()]);
                         conexionWeb.agregarVariables("foto_mas",imagebase64string);
                         URL direccion = new URL("http://carolina.x10host.com/index.php/Sistema/registro_mascota");
                         Intent inicio = new Intent(agregar_mascota.this,MainActivity.class);
@@ -164,17 +178,31 @@ public class agregar_mascota extends AppCompatActivity implements AsyncResponse 
             JSONArray arrayjson = new JSONArray(r);
             if (arrayjson.getJSONObject(0).has("idtipo_mascota")) {
                 List<String> spinnerArray =  new ArrayList<String>();
-
+                idtipos = new String[arrayjson.length()];
                 for (int i = 0; i < arrayjson.length(); i++) {
-                    spinnerArray.add(Integer.parseInt(arrayjson.getJSONObject(i).getString("idtipo_mascota")),arrayjson.getJSONObject(i).getString("nombre"));
+                    spinnerArray.add(arrayjson.getJSONObject(i).getString("nombre"));
+                    idtipos[i]=arrayjson.getJSONObject(i).getString("idtipo_mascota");
                 }
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                         this, android.R.layout.simple_spinner_item, spinnerArray);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 tipo.setAdapter(adapter);
+                cargarRazas(idtipos[0]);
             }else
             {
-
+                JSONArray arrayjson2 = new JSONArray(r);
+                if (arrayjson2.getJSONObject(0).has("idrazamascota")) {
+                    List<String> spinnerArray =  new ArrayList<String>();
+                    idraza= new String[arrayjson2.length()];
+                    for (int i = 0; i < arrayjson2.length(); i++) {
+                        spinnerArray.add(arrayjson2.getJSONObject(i).getString("nombre_raza"));
+                       idraza[i]=arrayjson.getJSONObject(i).getString("idrazamascota");
+                    }
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                            this, android.R.layout.simple_spinner_item, spinnerArray);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    raza.setAdapter(adapter);
+                }
             }
         }catch (JSONException e){
         }
@@ -184,6 +212,16 @@ public class agregar_mascota extends AppCompatActivity implements AsyncResponse 
             conexionWeb = new ConexionWeb(agregar_mascota.this);
             conexionWeb.agregarVariables("idusuarios", idusuarios);
             URL direcciopn = new URL("http://carolina.x10host.com/index.php/Sistema/tipo_masctoa");
+            conexionWeb.execute(direcciopn);
+        } catch (MalformedURLException e) {
+            Toast.makeText(agregar_mascota.this, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
+    public void cargarRazas(String id){
+        try {
+            conexionWeb = new ConexionWeb(agregar_mascota.this);
+            conexionWeb.agregarVariables("idraza", id);
+            URL direcciopn = new URL("http://carolina.x10host.com/index.php/Sistema/razas_datos_android_id_tipo");
             conexionWeb.execute(direcciopn);
         } catch (MalformedURLException e) {
             Toast.makeText(agregar_mascota.this, e.getMessage(), Toast.LENGTH_LONG).show();

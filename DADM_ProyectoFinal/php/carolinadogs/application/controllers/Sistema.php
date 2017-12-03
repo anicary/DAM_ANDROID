@@ -270,4 +270,10 @@ class Sistema extends CI_Controller {
 		$datos =$this->Tipo->getTipos();
 		echo json_encode($datos);
 	}
+	public function razas_datos_android_id_tipo()
+	{
+		$id=$this->input->post('idraza');
+		$datos =$this->Razas->getRazasIDTIPO($id);
+		echo json_encode($datos);
+	}
 }
