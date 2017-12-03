@@ -150,5 +150,7 @@ public class agregar_mascota extends AppCompatActivity implements AsyncResponse 
         return image;
     }
     @Override
-    public void procesarRespuesta(String r){}
+    public void procesarRespuesta(String r){
+
+    }
 }

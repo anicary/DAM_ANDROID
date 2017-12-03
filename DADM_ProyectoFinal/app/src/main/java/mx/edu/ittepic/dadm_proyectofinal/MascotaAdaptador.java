@@ -32,11 +32,12 @@ public class MascotaAdaptador extends BaseAdapter {
     mascota elemento;
     View vista;
     ImageView razaa;
-    private botonClick btnMasinfo = null;
-    public MascotaAdaptador(Activity actividad, ArrayList<mascota> elementos,botonClick btnMasinfo) {
+    private botonClick btnMasinfo = null,btn2=null;
+    public MascotaAdaptador(Activity actividad, ArrayList<mascota> elementos,botonClick btnMasinfo ,botonClick btn2) {
         this.actividad = actividad;
         this.elementos = elementos;
         this.btnMasinfo=btnMasinfo;
+        this.btn2=btn2;
     }
     public interface botonClick {
         public abstract void onBtnClick(int position);
@@ -70,6 +71,17 @@ public class MascotaAdaptador extends BaseAdapter {
                     if(btnMasinfo != null){
                         btnMasinfo.onBtnClick((Integer) view.getTag());
                     }
+
+            }
+        });
+        ImageView masinfomracion = (ImageView) vista.findViewById(R.id.masinfo);
+        masinfomracion.setTag(position);
+        masinfomracion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(btn2 != null){
+                    btn2.onBtnClick((Integer) view.getTag());
+                }
 
             }
         });

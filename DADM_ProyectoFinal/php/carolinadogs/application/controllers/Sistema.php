@@ -6,6 +6,7 @@ class Sistema extends CI_Controller {
 		$this->load->model('Usuarios');
 		$this->load->model('Mascotas');
 		$this->load->model('Razas');
+		$this->load->model('Tipo');
 		$this->load->helper(array('url', 'form'));
 		$this->load->library(array('session', 'form_validation'));
 	}
@@ -256,6 +257,17 @@ class Sistema extends CI_Controller {
 	public function razas_datos_android()
 	{
 		$datos =$this->Razas->getRazas();
+		echo json_encode($datos);
+	}
+	public function razas_datos_android_id()
+	{
+		$id=$this->input->post('idraza');
+		$datos =$this->Razas->getRazasID($id);
+		echo json_encode($datos);
+	}
+	public function tipo_masctoa()
+	{
+		$datos =$this->Razas->getTipos();
 		echo json_encode($datos);
 	}
 }

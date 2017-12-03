@@ -1,5 +1,6 @@
 package mx.edu.ittepic.dadm_proyectofinal;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -12,15 +13,26 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
-import java.io.InputStream;
+import org.json.JSONArray;
+import org.json.JSONException;
 
-public class Pet_pedia_info extends AppCompatActivity {
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+public class Pet_pedia_info extends AppCompatActivity implements AsyncResponse{
     TextView cara, sal, caracte, util;
     ImageView fo;
-
+    String caracter="";
+    String salud="";
+    String caracteristicas="";
+    String utlidad ="";
+    String foto="" ;
+    ConexionWeb conexionWeb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,12 +40,17 @@ public class Pet_pedia_info extends AppCompatActivity {
         setContentView(R.layout.activity_pet_pedia_info);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        setTitle(""+getIntent().getExtras().getString("nombre_raza"));
-        String caracter = getIntent().getExtras().getString("caracter");
-        String salud = getIntent().getExtras().getString("salud");
-        String caracteristicas = getIntent().getExtras().getString("caracteristicas");
-        String utlidad = getIntent().getExtras().getString("utilidad");
-        String foto = getIntent().getExtras().getString("foto");
+        if(getIntent().getExtras().getBoolean("cargar")){
+            cargarDatos(getIntent().getExtras().getInt("razaid"));
+        }else
+        {
+            setTitle(""+getIntent().getExtras().getString("nombre_raza"));
+            caracter = getIntent().getExtras().getString("caracter");
+            salud = getIntent().getExtras().getString("salud");
+            caracteristicas = getIntent().getExtras().getString("caracteristicas");
+            utlidad = getIntent().getExtras().getString("utilidad");
+            foto = getIntent().getExtras().getString("foto");
+        }
 
         cara = (TextView) findViewById(R.id.caracter);
         sal = (TextView) findViewById(R.id.salud);
@@ -79,5 +96,37 @@ public class Pet_pedia_info extends AppCompatActivity {
             return mIcon11;
         }
 
+    }
+    public void cargarDatos(int ia){
+        try {
+            conexionWeb = new ConexionWeb(Pet_pedia_info.this);
+            conexionWeb.agregarVariables("idraza",""+ ia);
+            URL direcciopn = new URL("http://carolina.x10host.com/index.php/Sistema/razas_datos_android_id");
+            conexionWeb.execute(direcciopn);
+        } catch (MalformedURLException e) {
+            Toast.makeText(Pet_pedia_info.this, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
+    public void procesarRespuesta(String r) {
+        if(r.equals("")){
+            Toast.makeText(Pet_pedia_info.this,"Ocurrio un error", Toast.LENGTH_LONG).show();
+        }else
+        {
+            try{
+                JSONArray arrayjson = new JSONArray(r);
+                for(int i = 0; i < arrayjson.length(); i++){
+
+                    caracter = arrayjson.getJSONObject(i).getString("caracter");
+                    salud = arrayjson.getJSONObject(i).getString("salud");
+                    caracteristicas = arrayjson.getJSONObject(i).getString("caracteristicas");
+                    utlidad = arrayjson.getJSONObject(i).getString("utilidad");
+                    foto =  arrayjson.getJSONObject(i).getString("foto");
+                    setTitle(""+ arrayjson.getJSONObject(i).getString("nombre_raza"));
+
+                }
+            }catch (JSONException e){
+
+            }
+        }
     }
 }
