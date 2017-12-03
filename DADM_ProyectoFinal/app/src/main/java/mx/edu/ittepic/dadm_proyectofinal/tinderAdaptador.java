@@ -24,11 +24,11 @@ import java.util.ArrayList;
 
 public class tinderAdaptador extends BaseAdapter {
     private Activity actividad;
-    private ArrayList<raza> elementos;
+    private ArrayList<mascota> elementos;
     tinderpet elemento;
     View vista;
     private tinderAdaptador.botonClick btnMasinfo = null;
-    public tinderAdaptador(Activity actividad, ArrayList<raza> elementos,tinderAdaptador.botonClick btnMasinfo) {
+    public tinderAdaptador(Activity actividad, ArrayList<mascota> elementos,tinderAdaptador.botonClick btnMasinfo) {
         this.actividad = actividad;
         this.elementos = elementos;
         this.btnMasinfo=btnMasinfo;
@@ -47,7 +47,7 @@ public class tinderAdaptador extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return elementos.get(position).getidrazamascota();
+        return elementos.get(position).getidmascota();
     }
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -56,7 +56,7 @@ public class tinderAdaptador extends BaseAdapter {
             LayoutInflater inflater = (LayoutInflater) actividad.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             vista = inflater.inflate(R.layout.activity_tinderpet, null);
         }
-        elemento = elementos.get(position);
+      //  elemento = elementos.get(position);
         ImageView pata = (ImageView) vista.findViewById(R.id.vermas);
         pata.setTag(position);
         pata.setOnClickListener(new View.OnClickListener() {
@@ -68,14 +68,14 @@ public class tinderAdaptador extends BaseAdapter {
 
             }
         });
-        TextView a = (TextView) vista.findViewById(R.id.vnombretinder);
+   /*     TextView a = (TextView) vista.findViewById(R.id.vnombretinder);
         a.setText(elemento.getnombrer());
         TextView b = (TextView) vista.findViewById(R.id.vedadtinder);
         a.setText(elemento.getedad());
         /*TextView c = (TextView) vista.findViewById(R.id.vwikinkardex);
         c.setText(elemento.getcaracter());*/
-        ImageView raza = (ImageView) vista.findViewById(R.id.fotot);
-        Picasso.with(actividad).load(elemento.getfoto()).into(tinderpet);
+      //  ImageView raza = (ImageView) vista.findViewById(R.id.fotot);
+    //    Picasso.with(actividad).load(elemento.getfoto()).into(tinderpet);
      /*   new razaAdaptador.DescargarImagenes((ImageView) vista.findViewById(R.id.vwikikardesfoto))
                 .execute(""+elemento.getfotor());*/
         return vista;

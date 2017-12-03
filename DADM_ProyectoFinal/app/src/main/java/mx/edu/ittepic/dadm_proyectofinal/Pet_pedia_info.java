@@ -40,6 +40,11 @@ public class Pet_pedia_info extends AppCompatActivity implements AsyncResponse{
         setContentView(R.layout.activity_pet_pedia_info);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        cara = (TextView) findViewById(R.id.caracter);
+        sal = (TextView) findViewById(R.id.salud);
+        caracte = (TextView) findViewById(R.id.caracteristicas);
+        util = (TextView) findViewById(R.id.utilidad);
+        fo = (ImageView) findViewById(R.id.foto_info);
         if(getIntent().getExtras().getBoolean("cargar")){
             cargarDatos(getIntent().getExtras().getInt("razaid"));
         }else
@@ -50,18 +55,16 @@ public class Pet_pedia_info extends AppCompatActivity implements AsyncResponse{
             caracteristicas = getIntent().getExtras().getString("caracteristicas");
             utlidad = getIntent().getExtras().getString("utilidad");
             foto = getIntent().getExtras().getString("foto");
+            cara.setText(caracter);
+            sal.setText(salud);
+            caracte.setText(caracteristicas);
+            util.setText(utlidad);
+
+            Picasso.with(Pet_pedia_info.this).load(foto).into(fo);
         }
 
-        cara = (TextView) findViewById(R.id.caracter);
-        sal = (TextView) findViewById(R.id.salud);
-        caracte = (TextView) findViewById(R.id.caracteristicas);
-        util = (TextView) findViewById(R.id.utilidad);
-        fo = (ImageView) findViewById(R.id.foto_info);
-        cara.setText(caracter);
-        sal.setText(salud);
-        caracte.setText(caracteristicas);
-        util.setText(utlidad);
-        Picasso.with(Pet_pedia_info.this).load(foto).into(fo);
+
+
     /*    new Pet_pedia_info.DescargarImagenes((ImageView) findViewById(R.id.foto))
                 .execute("" + foto); */
 
@@ -100,7 +103,7 @@ public class Pet_pedia_info extends AppCompatActivity implements AsyncResponse{
     public void cargarDatos(int ia){
         try {
             conexionWeb = new ConexionWeb(Pet_pedia_info.this);
-            conexionWeb.agregarVariables("idraza",""+ ia);
+            conexionWeb.agregarVariables("idraza",""+ 1);
             URL direcciopn = new URL("http://carolina.x10host.com/index.php/Sistema/razas_datos_android_id");
             conexionWeb.execute(direcciopn);
         } catch (MalformedURLException e) {
@@ -108,25 +111,23 @@ public class Pet_pedia_info extends AppCompatActivity implements AsyncResponse{
         }
     }
     public void procesarRespuesta(String r) {
-        if(r.equals("")){
-            Toast.makeText(Pet_pedia_info.this,"Ocurrio un error", Toast.LENGTH_LONG).show();
-        }else
-        {
-            try{
-                JSONArray arrayjson = new JSONArray(r);
-                for(int i = 0; i < arrayjson.length(); i++){
-
-                    caracter = arrayjson.getJSONObject(i).getString("caracter");
-                    salud = arrayjson.getJSONObject(i).getString("salud");
-                    caracteristicas = arrayjson.getJSONObject(i).getString("caracteristicas");
-                    utlidad = arrayjson.getJSONObject(i).getString("utilidad");
-                    foto =  arrayjson.getJSONObject(i).getString("foto");
-                    setTitle(""+ arrayjson.getJSONObject(i).getString("nombre_raza"));
-
-                }
-            }catch (JSONException e){
-
+        try{
+            JSONArray arrayjson = new JSONArray(r);
+            for(int i = 0; i < arrayjson.length(); i++){
+                caracter = arrayjson.getJSONObject(i).getString("caracter");
+                salud = arrayjson.getJSONObject(i).getString("salud");
+                caracteristicas = arrayjson.getJSONObject(i).getString("caracteristicas");
+                utlidad = arrayjson.getJSONObject(i).getString("utilidad");
+                foto =  arrayjson.getJSONObject(i).getString("foto_raza");
+                Picasso.with(Pet_pedia_info.this).load(foto).into(fo);
+                setTitle(""+ arrayjson.getJSONObject(i).getString("nombre_raza"));
+                cara.setText(caracter);
+                sal.setText(salud);
+                caracte.setText(caracteristicas);
+                util.setText(utlidad);
             }
+        }catch (JSONException e){
+
         }
     }
 }
