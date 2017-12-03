@@ -5,15 +5,16 @@ package mx.edu.ittepic.dadm_proyectofinal;
  */
 
 public class raza {
-    String nombrer,caracter,salud,utilidad,fotor;
+    String nombrer,caracter,salud,utilidad,fotor,caracteristicas;
     int idrazamascota;
-    public raza(int idrazamascota,String nombrer,String caracter, String salud,String utilidad,String fotor){
+    public raza(int idrazamascota,String nombrer,String caracter, String salud,String caracteristicas,String utilidad,String fotor){
         this.idrazamascota=idrazamascota;
         this.nombrer=nombrer;
         this.caracter=caracter;
         this.salud=salud;
         this.utilidad=utilidad;
         this.fotor=fotor;
+        this.caracteristicas=caracteristicas;
     }
     public int getidrazamascota(){
         return idrazamascota;
