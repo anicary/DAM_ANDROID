@@ -60,6 +60,7 @@
                 android:layout_marginBottom="40dp"
                 android:weightSum="1">
                 <ImageView
+                    android:id="@+id/vermas"
                     android:layout_width="65dp"
                     android:layout_height="41dp"
                     android:src="@drawable/vermas" />
