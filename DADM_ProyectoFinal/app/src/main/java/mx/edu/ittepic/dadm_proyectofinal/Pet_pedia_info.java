@@ -13,6 +13,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.io.InputStream;
 
 public class Pet_pedia_info extends AppCompatActivity {
@@ -37,17 +39,14 @@ public class Pet_pedia_info extends AppCompatActivity {
         sal = (TextView) findViewById(R.id.salud);
         caracte = (TextView) findViewById(R.id.caracteristicas);
         util = (TextView) findViewById(R.id.utilidad);
-        fo = (ImageView) findViewById(R.id.foto);
-
-
+        fo = (ImageView) findViewById(R.id.foto_info);
         cara.setText("TEMPERAMENTO\n"+caracter);
         sal.setText("SALUD/CUIDADOS\n"+salud);
         caracte.setText("CARACTERISTICAS\n"+caracteristicas);
         util.setText("UTILIDAD\n"+utlidad);
-
-
-        new Pet_pedia_info.DescargarImagenes((ImageView) findViewById(R.id.foto))
-                .execute("" + foto);
+        Picasso.with(Pet_pedia_info.this).load(foto).into(fo);
+    /*    new Pet_pedia_info.DescargarImagenes((ImageView) findViewById(R.id.foto))
+                .execute("" + foto); */
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
