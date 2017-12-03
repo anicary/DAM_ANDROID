@@ -27,6 +27,7 @@
             android:layout_gravity="center"
             android:layout_width="300dp"
             android:layout_height="300dp"
+            android:id="@+id/fotot"
             android:src="@drawable/ic_cancel_black_24dp"/>
         <ImageView
             android:layout_width="330dp"
