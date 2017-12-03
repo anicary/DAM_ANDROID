@@ -85,6 +85,7 @@ public class pet_pedia extends AppCompatActivity implements AsyncResponse {
                 public void onBtnClick(int position) {
                     Intent acde = new Intent(pet_pedia.this,Pet_pedia_info.class);
                     acde.putExtra("idraza", elementos.get(position).getidrazamascota());
+                    acde.putExtra("nombre_raza", elementos.get(position).getnombrer());
                     acde.putExtra("caracter", elementos.get(position).getcaracter());
                     acde.putExtra("salud", elementos.get(position).getsalud());
                     acde.putExtra("caracteristicas", elementos.get(position).getcaracteristicas());

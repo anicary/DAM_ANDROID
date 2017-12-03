@@ -28,7 +28,7 @@ public class Pet_pedia_info extends AppCompatActivity {
         setContentView(R.layout.activity_pet_pedia_info);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        setTitle(""+getIntent().getExtras().getString("nombre_raza"));
         String caracter = getIntent().getExtras().getString("caracter");
         String salud = getIntent().getExtras().getString("salud");
         String caracteristicas = getIntent().getExtras().getString("caracteristicas");
