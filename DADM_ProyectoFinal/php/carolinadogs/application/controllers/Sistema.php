@@ -267,7 +267,7 @@ class Sistema extends CI_Controller {
 	}
 	public function tipo_masctoa()
 	{
-		$datos =$this->Razas->getTipos();
+		$datos =$this->Tipo->getTipos();
 		echo json_encode($datos);
 	}
 }

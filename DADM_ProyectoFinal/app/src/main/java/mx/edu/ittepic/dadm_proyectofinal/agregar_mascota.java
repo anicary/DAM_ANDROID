@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -15,17 +17,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import java.io.ByteArrayOutputStream;
 import java.io.FileDescriptor;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import static android.R.attr.bitmap;
 
@@ -45,6 +53,7 @@ public class agregar_mascota extends AppCompatActivity implements AsyncResponse 
         ActivityCompat.requestPermissions(this,
                 new String[]{ Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE },
                 1);
+        cargarTipos();
         setContentView(R.layout.activity_agregar_mascota);
         nombre = (EditText) findViewById(R.id.nombremascota);
         edad = (EditText) findViewById(R.id.edadmascota);
@@ -151,6 +160,33 @@ public class agregar_mascota extends AppCompatActivity implements AsyncResponse 
     }
     @Override
     public void procesarRespuesta(String r){
+        try{
+            JSONArray arrayjson = new JSONArray(r);
+            if (arrayjson.getJSONObject(0).has("idtipo_mascota")) {
+                List<String> spinnerArray =  new ArrayList<String>();
 
+                for (int i = 0; i < arrayjson.length(); i++) {
+                    spinnerArray.add(arrayjson.getJSONObject(i).getString("nombre"));
+                }
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                        this, android.R.layout.simple_spinner_item, spinnerArray);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                tipo.setAdapter(adapter);
+            }else
+            {
+
+            }
+        }catch (JSONException e){
+        }
+    }
+    public void cargarTipos(){
+        try {
+            conexionWeb = new ConexionWeb(agregar_mascota.this);
+            conexionWeb.agregarVariables("idusuarios", idusuarios);
+            URL direcciopn = new URL("http://carolina.x10host.com/index.php/Sistema/tipo_masctoa");
+            conexionWeb.execute(direcciopn);
+        } catch (MalformedURLException e) {
+            Toast.makeText(agregar_mascota.this, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
     }
 }
