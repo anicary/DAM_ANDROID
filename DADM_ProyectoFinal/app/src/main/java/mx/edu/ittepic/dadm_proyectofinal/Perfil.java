@@ -3,6 +3,8 @@ package mx.edu.ittepic.dadm_proyectofinal;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -13,12 +15,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.InputStream;
 
 public class Perfil extends AppCompatActivity {
-    String nombrea="",apellidosa="",correoa="",imagen="";
+    String nombrea="",apellidosa="",correoa="",imagen="",idusuarios="";
     TextView nombre,apellido,correo;
+    BDInterna dbinterna;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +40,8 @@ public class Perfil extends AppCompatActivity {
         apellidosa = prefs.getString("apellidos", "apellidos");
         correoa = prefs.getString("correo", "correo@email.com");
         imagen = prefs.getString("imagen", "http://carolina.x10host.com/archivos/fotos/perfil.jpg");
+        idusuarios = prefs.getString("idusuarios", "0");
+        dbinterna = new BDInterna(Perfil.this, "baseinterna", null, 1);
         nombre.setText(nombrea);
         apellido.setText(apellidosa);
         correo.setText(correoa);
@@ -55,6 +61,16 @@ public class Perfil extends AppCompatActivity {
 
                 break;
             case R.id.cerrarse:
+                try {
+                    SQLiteDatabase base = dbinterna.getWritableDatabase();
+                    String query1 = "DELETE FROM usuario  where idusuarios=" + idusuarios + ";";
+                    base.execSQL(query1);
+                    Intent intent = new Intent(Perfil.this, Inicio.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                } catch (SQLException e) {
+                    Toast.makeText(Perfil.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                }
 
                 break;
         }

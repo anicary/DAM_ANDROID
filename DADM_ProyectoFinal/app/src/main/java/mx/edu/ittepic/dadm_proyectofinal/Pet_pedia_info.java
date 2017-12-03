@@ -39,7 +39,12 @@ public class Pet_pedia_info extends AppCompatActivity {
         util = (TextView) findViewById(R.id.utilidad);
         fo = (ImageView) findViewById(R.id.foto);
 
-        cara.setText(caracter);
+
+        cara.setText("TEMPERAMENTO\n"+caracter);
+        sal.setText("SALUD/CUIDADOS\n"+salud);
+        caracte.setText("CARACTERISTICAS\n"+caracteristicas);
+        util.setText("UTILIDAD\n"+utlidad);
+
 
         new Pet_pedia_info.DescargarImagenes((ImageView) findViewById(R.id.foto))
                 .execute("" + foto);
