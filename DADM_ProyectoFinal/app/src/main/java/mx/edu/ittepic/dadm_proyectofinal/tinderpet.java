@@ -26,6 +26,7 @@ public class tinderpet extends AppCompatActivity implements  AsyncResponse {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tinderpet);
+        setTitle("Tinder Pet");
         SharedPreferences prefs =  getSharedPreferences("INFO_USUARIO", Context.MODE_PRIVATE);
         idusuarios = prefs.getString("idusuarios", "0");
         Menu_lista = (ListView) findViewById(R.id.tinderlista);
