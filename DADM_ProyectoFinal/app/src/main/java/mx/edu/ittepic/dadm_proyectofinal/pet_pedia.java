@@ -87,10 +87,11 @@ public class pet_pedia extends AppCompatActivity implements AsyncResponse {
                     startActivity(acde);
                 }
             });
-           lista.setAdapter(adater);
+            lista.setAdapter(adater);
         } catch (JSONException e) {
 
         }
     }
 }
+
 
