@@ -51,4 +51,14 @@ class Mascotas extends CI_Model {
     $DB2->where('idmascota', $mascota );
     $DB2->delete('mascota');
   }
+  public function cargarMacotasExternas($idusuarios)
+  {
+    $DBcon = $this->load->database('default', TRUE);
+    $query=$DBcon->query("SELECT * FROM mascota as ma,mascota_usuarios as mu where mu.usuarios_idusuarios!= $idusuarios and mu.mascota_idmascota=ma.idmascota");
+    if ($query->num_rows() > 0) {
+      return $query->result();
+    } else {
+      return false;
+    }
+  }
 }

@@ -224,7 +224,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
                  arrayjson = new JSONArray(r);
                 for(int i = 0; i < arrayjson.length(); i++){
                     idtemp=arrayjson.getJSONObject(i).getString("idmascota");
-                    elementos.add(new mascota(Integer.parseInt(arrayjson.getJSONObject(i).getString("idmascota")),arrayjson.getJSONObject(i).getString("nombre"),arrayjson.getJSONObject(i).getString("edad"),arrayjson.getJSONObject(i).getString("sexo"),arrayjson.getJSONObject(i).getString("razamascota_idrazamascota"),arrayjson.getJSONObject(i).getString("foto_mas")));
+                    elementos.add(new mascota(Integer.parseInt(arrayjson.getJSONObject(i).getString("idmascota")),arrayjson.getJSONObject(i).getString("nombre"),arrayjson.getJSONObject(i).getString("edad"),arrayjson.getJSONObject(i).getString("sexo"),arrayjson.getJSONObject(i).getString("razamascota_idrazamascota"),arrayjson.getJSONObject(i).getString("tipo_mascota_idtipo_mascota"),arrayjson.getJSONObject(i).getString("foto_mas")));
                 }
                 adater= new MascotaAdaptador(this, elementos, new MascotaAdaptador.botonClick() {
                     @Override
@@ -234,6 +234,8 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
                         acde.putExtra("nombre", elementos.get(position).getnombre());
                         acde.putExtra("foto", elementos.get(position).getfoto());
                         acde.putExtra("edad", elementos.get(position).getedad());
+                        acde.putExtra("tipo", elementos.get(position).gettipo());
+                        acde.putExtra("raza", elementos.get(position).getraza());
                         startActivity(acde);
                     }
                 }, new MascotaAdaptador.botonClick() {

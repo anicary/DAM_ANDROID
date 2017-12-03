@@ -16,15 +16,22 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 public class editarMascota extends AppCompatActivity  implements AsyncResponse{
     String nombrea="",edada="",sexoa="";
@@ -34,6 +41,9 @@ public class editarMascota extends AppCompatActivity  implements AsyncResponse{
     Button editarpet;
     ConexionWeb conexionWeb;
     int id=0;
+    String idtipos[],idraza[];
+    String idrazaencontrada="",idtipoencontrado;
+    boolean tc=true,rc=true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +65,11 @@ public class editarMascota extends AppCompatActivity  implements AsyncResponse{
         id=getIntent().getExtras().getInt("idmascota");
         enombre.setText(getIntent().getExtras().getString("nombre"));
         eedad.setText(getIntent().getExtras().getString("edad"));
+        idrazaencontrada=getIntent().getExtras().getString("raza");
+        idtipoencontrado=getIntent().getExtras().getString("tipo");
+        cargarTipos();
+        cargarRazas(idrazaencontrada);
+
         if(getIntent().getExtras().getString("edad").equals("HEMBRA")){
             esexo.setSelection(0);
         }else{
@@ -75,6 +90,8 @@ public class editarMascota extends AppCompatActivity  implements AsyncResponse{
                         conexionWeb.agregarVariables("nombre", nombrea);
                         conexionWeb.agregarVariables("edad",edada);
                         conexionWeb.agregarVariables("sexo", sexoa);
+                        conexionWeb.agregarVariables("tipo_mascota_idtipo_mascota", idtipos[etipo.getSelectedItemPosition()]);
+                        conexionWeb.agregarVariables("razamascota_idrazamascota",  idraza[eraza.getSelectedItemPosition()]);
                         conexionWeb.agregarVariables("idusuarios", idusuarios);
                         URL direccion = new URL("http://carolina.x10host.com/index.php/Sistema/editar_mascota");
                         conexionWeb.execute(direccion);
@@ -82,6 +99,17 @@ public class editarMascota extends AppCompatActivity  implements AsyncResponse{
                         Toast.makeText(editarMascota.this, e.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 }
+            }
+        });
+        etipo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                cargarRazas(idtipos[position]);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+
             }
         });
 
@@ -99,6 +127,61 @@ public class editarMascota extends AppCompatActivity  implements AsyncResponse{
                 Intent intent = new Intent(editarMascota.this, MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
+            }else
+            {
+                try{
+                    JSONArray arrayjson = new JSONArray(r);
+                    if (arrayjson.getJSONObject(0).has("idtipo_mascota")) {
+                        List<String> spinnerArray =  new ArrayList<String>();
+                        idtipos = new String[arrayjson.length()];
+                        for (int i = 0; i < arrayjson.length(); i++) {
+                            spinnerArray.add(arrayjson.getJSONObject(i).getString("nombre"));
+                            idtipos[i]=arrayjson.getJSONObject(i).getString("idtipo_mascota");
+                        }
+                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                                this, android.R.layout.simple_spinner_item, spinnerArray);
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        etipo.setAdapter(adapter);
+                        if(tc){
+                            for(int i=0;i<idtipos.length;i++){
+                                if(idtipos[i].equals(idtipoencontrado)){
+                                    etipo.setSelection(i);
+                                }
+                            }
+                        }else
+                        {
+                            tc=false;
+                        }
+                     //   cargarRazas(idtipos[0]);
+                    }else
+                    {
+                        JSONArray arrayjson2 = new JSONArray(r);
+                        if (arrayjson2.getJSONObject(0).has("idrazamascota")) {
+                            List<String> spinnerArray =  new ArrayList<String>();
+                            idraza= new String[arrayjson2.length()];
+                            for (int i = 0; i < arrayjson2.length(); i++) {
+                                spinnerArray.add(arrayjson2.getJSONObject(i).getString("nombre_raza"));
+                                idraza[i]=arrayjson.getJSONObject(i).getString("idrazamascota");
+                            }
+                            ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                                    this, android.R.layout.simple_spinner_item, spinnerArray);
+                            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                            eraza.setAdapter(adapter);
+                            if(rc){
+                                for(int i=0;i<idraza.length;i++){
+                                    if(idraza[i].equals(idrazaencontrada)){
+                                        eraza.setSelection(i);
+                                    }
+                                }
+                            }else
+                            {
+                                rc=false;
+                            }
+
+                        }
+                    }
+                }catch (JSONException e){
+                }
             }
         }
 
@@ -171,6 +254,26 @@ public class editarMascota extends AppCompatActivity  implements AsyncResponse{
 
         protected void onPostExecute(Bitmap result) {
             bmImage.setImageBitmap(result);
+        }
+    }
+    public void cargarTipos(){
+        try {
+            conexionWeb = new ConexionWeb(editarMascota.this);
+            conexionWeb.agregarVariables("idusuarios", idusuarios);
+            URL direcciopn = new URL("http://carolina.x10host.com/index.php/Sistema/tipo_masctoa");
+            conexionWeb.execute(direcciopn);
+        } catch (MalformedURLException e) {
+            Toast.makeText(editarMascota.this, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
+    public void cargarRazas(String id){
+        try {
+            conexionWeb = new ConexionWeb(editarMascota.this);
+            conexionWeb.agregarVariables("idraza", id);
+            URL direcciopn = new URL("http://carolina.x10host.com/index.php/Sistema/razas_datos_android_id_tipo");
+            conexionWeb.execute(direcciopn);
+        } catch (MalformedURLException e) {
+            Toast.makeText(editarMascota.this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
 }
