@@ -108,13 +108,18 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="40dp"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:weightSum="1">
 
                 <ImageView
                     android:id="@+id/idpatita"
+                    android:layout_width="65dp"
+                    android:layout_height="41dp"
+                    android:clickable="true"
+                    android:src="@drawable/ic_description_black_24dp" />
+                <ImageView
+                    android:id="@+id/masinfo"
                     android:layout_width="65dp"
                     android:layout_height="41dp"
                     android:clickable="true"
