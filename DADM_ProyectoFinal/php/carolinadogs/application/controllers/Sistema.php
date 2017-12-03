@@ -278,7 +278,7 @@ class Sistema extends CI_Controller {
 	}
 	public function tinder_pet()
 	{
-		$id=$this->input->post('idusuario');
+		$id=$this->input->post('idusuarios');
 		$datos=$this->Mascotas->cargarMacotasExternas($id);
 		if($datos){
 			echo json_encode($datos);

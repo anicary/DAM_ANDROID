@@ -31,6 +31,9 @@
         <activity
             android:name=".agregar_mascota"
             android:windowSoftInputMode="stateHidden|adjustResize|adjustPan" />
+        <activity
+            android:name=".tinderpet"
+            />
         <activity android:name=".acerca" />
         <activity android:name=".desestres" />
         <activity android:name=".editarPerfilusuario" />

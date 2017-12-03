@@ -7,9 +7,22 @@
     android:background="@color/colorAccent"
     android:orientation="vertical"
     tools:context="mx.edu.ittepic.dadm_proyectofinal.tinderpet">
-
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="monospace"
+        android:gravity="center"
+        android:text="TinderPet"
+        android:textColor="#000000"
+        android:textSize="30dp"
+        android:textStyle="bold" />
 
     <ListView
+        android:id="@+id/tinderlista"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+
+
+    </ListView>
 </LinearLayout>

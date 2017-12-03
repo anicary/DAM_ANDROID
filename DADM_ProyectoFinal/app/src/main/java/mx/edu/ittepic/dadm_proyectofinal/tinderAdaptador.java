@@ -25,13 +25,14 @@ import java.util.ArrayList;
 public class tinderAdaptador extends BaseAdapter {
     private Activity actividad;
     private ArrayList<mascota> elementos;
-    tinderpet elemento;
+    mascota elemento;
     View vista;
-    private tinderAdaptador.botonClick btnMasinfo = null;
-    public tinderAdaptador(Activity actividad, ArrayList<mascota> elementos,tinderAdaptador.botonClick btnMasinfo) {
+    private tinderAdaptador.botonClick botonMatch = null,botonMatchNo=null;
+    public tinderAdaptador(Activity actividad, ArrayList<mascota> elementos,tinderAdaptador.botonClick botonMatch,tinderAdaptador.botonClick botonMatchNo) {
         this.actividad = actividad;
         this.elementos = elementos;
-        this.btnMasinfo=btnMasinfo;
+        this.botonMatch=botonMatch;
+        this.botonMatchNo=botonMatchNo;
     }
     public interface botonClick {
         public abstract void onBtnClick(int position);
@@ -54,7 +55,7 @@ public class tinderAdaptador extends BaseAdapter {
         vista = convertView;
         if (vista == null) {
             LayoutInflater inflater = (LayoutInflater) actividad.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            vista = inflater.inflate(R.layout.activity_tinderpet, null);
+            vista = inflater.inflate(R.layout.tinder, null);
         }
       //  elemento = elementos.get(position);
         ImageView pata = (ImageView) vista.findViewById(R.id.vermas);
@@ -62,47 +63,23 @@ public class tinderAdaptador extends BaseAdapter {
         pata.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(btnMasinfo != null){
-                    btnMasinfo.onBtnClick((Integer) view.getTag());
+                if(botonMatch != null){
+                    botonMatch.onBtnClick((Integer) view.getTag());
                 }
-
             }
         });
-   /*     TextView a = (TextView) vista.findViewById(R.id.vnombretinder);
-        a.setText(elemento.getnombrer());
+        TextView a = (TextView) vista.findViewById(R.id.vnombretinder);
+        a.setText(elemento.getnombre());
         TextView b = (TextView) vista.findViewById(R.id.vedadtinder);
         a.setText(elemento.getedad());
         /*TextView c = (TextView) vista.findViewById(R.id.vwikinkardex);
         c.setText(elemento.getcaracter());*/
-      //  ImageView raza = (ImageView) vista.findViewById(R.id.fotot);
-    //    Picasso.with(actividad).load(elemento.getfoto()).into(tinderpet);
+        ImageView tinderfoto = (ImageView) vista.findViewById(R.id.fotot);
+       Picasso.with(actividad).load(elemento.getfoto()).into(tinderfoto);
      /*   new razaAdaptador.DescargarImagenes((ImageView) vista.findViewById(R.id.vwikikardesfoto))
                 .execute(""+elemento.getfotor());*/
         return vista;
     }
-    private class DescargarImagenes extends AsyncTask<String, Void, Bitmap> {
-        ImageView bmImage;
 
-        public DescargarImagenes(ImageView bmImage) {
-            this.bmImage = bmImage;
-        }
-
-        protected Bitmap doInBackground(String... urls) {
-            String urldisplay = urls[0];
-            Bitmap mIcon11 = null;
-            try {
-                InputStream in = new java.net.URL(urldisplay).openStream();
-                mIcon11 = BitmapFactory.decodeStream(in);
-            } catch (Exception e) {
-                Log.e("Error", e.getMessage());
-                e.printStackTrace();
-            }
-            return mIcon11;
-        }
-
-        protected void onPostExecute(Bitmap result) {
-            bmImage.setImageBitmap(result);
-        }
-    }
 }
 
