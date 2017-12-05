@@ -30,6 +30,7 @@ import org.json.JSONException;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileDescriptor;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -53,7 +54,7 @@ public class agregar_mascota extends AppCompatActivity implements AsyncResponse 
         super.onCreate(savedInstanceState);
         setTitle("Registra a tu mascota");
         ActivityCompat.requestPermissions(this,
-                new String[]{ Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE },
+                new String[]{ Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE , Manifest.permission.READ_EXTERNAL_STORAGE },
                 1);
         cargarTipos();
         setContentView(R.layout.activity_agregar_mascota);
@@ -120,11 +121,15 @@ public class agregar_mascota extends AppCompatActivity implements AsyncResponse 
         galerria.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(
+              /*  Intent i = new Intent(
                         Intent.ACTION_PICK,
                         android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 
-                startActivityForResult(i, RESULT_LOAD_IMAGE);
+                startActivityForResult(i, RESULT_LOAD_IMAGE); */
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);//
+                startActivityForResult(Intent.createChooser(intent, "Selecionar foto grafia del perrito"), 1);
             }
         });
         camara = (Button) findViewById(R.id.btnFotodog);
@@ -139,8 +144,18 @@ public class agregar_mascota extends AppCompatActivity implements AsyncResponse 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
-            try {
+        if (requestCode == 1 && resultCode == RESULT_OK && null != data) {
+            if (data != null) {
+                try {
+                    Bitmap bmp = null;
+                    bmp = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), data.getData());
+                    imagenenviar=bmp;
+                    imageView.setImageBitmap(bmp);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+           /* try {
                 Uri selectedImage = data.getData();
                 String[] filePathColumn = { MediaStore.Images.Media.DATA };
                 Cursor cursor = getContentResolver().query(selectedImage,
@@ -155,12 +170,12 @@ public class agregar_mascota extends AppCompatActivity implements AsyncResponse 
                 imageView.setImageBitmap(bmp);
             } catch (IOException e) {
                 e.printStackTrace();
-            }
+            }*/
         }
         if (requestCode == 7 && resultCode == RESULT_OK && data != null ) {
-                Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+            Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
             imagenenviar=thumbnail;
-                imageView.setImageBitmap(thumbnail);
+            imageView.setImageBitmap(thumbnail);
         }
     }
 
