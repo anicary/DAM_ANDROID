@@ -17,6 +17,8 @@ import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.ColorInt;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
@@ -44,6 +46,10 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+
+import es.dmoral.toasty.Toasty;
+
+import static android.R.attr.typeface;
 
 public class MainActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener,AsyncResponse {
     String nombre="",apellidos="",correo="",imagen="",idusuarios="";
@@ -222,7 +228,9 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
         elemento = getElemento();
         if(r.equals("no-mascotas")){
-            Toast.makeText(MainActivity.this,"Aun no tienes mascotas", Toast.LENGTH_LONG).show();
+            Toasty.Config.getInstance().apply();
+            Toasty.normal(MainActivity.this, "Aun no tienes mascotas", R.drawable.ic_pets_error_blanco).show();
+            // Toast.makeText(MainActivity.this,"Aun no tienes mascotas", Toast.LENGTH_LONG).show();
         }else
         {
             try{
