@@ -19,6 +19,34 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<link href="<?php echo base_url(); ?>css/perritoslogin.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
+
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">PET WORLD</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link"  href="<?php echo base_url(); ?>index.php/Sistema/">Menu <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<?php echo base_url(); ?>index.php/Sistema/usuarios">USUARIOS</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<?php echo base_url(); ?>index.php/Sistema/razas_datos">PET PEDIA</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         <?php echo "".$this->session->userdata('nombre'); ?>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/Sistema/salir">SALIR</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
@@ -46,7 +74,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<a href="<?php echo base_url(); ?>index.php/Sistema/razas_datos">
 									<div class="card">
 										<div class="card-body">
-										<i class="fa fa-paw" aria-hidden="true"></i> PET PEDIA RAZAS
+											<i class="fa fa-paw" aria-hidden="true"></i> PET PEDIA RAZAS
 										</div>
 									</div>
 								</a>

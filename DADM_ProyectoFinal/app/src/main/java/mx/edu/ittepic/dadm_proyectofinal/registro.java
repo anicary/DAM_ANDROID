@@ -217,6 +217,7 @@ public class registro extends AppCompatActivity implements AsyncResponse {
                             }
                             Intent Ventanaregistro = new Intent(registro.this, MainActivity.class);
                             startActivity(Ventanaregistro);
+                            finish();
                         }
                     }
                 }
