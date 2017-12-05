@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -31,6 +33,18 @@ public class tinderpet extends AppCompatActivity implements  AsyncResponse {
         idusuarios = prefs.getString("idusuarios", "0");
         Menu_lista = (ListView) findViewById(R.id.tinderlista);
         cargarMascotas();
+    }
+    public boolean onCreateOptionsMenu(Menu m){
+        getMenuInflater().inflate(R.menu.tindermenu,m);
+        return true;
+    }
+    public boolean onOptionsItemSelected(MenuItem mi){
+        switch (mi.getItemId()){
+            case R.id.pet:
+
+                break;
+        }
+        return true;
     }
     private ArrayList<mascota> getElemento() {
         elementos = new ArrayList<mascota>();
