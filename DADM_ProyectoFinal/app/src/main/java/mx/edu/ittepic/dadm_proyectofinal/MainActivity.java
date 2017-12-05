@@ -1,5 +1,6 @@
 package mx.edu.ittepic.dadm_proyectofinal;
 
+import android.Manifest;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
@@ -21,6 +22,7 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -114,9 +116,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         navcorreo.setText(""+correo);
         cargarMascotas();
         Menu_lista = (ListView) findViewById(R.id.lista_mascotas);
-
-
-
+        ActivityCompat.requestPermissions(this, new String[]{ Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE , Manifest.permission.READ_EXTERNAL_STORAGE }, 1);
     }
     private ArrayList<mascota> getElemento() {
         elementos = new ArrayList<mascota>();
