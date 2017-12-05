@@ -29,5 +29,6 @@ dependencies {
     compile 'com.android.support:design:26.+'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.github.RahulJanagouda:StatusStories:1.0.1'
+    compile 'com.github.varunest:sparkbutton:1.0.5'
     testCompile 'junit:junit:4.12'
 }
