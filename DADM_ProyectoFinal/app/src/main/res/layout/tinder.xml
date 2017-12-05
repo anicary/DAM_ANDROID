@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             android:orientation="vertical">
 
 
@@ -31,7 +31,7 @@
                 android:clipChildren="false"
                 android:clipToPadding="false"
                 android:orientation="vertical"
-                android:padding="10dp">
+                android:padding="5dp">
 
                 <ImageView
                     android:id="@+id/fotot"
@@ -54,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="15dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -97,7 +97,7 @@
                 android:layout_width="300dp"
                 android:layout_height="62dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp"
+
                 android:orientation="horizontal">
 
                 <com.varunest.sparkbutton.SparkButton
@@ -106,6 +106,7 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="end"
                     android:layout_marginTop="10dp"
+                    android:visibility="visible"
                     app:sparkbutton_activeImage="@drawable/ic_heart_on"
                     app:sparkbutton_iconSize="50dp"
                     app:sparkbutton_inActiveImage="@drawable/ic_heart_off"
