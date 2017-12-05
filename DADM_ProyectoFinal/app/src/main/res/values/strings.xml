@@ -27,7 +27,7 @@ Cuando algo falla en el sistema digestivo de nuestro perro, normalmente se manif
     <string name="curiosidades9">Cacas muy brillantes, con mucosidad y/o gusanos
 Las cacas muy brillantes nos indican que hay un exceso de grasa en la alimentación, algo que puede dañar el páncreas del perro a medio plazo. Si su aspecto es acuoso o mucoso, puede indicar la presencia de alguna bacteria intestinal que ocasione el desprendimiento de la flora. Pero también podría ser que indique la presencia de algunos parásitos intestinales cómo las giardias.
 </string>
-    <string name="app_name">DADM_ProyectoFinal</string>
+    <string name="app_name">PET WOLRD</string>
     <string name="title_activity_main">MainActivity</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -125,4 +125,5 @@ Las cacas muy brillantes nos indican que hay un exceso de grasa en la alimentaci
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="title_activity_curiosidades">Curiosidades</string>
+    <string name="app_title">PET WOLRD</string>
 </resources>
