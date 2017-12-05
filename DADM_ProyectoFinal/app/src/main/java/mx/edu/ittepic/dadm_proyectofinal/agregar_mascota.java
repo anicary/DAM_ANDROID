@@ -107,9 +107,10 @@ public class agregar_mascota extends AppCompatActivity implements AsyncResponse 
                         conexionWeb.agregarVariables("razamascota_idrazamascota",  idraza[raza.getSelectedItemPosition()]);
                         conexionWeb.agregarVariables("foto_mas",imagebase64string);
                         URL direccion = new URL("http://carolina.x10host.com/index.php/Sistema/registro_mascota");
-                        Intent inicio = new Intent(agregar_mascota.this,MainActivity.class);
-                        startActivity(inicio);
                         conexionWeb.execute(direccion);
+                        Intent inicio = new Intent(agregar_mascota.this,MainActivity.class);
+                        inicio.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(inicio);
                     } catch (MalformedURLException e) {
                         Toast.makeText(agregar_mascota.this, e.getMessage(), Toast.LENGTH_LONG).show();
 
