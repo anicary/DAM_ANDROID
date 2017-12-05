@@ -57,7 +57,7 @@ public class tinderpet extends AppCompatActivity implements  AsyncResponse {
                 };
 
                 Intent a = new Intent(tinderpet.this, StatusStoriesActivity.class);
-                a.putExtra(StatusStoriesActivity.STATUS_RESOURCES_KEY, resources);
+                a.putExtra(StatusStoriesActivity.STATUS_RESOURCES_KEY, imagenesMostrar);
                 a.putExtra(StatusStoriesActivity.STATUS_DURATION_KEY, 3000L);
                 a.putExtra(StatusStoriesActivity.IS_IMMERSIVE_KEY, true);
                 a.putExtra(StatusStoriesActivity.IS_CACHING_ENABLED_KEY, true);
@@ -90,7 +90,9 @@ public class tinderpet extends AppCompatActivity implements  AsyncResponse {
         {
             try{
                 JSONArray  arrayjson = new JSONArray(r);
+                imagenesMostrar= new String[arrayjson.length()];
                 for(int i = 0; i < arrayjson.length(); i++){
+                    imagenesMostrar[i]=arrayjson.getJSONObject(i).getString("foto_mas");
                     elementos.add(new mascota(Integer.parseInt(arrayjson.getJSONObject(i).getString("idmascota")),arrayjson.getJSONObject(i).getString("nombre"),arrayjson.getJSONObject(i).getString("edad"),arrayjson.getJSONObject(i).getString("sexo"),arrayjson.getJSONObject(i).getString("razamascota_idrazamascota"),arrayjson.getJSONObject(i).getString("tipo_mascota_idtipo_mascota"),arrayjson.getJSONObject(i).getString("foto_mas")));
                 }
                 adater= new tinderAdaptador(this, elementos, new tinderAdaptador.botonClick() {
