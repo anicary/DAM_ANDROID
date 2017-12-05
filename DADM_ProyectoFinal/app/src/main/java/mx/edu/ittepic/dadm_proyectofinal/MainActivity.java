@@ -229,7 +229,8 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         elemento = getElemento();
         if(r.equals("no-mascotas")){
             Toasty.Config.getInstance().apply();
-            Toasty.normal(MainActivity.this, "Aun no tienes mascotas", R.drawable.ic_pets_error_blanco).show();
+            Drawable icono = getResources().getDrawable(R.drawable.ic_pets_error_blanco);
+            Toasty.normal(MainActivity.this, "Aun no tienes mascotas",icono).show();
             // Toast.makeText(MainActivity.this,"Aun no tienes mascotas", Toast.LENGTH_LONG).show();
         }else
         {
