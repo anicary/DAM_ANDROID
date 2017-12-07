@@ -31,8 +31,8 @@ public class tinderAdaptador extends BaseAdapter {
     private ArrayList<mascota> elementos;
     mascota elemento;
     View vista;
-    SparkButton botonCorzon;
-    Boolean corazon=true;
+    SparkButton botonCorzon,botonDis;
+    Boolean corazon=true,likee=true;
     TextView cora,like;
     private tinderAdaptador.botonClick botonMatch = null,botonMatchNo=null;
     public tinderAdaptador(Activity actividad, ArrayList<mascota> elementos,tinderAdaptador.botonClick botonMatch,tinderAdaptador.botonClick botonMatchNo) {
@@ -115,6 +115,34 @@ public class tinderAdaptador extends BaseAdapter {
                 corazon=true;
             }
         });
+        botonDis =  (SparkButton) vista.findViewById(R.id.like_button);
+        botonDis.setTag(position);
+        botonDis.setEventListener(new SparkEventListener() {
+            @Override
+            public void onEvent(ImageView button, boolean buttonState) {
+                if (buttonState) {
+                    if(botonMatchNo != null){
+                        botonMatchNo.onBtnClick((Integer)  botonDis.getTag());
+
+                    }
+                } else {
+                    if(botonMatchNo != null){
+                        botonMatchNo.onBtnClick((Integer)  botonDis.getTag());
+
+                    }
+                }
+            }
+
+            @Override
+            public void onEventAnimationEnd(ImageView button, boolean buttonState) {
+                likee=false;
+            }
+
+            @Override
+            public void onEventAnimationStart(ImageView button, boolean buttonState) {
+                likee=true;
+            }
+        });
      /*  botonCorzon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,6 +164,9 @@ public class tinderAdaptador extends BaseAdapter {
     }
     public boolean getCorazon(){
         return  corazon;
+    }
+    public boolean getlikee(){
+        return  likee;
     }
     public void  ponerConrazon(String corazon){
         cora.setText(corazon);

@@ -340,5 +340,31 @@ class Sistema extends CI_Controller {
 		}
 		echo "CORA";
 	}
-
+	public function likeUp()
+	{
+		$idmascota=$this->input->post('idmascota');
+	//	$idmascota=33;
+		$temporal=$this->Mascotas->obtenerLike($idmascota);
+		$sumado=$temporal[0]->nomegusta+1;
+		$datos= array(
+			'nomegusta' => $sumado,
+			'idmascota' => $idmascota
+		);
+		$this->Mascotas->subirLike($idmascota,$datos);
+		echo "Like";
+	}
+	public function likeDown()
+	{
+		$idmascota=$this->input->post('idmascota');
+		$temporal=$this->Mascotas->obtenerLike($idmascota);
+		if($temporal[0]->nomegusta > 0){
+			$sumado=$temporal[0]->megusta-1;
+			$datos= array(
+				'nomegusta' => $sumado,
+				'idmascota' => $idmascota
+			);
+			$this->Mascotas->subirLike($idmascota,$datos);
+		}
+		echo "Like";
+	}
 }

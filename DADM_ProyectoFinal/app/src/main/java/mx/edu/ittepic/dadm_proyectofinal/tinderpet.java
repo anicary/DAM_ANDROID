@@ -122,14 +122,42 @@ public class tinderpet extends AppCompatActivity implements  AsyncResponse {
                                 }
                                 System.out.println("des MATCH");
 
-
                             }
-
                         }
                     }, new tinderAdaptador.botonClick() {
                         @Override
                         public void onBtnClick(int position) {
+                            if(  adater.getlikee()){
+                                int valor=Integer.parseInt(elementos.get(position).getLike())  ;
+                                adater.ponerLike(""+(valor+1));
+                                elementos.get(position).setLike(""+(valor+1));
+                                try {
+                                    conexionWeb = new ConexionWeb(tinderpet.this);
+                                    conexionWeb.agregarVariables("idmascota",""+ elementos.get(position).getidmascota());
+                                    URL direcciopn = new URL("http://caropetworld.xyz/index.php/Sistema/likeUp");
+                                    conexionWeb.execute(direcciopn);
+                                } catch (MalformedURLException e) {
+                                    Toast.makeText(tinderpet.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                                }
+                                System.out.println("MATCH");
+                            }else
+                            {
+                                int valor=Integer.parseInt(elementos.get(position).getLike())  ;
+                                if(valor>0){
+                                    elementos.get(position).setLike(""+(valor-1));
+                                    adater.ponerLike(""+(valor-1));
+                                    try {
+                                        conexionWeb = new ConexionWeb(tinderpet.this);
+                                        conexionWeb.agregarVariables("idmascota",""+ elementos.get(position).getidmascota());
+                                        URL direcciopn = new URL("http://caropetworld.xyz/index.php/Sistema/likeDown");
+                                        conexionWeb.execute(direcciopn);
+                                    } catch (MalformedURLException e) {
+                                        Toast.makeText(tinderpet.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                                System.out.println("des MATCH");
 
+                            }
                         }
                     });
                     Menu_lista.setAdapter(adater);

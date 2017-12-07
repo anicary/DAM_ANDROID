@@ -71,7 +71,23 @@ class Mascotas extends CI_Model {
       return false;
     }
   }
+  public function obtenerLike($idmascota)
+  {
+    $DBcon = $this->load->database('default', TRUE);
+    $query=$DBcon->query("SELECT nomegusta FROM mascota where idmascota=$idmascota");
+    if ($query->num_rows() > 0) {
+      return $query->result();
+    } else {
+      return false;
+    }
+  }
   public function subirCorazon($mascota,$datos)
+  {
+    $DB2 = $this->load->database('default', TRUE);
+    $DB2->where('idmascota', $mascota );
+    $DB2->update('mascota',$datos);
+  }
+  public function subirLike($mascota,$datos)
   {
     $DB2 = $this->load->database('default', TRUE);
     $DB2->where('idmascota', $mascota );
