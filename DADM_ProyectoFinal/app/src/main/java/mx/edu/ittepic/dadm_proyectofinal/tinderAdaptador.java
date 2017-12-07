@@ -14,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.varunest.sparkbutton.SparkButton;
+import com.varunest.sparkbutton.SparkEventListener;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -27,6 +29,8 @@ public class tinderAdaptador extends BaseAdapter {
     private ArrayList<mascota> elementos;
     mascota elemento;
     View vista;
+    SparkButton botonCorzon;
+    Boolean corazon=true;
     private tinderAdaptador.botonClick botonMatch = null,botonMatchNo=null;
     public tinderAdaptador(Activity actividad, ArrayList<mascota> elementos,tinderAdaptador.botonClick botonMatch,tinderAdaptador.botonClick botonMatchNo) {
         this.actividad = actividad;
@@ -68,6 +72,41 @@ public class tinderAdaptador extends BaseAdapter {
                 }
             }
         });*/
+        botonCorzon =  (SparkButton) vista.findViewById(R.id.heart_button);
+        botonCorzon.setTag(position);
+        botonCorzon.setEventListener(new SparkEventListener() {
+            @Override
+            public void onEvent(ImageView button, boolean buttonState) {
+                if (buttonState) {
+                    if(botonMatch != null){
+                       botonMatch.onBtnClick((Integer)  botonCorzon.getTag());
+
+                    }
+                } else {
+                    if(botonMatch != null){
+                        botonMatch.onBtnClick((Integer)  botonCorzon.getTag());
+
+                    }
+                }
+            }
+
+            @Override
+            public void onEventAnimationEnd(ImageView button, boolean buttonState) {
+                corazon=false;
+            }
+
+            @Override
+            public void onEventAnimationStart(ImageView button, boolean buttonState) {
+                corazon=true;
+            }
+        });
+     /*  botonCorzon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+ */
         TextView a = (TextView) vista.findViewById(R.id.vnombretinder);
         a.setText(elemento.getnombre());
         TextView b = (TextView) vista.findViewById(R.id.vedadtinder);
@@ -75,11 +114,13 @@ public class tinderAdaptador extends BaseAdapter {
         /*TextView c = (TextView) vista.findViewById(R.id.vwikinkardex);
         c.setText(elemento.getcaracter());*/
         ImageView tinderfoto = (ImageView) vista.findViewById(R.id.fotot);
-       Picasso.with(actividad).load(elemento.getfoto()).into(tinderfoto);
+        Picasso.with(actividad).load(elemento.getfoto()).into(tinderfoto);
      /*   new razaAdaptador.DescargarImagenes((ImageView) vista.findViewById(R.id.vwikikardesfoto))
                 .execute(""+elemento.getfotor());*/
         return vista;
     }
-
+    public boolean getCorazon(){
+        return  corazon;
+    }
 }
 

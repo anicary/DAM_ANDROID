@@ -87,6 +87,16 @@ public class tinderpet extends AppCompatActivity implements  AsyncResponse {
                     @Override
                     public void onBtnClick(int position) {
 
+                                if(  adater.getCorazon()){
+                                    System.out.println("MATCH");
+
+                                }else
+                                {
+                                    System.out.println("des MATCH");
+
+
+                                }
+
                     }
                 }, new tinderAdaptador.botonClick() {
                     @Override
