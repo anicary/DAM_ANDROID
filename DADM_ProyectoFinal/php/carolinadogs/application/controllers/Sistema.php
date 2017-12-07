@@ -311,4 +311,29 @@ class Sistema extends CI_Controller {
 			$this->Mascotas->insertarMascotasRelacion($datos2);
 		}
 	}
+	public function CorazonUp()
+	{
+		$idmascota=$this->input->post('idmascota');
+		$temporal=$this->Mascotas->obtenerCorazon($idmascota);
+		$sumado=$temporal[0]->megusta+1;
+		$datos= array(
+			'megusta' => $sumado,
+			'idmascota' => $idmascota
+		);
+		$this->Mascotas->subirCorazon($datos);
+	}
+	public function CorazonDown()
+	{
+		$idmascota=$this->input->post('idmascota');
+		$temporal=$this->Mascotas->obtenerCorazon($idmascota);
+		if($temporal[0]->megusta>0){
+			$sumado=$temporal[0]->megusta-1;
+			$datos= array(
+				'megusta' => $sumado,
+				'idmascota' => $idmascota
+			);
+			$this->Mascotas->subirCorazon($datos);
+		}
+	}
+
 }
