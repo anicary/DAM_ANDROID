@@ -54,4 +54,10 @@ public class mascota {
     public String getLike(){
         return l;
     }
+    public void setCoraz(String c){
+        this.c=c;
+    }
+    public void setLike(String l){
+        this.l=l;
+    }
 }

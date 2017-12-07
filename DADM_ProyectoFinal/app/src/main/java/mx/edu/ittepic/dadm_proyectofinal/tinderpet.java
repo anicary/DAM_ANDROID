@@ -90,14 +90,30 @@ public class tinderpet extends AppCompatActivity implements  AsyncResponse {
                                 if(  adater.getCorazon()){
                                     int valor=Integer.parseInt(elementos.get(position).getCoraz())  ;
                                     adater.ponerConrazon(""+(valor+1));
+                                    elementos.get(position).setCoraz(""+(valor+1));
+                                    try {
+                                        conexionWeb = new ConexionWeb(tinderpet.this);
+                                        conexionWeb.agregarVariables("idmascota",""+ elementos.get(position).getidmascota());
+                                        URL direcciopn = new URL("http://caropetworld.xyz/index.php/Sistema/CorazonUp");
+                                        conexionWeb.execute(direcciopn);
+                                    } catch (MalformedURLException e) {
+                                        Toast.makeText(tinderpet.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                                    }
                                     System.out.println("MATCH");
-
                                 }else
                                 {
                                     int valor=Integer.parseInt(elementos.get(position).getCoraz())  ;
                                     if(valor>0){
-
+                                        elementos.get(position).setCoraz(""+(valor-1));
                                         adater.ponerConrazon(""+(valor-1));
+                                        try {
+                                            conexionWeb = new ConexionWeb(tinderpet.this);
+                                            conexionWeb.agregarVariables("idmascota",""+ elementos.get(position).getidmascota());
+                                            URL direcciopn = new URL("http://caropetworld.xyz/index.php/Sistema/CorazonDown");
+                                            conexionWeb.execute(direcciopn);
+                                        } catch (MalformedURLException e) {
+                                            Toast.makeText(tinderpet.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                                        }
                                     }
                                     System.out.println("des MATCH");
 
