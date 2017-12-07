@@ -5,11 +5,11 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '198.91.81.4',
+	'hostname' => 'mysql.hostinger.mx',
 	//'username' => 'root',
-	'username' => 'caroli41_caro',
-	'password' => 'Carolina21',
-	'database' => 'caroli41_dogs',
+	'username' => 'u440932328_caro',
+	'password' => 'carolina',
+	'database' => 'u440932328_perro',
 	//'database' => 'dogs',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',

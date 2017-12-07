@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 //$config['base_url'] = 'http://localhost/carolinadogs/';
-$config['base_url'] = 'http://carolina.x10host.com';
+$config['base_url'] = 'http://caropetworld.xyz';
 date_default_timezone_set('America/Mazatlan');
 $config['index_page'] = 'index.php';
 
