@@ -108,7 +108,7 @@ public class editarPerfilusuario extends AppCompatActivity implements AsyncRespo
         editor.apply();
         try {
             SQLiteDatabase base = dbinterna.getWritableDatabase();
-            String query1 = "UPDATE usuario SET nombre='"+nombrea+"', apellidos='"+apellidosa+"', correo='"+correoa+"' ;";
+            String query1 = "UPDATE usuario SET nombre='"+nombrea+"', apellidos='"+apellidosa+"', correo='"+correoa+"' WHERE idusuarios = "+idusuarios+";";
             base.execSQL(query1);
         }catch (SQLException e){
             Toast.makeText(editarPerfilusuario.this, e.getMessage(), Toast.LENGTH_LONG).show();
