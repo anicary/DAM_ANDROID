@@ -76,61 +76,66 @@ public class tinderpet extends AppCompatActivity implements  AsyncResponse {
             Toast.makeText(tinderpet.this,"Aun no hay mascotas para hacer matchs", Toast.LENGTH_LONG).show();
         }else
         {
-            try{
-                JSONArray  arrayjson = new JSONArray(r);
-                imagenesMostrar= new String[arrayjson.length()];
-                for(int i = 0; i < arrayjson.length(); i++){
-                    imagenesMostrar[i]=arrayjson.getJSONObject(i).getString("foto_mas");
-                    elementos.add(new mascota(Integer.parseInt(arrayjson.getJSONObject(i).getString("idmascota")),arrayjson.getJSONObject(i).getString("nombre"),arrayjson.getJSONObject(i).getString("edad"),arrayjson.getJSONObject(i).getString("sexo"),arrayjson.getJSONObject(i).getString("razamascota_idrazamascota"),arrayjson.getJSONObject(i).getString("tipo_mascota_idtipo_mascota"),arrayjson.getJSONObject(i).getString("foto_mas"),arrayjson.getJSONObject(i).getString("megusta"),arrayjson.getJSONObject(i).getString("nomegusta")));
-                }
-                adater= new tinderAdaptador(this, elementos, new tinderAdaptador.botonClick() {
-                    @Override
-                    public void onBtnClick(int position) {
+            if(r.equals("CORA")){
 
-                                if(  adater.getCorazon()){
-                                    int valor=Integer.parseInt(elementos.get(position).getCoraz())  ;
-                                    adater.ponerConrazon(""+(valor+1));
-                                    elementos.get(position).setCoraz(""+(valor+1));
+            }else
+            {
+                try{
+                    JSONArray  arrayjson = new JSONArray(r);
+                    imagenesMostrar= new String[arrayjson.length()];
+                    for(int i = 0; i < arrayjson.length(); i++){
+                        imagenesMostrar[i]=arrayjson.getJSONObject(i).getString("foto_mas");
+                        elementos.add(new mascota(Integer.parseInt(arrayjson.getJSONObject(i).getString("idmascota")),arrayjson.getJSONObject(i).getString("nombre"),arrayjson.getJSONObject(i).getString("edad"),arrayjson.getJSONObject(i).getString("sexo"),arrayjson.getJSONObject(i).getString("razamascota_idrazamascota"),arrayjson.getJSONObject(i).getString("tipo_mascota_idtipo_mascota"),arrayjson.getJSONObject(i).getString("foto_mas"),arrayjson.getJSONObject(i).getString("megusta"),arrayjson.getJSONObject(i).getString("nomegusta")));
+                    }
+                    adater= new tinderAdaptador(this, elementos, new tinderAdaptador.botonClick() {
+                        @Override
+                        public void onBtnClick(int position) {
+                            if(  adater.getCorazon()){
+                                int valor=Integer.parseInt(elementos.get(position).getCoraz())  ;
+                                adater.ponerConrazon(""+(valor+1));
+                                elementos.get(position).setCoraz(""+(valor+1));
+                                try {
+                                    conexionWeb = new ConexionWeb(tinderpet.this);
+                                    conexionWeb.agregarVariables("idmascota",""+ elementos.get(position).getidmascota());
+                                    URL direcciopn = new URL("http://caropetworld.xyz/index.php/Sistema/CorazonUp");
+                                    conexionWeb.execute(direcciopn);
+                                } catch (MalformedURLException e) {
+                                    Toast.makeText(tinderpet.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                                }
+                                System.out.println("MATCH");
+                            }else
+                            {
+                                int valor=Integer.parseInt(elementos.get(position).getCoraz())  ;
+                                if(valor>0){
+                                    elementos.get(position).setCoraz(""+(valor-1));
+                                    adater.ponerConrazon(""+(valor-1));
                                     try {
                                         conexionWeb = new ConexionWeb(tinderpet.this);
                                         conexionWeb.agregarVariables("idmascota",""+ elementos.get(position).getidmascota());
-                                        URL direcciopn = new URL("http://caropetworld.xyz/index.php/Sistema/CorazonUp");
+                                        URL direcciopn = new URL("http://caropetworld.xyz/index.php/Sistema/CorazonDown");
                                         conexionWeb.execute(direcciopn);
                                     } catch (MalformedURLException e) {
                                         Toast.makeText(tinderpet.this, e.getMessage(), Toast.LENGTH_LONG).show();
                                     }
-                                    System.out.println("MATCH");
-                                }else
-                                {
-                                    int valor=Integer.parseInt(elementos.get(position).getCoraz())  ;
-                                    if(valor>0){
-                                        elementos.get(position).setCoraz(""+(valor-1));
-                                        adater.ponerConrazon(""+(valor-1));
-                                        try {
-                                            conexionWeb = new ConexionWeb(tinderpet.this);
-                                            conexionWeb.agregarVariables("idmascota",""+ elementos.get(position).getidmascota());
-                                            URL direcciopn = new URL("http://caropetworld.xyz/index.php/Sistema/CorazonDown");
-                                            conexionWeb.execute(direcciopn);
-                                        } catch (MalformedURLException e) {
-                                            Toast.makeText(tinderpet.this, e.getMessage(), Toast.LENGTH_LONG).show();
-                                        }
-                                    }
-                                    System.out.println("des MATCH");
-
-
                                 }
+                                System.out.println("des MATCH");
 
-                    }
-                }, new tinderAdaptador.botonClick() {
-                    @Override
-                    public void onBtnClick(int position) {
 
-                    }
-                });
-                Menu_lista.setAdapter(adater);
-            }catch (JSONException e){
+                            }
 
+                        }
+                    }, new tinderAdaptador.botonClick() {
+                        @Override
+                        public void onBtnClick(int position) {
+
+                        }
+                    });
+                    Menu_lista.setAdapter(adater);
+                }catch (JSONException e){
+
+                }
             }
+
         }
     }
 }

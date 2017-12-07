@@ -323,12 +323,13 @@ class Sistema extends CI_Controller {
 			'idmascota' => $idmascota
 		);
 		$this->Mascotas->subirCorazon($datos);
+		echo "CORA";
 	}
 	public function CorazonDown()
 	{
 		$idmascota=$this->input->post('idmascota');
 		$temporal=$this->Mascotas->obtenerCorazon($idmascota);
-		if($temporal[0]->megusta>0){
+		if($temporal[0]->megusta > 0){
 			$sumado=$temporal[0]->megusta-1;
 			$datos= array(
 				'megusta' => $sumado,
@@ -336,6 +337,7 @@ class Sistema extends CI_Controller {
 			);
 			$this->Mascotas->subirCorazon($datos);
 		}
+		echo "CORA";
 	}
 
 }
