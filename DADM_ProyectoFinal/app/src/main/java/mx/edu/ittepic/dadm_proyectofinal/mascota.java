@@ -5,7 +5,7 @@ package mx.edu.ittepic.dadm_proyectofinal;
  */
 
 public class mascota {
-    String nombre,edad,sexo,raza,tipo,foto;
+    String nombre,edad,sexo,raza,tipo,foto,c,l;
     int idmascota;
     public mascota(int idmascota,String nombre, String edad, String sexo, String raza,String tipo,String foto){
         this.idmascota=idmascota;
@@ -15,6 +15,17 @@ public class mascota {
         this.raza=raza;
         this.tipo=tipo;
         this.foto=foto;
+    }
+    public mascota(int idmascota,String nombre, String edad, String sexo, String raza,String tipo,String foto,String c,String l){
+        this.idmascota=idmascota;
+        this.nombre=nombre;
+        this.edad=edad;
+        this.sexo=sexo;
+        this.raza=raza;
+        this.tipo=tipo;
+        this.foto=foto;
+        this.c=c;
+        this.l=l;
     }
     public int getidmascota(){
         return idmascota;
@@ -36,5 +47,11 @@ public class mascota {
     }
     public String getfoto(){
         return foto;
+    }
+    public String getCoraz(){
+        return c;
+    }
+    public String getLike(){
+        return l;
     }
 }
