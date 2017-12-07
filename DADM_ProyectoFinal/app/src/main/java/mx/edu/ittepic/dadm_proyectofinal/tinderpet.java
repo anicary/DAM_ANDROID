@@ -63,7 +63,7 @@ public class tinderpet extends AppCompatActivity implements  AsyncResponse {
         try {
             conexionWeb = new ConexionWeb(tinderpet.this);
             conexionWeb.agregarVariables("idusuarios", idusuarios);
-            URL direcciopn = new URL("http://carolina.x10host.com/index.php/Sistema/tinder_pet");
+            URL direcciopn = new URL("http://caropetworld.xyz/index.php/Sistema/tinder_pet");
             conexionWeb.execute(direcciopn);
         } catch (MalformedURLException e) {
             Toast.makeText(tinderpet.this, e.getMessage(), Toast.LENGTH_LONG).show();
