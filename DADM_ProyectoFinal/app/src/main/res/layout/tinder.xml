@@ -113,13 +113,18 @@
                     app:sparkbutton_primaryColor="@color/heart_primary_color"
                     app:sparkbutton_secondaryColor="@color/heart_secondary_color" />
 
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center_vertical|start"
-                    android:layout_marginLeft="100dp"
-                    android:src="@drawable/ic_thumb_down_black_24dp" />
+                <com.varunest.sparkbutton.SparkButton
+                    android:id="@+id/like_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="10dp"
+                    android:visibility="visible"
+                    app:sparkbutton_activeImage="@drawable/ic_thumb"
+                    app:sparkbutton_iconSize="50dp"
+                    app:sparkbutton_inActiveImage="@drawable/ic_thumb_black"
+                    app:sparkbutton_primaryColor="@color/colorPrimaryDark"
+                    app:sparkbutton_secondaryColor="@color/heart_secondary_color" />
             </LinearLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>
