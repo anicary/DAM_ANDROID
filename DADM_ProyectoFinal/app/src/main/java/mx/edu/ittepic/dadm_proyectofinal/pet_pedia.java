@@ -61,7 +61,7 @@ public class pet_pedia extends AppCompatActivity implements AsyncResponse {
     public void cargarRazas() {
         try {
             conexionWeb = new ConexionWeb(pet_pedia.this);
-            URL direcciopn = new URL("http://carolina.x10host.com/index.php/Sistema/razas_datos_android");
+            URL direcciopn = new URL("http://caropetworld.xyz/index.php/Sistema/razas_datos_android");
             conexionWeb.execute(direcciopn);
         } catch (MalformedURLException e) {
             Toast.makeText(pet_pedia.this, e.getMessage(), Toast.LENGTH_LONG).show();

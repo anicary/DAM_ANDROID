@@ -55,7 +55,7 @@ public class camaraPerfil extends AppCompatActivity implements AsyncResponse {
 
         imagen = (ImageView) findViewById(R.id.imgPernew);
         new camaraPerfil.DescargarImagenes((ImageView) findViewById(R.id.imgPernew))
-                .execute("" + prefs.getString("imagen", "http://carolina.x10host.com/archivos/fotos/perfil.jpg"));
+                .execute("" + prefs.getString("imagen", "http://caropetworld.xyz/archivos/fotos/perfil.jpg"));
         tomarf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,7 +79,7 @@ public class camaraPerfil extends AppCompatActivity implements AsyncResponse {
                     conexionWeb = new ConexionWeb(camaraPerfil.this);
                     conexionWeb.agregarVariables("foto", imagebase64string);
                     conexionWeb.agregarVariables("idusuarios", prefs.getString("idusuarios", "0"));
-                    URL direccion = new URL("http://carolina.x10host.com/index.php/Sistema/cambiar_foto");
+                    URL direccion = new URL("http://caropetworld.xyz/index.php/Sistema/cambiar_foto");
                     conexionWeb.execute(direccion);
                 } catch (MalformedURLException e) {
                     Toast.makeText(camaraPerfil.this, e.getMessage(), Toast.LENGTH_LONG).show();

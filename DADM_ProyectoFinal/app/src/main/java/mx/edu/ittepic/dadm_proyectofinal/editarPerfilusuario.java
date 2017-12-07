@@ -59,7 +59,7 @@ public class editarPerfilusuario extends AppCompatActivity implements AsyncRespo
                         conexionWeb.agregarVariables("apellidos", apellidosa);
                         conexionWeb.agregarVariables("correo", correoa);
                         conexionWeb.agregarVariables("idusuarios", idusuarios);
-                        URL direccion = new URL("http://carolina.x10host.com/index.php/Sistema/editar_usuario");
+                        URL direccion = new URL("http://caropetworld.xyz/index.php/Sistema/editar_usuario");
                         conexionWeb.execute(direccion);
                     } catch (MalformedURLException e) {
                         Toast.makeText(editarPerfilusuario.this, e.getMessage(), Toast.LENGTH_LONG).show();
@@ -77,7 +77,7 @@ public class editarPerfilusuario extends AppCompatActivity implements AsyncRespo
         nombrea = prefs.getString("nombre", "Nombre");
         apellidosa = prefs.getString("apellidos", "apellidos");
         correoa = prefs.getString("correo", "correo@email.com");
-        imagen = prefs.getString("imagen", "http://carolina.x10host.com/archivos/fotos/perfil.jpg");
+        imagen = prefs.getString("imagen", "http://caropetworld.xyz/archivos/fotos/perfil.jpg");
         nombre.setText(nombrea);
         apellido.setText(apellidosa);
         correo.setText(correoa);

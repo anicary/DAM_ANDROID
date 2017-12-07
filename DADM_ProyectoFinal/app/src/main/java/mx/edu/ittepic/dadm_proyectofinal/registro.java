@@ -93,7 +93,7 @@ public class registro extends AppCompatActivity implements AsyncResponse {
                             conexionWeb.agregarVariables("estado",  estado.getSelectedItem().toString());
                             conexionWeb.agregarVariables("municipio", municipio.getSelectedItem().toString());
                             conexionWeb.agregarVariables("contrasena", passw);
-                            URL direccion = new URL("http://carolina.x10host.com/index.php/Sistema/registro_usuario");
+                            URL direccion = new URL("http://caropetworld.xyz/index.php/Sistema/registro_usuario");
                             conexionWeb.execute(direccion);
                         } catch (MalformedURLException e) {
                             Toast.makeText(registro.this, e.getMessage(), Toast.LENGTH_LONG).show();
@@ -146,7 +146,7 @@ public class registro extends AppCompatActivity implements AsyncResponse {
     public void cargarEstados() {
         try {
             conexionWeb = new ConexionWeb(this);
-            URL direcciopn = new URL("http://carolina.x10host.com/archivos/estados_municipios.json");
+            URL direcciopn = new URL("http://caropetworld.xyz/archivos/estados_municipios.json");
             conexionWeb.execute(direcciopn);
         } catch (MalformedURLException e) {
             Toast.makeText(registro.this, e.getMessage(), Toast.LENGTH_LONG).show();

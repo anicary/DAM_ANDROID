@@ -62,7 +62,7 @@ public class Inicio extends AppCompatActivity implements AsyncResponse {
                         conexionWeb = new ConexionWeb(Inicio.this);
                         conexionWeb.agregarVariables("correo",user);
                         conexionWeb.agregarVariables("contrasena",password);
-                        URL direccion = new URL("http://carolina.x10host.com/index.php/Sistema/inicio_sesion_android");
+                        URL direccion = new URL("http://caropetworld.xyz/index.php/Sistema/inicio_sesion_android");
                         conexionWeb.execute(direccion);
                     }catch (MalformedURLException e){
                         Toast.makeText(Inicio.this,e.getMessage(),Toast.LENGTH_LONG).show();

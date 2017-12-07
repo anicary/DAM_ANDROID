@@ -104,7 +104,7 @@ public class Pet_pedia_info extends AppCompatActivity implements AsyncResponse{
         try {
             conexionWeb = new ConexionWeb(Pet_pedia_info.this);
             conexionWeb.agregarVariables("idraza",""+ia);
-            URL direcciopn = new URL("http://carolina.x10host.com/index.php/Sistema/razas_datos_android_id");
+            URL direcciopn = new URL("http://caropetworld.xyz/index.php/Sistema/razas_datos_android_id");
             conexionWeb.execute(direcciopn);
         } catch (MalformedURLException e) {
             Toast.makeText(Pet_pedia_info.this, e.getMessage(), Toast.LENGTH_LONG).show();

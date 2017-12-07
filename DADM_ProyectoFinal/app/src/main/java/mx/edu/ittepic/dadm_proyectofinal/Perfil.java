@@ -41,7 +41,7 @@ public class Perfil extends AppCompatActivity {
         nombrea = prefs.getString("nombre", "Nombre");
         apellidosa = prefs.getString("apellidos", "apellidos");
         correoa = prefs.getString("correo", "correo@email.com");
-        imagen = prefs.getString("imagen", "http://carolina.x10host.com/archivos/fotos/perfil.jpg");
+        imagen = prefs.getString("imagen", "http://caropetworld.xyz/archivos/fotos/perfil.jpg");
         idusuarios = prefs.getString("idusuarios", "0");
         dbinterna = new BDInterna(Perfil.this, "baseinterna", null, 1);
         nombre.setText(nombrea);

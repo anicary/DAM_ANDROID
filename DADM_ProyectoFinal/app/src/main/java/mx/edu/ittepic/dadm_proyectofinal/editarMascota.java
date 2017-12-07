@@ -190,7 +190,7 @@ public class editarMascota extends AppCompatActivity  implements AsyncResponse{
         try {
             conexionWeb = new ConexionWeb(editarMascota.this);
             conexionWeb.agregarVariables("idmascota", idusuarios);
-            URL direcciopn = new URL("http://carolina.x10host.com/index.php/Sistema/obtenerMascotaId");
+            URL direcciopn = new URL("http://caropetworld.xyz/index.php/Sistema/obtenerMascotaId");
             conexionWeb.execute(direcciopn);
         } catch (MalformedURLException e) {
             Toast.makeText(editarMascota.this, e.getMessage(), Toast.LENGTH_LONG).show();
@@ -215,7 +215,7 @@ public class editarMascota extends AppCompatActivity  implements AsyncResponse{
                                     conexionWeb = new ConexionWeb(editarMascota.this);
                                     conexionWeb.agregarVariables("idmascota", ""+id);
                                     conexionWeb.agregarVariables("idusuarios", idusuarios);
-                                    URL direccion = new URL("http://carolina.x10host.com/index.php/Sistema/eliminar_mascota");
+                                    URL direccion = new URL("http://caropetworld.xyz/index.php/Sistema/eliminar_mascota");
                                     conexionWeb.execute(direccion);
                                 } catch (MalformedURLException e) {
                                     Toast.makeText(editarMascota.this, e.getMessage(), Toast.LENGTH_LONG).show();
@@ -260,7 +260,7 @@ public class editarMascota extends AppCompatActivity  implements AsyncResponse{
         try {
             conexionWeb = new ConexionWeb(editarMascota.this);
             conexionWeb.agregarVariables("idusuarios", idusuarios);
-            URL direcciopn = new URL("http://carolina.x10host.com/index.php/Sistema/tipo_masctoa");
+            URL direcciopn = new URL("http://caropetworld.xyz/index.php/Sistema/tipo_masctoa");
             conexionWeb.execute(direcciopn);
         } catch (MalformedURLException e) {
             Toast.makeText(editarMascota.this, e.getMessage(), Toast.LENGTH_LONG).show();
@@ -270,7 +270,7 @@ public class editarMascota extends AppCompatActivity  implements AsyncResponse{
         try {
             conexionWeb = new ConexionWeb(editarMascota.this);
             conexionWeb.agregarVariables("idraza", id);
-            URL direcciopn = new URL("http://carolina.x10host.com/index.php/Sistema/razas_datos_android_id_tipo");
+            URL direcciopn = new URL("http://caropetworld.xyz/index.php/Sistema/razas_datos_android_id_tipo");
             conexionWeb.execute(direcciopn);
         } catch (MalformedURLException e) {
             Toast.makeText(editarMascota.this, e.getMessage(), Toast.LENGTH_LONG).show();
