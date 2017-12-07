@@ -20,6 +20,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
@@ -62,6 +63,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     ListView Menu_lista;
     ConexionWeb conexionWeb;
     JSONArray arrayjson;
+    ConstraintLayout conperroyout;
     private Animator mCurrentAnimator;
 
     private int mShortAnimationDuration;
@@ -69,6 +71,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        conperroyout =(ConstraintLayout)findViewById(R.id.constrainperro);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
       //  SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
@@ -236,6 +239,8 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         {
             try{
                  arrayjson = new JSONArray(r);
+                conperroyout.setVisibility(View.GONE);
+                Menu_lista.setVisibility(View.VISIBLE);
                 for(int i = 0; i < arrayjson.length(); i++){
                     idtemp=arrayjson.getJSONObject(i).getString("idmascota");
                     elementos.add(new mascota(Integer.parseInt(arrayjson.getJSONObject(i).getString("idmascota")),arrayjson.getJSONObject(i).getString("nombre"),arrayjson.getJSONObject(i).getString("edad"),arrayjson.getJSONObject(i).getString("sexo"),arrayjson.getJSONObject(i).getString("razamascota_idrazamascota"),arrayjson.getJSONObject(i).getString("tipo_mascota_idtipo_mascota"),arrayjson.getJSONObject(i).getString("foto_mas")));

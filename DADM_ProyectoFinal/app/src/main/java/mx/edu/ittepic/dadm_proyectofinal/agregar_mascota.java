@@ -389,7 +389,7 @@ public class agregar_mascota extends AppCompatActivity implements AsyncResponse 
                                 .apply(); // required
                         Toasty.success(agregar_mascota.this, "Mascota Agregada!", Toast.LENGTH_SHORT, true).show();
                         Intent inicio = new Intent(agregar_mascota.this,MainActivity.class);
-                        inicio.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                       // inicio.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(inicio);
                     } catch (MalformedURLException e) {
                         Toast.makeText(agregar_mascota.this, e.getMessage(), Toast.LENGTH_LONG).show();
@@ -474,6 +474,7 @@ public class agregar_mascota extends AppCompatActivity implements AsyncResponse 
     }
     @Override
     public void procesarRespuesta(String r){
+            Toast.makeText(agregar_mascota.this, r, Toast.LENGTH_LONG).show();
         try{
             JSONArray arrayjson = new JSONArray(r);
             if (arrayjson.getJSONObject(0).has("idtipo_mascota")) {
