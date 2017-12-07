@@ -316,13 +316,14 @@ class Sistema extends CI_Controller {
 	public function CorazonUp()
 	{
 		$idmascota=$this->input->post('idmascota');
+	//	$idmascota=33;
 		$temporal=$this->Mascotas->obtenerCorazon($idmascota);
 		$sumado=$temporal[0]->megusta+1;
 		$datos= array(
 			'megusta' => $sumado,
 			'idmascota' => $idmascota
 		);
-		$this->Mascotas->subirCorazon($datos);
+		$this->Mascotas->subirCorazon($idmascota,$datos);
 		echo "CORA";
 	}
 	public function CorazonDown()
@@ -335,7 +336,7 @@ class Sistema extends CI_Controller {
 				'megusta' => $sumado,
 				'idmascota' => $idmascota
 			);
-			$this->Mascotas->subirCorazon($datos);
+			$this->Mascotas->subirCorazon($idmascota,$datos);
 		}
 		echo "CORA";
 	}

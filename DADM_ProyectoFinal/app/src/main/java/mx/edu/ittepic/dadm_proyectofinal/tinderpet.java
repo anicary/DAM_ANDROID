@@ -35,7 +35,9 @@ public class tinderpet extends AppCompatActivity implements  AsyncResponse {
         SharedPreferences prefs =  getSharedPreferences("INFO_USUARIO", Context.MODE_PRIVATE);
         idusuarios = prefs.getString("idusuarios", "0");
         Menu_lista = (ListView) findViewById(R.id.tinderlista);
+        elemento = getElemento();
         cargarMascotas();
+
     }
     public boolean onCreateOptionsMenu(Menu m){
         getMenuInflater().inflate(R.menu.tindermenu,m);
@@ -71,7 +73,7 @@ public class tinderpet extends AppCompatActivity implements  AsyncResponse {
     }
     public void procesarRespuesta(String r) {
 
-        elemento = getElemento();
+
         if(r.equals("no_mascotas")){
             Toast.makeText(tinderpet.this,"Aun no hay mascotas para hacer matchs", Toast.LENGTH_LONG).show();
         }else
