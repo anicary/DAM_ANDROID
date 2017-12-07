@@ -88,10 +88,17 @@ public class tinderpet extends AppCompatActivity implements  AsyncResponse {
                     public void onBtnClick(int position) {
 
                                 if(  adater.getCorazon()){
+                                    int valor=Integer.parseInt(elementos.get(position).getCoraz())  ;
+                                    adater.ponerConrazon(""+(valor+1));
                                     System.out.println("MATCH");
 
                                 }else
                                 {
+                                    int valor=Integer.parseInt(elementos.get(position).getCoraz())  ;
+                                    if(valor>0){
+
+                                        adater.ponerConrazon(""+(valor-1));
+                                    }
                                     System.out.println("des MATCH");
 
 

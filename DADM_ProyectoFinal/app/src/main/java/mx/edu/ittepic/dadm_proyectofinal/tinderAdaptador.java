@@ -17,6 +17,8 @@ import com.squareup.picasso.Picasso;
 import com.varunest.sparkbutton.SparkButton;
 import com.varunest.sparkbutton.SparkEventListener;
 
+import org.w3c.dom.Text;
+
 import java.io.InputStream;
 import java.util.ArrayList;
 
@@ -31,6 +33,7 @@ public class tinderAdaptador extends BaseAdapter {
     View vista;
     SparkButton botonCorzon;
     Boolean corazon=true;
+    TextView cora,like;
     private tinderAdaptador.botonClick botonMatch = null,botonMatchNo=null;
     public tinderAdaptador(Activity actividad, ArrayList<mascota> elementos,tinderAdaptador.botonClick botonMatch,tinderAdaptador.botonClick botonMatchNo) {
         this.actividad = actividad;
@@ -72,6 +75,18 @@ public class tinderAdaptador extends BaseAdapter {
                 }
             }
         });*/
+        cora =(TextView) vista.findViewById(R.id.vcerocora);
+        if (elemento.getCoraz().equals("null")){
+            cora.setText(""+0);
+        }else {
+            cora.setText(elemento.getCoraz());
+        }
+        like =(TextView) vista.findViewById(R.id.vcerolike);
+        if (elemento.getLike().equals("null")){
+            like.setText(""+0);
+        }else {
+            like.setText(elemento.getLike());
+        }
         botonCorzon =  (SparkButton) vista.findViewById(R.id.heart_button);
         botonCorzon.setTag(position);
         botonCorzon.setEventListener(new SparkEventListener() {
@@ -121,6 +136,15 @@ public class tinderAdaptador extends BaseAdapter {
     }
     public boolean getCorazon(){
         return  corazon;
+    }
+    public void  ponerConrazon(String corazon){
+        cora.setText(corazon);
+    }
+    public void ponerLike(String s){
+        like.setText(s);
+    }
+    public int retornarCorazon(){
+        return Integer.parseInt(elemento.getCoraz());
     }
 }
 

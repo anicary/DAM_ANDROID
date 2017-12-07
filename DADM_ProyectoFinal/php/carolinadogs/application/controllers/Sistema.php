@@ -167,6 +167,8 @@ class Sistema extends CI_Controller {
 				'sexo' => $this->input->post('sexo'),
 				'edad' => $this->input->post('edad'),
 				'foto_mas' => $urlenvarserver,
+					'megusta' => 0,
+						'nomegusta' => 0,
 				'tipo_mascota_idtipo_mascota' => $this->input->post('tipo_mascota_idtipo_mascota'),
 				'razamascota_idrazamascota' => $this->input->post('razamascota_idrazamascota')
 			);
