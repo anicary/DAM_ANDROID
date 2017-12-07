@@ -383,7 +383,7 @@ public class agregar_mascota extends AppCompatActivity implements AsyncResponse 
                         conexionWeb.agregarVariables("tipo_mascota_idtipo_mascota", idtipos[tipo.getSelectedItemPosition()]);
                         conexionWeb.agregarVariables("razamascota_idrazamascota",  idraza[raza.getSelectedItemPosition()]);
                         conexionWeb.agregarVariables("foto_mas",imagebase64string);
-                        URL direccion = new URL("http://carolina.x10host.com/index.php/Sistema/registro_mascota");
+                        URL direccion = new URL("http://caropetworld.xyz/index.php/Sistema/registro_mascota");
                         conexionWeb.execute(direccion);
                         Toasty.Config.getInstance()
                                 .apply(); // required
@@ -474,7 +474,7 @@ public class agregar_mascota extends AppCompatActivity implements AsyncResponse 
     }
     @Override
     public void procesarRespuesta(String r){
-            Toast.makeText(agregar_mascota.this, r, Toast.LENGTH_LONG).show();
+
         try{
             JSONArray arrayjson = new JSONArray(r);
             if (arrayjson.getJSONObject(0).has("idtipo_mascota")) {
@@ -512,7 +512,7 @@ public class agregar_mascota extends AppCompatActivity implements AsyncResponse 
         try {
             conexionWeb = new ConexionWeb(agregar_mascota.this);
             conexionWeb.agregarVariables("idusuarios", idusuarios);
-            URL direcciopn = new URL("http://carolina.x10host.com/index.php/Sistema/tipo_masctoa");
+            URL direcciopn = new URL("http://caropetworld.xyz/index.php/Sistema/tipo_masctoa");
             conexionWeb.execute(direcciopn);
         } catch (MalformedURLException e) {
             Toast.makeText(agregar_mascota.this, e.getMessage(), Toast.LENGTH_LONG).show();
@@ -522,7 +522,7 @@ public class agregar_mascota extends AppCompatActivity implements AsyncResponse 
         try {
             conexionWeb = new ConexionWeb(agregar_mascota.this);
             conexionWeb.agregarVariables("idraza", id);
-            URL direcciopn = new URL("http://carolina.x10host.com/index.php/Sistema/razas_datos_android_id_tipo");
+            URL direcciopn = new URL("http://caropetworld.xyz/index.php/Sistema/razas_datos_android_id_tipo");
             conexionWeb.execute(direcciopn);
         } catch (MalformedURLException e) {
             Toast.makeText(agregar_mascota.this, e.getMessage(), Toast.LENGTH_LONG).show();
