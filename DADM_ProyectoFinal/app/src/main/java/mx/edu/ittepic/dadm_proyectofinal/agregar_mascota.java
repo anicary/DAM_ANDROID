@@ -37,6 +37,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import es.dmoral.toasty.Toasty;
+
 import static android.R.attr.bitmap;
 
 public class agregar_mascota extends AppCompatActivity implements AsyncResponse {
@@ -86,7 +88,7 @@ public class agregar_mascota extends AppCompatActivity implements AsyncResponse 
                 sex = sexo.getSelectedItem().toString();
                 edad1 = edad.getText().toString();
 
-                if (!name.equals("") || !sex.equals("") || !edad1.equals("")) {
+                if (!name.equals("") && !sex.equals("") && !edad1.equals("")) {
                     //TODO PENDIENTE
                     try {
                         String imagebase64string="";
@@ -108,6 +110,9 @@ public class agregar_mascota extends AppCompatActivity implements AsyncResponse 
                         conexionWeb.agregarVariables("foto_mas",imagebase64string);
                         URL direccion = new URL("http://carolina.x10host.com/index.php/Sistema/registro_mascota");
                         conexionWeb.execute(direccion);
+                        Toasty.Config.getInstance()
+                                .apply(); // required
+                        Toasty.success(agregar_mascota.this, "Mascota Agregada!", Toast.LENGTH_SHORT, true).show();
                         Intent inicio = new Intent(agregar_mascota.this,MainActivity.class);
                         inicio.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(inicio);
@@ -115,6 +120,10 @@ public class agregar_mascota extends AppCompatActivity implements AsyncResponse 
                         Toast.makeText(agregar_mascota.this, e.getMessage(), Toast.LENGTH_LONG).show();
 
                     }
+                }else{
+                    Toasty.Config.getInstance()
+                            .apply(); // required
+                    Toasty.error(agregar_mascota.this, "ERROR!,Campos Vacios", Toast.LENGTH_SHORT, true).show();
                 }
             }
         });
