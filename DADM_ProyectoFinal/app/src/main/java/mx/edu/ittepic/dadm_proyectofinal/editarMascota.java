@@ -94,14 +94,14 @@ public class editarMascota extends AppCompatActivity  implements AsyncResponse{
                 if (!nombrea.equals("") || !edada.equals("") || !sexoa.equals("")) {
                     try {
                         conexionWeb = new ConexionWeb(editarMascota.this);
-                        conexionWeb.agregarVariables("idmascota", getIntent().getExtras().getString("idmascota"));
+                        conexionWeb.agregarVariables("idmascota",""+ getIntent().getExtras().getInt("idmascota"));
                         conexionWeb.agregarVariables("nombre", nombrea);
                         conexionWeb.agregarVariables("edad",edada);
                         conexionWeb.agregarVariables("sexo", sexoa);
                         conexionWeb.agregarVariables("tipo_mascota_idtipo_mascota", idtipos[etipo.getSelectedItemPosition()]);
                         conexionWeb.agregarVariables("razamascota_idrazamascota",  idraza[eraza.getSelectedItemPosition()]);
-                        conexionWeb.agregarVariables("idusuarios", idusuarios);
-                     /*   String imagebase64string="";
+                     //   conexionWeb.agregarVariables("idusuarios", idusuarios);
+                        String imagebase64string="";
                         if(imagenenviar!=null){
                             try {
                                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -116,7 +116,7 @@ public class editarMascota extends AppCompatActivity  implements AsyncResponse{
                         }else {
                             conexionWeb.agregarVariables("foto_mas", "");
                             conexionWeb.agregarVariables("foto", "no");
-                        }*/
+                        }
                         URL direccion = new URL("http://caropetworld.xyz/index.php/Sistema/editar_mascota");
                         conexionWeb.execute(direccion);
                     } catch (MalformedURLException e) {

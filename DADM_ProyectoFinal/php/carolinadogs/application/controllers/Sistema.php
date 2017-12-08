@@ -291,7 +291,7 @@ class Sistema extends CI_Controller {
 	public function editar_mascota()
 	{
 		  $idmas=	$this->input->post('idmascota');
-		/* * if($this->input->post('foto')=="si"){
+		 if($this->input->post('foto')=="si"){
 				$decoded=base64_decode($this->input->post('foto_mas'));
 				file_put_contents("".$this->input->post('idusuarios')."mascota".$idmas.".jpg",$decoded);
 				$urlenvarserver=base_url()."".$this->input->post('idusuarios')."mascota".$idmas.".jpg";
@@ -305,8 +305,8 @@ class Sistema extends CI_Controller {
 				);
 				$this->Mascotas->actualizarMactoa($idmas,$datos);
 				echo "actualizado";
-	/*		}
-			else {*/
+			}
+			else {
 				$datos= array(
 					'nombre' => $this->input->post('nombre'),
 					'sexo' => $this->input->post('sexo'),
@@ -316,7 +316,7 @@ class Sistema extends CI_Controller {
 				);
 				$this->Mascotas->actualizarMactoa($idmas,$datos);
 				echo "actualizado";
-		//	}
+			}
 	}
 	public function CorazonUp()
 	{
