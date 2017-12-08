@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -38,12 +40,14 @@ public class editarMascota extends AppCompatActivity  implements AsyncResponse{
     String idusuarios="";
     EditText enombre,eedad;
     Spinner etipo, eraza, esexo;
-    Button editarpet;
+    Button editarpet,galerria,camara;;
     ConexionWeb conexionWeb;
     int id=0;
     String idtipos[],idraza[];
     String idrazaencontrada="",idtipoencontrado;
     boolean tc=true,rc=true;
+    ImageView imageView;
+    Bitmap imagenenviar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,13 +57,15 @@ public class editarMascota extends AppCompatActivity  implements AsyncResponse{
                 getSharedPreferences("INFO_USUARIO", Context.MODE_PRIVATE);
         idusuarios = prefs.getString("idusuarios", "0");
 
-
+        imageView = (ImageView) findViewById(R.id.efotomascota1);
         enombre = (EditText) findViewById(R.id.enombremascota);
         eedad = (EditText) findViewById(R.id.eedadmascota);
         editarpet = (Button)findViewById(R.id.editarmascota);
         esexo = (Spinner) findViewById(R.id.esexomascota);
         etipo = (Spinner) findViewById(R.id.etipomascota);
         eraza = (Spinner) findViewById(R.id.erazamascota);
+
+
         Intent intento = getIntent();
 
         id=getIntent().getExtras().getInt("idmascota");
@@ -84,7 +90,7 @@ public class editarMascota extends AppCompatActivity  implements AsyncResponse{
                 edada = eedad.getText().toString();
                 sexoa = esexo.getSelectedItem().toString();
                 if (!nombrea.equals("") || !edada.equals("") || !sexoa.equals("")) {
-/*                    try {
+                    try {
                         conexionWeb = new ConexionWeb(editarMascota.this);
                         conexionWeb.agregarVariables("idmascota", getIntent().getExtras().getString("idmascota"));
                         conexionWeb.agregarVariables("nombre", nombrea);
@@ -93,11 +99,11 @@ public class editarMascota extends AppCompatActivity  implements AsyncResponse{
                         conexionWeb.agregarVariables("tipo_mascota_idtipo_mascota", idtipos[etipo.getSelectedItemPosition()]);
                         conexionWeb.agregarVariables("razamascota_idrazamascota",  idraza[eraza.getSelectedItemPosition()]);
                         conexionWeb.agregarVariables("idusuarios", idusuarios);
-                        URL direccion = new URL("http://carolina.x10host.com/index.php/Sistema/editar_mascota");
+                        URL direccion = new URL("http://caropetworld.xyz/index.php/Sistema/editar_mascota");
                         conexionWeb.execute(direccion);
                     } catch (MalformedURLException e) {
                         Toast.makeText(editarMascota.this, e.getMessage(), Toast.LENGTH_LONG).show();
-                    }*/
+                    }
                 }
             }
         });
@@ -112,8 +118,49 @@ public class editarMascota extends AppCompatActivity  implements AsyncResponse{
 
             }
         });
+        galerria = (Button) findViewById(R.id.btneGaleria);
+        galerria.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);//
+                startActivityForResult(Intent.createChooser(intent, "Selecionar foto grafia del perrito"), 1);
+            }
+        });
+        camara = (Button) findViewById(R.id.btneFotodog);
+        camara.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent, 7);
+            }
+        });
 
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && resultCode == RESULT_OK && null != data) {
+            if (data != null) {
+                try {
+                    Bitmap bmp = null;
+                    bmp = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), data.getData());
+                    imagenenviar=bmp;
+                    imageView.setImageBitmap(bmp);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        if (requestCode == 7 && resultCode == RESULT_OK && data != null ) {
+            Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+            imagenenviar=thumbnail;
+            imageView.setImageBitmap(thumbnail);
+        }
+    }
+
     public void procesarRespuesta(String r) {
         if(r.equals("actualizado")){
             Toast.makeText(editarMascota.this,"CAMBIOS GUARDADOS",Toast.LENGTH_LONG).show();
