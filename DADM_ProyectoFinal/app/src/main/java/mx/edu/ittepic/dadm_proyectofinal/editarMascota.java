@@ -101,7 +101,7 @@ public class editarMascota extends AppCompatActivity  implements AsyncResponse{
                         conexionWeb.agregarVariables("tipo_mascota_idtipo_mascota", idtipos[etipo.getSelectedItemPosition()]);
                         conexionWeb.agregarVariables("razamascota_idrazamascota",  idraza[eraza.getSelectedItemPosition()]);
                         conexionWeb.agregarVariables("idusuarios", idusuarios);
-                        String imagebase64string="";
+                     /*   String imagebase64string="";
                         if(imagenenviar!=null){
                             try {
                                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -109,12 +109,14 @@ public class editarMascota extends AppCompatActivity  implements AsyncResponse{
                                 byte[] byteArrayImage = baos.toByteArray();
                                 imagebase64string = Base64.encodeToString(byteArrayImage, Base64.DEFAULT);
                                 conexionWeb.agregarVariables("foto_mas", imagebase64string);
+                                conexionWeb.agregarVariables("foto", "si");
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
                         }else {
                             conexionWeb.agregarVariables("foto_mas", "");
-                        }
+                            conexionWeb.agregarVariables("foto", "no");
+                        }*/
                         URL direccion = new URL("http://caropetworld.xyz/index.php/Sistema/editar_mascota");
                         conexionWeb.execute(direccion);
                     } catch (MalformedURLException e) {
