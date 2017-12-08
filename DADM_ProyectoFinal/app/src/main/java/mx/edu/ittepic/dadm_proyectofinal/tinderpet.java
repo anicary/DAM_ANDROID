@@ -78,7 +78,7 @@ public class tinderpet extends AppCompatActivity implements  AsyncResponse {
             Toast.makeText(tinderpet.this,"Aun no hay mascotas para hacer matchs", Toast.LENGTH_LONG).show();
         }else
         {
-            if(r.equals("CORA")){
+            if(r.equals("CORA") || r.equals("Like")){
 
             }else
             {
