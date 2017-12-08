@@ -167,8 +167,8 @@ class Sistema extends CI_Controller {
 				'sexo' => $this->input->post('sexo'),
 				'edad' => $this->input->post('edad'),
 				'foto_mas' => $urlenvarserver,
-					'megusta' => 0,
-						'nomegusta' => 0,
+				'megusta' => 0,
+				'nomegusta' => 0,
 				'tipo_mascota_idtipo_mascota' => $this->input->post('tipo_mascota_idtipo_mascota'),
 				'razamascota_idrazamascota' => $this->input->post('razamascota_idrazamascota')
 			);
@@ -291,32 +291,39 @@ class Sistema extends CI_Controller {
 	public function editar_mascota()
 	{
 		if($this->input->post('nombre')!=""){
-			$this->input->post('idmascota');
-			$decoded=base64_decode($this->input->post('foto_mas'));
-			file_put_contents($archivo."".$this->input->post('idusuarios')."mascota".$nom.".jpg",$decoded);
-			$urlenvarserver=base_url()."".$this->input->post('idusuarios')."mascota".$nom.".jpg";
-			$datos= array(
-				'nombre' => $this->input->post('nombre'),
-				'sexo' => $this->input->post('sexo'),
-				'edad' => $this->input->post('edad'),
-				'foto_mas' => $urlenvarserver,
-				'tipo_mascota_idtipo_mascota' => $this->input->post('tipo_mascota_idtipo_mascota'),
-				'razamascota_idrazamascota' => $this->input->post('razamascota_idrazamascota')
-			);
-			$this->Mascotas->insertarMascotas($datos);
-			$tempId = $this->Mascotas->obtenerUltmas();
-			$datos2= array(
-				'usuarios_idusuarios' => $this->input->post('idusuarios'),
-				'mascota_idmascota' =>$tempId[0]->maximo,
-				'fecha_agregado' =>date('Y-m-d H:i:s')
-			);
-			$this->Mascotas->insertarMascotasRelacion($datos2);
+		  $idmas=	$this->input->post('idmascota');
+		if($this->input->post('foto_mas')==""){
+				$decoded=base64_decode($this->input->post('foto_mas'));
+				file_put_contents("".$this->input->post('idusuarios')."mascota".$idmas.".jpg",$decoded);
+				$urlenvarserver=base_url()."".$this->input->post('idusuarios')."mascota".$idmas.".jpg";
+				$datos= array(
+					'foto_mas' => $urlenvarserver,
+					'nombre' => $this->input->post('nombre'),
+					'sexo' => $this->input->post('sexo'),
+					'edad' => $this->input->post('edad'),
+					'tipo_mascota_idtipo_mascota' => $this->input->post('tipo_mascota_idtipo_mascota'),
+					'razamascota_idrazamascota' => $this->input->post('razamascota_idrazamascota')
+				);
+				$this->Mascotas->actualizarMactoa($idmas,$datos);
+				echo "actualizado";
+			}
+			else {
+				$datos= array(
+					'nombre' => $this->input->post('nombre'),
+					'sexo' => $this->input->post('sexo'),
+					'edad' => $this->input->post('edad'),
+					'tipo_mascota_idtipo_mascota' => $this->input->post('tipo_mascota_idtipo_mascota'),
+					'razamascota_idrazamascota' => $this->input->post('razamascota_idrazamascota')
+				);
+				$this->Mascotas->actualizarMactoa($idmas,$datos);
+				echo "actualizado";
+			}
 		}
 	}
 	public function CorazonUp()
 	{
 		$idmascota=$this->input->post('idmascota');
-	//	$idmascota=33;
+		//	$idmascota=33;
 		$temporal=$this->Mascotas->obtenerCorazon($idmascota);
 		$sumado=$temporal[0]->megusta+1;
 		$datos= array(
@@ -343,7 +350,7 @@ class Sistema extends CI_Controller {
 	public function likeUp()
 	{
 		$idmascota=$this->input->post('idmascota');
-	//	$idmascota=33;
+		//	$idmascota=33;
 		$temporal=$this->Mascotas->obtenerLike($idmascota);
 		$sumado=$temporal[0]->nomegusta+1;
 		$datos= array(

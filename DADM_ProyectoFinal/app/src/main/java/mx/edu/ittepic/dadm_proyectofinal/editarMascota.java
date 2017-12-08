@@ -13,6 +13,7 @@ import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,6 +29,7 @@ import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -99,6 +101,20 @@ public class editarMascota extends AppCompatActivity  implements AsyncResponse{
                         conexionWeb.agregarVariables("tipo_mascota_idtipo_mascota", idtipos[etipo.getSelectedItemPosition()]);
                         conexionWeb.agregarVariables("razamascota_idrazamascota",  idraza[eraza.getSelectedItemPosition()]);
                         conexionWeb.agregarVariables("idusuarios", idusuarios);
+                        String imagebase64string="";
+                        if(imagenenviar!=null){
+                            try {
+                                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                                imagenenviar.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                                byte[] byteArrayImage = baos.toByteArray();
+                                imagebase64string = Base64.encodeToString(byteArrayImage, Base64.DEFAULT);
+                                conexionWeb.agregarVariables("foto_mas", imagebase64string);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }else {
+                            conexionWeb.agregarVariables("foto_mas", "");
+                        }
                         URL direccion = new URL("http://caropetworld.xyz/index.php/Sistema/editar_mascota");
                         conexionWeb.execute(direccion);
                     } catch (MalformedURLException e) {

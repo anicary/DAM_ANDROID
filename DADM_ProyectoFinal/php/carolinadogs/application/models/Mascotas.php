@@ -26,6 +26,12 @@ class Mascotas extends CI_Model {
     $DB2 = $this->load->database('default', TRUE);
     $DB2->insert('mascota_usuarios',$datos);
   }
+  public function actualizarMactoa($ic,$datos)
+  {
+    $DB2 = $this->load->database('default', TRUE);
+    $DB2->where("idmascota",$ic);
+    $DB2->update('mascota',$datos);
+  }
   public function obtenerMascoasUsuario($idusuarios)
   {
     $DBcon = $this->load->database('default', TRUE);
