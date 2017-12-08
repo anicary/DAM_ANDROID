@@ -129,6 +129,7 @@ public class tinderpet extends AppCompatActivity implements  AsyncResponse {
                         public void onBtnClick(int position) {
                             if(  adater.getlikee()){
                                 int valor=Integer.parseInt(elementos.get(position).getLike())  ;
+                              
                                 adater.ponerLike(""+(valor+1));
                                 elementos.get(position).setLike(""+(valor+1));
                                 try {
