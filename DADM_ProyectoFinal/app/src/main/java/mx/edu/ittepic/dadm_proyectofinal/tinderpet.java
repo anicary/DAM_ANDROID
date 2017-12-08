@@ -72,8 +72,6 @@ public class tinderpet extends AppCompatActivity implements  AsyncResponse {
         }
     }
     public void procesarRespuesta(String r) {
-
-
         if(r.equals("no_mascotas")){
             Toast.makeText(tinderpet.this,"Aun no hay mascotas para hacer matchs", Toast.LENGTH_LONG).show();
         }else
@@ -104,6 +102,7 @@ public class tinderpet extends AppCompatActivity implements  AsyncResponse {
                                 } catch (MalformedURLException e) {
                                     Toast.makeText(tinderpet.this, e.getMessage(), Toast.LENGTH_LONG).show();
                                 }
+                                adater.notifyDataSetChanged();
                                 System.out.println("MATCH");
                             }else
                             {
@@ -121,17 +120,17 @@ public class tinderpet extends AppCompatActivity implements  AsyncResponse {
                                     }
                                 }
                                 System.out.println("des MATCH");
-
+                                adater.notifyDataSetChanged();
                             }
                         }
                     }, new tinderAdaptador.botonClick() {
                         @Override
                         public void onBtnClick(int position) {
-                            if(  adater.getlikee()){
+                            if( adater.getlikee()){
                                 int valor=Integer.parseInt(elementos.get(position).getLike())  ;
-                              
-                                adater.ponerLike(""+(valor+1));
-                                elementos.get(position).setLike(""+(valor+1));
+                         //       adater.elemento.setLike(""+valor+1);
+                           //     adater.ponerLike(""+(valor+1));
+                                  elementos.get(position).setLike(""+(valor+1));
                                 try {
                                     conexionWeb = new ConexionWeb(tinderpet.this);
                                     conexionWeb.agregarVariables("idmascota",""+ elementos.get(position).getidmascota());
@@ -140,13 +139,14 @@ public class tinderpet extends AppCompatActivity implements  AsyncResponse {
                                 } catch (MalformedURLException e) {
                                     Toast.makeText(tinderpet.this, e.getMessage(), Toast.LENGTH_LONG).show();
                                 }
+                                adater.notifyDataSetChanged();
                                 System.out.println("MATCH");
                             }else
                             {
-                                int valor=Integer.parseInt(elementos.get(position).getLike())  ;
+                                int valor=Integer.parseInt(elementos.get(position).getLike()) ;
                                 if(valor>0){
                                     elementos.get(position).setLike(""+(valor-1));
-                                    adater.ponerLike(""+(valor-1));
+                                 //   adater.ponerLike(""+(valor-1));
                                     try {
                                         conexionWeb = new ConexionWeb(tinderpet.this);
                                         conexionWeb.agregarVariables("idmascota",""+ elementos.get(position).getidmascota());
@@ -156,12 +156,13 @@ public class tinderpet extends AppCompatActivity implements  AsyncResponse {
                                         Toast.makeText(tinderpet.this, e.getMessage(), Toast.LENGTH_LONG).show();
                                     }
                                 }
+                                adater.notifyDataSetChanged();
                                 System.out.println("des MATCH");
-
                             }
                         }
                     });
                     Menu_lista.setAdapter(adater);
+                    adater.notifyDataSetChanged();
                 }catch (JSONException e){
 
                 }

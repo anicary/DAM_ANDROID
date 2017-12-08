@@ -123,12 +123,10 @@ public class tinderAdaptador extends BaseAdapter {
                 if (buttonState) {
                     if(botonMatchNo != null){
                         botonMatchNo.onBtnClick((Integer)  botonDis.getTag());
-
                     }
                 } else {
                     if(botonMatchNo != null){
                         botonMatchNo.onBtnClick((Integer)  botonDis.getTag());
-
                     }
                 }
             }
@@ -143,23 +141,12 @@ public class tinderAdaptador extends BaseAdapter {
                 likee=true;
             }
         });
-     /*  botonCorzon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
- */
         TextView a = (TextView) vista.findViewById(R.id.vnombretinder);
         a.setText(elemento.getnombre());
         TextView b = (TextView) vista.findViewById(R.id.vedadtinder);
         b.setText(elemento.getedad());
-        /*TextView c = (TextView) vista.findViewById(R.id.vwikinkardex);
-        c.setText(elemento.getcaracter());*/
         ImageView tinderfoto = (ImageView) vista.findViewById(R.id.fotot);
         Picasso.with(actividad).load(elemento.getfoto()).into(tinderfoto);
-     /*   new razaAdaptador.DescargarImagenes((ImageView) vista.findViewById(R.id.vwikikardesfoto))
-                .execute(""+elemento.getfotor());*/
         return vista;
     }
     public boolean getCorazon(){
