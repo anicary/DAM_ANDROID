@@ -171,7 +171,6 @@ public class tinderpet extends AppCompatActivity implements AsyncResponse {
                         }
                     });
                     Menu_lista.setAdapter(adater);
-                    //    adater.notifyDataSetChanged();
                 } catch (JSONException e) {
 
                 }
