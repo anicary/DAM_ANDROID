@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,7 +32,7 @@ public class tinderAdaptador extends BaseAdapter {
     private ArrayList<mascota> elementos;
     mascota elemento;
     View vista;
-    SparkButton botonCorzon,botonDis;
+    ImageView botonCorzon,botonDis;
     Boolean corazon=true,likee=true;
     TextView cora,like;
     private tinderAdaptador.botonClick botonMatch = null,botonMatchNo=null;
@@ -87,60 +88,24 @@ public class tinderAdaptador extends BaseAdapter {
         }else {
             like.setText(elemento.getLike());
         }
-        botonCorzon =  (SparkButton) vista.findViewById(R.id.spark_button);
-
+        botonCorzon =(ImageView) vista.findViewById(R.id.corazon);
         botonCorzon.setTag(position);
-        botonCorzon.setEventListener(new SparkEventListener() {
+        botonCorzon.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onEvent(ImageView button, boolean buttonState) {
-                if (buttonState) {
-                    if(botonMatch != null){
-                       botonMatch.onBtnClick((Integer)  botonCorzon.getTag());
-
-                    }
-                } else {
-                    if(botonMatch != null){
-                        botonMatch.onBtnClick((Integer)  botonCorzon.getTag());
-
-                    }
+            public void onClick(View v) {
+                if(botonMatch != null){
+                    botonMatch.onBtnClick((Integer) v.getTag());
                 }
-            }
-
-            @Override
-            public void onEventAnimationEnd(ImageView button, boolean buttonState) {
-                corazon=false;
-            }
-
-            @Override
-            public void onEventAnimationStart(ImageView button, boolean buttonState) {
-                corazon=true;
             }
         });
-        botonDis =  (SparkButton) vista.findViewById(R.id.like_button);
-
+        botonDis =(ImageView) vista.findViewById(R.id.like);
         botonDis.setTag(position);
-        botonDis.setEventListener(new SparkEventListener() {
+        botonDis.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onEvent(ImageView button, boolean buttonState) {
-                if (buttonState) {
-                    if(botonMatchNo != null){
-                        botonMatchNo.onBtnClick((Integer)  botonDis.getTag());
-                    }
-                } else {
-                    if(botonMatchNo != null){
-                        botonMatchNo.onBtnClick((Integer)  botonDis.getTag());
-                    }
+            public void onClick(View v) {
+                if(botonMatchNo != null){
+                    botonMatchNo.onBtnClick((Integer) v.getTag());
                 }
-            }
-
-            @Override
-            public void onEventAnimationEnd(ImageView button, boolean buttonState) {
-                likee=false;
-            }
-
-            @Override
-            public void onEventAnimationStart(ImageView button, boolean buttonState) {
-                likee=true;
             }
         });
         TextView a = (TextView) vista.findViewById(R.id.vnombretinder);

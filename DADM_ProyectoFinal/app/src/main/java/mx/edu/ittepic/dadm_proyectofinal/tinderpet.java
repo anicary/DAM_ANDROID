@@ -90,7 +90,7 @@ public class tinderpet extends AppCompatActivity implements  AsyncResponse {
                     adater= new tinderAdaptador(this, elementos, new tinderAdaptador.botonClick() {
                         @Override
                         public void onBtnClick(int position) {
-                            if(  adater.getCorazon()){
+
                                 int valor=Integer.parseInt(elementos.get(position).getCoraz())  ;
                                 adater.ponerConrazon(""+(valor+1));
                                 elementos.get(position).setCoraz(""+(valor+1));
@@ -104,30 +104,11 @@ public class tinderpet extends AppCompatActivity implements  AsyncResponse {
                                 }
                                 adater.notifyDataSetChanged();
                                 System.out.println("MATCH"+position);
-                            }else
-                            {
-                                int valor=Integer.parseInt(elementos.get(position).getCoraz())  ;
-                                if(valor>0){
-                                    elementos.get(position).setCoraz(""+(valor-1));
-                                    adater.ponerConrazon(""+(valor-1));
-                                    try {
-                                        conexionWeb = new ConexionWeb(tinderpet.this);
-                                        conexionWeb.agregarVariables("idmascota",""+ elementos.get(position).getidmascota());
-                                        URL direcciopn = new URL("http://caropetworld.xyz/index.php/Sistema/CorazonDown");
-                                        conexionWeb.execute(direcciopn);
-                                    } catch (MalformedURLException e) {
-                                        Toast.makeText(tinderpet.this, e.getMessage(), Toast.LENGTH_LONG).show();
-                                    }
-                                }
-                                System.out.println("des MATCH"+position);
-                                adater.notifyDataSetChanged();
-                            }
+
                         }
                     }, new tinderAdaptador.botonClick() {
                         @Override
                         public void onBtnClick(int position) {
-                            if( adater.getlikee()){
-
                                 try {
                                     int valor=Integer.parseInt(elementos.get(position).getLike())  ;
                                     elementos.get(position).setLike(""+(valor+1));
@@ -141,23 +122,6 @@ public class tinderpet extends AppCompatActivity implements  AsyncResponse {
                                     Toast.makeText(tinderpet.this, e.getMessage(), Toast.LENGTH_LONG).show();
                                 }
 
-                            }else
-                            {
-                                int valor=Integer.parseInt(elementos.get(position).getLike()) ;
-                                if(valor>0){
-                                    elementos.get(position).setLike(""+(valor-1));
-                                    try {
-                                        conexionWeb = new ConexionWeb(tinderpet.this);
-                                        conexionWeb.agregarVariables("idmascota",""+ elementos.get(position).getidmascota());
-                                        URL direcciopn = new URL("http://caropetworld.xyz/index.php/Sistema/likeDown");
-                                        conexionWeb.execute(direcciopn);
-                                    } catch (MalformedURLException e) {
-                                        Toast.makeText(tinderpet.this, e.getMessage(), Toast.LENGTH_LONG).show();
-                                    }
-                                }
-                                adater.notifyDataSetChanged();
-                                System.out.println("des MATCH"+position);
-                            }
                         }
                     });
                     Menu_lista.setAdapter(adater);

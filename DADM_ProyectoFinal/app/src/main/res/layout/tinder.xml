@@ -61,7 +61,7 @@
             android:layout_marginTop="-36dp"
             android:layout_weight="1"
             android:orientation="horizontal"
-            android:visibility="gone">
+            android:visibility="visible">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -76,16 +76,12 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center">
 
-                    <com.varunest.sparkbutton.SparkButton
-                        android:id="@+id/spark_button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                    <ImageView
+                        android:id="@+id/corazon"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
                         android:layout_gravity="center"
-                        app:sparkbutton_activeImage="@drawable/ic_heart_on"
-                        app:sparkbutton_iconSize="40dp"
-                        app:sparkbutton_inActiveImage="@drawable/ic_heart_off"
-                        app:sparkbutton_primaryColor="@color/heart_primary_color"
-                        app:sparkbutton_secondaryColor="@color/heart_secondary_color" />
+                        app:srcCompat="@drawable/ic_heart_off" />
 
                     <TextView
                         android:id="@+id/vcerocora"
@@ -116,6 +112,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
+                    <ImageView
+                        android:id="@+id/like"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        app:srcCompat="@drawable/ic_thumb_black" />
+
                     <TextView
                         android:id="@+id/vcerolike"
                         android:layout_width="match_parent"
@@ -129,16 +132,6 @@
                         android:textSize="15dp"
                         android:textStyle="bold" />
 
-                    <com.varunest.sparkbutton.SparkButton
-                        android:id="@+id/like_button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        app:sparkbutton_activeImage="@drawable/ic_thumb"
-                        app:sparkbutton_iconSize="40dp"
-                        app:sparkbutton_inActiveImage="@drawable/ic_thumb_black"
-                        app:sparkbutton_primaryColor="@color/colorPrimaryDark"
-                        app:sparkbutton_secondaryColor="@color/heart_secondary_color" />
                 </FrameLayout>
 
             </LinearLayout>
