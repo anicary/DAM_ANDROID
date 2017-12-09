@@ -2,25 +2,15 @@ package mx.edu.ittepic.dadm_proyectofinal;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
-import com.varunest.sparkbutton.SparkButton;
-import com.varunest.sparkbutton.SparkEventListener;
 
-import org.w3c.dom.Text;
-
-import java.io.InputStream;
 import java.util.ArrayList;
 
 /**
@@ -29,14 +19,14 @@ import java.util.ArrayList;
 
 public class tinderAdaptador extends BaseAdapter {
     private Activity actividad;
-    private ArrayList<mascota> elementos;
-    mascota elemento;
+    private ArrayList<mascotatinder> elementos;
+    mascotatinder elemento;
     View vista;
     ImageView botonCorzon,botonDis;
     Boolean corazon=true,likee=true;
     TextView cora,like;
     private tinderAdaptador.botonClick botonMatch = null,botonMatchNo=null;
-    public tinderAdaptador(Activity actividad, ArrayList<mascota> elementos,tinderAdaptador.botonClick botonMatch,tinderAdaptador.botonClick botonMatchNo) {
+    public tinderAdaptador(Activity actividad, ArrayList<mascotatinder> elementos,tinderAdaptador.botonClick botonMatch,tinderAdaptador.botonClick botonMatchNo) {
         this.actividad = actividad;
         this.elementos = elementos;
         this.botonMatch=botonMatch;
@@ -66,16 +56,6 @@ public class tinderAdaptador extends BaseAdapter {
             vista = inflater.inflate(R.layout.tinder, null);
         }
         elemento = elementos.get(position);
-    /*  ImageView pata = (ImageView) vista.findViewById(R.id.vermas);
-        pata.setTag(position);
-        pata.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(botonMatch != null){
-                    botonMatch.onBtnClick((Integer) view.getTag());
-                }
-            }
-        });**/
         cora =(TextView) vista.findViewById(R.id.vcerocora);
         if (elemento.getCoraz().equals("null")){
             cora.setText(""+0);
@@ -88,7 +68,9 @@ public class tinderAdaptador extends BaseAdapter {
         }else {
             like.setText(elemento.getLike());
         }
+
         botonCorzon =(ImageView) vista.findViewById(R.id.corazon);
+        botonCorzon.setImageDrawable(elemento.obtenerfotoCora());
         botonCorzon.setTag(position);
         botonCorzon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,6 +81,7 @@ public class tinderAdaptador extends BaseAdapter {
             }
         });
         botonDis =(ImageView) vista.findViewById(R.id.like);
+        botonDis.setImageDrawable(elemento.obtenerfotoLike());
         botonDis.setTag(position);
         botonDis.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,5 +114,6 @@ public class tinderAdaptador extends BaseAdapter {
     public int retornarCorazon(){
         return Integer.parseInt(elemento.getCoraz());
     }
+
 }
 

@@ -6,11 +6,11 @@ import android.graphics.drawable.Drawable;
  * Created by UsuarioPrueba on 30/11/2017.
  */
 
-public class mascota {
+public class mascotatinder {
     String nombre,edad,sexo,raza,tipo,foto,c,l;
     int idmascota;
     Drawable cd,ld;
-    public mascota(int idmascota,String nombre, String edad, String sexo, String raza,String tipo,String foto){
+    public mascotatinder(int idmascota, String nombre, String edad, String sexo, String raza, String tipo, String foto){
         this.idmascota=idmascota;
         this.nombre=nombre;
         this.edad=edad;
@@ -19,7 +19,7 @@ public class mascota {
         this.tipo=tipo;
         this.foto=foto;
     }
-    public mascota(int idmascota, String nombre, String edad, String sexo, String raza, String tipo, String foto, String c, String l, Drawable cd, Drawable ld){
+    public mascotatinder(int idmascota, String nombre, String edad, String sexo, String raza, String tipo, String foto, String c, String l, Drawable cd, Drawable ld){
         this.idmascota=idmascota;
         this.nombre=nombre;
         this.edad=edad;
@@ -64,5 +64,17 @@ public class mascota {
     }
     public void setLike(String l){
         this.l=l;
+    }
+    public Drawable obtenerfotoCora(){
+        return cd;
+    }
+    public Drawable obtenerfotoLike(){
+        return ld;
+    }
+    public void ponerImagenCora(Drawable cd){
+        this.cd=cd;
+    }
+    public void ponerImagenLike(Drawable ld){
+        this.ld=ld;
     }
 }
