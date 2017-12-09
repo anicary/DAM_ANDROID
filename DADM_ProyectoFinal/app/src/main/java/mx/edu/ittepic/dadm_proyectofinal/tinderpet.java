@@ -77,7 +77,7 @@ public class tinderpet extends AppCompatActivity implements  AsyncResponse {
         }else
         {
             if(r.equals("CORA") || r.equals("Like")){
-
+                System.out.println("PETICION!!!");
             }else
             {
                 try{
@@ -103,7 +103,7 @@ public class tinderpet extends AppCompatActivity implements  AsyncResponse {
                                     Toast.makeText(tinderpet.this, e.getMessage(), Toast.LENGTH_LONG).show();
                                 }
                                 adater.notifyDataSetChanged();
-                                System.out.println("MATCH");
+                                System.out.println("MATCH"+position);
                             }else
                             {
                                 int valor=Integer.parseInt(elementos.get(position).getCoraz())  ;
@@ -119,7 +119,7 @@ public class tinderpet extends AppCompatActivity implements  AsyncResponse {
                                         Toast.makeText(tinderpet.this, e.getMessage(), Toast.LENGTH_LONG).show();
                                     }
                                 }
-                                System.out.println("des MATCH");
+                                System.out.println("des MATCH"+position);
                                 adater.notifyDataSetChanged();
                             }
                         }
@@ -127,11 +127,12 @@ public class tinderpet extends AppCompatActivity implements  AsyncResponse {
                         @Override
                         public void onBtnClick(int position) {
                             if( adater.getlikee()){
-                                int valor=Integer.parseInt(elementos.get(position).getLike())  ;
-                         //       adater.elemento.setLike(""+valor+1);
-                           //     adater.ponerLike(""+(valor+1));
-                                  elementos.get(position).setLike(""+(valor+1));
+
                                 try {
+                                    int valor=Integer.parseInt(elementos.get(position).getLike())  ;
+                                    elementos.get(position).setLike(""+(valor+1));
+                                    adater.notifyDataSetChanged();
+                                    System.out.println("MATCH"+position);
                                     conexionWeb = new ConexionWeb(tinderpet.this);
                                     conexionWeb.agregarVariables("idmascota",""+ elementos.get(position).getidmascota());
                                     URL direcciopn = new URL("http://caropetworld.xyz/index.php/Sistema/likeUp");
@@ -139,14 +140,12 @@ public class tinderpet extends AppCompatActivity implements  AsyncResponse {
                                 } catch (MalformedURLException e) {
                                     Toast.makeText(tinderpet.this, e.getMessage(), Toast.LENGTH_LONG).show();
                                 }
-                                adater.notifyDataSetChanged();
-                                System.out.println("MATCH");
+
                             }else
                             {
                                 int valor=Integer.parseInt(elementos.get(position).getLike()) ;
                                 if(valor>0){
                                     elementos.get(position).setLike(""+(valor-1));
-                                 //   adater.ponerLike(""+(valor-1));
                                     try {
                                         conexionWeb = new ConexionWeb(tinderpet.this);
                                         conexionWeb.agregarVariables("idmascota",""+ elementos.get(position).getidmascota());
@@ -157,12 +156,12 @@ public class tinderpet extends AppCompatActivity implements  AsyncResponse {
                                     }
                                 }
                                 adater.notifyDataSetChanged();
-                                System.out.println("des MATCH");
+                                System.out.println("des MATCH"+position);
                             }
                         }
                     });
                     Menu_lista.setAdapter(adater);
-                    adater.notifyDataSetChanged();
+                //    adater.notifyDataSetChanged();
                 }catch (JSONException e){
 
                 }

@@ -65,7 +65,7 @@ public class tinderAdaptador extends BaseAdapter {
             vista = inflater.inflate(R.layout.tinder, null);
         }
         elemento = elementos.get(position);
-      /* ImageView pata = (ImageView) vista.findViewById(R.id.vermas);
+    /*  ImageView pata = (ImageView) vista.findViewById(R.id.vermas);
         pata.setTag(position);
         pata.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,7 +74,7 @@ public class tinderAdaptador extends BaseAdapter {
                     botonMatch.onBtnClick((Integer) view.getTag());
                 }
             }
-        });*/
+        });**/
         cora =(TextView) vista.findViewById(R.id.vcerocora);
         if (elemento.getCoraz().equals("null")){
             cora.setText(""+0);
@@ -87,7 +87,8 @@ public class tinderAdaptador extends BaseAdapter {
         }else {
             like.setText(elemento.getLike());
         }
-        botonCorzon =  (SparkButton) vista.findViewById(R.id.heart_button);
+        botonCorzon =  (SparkButton) vista.findViewById(R.id.spark_button);
+
         botonCorzon.setTag(position);
         botonCorzon.setEventListener(new SparkEventListener() {
             @Override
@@ -116,6 +117,7 @@ public class tinderAdaptador extends BaseAdapter {
             }
         });
         botonDis =  (SparkButton) vista.findViewById(R.id.like_button);
+
         botonDis.setTag(position);
         botonDis.setEventListener(new SparkEventListener() {
             @Override
