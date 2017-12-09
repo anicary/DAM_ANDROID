@@ -28,25 +28,21 @@ public class tinderpet extends AppCompatActivity implements AsyncResponse {
     String idusuarios = "";
     String imagenesMostrar[];
     boolean corazon[], dislike[];
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tinderpet);
-        //  setTitle("Tinder Pet");
+        setTitle("Tinder Pet");
         SharedPreferences prefs = getSharedPreferences("INFO_USUARIO", Context.MODE_PRIVATE);
         idusuarios = prefs.getString("idusuarios", "0");
         Menu_lista = (ListView) findViewById(R.id.tinderlista);
         elemento = getElemento();
         cargarMascotas();
-
     }
-
     public boolean onCreateOptionsMenu(Menu m) {
         getMenuInflater().inflate(R.menu.tindermenu, m);
         return true;
     }
-
     public boolean onOptionsItemSelected(MenuItem mi) {
         switch (mi.getItemId()) {
             case R.id.pet:

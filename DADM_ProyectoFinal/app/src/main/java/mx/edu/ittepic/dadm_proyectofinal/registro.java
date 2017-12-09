@@ -40,6 +40,7 @@ public class registro extends AppCompatActivity implements AsyncResponse {
     ConexionWeb conexionWeb;
     List<String[]> listtasMunicipios = new ArrayList<String[]>();
     BDInterna dbinterna;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,9 +54,7 @@ public class registro extends AppCompatActivity implements AsyncResponse {
         dbinterna = new BDInterna(registro.this, "baseinterna", null, 1);
         registrarse = (Button) findViewById(R.id.registro);
 
- setTitle("REGISTRO DE USUARIO");
-
-
+        setTitle("REGISTRO DE USUARIO");
 
         sexo = (Spinner) findViewById(R.id.sexoregistro);
         estado = (Spinner) findViewById(R.id.estadoregistro);
@@ -65,13 +64,11 @@ public class registro extends AppCompatActivity implements AsyncResponse {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 List<String> municipiosNuevaLista = new ArrayList<String>();
                 Collections.addAll(municipiosNuevaLista, listtasMunicipios.get(i));
-                ArrayAdapter adapter = new ArrayAdapter<String>(registro.this,R.layout.support_simple_spinner_dropdown_item,municipiosNuevaLista);
+                ArrayAdapter adapter = new ArrayAdapter<String>(registro.this, R.layout.support_simple_spinner_dropdown_item, municipiosNuevaLista);
                 municipio.setAdapter(adapter);
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
             }
         });
         registrarse.setOnClickListener(new View.OnClickListener() {
@@ -90,7 +87,7 @@ public class registro extends AppCompatActivity implements AsyncResponse {
                             conexionWeb.agregarVariables("nombre", name);
                             conexionWeb.agregarVariables("apellidos", apell);
                             conexionWeb.agregarVariables("correo", mail);
-                            conexionWeb.agregarVariables("estado",  estado.getSelectedItem().toString());
+                            conexionWeb.agregarVariables("estado", estado.getSelectedItem().toString());
                             conexionWeb.agregarVariables("municipio", municipio.getSelectedItem().toString());
                             conexionWeb.agregarVariables("contrasena", passw);
                             URL direccion = new URL("http://caropetworld.xyz/index.php/Sistema/registro_usuario");
@@ -174,45 +171,42 @@ public class registro extends AppCompatActivity implements AsyncResponse {
 
                     Iterator iterator = jObject.keys();
                     List<String> listaEstados = new ArrayList<String>();
-                    while(iterator.hasNext()){
-                        String key = (String)iterator.next();
+                    while (iterator.hasNext()) {
+                        String key = (String) iterator.next();
                        /* JSONObject issue = jObject.getJSONObject(key);
                         String _pubKey = issue.optString("id");*/
-                        System.out.println("ESTADOS "+key);
+                        System.out.println("ESTADOS " + key);
                         listaEstados.add(key);
                         JSONArray json2 = jObject.getJSONArray(key);
-                        String[] minicipios  = new String[json2.length()];
+                        String[] minicipios = new String[json2.length()];
                         for (int i = 0; i < json2.length(); i++) {
-                            minicipios[i]=(String) json2.get(i);
+                            minicipios[i] = (String) json2.get(i);
                         }
                         listtasMunicipios.add(minicipios);
                     }
-                     ArrayAdapter adapter = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,listaEstados);
-                     estado.setAdapter(adapter);
-                    /*
-                    JSONArray json2 = jObject.getJSONArray("Aguascalientes");
-                    System.out.println("TEXTOOO  "+json2.get(2));*/
+                    ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, listaEstados);
+                    estado.setAdapter(adapter);
                 } else if (json instanceof JSONArray) {
                     JSONArray arrayjson = new JSONArray(r);
                     if (arrayjson.getJSONObject(0).has("nombre")) {
                         for (int i = 0; i < arrayjson.length(); i++) {
                             SharedPreferences.Editor editor = getSharedPreferences("INFO_USUARIO", MODE_PRIVATE).edit();
-                            editor.putString("nombre",arrayjson.getJSONObject(i).getString("nombre"));
-                            editor.putString("apellidos",arrayjson.getJSONObject(i).getString("apellidos"));
-                            editor.putString("correo",arrayjson.getJSONObject(i).getString("correo"));
-                            editor.putString("idusuarios",(arrayjson.getJSONObject(i).getString("idusuarios")));
-                            editor.putString("imagen",arrayjson.getJSONObject(i).getString("perfil_foto"));
+                            editor.putString("nombre", arrayjson.getJSONObject(i).getString("nombre"));
+                            editor.putString("apellidos", arrayjson.getJSONObject(i).getString("apellidos"));
+                            editor.putString("correo", arrayjson.getJSONObject(i).getString("correo"));
+                            editor.putString("idusuarios", (arrayjson.getJSONObject(i).getString("idusuarios")));
+                            editor.putString("imagen", arrayjson.getJSONObject(i).getString("perfil_foto"));
                             editor.apply();
                             try {
                                 SQLiteDatabase base = dbinterna.getWritableDatabase();
                                 String query1 = "INSERT INTO usuario VALUES (idusuarios,'nombre','apellidos','correo','imagen')";
-                                query1 = query1.replace("idusuarios",arrayjson.getJSONObject(i).getString("idusuarios"));
+                                query1 = query1.replace("idusuarios", arrayjson.getJSONObject(i).getString("idusuarios"));
                                 query1 = query1.replace("nombre", arrayjson.getJSONObject(i).getString("nombre"));
-                                query1 = query1.replace("apellidos",arrayjson.getJSONObject(i).getString("apellidos"));
-                                query1 = query1.replace("correo",arrayjson.getJSONObject(i).getString("correo"));
-                                query1 = query1.replace("imagen",arrayjson.getJSONObject(i).getString("perfil_foto"));
+                                query1 = query1.replace("apellidos", arrayjson.getJSONObject(i).getString("apellidos"));
+                                query1 = query1.replace("correo", arrayjson.getJSONObject(i).getString("correo"));
+                                query1 = query1.replace("imagen", arrayjson.getJSONObject(i).getString("perfil_foto"));
                                 base.execSQL(query1);
-                            }catch (SQLException e){
+                            } catch (SQLException e) {
                                 Toast.makeText(registro.this, e.getMessage(), Toast.LENGTH_LONG).show();
                             }
                             Intent Ventanaregistro = new Intent(registro.this, MainActivity.class);
@@ -226,6 +220,5 @@ public class registro extends AppCompatActivity implements AsyncResponse {
                 System.out.println("" + e.getMessage());
             }
         }
-
     }
 }
