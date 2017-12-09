@@ -62,6 +62,10 @@ class Sistema extends CI_Controller {
 			redirect(base_url().'index.php');
 		}
 	}
+	public function mascotas_cargadas()
+	{
+		# code...
+	}
 	public function registro_usuario()
 	{
 		if($this->input->post('nombre')!=""){

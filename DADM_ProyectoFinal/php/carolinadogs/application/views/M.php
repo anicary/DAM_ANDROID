@@ -13,6 +13,9 @@
 					<a class="nav-link" href="<?php echo base_url(); ?>index.php/Sistema/usuarios">USUARIOS</a>
 				</li>
 				<li class="nav-item">
+					<a class="nav-link" href="<?php echo base_url(); ?>index.php/Sistema/mascotas_cargadas">MASCOTAS</a>
+				</li>
+				<li class="nav-item">
 					<a class="nav-link" href="<?php echo base_url(); ?>index.php/Sistema/razas_datos">PET PEDIA</a>
 				</li>
 				<li class="nav-item dropdown">
