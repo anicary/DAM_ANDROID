@@ -32,7 +32,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<div class="card-body">
 						<div class="row">
 							<div class="col-md-7">
-								<h4 class="card-title">LISTA USUARIOS</h4>
+								<h4 class="card-title">LISTA DE MASCOTAS</h4>
 							</div>
 							<div class="col-md-5">
 								<a class="btn btn-danger"  href="<?php echo base_url(); ?>index.php/Sistema/salir"><i class="fa fa-sign-out" aria-hidden="true"></i> <?php echo "".$this->session->userdata('nombre'); ?>  CERRAR SESION</a>
@@ -46,13 +46,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 											<thead>
 												<tr>
 													<th>NOMBRE</th>
-													<th>APELLIDOS</th>
-													<th>CORREO</th>
-													<th>TIPO DE USUARIO</th>
-													<th>ULTIMA CONEXION</th>
-													<th>LUGAR</th>
-													<th>ESTADO</th>
-													<th>OPCIONES</th>
+													<th>EDAD</th>
 												</tr>
 											</thead>
 											<tbody>

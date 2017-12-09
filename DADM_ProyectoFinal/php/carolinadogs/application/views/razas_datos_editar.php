@@ -27,6 +27,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </style>
 </head>
 <body>
+	<?php
+	$this->load->view('M');
+	?>
 	<div class="">
 		<div class="row">
 			<div class="col-md-12">

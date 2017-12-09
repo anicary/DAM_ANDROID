@@ -21,6 +21,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<link href="<?php echo base_url(); ?>css/responsive.bootstrap4.min.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
+	<?php
+	$this->load->view('M');
+	?>
 	<div class="">
 		<div class="row">
 			<div class="col-md-12">
