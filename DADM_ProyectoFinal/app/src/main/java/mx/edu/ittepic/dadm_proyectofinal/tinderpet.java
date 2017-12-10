@@ -179,7 +179,9 @@ public class tinderpet extends AppCompatActivity implements AsyncResponse,Animat
                     }, new tinderAdaptador.botonClick() {
                         @Override
                         public void onBtnClick(int position) {
-                            Toast.makeText(tinderpet.this, "Perfil de usuario", Toast.LENGTH_LONG).show();
+                        Intent intento= new Intent(tinderpet.this,Perfil_tinder_pet.class);
+                            intento.putExtra("idusuarios",elemento.get(position).getIdusuario());
+                            startActivity(intento);
                         }
                     });
                     Menu_lista.setAdapter(adater);
