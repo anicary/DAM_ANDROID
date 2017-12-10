@@ -1,8 +1,10 @@
 package mx.edu.ittepic.dadm_proyectofinal;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -25,6 +27,7 @@ public class Perfil_tinder_pet extends AppCompatActivity implements AsyncRespons
     ConexionWeb conexionWeb;
     TextView nombre,correo,ciudad;
     String titulo="";
+    String ncidudad,nestado;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +38,15 @@ public class Perfil_tinder_pet extends AppCompatActivity implements AsyncRespons
         ciudad=(TextView) findViewById(R.id.vestadoperfiltinderu);
         cargarUsuario(""+getIntent().getExtras().getInt("idusuarios"));
         setTitle(titulo);
+        ciudad.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                        Uri.parse("google.navigation:q="+ncidudad+"+"+nestado+""));
+                startActivity(intent);
+
+            }
+        });
     }
     @Override
     public void procesarRespuesta(String r){
@@ -46,6 +58,8 @@ public class Perfil_tinder_pet extends AppCompatActivity implements AsyncRespons
                     nombre.setText(arrayjson.getJSONObject(0).getString("nombre")+" "+arrayjson.getJSONObject(0).getString("apellidos"));
                     correo.setText(arrayjson.getJSONObject(0).getString("correo"));
                     ciudad.setText(arrayjson.getJSONObject(0).getString("municipio")+","+arrayjson.getJSONObject(0).getString("estado"));
+                    ncidudad=""+arrayjson.getJSONObject(0).getString("municipio");
+                    nestado=""+arrayjson.getJSONObject(0).getString("estado");
                     Picasso.with(Perfil_tinder_pet.this).load(arrayjson.getJSONObject(0).getString("perfil_foto")).into(fotoperfil);
                 }
             }catch (JSONException e){
