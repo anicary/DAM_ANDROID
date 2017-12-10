@@ -185,7 +185,6 @@ public class tinderpet extends AppCompatActivity implements AsyncResponse,Animat
 
         }
     }
-
     @Override
     public void onRefresh() {
         elementos.clear();
