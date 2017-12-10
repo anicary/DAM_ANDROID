@@ -53,7 +53,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/textView2"
+                        android:id="@+id/txtUbicacion"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="11dp"

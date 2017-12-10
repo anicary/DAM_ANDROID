@@ -153,6 +153,7 @@ class Sistema extends CI_Controller {
 	}
 	public function registro_mascota()
 	{
+
 		if($this->input->post('nombre')!=""){
 			$tempId = $this->Mascotas->obtenerUltmas();
 			$nom;
@@ -184,6 +185,7 @@ class Sistema extends CI_Controller {
 				'fecha_agregado' =>date('Y-m-d H:i:s')
 			);
 			$this->Mascotas->insertarMascotasRelacion($datos2);
+			echo "AGREGADO";
 		}
 	}
 	public function cargarMascotas()

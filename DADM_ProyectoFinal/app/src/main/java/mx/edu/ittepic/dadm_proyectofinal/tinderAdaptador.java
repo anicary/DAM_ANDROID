@@ -114,7 +114,10 @@ public class tinderAdaptador extends BaseAdapter {
                 }
             }
         });
+        TextView ubicacion = (TextView) vista.findViewById(R.id.txtUbicacion);
+        ubicacion.setText(elemento.getUsuario_ubicacion());
         return vista;
+
     }
     public boolean getCorazon(){
         return  corazon;

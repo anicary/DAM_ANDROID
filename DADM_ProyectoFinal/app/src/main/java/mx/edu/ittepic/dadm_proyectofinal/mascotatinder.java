@@ -7,7 +7,7 @@ import android.graphics.drawable.Drawable;
  */
 
 public class mascotatinder {
-    String nombreu,nombre,edad,sexo,raza,tipo,foto,c,l,fotop;
+    String nombreu,nombre,edad,sexo,raza,tipo,foto,c,l,fotop,usuario_ubicacion;
     int idmascota,idusuario;
     Drawable cd,ld;
     public mascotatinder(int idmascota, String nombre, String edad, String sexo, String raza, String tipo, String foto){
@@ -19,7 +19,10 @@ public class mascotatinder {
         this.tipo=tipo;
         this.foto=foto;
     }
-    public mascotatinder(int idmascota, String nombre, String edad, String sexo, String raza, String tipo, String foto, String c, String l, Drawable cd, Drawable ld,int idusuario, String nombreu,String fotop){
+    public mascotatinder(int idmascota, String nombre, String edad, String sexo,
+                         String raza, String tipo, String foto, String c, String l,
+                         Drawable cd, Drawable ld,int idusuario, String nombreu,
+                         String fotop,String usuario_ubicacion){
         this.idmascota=idmascota;
         this.nombre=nombre;
         this.edad=edad;
@@ -34,6 +37,7 @@ public class mascotatinder {
         this.nombreu=nombreu;
         this.idusuario=idusuario;
         this.fotop=fotop;
+        this.usuario_ubicacion=usuario_ubicacion;
     }
     public int getidmascota(){
         return idmascota;
@@ -83,6 +87,6 @@ public class mascotatinder {
     public int getIdusuario() {return idusuario;}
     public String getNombreu() {return nombreu;}
     public String getFotop() {return fotop;}
-
+    public String getUsuario_ubicacion() {return usuario_ubicacion;}
 
 }

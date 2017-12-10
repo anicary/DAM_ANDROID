@@ -385,12 +385,7 @@ public class agregar_mascota extends AppCompatActivity implements AsyncResponse 
                         conexionWeb.agregarVariables("foto_mas",imagebase64string);
                         URL direccion = new URL("http://caropetworld.xyz/index.php/Sistema/registro_mascota");
                         conexionWeb.execute(direccion);
-                        Toasty.Config.getInstance()
-                                .apply(); // required
-                        Toasty.success(agregar_mascota.this, "Mascota Agregada!", Toast.LENGTH_SHORT, true).show();
-                        Intent inicio = new Intent(agregar_mascota.this,MainActivity.class);
-                       // inicio.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(inicio);
+
                     } catch (MalformedURLException e) {
                         Toast.makeText(agregar_mascota.this, e.getMessage(), Toast.LENGTH_LONG).show();
 
@@ -440,22 +435,6 @@ public class agregar_mascota extends AppCompatActivity implements AsyncResponse 
                     e.printStackTrace();
                 }
             }
-           /* try {
-                Uri selectedImage = data.getData();
-                String[] filePathColumn = { MediaStore.Images.Media.DATA };
-                Cursor cursor = getContentResolver().query(selectedImage,
-                        filePathColumn, null, null, null);
-                cursor.moveToFirst();
-                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                String picturePath = cursor.getString(columnIndex);
-                cursor.close();
-                Bitmap bmp = null;
-                bmp = getBitmapFromUri(selectedImage);
-                imagenenviar=bmp;
-                imageView.setImageBitmap(bmp);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }*/
         }
         if (requestCode == 7 && resultCode == RESULT_OK && data != null ) {
             Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
@@ -474,39 +453,48 @@ public class agregar_mascota extends AppCompatActivity implements AsyncResponse 
     }
     @Override
     public void procesarRespuesta(String r){
-
-        try{
-            JSONArray arrayjson = new JSONArray(r);
-            if (arrayjson.getJSONObject(0).has("idtipo_mascota")) {
-                List<String> spinnerArray =  new ArrayList<String>();
-                idtipos = new String[arrayjson.length()];
-                for (int i = 0; i < arrayjson.length(); i++) {
-                    spinnerArray.add(arrayjson.getJSONObject(i).getString("nombre"));
-                    idtipos[i]=arrayjson.getJSONObject(i).getString("idtipo_mascota");
-                }
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                        this, android.R.layout.simple_spinner_item, spinnerArray);
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                tipo.setAdapter(adapter);
-                cargarRazas(idtipos[0]);
-            }else
-            {
-                JSONArray arrayjson2 = new JSONArray(r);
-                if (arrayjson2.getJSONObject(0).has("idrazamascota")) {
+        if(r.equals("AGREGADO")){
+            Toasty.Config.getInstance()
+                    .apply(); // required
+            Toasty.success(agregar_mascota.this, "Mascota Agregada!", Toast.LENGTH_SHORT, true).show();
+            Intent inicio = new Intent(agregar_mascota.this,MainActivity.class);
+            inicio.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(inicio);
+        }else {
+            try{
+                JSONArray arrayjson = new JSONArray(r);
+                if (arrayjson.getJSONObject(0).has("idtipo_mascota")) {
                     List<String> spinnerArray =  new ArrayList<String>();
-                    idraza= new String[arrayjson2.length()];
-                    for (int i = 0; i < arrayjson2.length(); i++) {
-                        spinnerArray.add(arrayjson2.getJSONObject(i).getString("nombre_raza"));
-                       idraza[i]=arrayjson.getJSONObject(i).getString("idrazamascota");
+                    idtipos = new String[arrayjson.length()];
+                    for (int i = 0; i < arrayjson.length(); i++) {
+                        spinnerArray.add(arrayjson.getJSONObject(i).getString("nombre"));
+                        idtipos[i]=arrayjson.getJSONObject(i).getString("idtipo_mascota");
                     }
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                             this, android.R.layout.simple_spinner_item, spinnerArray);
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    raza.setAdapter(adapter);
+                    tipo.setAdapter(adapter);
+                    cargarRazas(idtipos[0]);
+                }else
+                {
+                    JSONArray arrayjson2 = new JSONArray(r);
+                    if (arrayjson2.getJSONObject(0).has("idrazamascota")) {
+                        List<String> spinnerArray =  new ArrayList<String>();
+                        idraza= new String[arrayjson2.length()];
+                        for (int i = 0; i < arrayjson2.length(); i++) {
+                            spinnerArray.add(arrayjson2.getJSONObject(i).getString("nombre_raza"));
+                            idraza[i]=arrayjson.getJSONObject(i).getString("idrazamascota");
+                        }
+                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                                this, android.R.layout.simple_spinner_item, spinnerArray);
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        raza.setAdapter(adapter);
+                    }
                 }
+            }catch (JSONException e){
             }
-        }catch (JSONException e){
         }
+
     }
     public void cargarTipos(){
         try {
