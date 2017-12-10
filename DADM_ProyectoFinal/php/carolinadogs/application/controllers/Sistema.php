@@ -390,7 +390,7 @@ class Sistema extends CI_Controller {
 				'idmascota' => $idmascota
 			);
 			$this->Mascotas->subirLike($idmascota,$datos);
-			$this->Mascotas->borrarRelacionCorazon($usuarios_idusuarios,$idmascota);
+			$this->Mascotas->borrarRelacionLike($usuarios_idusuarios,$idmascota);
 		}
 		echo "Like";
 	}
