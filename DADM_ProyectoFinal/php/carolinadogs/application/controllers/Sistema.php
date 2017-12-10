@@ -384,7 +384,7 @@ class Sistema extends CI_Controller {
 		$usuarios_idusuarios=$this->input->post('idusuarios');
 		$temporal=$this->Mascotas->obtenerLike($idmascota);
 		if($temporal[0]->nomegusta > 0){
-			$sumado=$temporal[0]->megusta-1;
+			$sumado=$temporal[0]->nomegusta-1;
 			$datos= array(
 				'nomegusta' => $sumado
 				//'idmascota' => $idmascota
