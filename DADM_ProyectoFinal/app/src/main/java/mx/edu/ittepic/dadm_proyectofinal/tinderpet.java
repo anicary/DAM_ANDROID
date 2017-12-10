@@ -255,7 +255,7 @@ public class tinderpet extends AppCompatActivity implements AsyncResponse, Anima
                                                 conexionWeb = new ConexionWeb(tinderpet.this);
                                                 conexionWeb.agregarVariables("idmascota", "" + elemento.get(position).getidmascota());
                                                 conexionWeb.agregarVariables("idusuarios", "" + idusuarios);
-                                                URL direcciopn = new URL("http://caropetworld.xyz/index.php/Sistema/likeUp");
+                                                URL direcciopn = new URL("http://caropetworld.xyz/index.php/Sistema/likeDown");
                                                 conexionWeb.execute(direcciopn);
                                             }
                                         } catch (MalformedURLException e) {

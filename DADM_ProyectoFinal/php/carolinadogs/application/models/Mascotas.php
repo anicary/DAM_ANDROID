@@ -128,20 +128,20 @@ class Mascotas extends CI_Model {
     {
       $DBcon = $this->load->database('default', TRUE);
       $query=$DBcon->query("SELECT * FROM  matchs WHERE usuarios_idusuarios=$idusuarios;");
-        if ($query->num_rows() > 0) {
-          return $query->result();
-        } else {
-          return false;
-        }
+      if ($query->num_rows() > 0) {
+        return $query->result();
+      } else {
+        return false;
       }
-      public function cargarManosHechos($idusuarios)
-      {
-        $DBcon = $this->load->database('default', TRUE);
-        $query=$DBcon->query("SELECT * FROM  dislike WHERE usuarios_idusuarios=$idusuarios;");
-          if ($query->num_rows() > 0) {
-            return $query->result();
-          } else {
-            return false;
-          }
-        }
+    }
+    public function cargarManosHechos($idusuarios)
+    {
+      $DBcon = $this->load->database('default', TRUE);
+      $query=$DBcon->query("SELECT * FROM  dislike WHERE usuarios_idusuarios=$idusuarios;");
+      if ($query->num_rows() > 0) {
+        return $query->result();
+      } else {
+        return false;
+      }
+    }
   }
