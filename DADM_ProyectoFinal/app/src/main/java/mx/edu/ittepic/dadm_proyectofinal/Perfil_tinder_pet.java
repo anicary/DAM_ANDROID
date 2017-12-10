@@ -52,9 +52,7 @@ public class Perfil_tinder_pet extends AppCompatActivity implements AsyncRespons
                 }catch (UnsupportedEncodingException e){
 
                 }
-
-
-
+                
             }
         });
     }
