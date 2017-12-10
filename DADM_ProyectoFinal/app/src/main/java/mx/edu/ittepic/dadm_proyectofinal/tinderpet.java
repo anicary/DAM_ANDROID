@@ -42,7 +42,7 @@ public class tinderpet extends AppCompatActivity implements AsyncResponse, Anima
         Menu_lista = (ListView) findViewById(R.id.tinderlista);
 
         cargarMascotas();
-        cargarCorazone();
+
 
         mPullToRefreshLayout = (AnimatedPullToRefreshLayout) findViewById(R.id.pullToRefreshLayout);
         mPullToRefreshLayout.setColorAnimationArray(new int[]{Color.CYAN, Color.RED, Color.YELLOW, Color.MAGENTA});
@@ -84,7 +84,16 @@ public class tinderpet extends AppCompatActivity implements AsyncResponse, Anima
             Toast.makeText(tinderpet.this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
-
+    public void cargarDislikes() {
+        try {
+            conexionWeb = new ConexionWeb(tinderpet.this);
+            conexionWeb.agregarVariables("idusuarios", idusuarios);
+            URL direcciopn = new URL("http://caropetworld.xyz/index.php/Sistema/obtenerManosGlobal");
+            conexionWeb.execute(direcciopn);
+        } catch (MalformedURLException e) {
+            Toast.makeText(tinderpet.this, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
     public void cargarMascotas() {
         try {
             conexionWeb = new ConexionWeb(tinderpet.this);
@@ -111,13 +120,33 @@ public class tinderpet extends AppCompatActivity implements AsyncResponse, Anima
                     JSONArray test = new JSONArray(r);
                     if (test.getJSONObject(0).has("idmatch")) {
                         for (int i = 0; i < test.length(); i++) {
-                            for (int e = 0; e < corazon.length(); e++) {
-
+                            for (int e = 0; e <elemento.size(); e++) {
+                                    if( Integer.parseInt (test.getJSONObject(i).getString("mascota_idmascota"))==  elemento.get(e).getidmascota()){
+                                        corazon[e]=false;
+                                        elemento.get(e).ponerImagenCora(getResources().getDrawable(R.drawable.ic_heart_on));
+                                    }
                             }
+                        }
+                        try {
+                            adater.notifyDataSetChanged();
+                        } catch (Exception e) {
+
                         }
                     } else {
                         if (test.getJSONObject(0).has("iddislike")) {
+                            for (int i = 0; i < test.length(); i++) {
+                                for (int e = 0; e <elemento.size(); e++) {
+                                    if( Integer.parseInt (test.getJSONObject(i).getString("mascota_idmascota"))==  elemento.get(e).getidmascota()){
+                                        dislike[e]=false;
+                                        elemento.get(e).ponerImagenLike(getResources().getDrawable(R.drawable.ic_thumb));
+                                    }
+                                }
+                            }
+                            try {
+                                adater.notifyDataSetChanged();
+                            } catch (Exception e) {
 
+                            }
                         } else {
                             JSONArray arrayjson = new JSONArray(r);
                             imagenesMostrar = new String[arrayjson.length()];
@@ -243,6 +272,7 @@ public class tinderpet extends AppCompatActivity implements AsyncResponse, Anima
                                 }
                             });
                             Menu_lista.setAdapter(adater);
+                            cargarCorazone();
                         }
                     }
                 } catch (JSONException e) {

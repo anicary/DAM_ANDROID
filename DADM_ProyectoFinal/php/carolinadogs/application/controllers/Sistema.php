@@ -402,7 +402,13 @@ class Sistema extends CI_Controller {
 	public function obtenerCorazonesGlobal()
 	{
 		$idusuarios=$this->input->post('idusuarios');
-		$datos=$this->Usuarios->cargarCorazonesHechos($idusuarios);
+		$datos=$this->Mascotas->cargarCorazonesHechos($idusuarios);
+		echo json_encode($datos);
+	}
+		public function obtenerManosGlobal()
+	{
+		$idusuarios=$this->input->post('idusuarios');
+		$datos=$this->Mascotas->cargarManosHechos($idusuarios);
 		echo json_encode($datos);
 	}
 }

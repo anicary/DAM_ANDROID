@@ -103,14 +103,14 @@ class Mascotas extends CI_Model {
     public function agregarRelacionCorazon($datos)
     {
       $DB2 = $this->load->database('default', TRUE);
-      $DB2->insert('match',$datos);
+      $DB2->insert('matchs',$datos);
     }
     public function borrarRelacionCorazon($usuarios_idusuarios,$mascota_idmascota)
     {
       $DB2 = $this->load->database('default', TRUE);
       $DB2->where('usuarios_idusuarios', $usuarios_idusuarios );
       $DB2->where('mascota_idmascota', $mascota_idmascota );
-      $DB2->delete('match');
+      $DB2->delete('matchs');
     }
     public function agregarRelacionLike($datos)
     {
@@ -127,11 +127,21 @@ class Mascotas extends CI_Model {
     public function cargarCorazonesHechos($idusuarios)
     {
       $DBcon = $this->load->database('default', TRUE);
-      $query=$DBcon->query("SELECT  * from match where usuarios_idusuarios=$idusuarios");
+      $query=$DBcon->query("SELECT * FROM  matchs WHERE usuarios_idusuarios=$idusuarios;");
         if ($query->num_rows() > 0) {
           return $query->result();
         } else {
           return false;
         }
       }
+      public function cargarManosHechos($idusuarios)
+      {
+        $DBcon = $this->load->database('default', TRUE);
+        $query=$DBcon->query("SELECT * FROM  dislike WHERE usuarios_idusuarios=$idusuarios;");
+          if ($query->num_rows() > 0) {
+            return $query->result();
+          } else {
+            return false;
+          }
+        }
   }
