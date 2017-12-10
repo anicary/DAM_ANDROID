@@ -59,6 +59,16 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Dedicado a Sergio Benigno \n Castillo Valtierra"
+                android:layout_marginTop="30dp"
+                android:textSize="20dp"
+                android:fontFamily="sans-serif-condensed"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:layout_gravity="center"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="PET WORLD (C)"
                 android:layout_marginTop="30dp"
                 android:textSize="20dp"
