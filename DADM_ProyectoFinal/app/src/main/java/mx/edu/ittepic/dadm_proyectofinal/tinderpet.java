@@ -128,6 +128,7 @@ public class tinderpet extends AppCompatActivity implements AsyncResponse, Anima
                             }
                         }
                         try {
+                            cargarDislikes();
                             adater.notifyDataSetChanged();
                         } catch (Exception e) {
 
