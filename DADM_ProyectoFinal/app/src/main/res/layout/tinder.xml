@@ -10,10 +10,10 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
         app:cardCornerRadius="18dp"
         app:cardElevation="6dp"
         app:contentPadding="15dp">
@@ -25,6 +25,7 @@
             android:visibility="visible">
 
             <LinearLayout
+                android:id="@+id/perfil_usuari"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
@@ -43,6 +44,7 @@
                         android:id="@+id/nomusuariotinder"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
                         android:layout_weight="1"
                         android:fontFamily="monospace"
                         android:gravity="center"
@@ -54,13 +56,13 @@
                         android:id="@+id/textView2"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginLeft="11dp"
                         android:layout_marginTop="1dp"
                         android:layout_weight="1"
                         android:fontFamily="monospace"
                         android:gravity="center"
                         android:text="tepic,nayarit"
-                        android:textColor="#000000"
+                        android:textColor="@color/ss_background_endColor"
                         android:textSize="12sp"
                         android:textStyle="bold" />
                 </LinearLayout>

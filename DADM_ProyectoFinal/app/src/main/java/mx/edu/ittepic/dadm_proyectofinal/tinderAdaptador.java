@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -25,12 +26,14 @@ public class tinderAdaptador extends BaseAdapter {
     ImageView botonCorzon,botonDis;
     Boolean corazon=true,likee=true;
     TextView cora,like;
-    private tinderAdaptador.botonClick botonMatch = null,botonMatchNo=null;
-    public tinderAdaptador(Activity actividad, ArrayList<mascotatinder> elementos,tinderAdaptador.botonClick botonMatch,tinderAdaptador.botonClick botonMatchNo) {
+    LinearLayout perfil_ver;
+    private tinderAdaptador.botonClick botonMatch = null,botonMatchNo=null,botonPerfilUsuario=null;
+    public tinderAdaptador(Activity actividad, ArrayList<mascotatinder> elementos,tinderAdaptador.botonClick botonMatch,tinderAdaptador.botonClick botonMatchNo, tinderAdaptador.botonClick botonPerfilUsuario) {
         this.actividad = actividad;
         this.elementos = elementos;
         this.botonMatch=botonMatch;
         this.botonMatchNo=botonMatchNo;
+        this.botonPerfilUsuario=botonPerfilUsuario;
     }
     public interface botonClick {
         public abstract void onBtnClick(int position);
@@ -101,6 +104,15 @@ public class tinderAdaptador extends BaseAdapter {
         nombreu.setText(elemento.getNombreu());
         ImageView foto_usuario =(ImageView)vista.findViewById(R.id.fotou);
         Picasso.with(actividad).load(elemento.getFotop()).into(foto_usuario);
+        perfil_ver = (LinearLayout) vista.findViewById(R.id.perfil_usuari);
+        perfil_ver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(botonPerfilUsuario != null){
+                    botonPerfilUsuario.onBtnClick((Integer) view.getTag());
+                }
+            }
+        });
         return vista;
     }
     public boolean getCorazon(){
