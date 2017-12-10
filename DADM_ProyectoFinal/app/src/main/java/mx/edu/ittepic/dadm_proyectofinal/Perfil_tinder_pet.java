@@ -42,6 +42,7 @@ public class Perfil_tinder_pet extends AppCompatActivity implements AsyncRespons
                 JSONArray arrayjson = new JSONArray(r);
                 if (arrayjson.getJSONObject(0).has("apellidos")) {
                     titulo=""+arrayjson.getJSONObject(0).getString("nombre")+" "+arrayjson.getJSONObject(0).getString("apellidos");
+                    setTitle(titulo);
                     nombre.setText(arrayjson.getJSONObject(0).getString("nombre")+" "+arrayjson.getJSONObject(0).getString("apellidos"));
                     correo.setText(arrayjson.getJSONObject(0).getString("correo"));
                     ciudad.setText(arrayjson.getJSONObject(0).getString("municipio")+","+arrayjson.getJSONObject(0).getString("estado"));

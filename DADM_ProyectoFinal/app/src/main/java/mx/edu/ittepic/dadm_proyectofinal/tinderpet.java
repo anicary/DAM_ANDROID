@@ -191,6 +191,8 @@ public class tinderpet extends AppCompatActivity implements AsyncResponse,Animat
                         Intent intento= new Intent(tinderpet.this,Perfil_tinder_pet.class);
                             intento.putExtra("idusuarios",elemento.get(position).getIdusuario());
                             startActivity(intento);
+                            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+
                         }
                     });
                     Menu_lista.setAdapter(adater);
