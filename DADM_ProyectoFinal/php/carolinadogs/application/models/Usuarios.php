@@ -77,4 +77,14 @@ class Usuarios extends CI_Model {
     $DB2->where('idusuarios', $usuario );
     $DB2->delete('usuarios');
   }
+  public function obtenerDatosDelUsuario($idusarios)
+  {
+    $DBcon = $this->load->database('default', TRUE);
+    $query=$DBcon->query("SELECT * FROM usuarios where idusuarios=$idusarios");
+    if ($query->num_rows() > 0) {
+        return $query->result();
+    } else {
+        return false;
+    }
+  }
 }

@@ -379,4 +379,9 @@ class Sistema extends CI_Controller {
 		}
 		echo "Like";
 	}
+	public function perfil_usuario_tinder (){
+		$idusuarios=$this->input->post('idusuarios');
+		$datos=$this->Usuarios->obtenerDatosDelUsuario($idusuarios);
+	  echo json_encode($datos);
+	}
 }

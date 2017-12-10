@@ -61,7 +61,7 @@ class Mascotas extends CI_Model {
   {
     $DBcon = $this->load->database('default', TRUE);
     $query=$DBcon->query("SELECT u.nombre as nombreu,u.municipio,u.estado,u.idusuarios,u.perfil_foto,ma.nombre,ma.idmascota,ma.edad,ma.foto_mas,ma.megusta,ma.nomegusta,ma.sexo,ma.tipo_mascota_idtipo_mascota,ma.razamascota_idrazamascota
-      FROM mascota as ma,mascota_usuarios as mu,usuarios as u where mu.usuarios_idusuarios!= $idusuarios and mu.mascota_idmascota=ma.idmascota and mu.usuarios_idusuarios=u.idusuarios");
+      FROM mascota as ma,mascota_usuarios as mu,usuarios as u where mu.usuarios_idusuarios!= $idusuarios and mu.mascota_idmascota=ma.idmascota and mu.usuarios_idusuarios=u.idusuarios order by mu.fecha_agregado desc");
       if ($query->num_rows() > 0) {
         return $query->result();
       } else {
