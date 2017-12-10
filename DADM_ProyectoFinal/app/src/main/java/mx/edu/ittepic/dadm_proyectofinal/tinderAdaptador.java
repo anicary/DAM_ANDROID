@@ -105,6 +105,7 @@ public class tinderAdaptador extends BaseAdapter {
         ImageView foto_usuario =(ImageView)vista.findViewById(R.id.fotou);
         Picasso.with(actividad).load(elemento.getFotop()).into(foto_usuario);
         perfil_ver = (LinearLayout) vista.findViewById(R.id.perfil_usuari);
+        perfil_ver.setTag(position);
         perfil_ver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
