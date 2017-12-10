@@ -5,4 +5,7 @@
     <color name="colorAccent">#ffffe4</color>
     <color name="heart_primary_color">#da4439</color>
     <color name="heart_secondary_color">#8a098c</color>
+
+    <color name="blanco">#ffffff</color>
+    <color name="negro">#000000</color>
 </resources>

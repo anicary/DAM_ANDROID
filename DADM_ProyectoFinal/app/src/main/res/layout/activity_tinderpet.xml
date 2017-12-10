@@ -23,18 +23,33 @@
             android:textColor="#000000"
             android:textSize="30dp"
             android:textStyle="bold" />
-
-        <ListView
-            android:id="@+id/tinderlista"
+        <com.hlab.animatedPullToRefresh.AnimatedPullToRefreshLayout
+            android:id="@+id/pullToRefreshLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:footerDividersEnabled="false"
-            android:headerDividersEnabled="false">
+            android:layout_height="match_parent"
+            app:animationSpeed="fast"
+            app:headerBackgroundColor="@color/colorAccent"
+            app:headerLoopAnimIteration="1"
+            app:headerLoopAnimation="zoom"
+            app:headerText="Cargando"
+            app:headerTextAnimIteration="1"
+            app:headerTextAnimation="rotateCW"
+            app:headerTextColor="@color/negro"
+            app:headerTextColorAnimationEnabled="true"> // new font support
 
 
-        </ListView>
+            <ListView
+                android:id="@+id/tinderlista"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:footerDividersEnabled="false"
+                android:headerDividersEnabled="false">
+
+            </ListView>
+        </com.hlab.animatedPullToRefresh.AnimatedPullToRefreshLayout>
+
     </LinearLayout>
 
 </LinearLayout>

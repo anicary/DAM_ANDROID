@@ -33,5 +33,7 @@ dependencies {
     compile 'com.github.GrenderG:Toasty:1.2.5'
     compile 'com.android.support:cardview-v7:21.0.+'
     compile 'com.android.support:recyclerview-v7:21.0.+'
+    compile 'com.hlab.animatedPullToRefresh:animated-pull-to-refresh-layout:1.0.1'
+
     testCompile 'junit:junit:4.12'
 }

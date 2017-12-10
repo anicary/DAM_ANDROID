@@ -3,6 +3,7 @@ package mx.edu.ittepic.dadm_proyectofinal;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,6 +11,7 @@ import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.hlab.animatedPullToRefresh.AnimatedPullToRefreshLayout;
 import com.rahuljanagouda.statusstories.StatusStoriesActivity;
 
 import org.json.JSONArray;
@@ -19,7 +21,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class tinderpet extends AppCompatActivity implements AsyncResponse {
+public class tinderpet extends AppCompatActivity implements AsyncResponse,AnimatedPullToRefreshLayout.OnRefreshListener {
     tinderAdaptador adater;
     ArrayList<mascotatinder> elemento;
     ArrayList<mascotatinder> elementos;
@@ -28,6 +30,7 @@ public class tinderpet extends AppCompatActivity implements AsyncResponse {
     String idusuarios = "";
     String imagenesMostrar[];
     boolean corazon[], dislike[];
+    AnimatedPullToRefreshLayout mPullToRefreshLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,8 +39,12 @@ public class tinderpet extends AppCompatActivity implements AsyncResponse {
         SharedPreferences prefs = getSharedPreferences("INFO_USUARIO", Context.MODE_PRIVATE);
         idusuarios = prefs.getString("idusuarios", "0");
         Menu_lista = (ListView) findViewById(R.id.tinderlista);
-        elemento = getElemento();
+
         cargarMascotas();
+
+         mPullToRefreshLayout = (AnimatedPullToRefreshLayout) findViewById(R.id.pullToRefreshLayout);
+        mPullToRefreshLayout.setColorAnimationArray(new int[]{Color.CYAN, Color.RED, Color.YELLOW, Color.MAGENTA});
+        mPullToRefreshLayout.setOnRefreshListener(this);
     }
     public boolean onCreateOptionsMenu(Menu m) {
         getMenuInflater().inflate(R.menu.tindermenu, m);
@@ -62,7 +69,6 @@ public class tinderpet extends AppCompatActivity implements AsyncResponse {
         elementos = new ArrayList<mascotatinder>();
         return elementos;
     }
-
     public void cargarMascotas() {
         try {
             conexionWeb = new ConexionWeb(tinderpet.this);
@@ -82,6 +88,7 @@ public class tinderpet extends AppCompatActivity implements AsyncResponse {
                 System.out.println("PETICION!!!");
             } else {
                 try {
+                    elemento = getElemento();
                     JSONArray arrayjson = new JSONArray(r);
                     imagenesMostrar = new String[arrayjson.length()];
                     corazon = new boolean[arrayjson.length()];
@@ -92,7 +99,7 @@ public class tinderpet extends AppCompatActivity implements AsyncResponse {
                         dislike[i] = true;
                         elementos.add(new mascotatinder(Integer.parseInt(arrayjson.getJSONObject(i).getString("idmascota")), arrayjson.getJSONObject(i).getString("nombre"), arrayjson.getJSONObject(i).getString("edad"), arrayjson.getJSONObject(i).getString("sexo"), arrayjson.getJSONObject(i).getString("razamascota_idrazamascota"), arrayjson.getJSONObject(i).getString("tipo_mascota_idtipo_mascota"), arrayjson.getJSONObject(i).getString("foto_mas"), arrayjson.getJSONObject(i).getString("megusta"), arrayjson.getJSONObject(i).getString("nomegusta"),getResources().getDrawable(R.drawable.ic_heart_off),getResources().getDrawable(R.drawable.ic_thumb_black),Integer.parseInt(arrayjson.getJSONObject(i).getString("idusuarios")),(arrayjson.getJSONObject(i).getString("nombreu")),(arrayjson.getJSONObject(i).getString("perfil_foto"))));
                     }
-                    adater = new tinderAdaptador(this, elementos, new tinderAdaptador.botonClick() {
+                    adater = new tinderAdaptador(this, elemento, new tinderAdaptador.botonClick() {
                         @Override
                         public void onBtnClick(int position) {
                             if (corazon[position]) {
@@ -177,5 +184,12 @@ public class tinderpet extends AppCompatActivity implements AsyncResponse {
             }
 
         }
+    }
+
+    @Override
+    public void onRefresh() {
+        elementos.clear();
+        cargarMascotas();
+        mPullToRefreshLayout.refreshComplete();
     }
 }
