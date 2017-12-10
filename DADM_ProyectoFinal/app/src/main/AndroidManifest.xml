@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:replace="allowBackup, label"
+    package="mx.edu.ittepic.dadm_proyectofinal"
     android:allowBackup="false"
     android:label="@string/app_title"
-    package="mx.edu.ittepic.dadm_proyectofinal">
+    tools:replace="allowBackup, label">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -16,7 +17,6 @@
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-
         android:theme="@style/AppTheme">
         <activity android:name=".Inicio">
             <intent-filter>
@@ -36,11 +36,10 @@
         <activity
             android:name=".agregar_mascota"
             android:windowSoftInputMode="stateHidden|adjustResize|adjustPan" />
-        <activity
-            android:name=".tinderpet" />
+        <activity android:name=".tinderpet" />
         <activity android:name=".acerca" />
         <activity android:name=".desestres" />
-        <activity android:name=".editarPerfilusuario"/>
+        <activity android:name=".editarPerfilusuario" />
         <activity
             android:name=".editarMascota"
             android:windowSoftInputMode="stateHidden|adjustResize|adjustPan" />
@@ -54,7 +53,8 @@
             android:name=".curiosidades"
             android:label="@string/title_activity_curiosidades"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".camaraPerfil"></activity>
+        <activity android:name=".camaraPerfil" />
+        <activity android:name=".Perfil_tinder_pet"></activity>
     </application>
 
 </manifest>
