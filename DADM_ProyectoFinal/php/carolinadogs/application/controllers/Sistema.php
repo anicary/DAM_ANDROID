@@ -332,8 +332,8 @@ class Sistema extends CI_Controller {
 		$temporal=$this->Mascotas->obtenerCorazon($idmascota);
 		$sumado=$temporal[0]->megusta+1;
 		$datos= array(
-			'megusta' => $sumado,
-			'idmascota' => $idmascota
+			'megusta' => $sumado
+		//	'idmascota' => $idmascota
 		);
 		$this->Mascotas->subirCorazon($idmascota,$datos);
 		$datos2= array(
@@ -351,8 +351,8 @@ class Sistema extends CI_Controller {
 		if($temporal[0]->megusta > 0){
 			$sumado=$temporal[0]->megusta-1;
 			$datos= array(
-				'megusta' => $sumado,
-				'idmascota' => $idmascota
+				'megusta' => $sumado
+			//	'idmascota' => $idmascota
 			);
 			$this->Mascotas->subirCorazon($idmascota,$datos);
 			$this->Mascotas->borrarRelacionCorazon($usuarios_idusuarios,$idmascota);
@@ -367,8 +367,8 @@ class Sistema extends CI_Controller {
 		$temporal=$this->Mascotas->obtenerLike($idmascota);
 		$sumado=$temporal[0]->nomegusta+1;
 		$datos= array(
-			'nomegusta' => $sumado,
-			'idmascota' => $idmascota
+			'nomegusta' => $sumado
+			//'idmascota' => $idmascota
 		);
 		$this->Mascotas->subirLike($idmascota,$datos);
 		$datos2= array(
@@ -386,8 +386,8 @@ class Sistema extends CI_Controller {
 		if($temporal[0]->nomegusta > 0){
 			$sumado=$temporal[0]->megusta-1;
 			$datos= array(
-				'nomegusta' => $sumado,
-				'idmascota' => $idmascota
+				'nomegusta' => $sumado
+				//'idmascota' => $idmascota
 			);
 			$this->Mascotas->subirLike($idmascota,$datos);
 			$this->Mascotas->borrarRelacionLike($usuarios_idusuarios,$idmascota);
