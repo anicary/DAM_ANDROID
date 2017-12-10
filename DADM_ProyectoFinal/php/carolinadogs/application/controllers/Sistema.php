@@ -328,7 +328,7 @@ class Sistema extends CI_Controller {
 	public function CorazonUp()
 	{
 		$idmascota=$this->input->post('idmascota');
-		//	$idmascota=33;
+		$usuarios_idusuarios=$this->input->post('idusuarios');
 		$temporal=$this->Mascotas->obtenerCorazon($idmascota);
 		$sumado=$temporal[0]->megusta+1;
 		$datos= array(
@@ -336,11 +336,17 @@ class Sistema extends CI_Controller {
 			'idmascota' => $idmascota
 		);
 		$this->Mascotas->subirCorazon($idmascota,$datos);
+		$datos2= array(
+			'mascota_idmascota' => $idmascota,
+			'usuarios_idusuarios' => $usuarios_idusuarios
+		);
+		$this->Mascotas->agregarRelacionCorazon($datos2);
 		echo "CORA";
 	}
 	public function CorazonDown()
 	{
 		$idmascota=$this->input->post('idmascota');
+		$usuarios_idusuarios=$this->input->post('idusuarios');
 		$temporal=$this->Mascotas->obtenerCorazon($idmascota);
 		if($temporal[0]->megusta > 0){
 			$sumado=$temporal[0]->megusta-1;
@@ -349,12 +355,14 @@ class Sistema extends CI_Controller {
 				'idmascota' => $idmascota
 			);
 			$this->Mascotas->subirCorazon($idmascota,$datos);
+			$this->Mascotas->borrarRelacionCorazon($usuarios_idusuarios,$idmascota);
 		}
 		echo "CORA";
 	}
 	public function likeUp()
 	{
 		$idmascota=$this->input->post('idmascota');
+		$usuarios_idusuarios=$this->input->post('idusuarios');
 		//	$idmascota=33;
 		$temporal=$this->Mascotas->obtenerLike($idmascota);
 		$sumado=$temporal[0]->nomegusta+1;
@@ -363,11 +371,17 @@ class Sistema extends CI_Controller {
 			'idmascota' => $idmascota
 		);
 		$this->Mascotas->subirLike($idmascota,$datos);
+		$datos2= array(
+			'mascota_idmascota' => $idmascota,
+			'usuarios_idusuarios' => $usuarios_idusuarios
+		);
+		$this->Mascotas->agregarRelacionLike($datos2);
 		echo "Like";
 	}
 	public function likeDown()
 	{
 		$idmascota=$this->input->post('idmascota');
+		$usuarios_idusuarios=$this->input->post('idusuarios');
 		$temporal=$this->Mascotas->obtenerLike($idmascota);
 		if($temporal[0]->nomegusta > 0){
 			$sumado=$temporal[0]->megusta-1;
@@ -376,6 +390,7 @@ class Sistema extends CI_Controller {
 				'idmascota' => $idmascota
 			);
 			$this->Mascotas->subirLike($idmascota,$datos);
+			$this->Mascotas->borrarRelacionCorazon($usuarios_idusuarios,$idmascota);
 		}
 		echo "Like";
 	}

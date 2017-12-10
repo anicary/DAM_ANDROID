@@ -21,7 +21,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class tinderpet extends AppCompatActivity implements AsyncResponse,AnimatedPullToRefreshLayout.OnRefreshListener {
+public class tinderpet extends AppCompatActivity implements AsyncResponse, AnimatedPullToRefreshLayout.OnRefreshListener {
     tinderAdaptador adater;
     ArrayList<mascotatinder> elemento;
     ArrayList<mascotatinder> elementos;
@@ -31,6 +31,7 @@ public class tinderpet extends AppCompatActivity implements AsyncResponse,Animat
     String imagenesMostrar[];
     boolean corazon[], dislike[];
     AnimatedPullToRefreshLayout mPullToRefreshLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,17 +40,17 @@ public class tinderpet extends AppCompatActivity implements AsyncResponse,Animat
         SharedPreferences prefs = getSharedPreferences("INFO_USUARIO", Context.MODE_PRIVATE);
         idusuarios = prefs.getString("idusuarios", "0");
         Menu_lista = (ListView) findViewById(R.id.tinderlista);
-
         cargarMascotas();
-
-         mPullToRefreshLayout = (AnimatedPullToRefreshLayout) findViewById(R.id.pullToRefreshLayout);
+        mPullToRefreshLayout = (AnimatedPullToRefreshLayout) findViewById(R.id.pullToRefreshLayout);
         mPullToRefreshLayout.setColorAnimationArray(new int[]{Color.CYAN, Color.RED, Color.YELLOW, Color.MAGENTA});
         mPullToRefreshLayout.setOnRefreshListener(this);
     }
+
     public boolean onCreateOptionsMenu(Menu m) {
         getMenuInflater().inflate(R.menu.tindermenu, m);
         return true;
     }
+
     public boolean onOptionsItemSelected(MenuItem mi) {
         switch (mi.getItemId()) {
             case R.id.pet:
@@ -69,6 +70,7 @@ public class tinderpet extends AppCompatActivity implements AsyncResponse,Animat
         elementos = new ArrayList<mascotatinder>();
         return elementos;
     }
+
     public void cargarMascotas() {
         try {
             conexionWeb = new ConexionWeb(tinderpet.this);
@@ -103,10 +105,10 @@ public class tinderpet extends AppCompatActivity implements AsyncResponse,Animat
                                 arrayjson.getJSONObject(i).getString("tipo_mascota_idtipo_mascota"),
                                 arrayjson.getJSONObject(i).getString("foto_mas"),
                                 arrayjson.getJSONObject(i).getString("megusta"), arrayjson.getJSONObject(i).getString("nomegusta"),
-                                getResources().getDrawable(R.drawable.ic_heart_off),getResources().getDrawable(R.drawable.ic_thumb_black),
+                                getResources().getDrawable(R.drawable.ic_heart_off), getResources().getDrawable(R.drawable.ic_thumb_black),
                                 Integer.parseInt(arrayjson.getJSONObject(i).getString("idusuarios")),
-                                (arrayjson.getJSONObject(i).getString("nombreu")),(arrayjson.getJSONObject(i).getString("perfil_foto")),
-                                arrayjson.getJSONObject(i).getString("municipio")+","+arrayjson.getJSONObject(i).getString("estado")));
+                                (arrayjson.getJSONObject(i).getString("nombreu")), (arrayjson.getJSONObject(i).getString("perfil_foto")),
+                                arrayjson.getJSONObject(i).getString("municipio") + "," + arrayjson.getJSONObject(i).getString("estado")));
                     }
                     adater = new tinderAdaptador(this, elemento, new tinderAdaptador.botonClick() {
                         @Override
@@ -119,12 +121,16 @@ public class tinderpet extends AppCompatActivity implements AsyncResponse,Animat
                                 try {
                                     conexionWeb = new ConexionWeb(tinderpet.this);
                                     conexionWeb.agregarVariables("idmascota", "" + elementos.get(position).getidmascota());
+                                    conexionWeb.agregarVariables("idusuarios", "" + idusuarios);
                                     URL direcciopn = new URL("http://caropetworld.xyz/index.php/Sistema/CorazonUp");
                                     conexionWeb.execute(direcciopn);
                                 } catch (MalformedURLException e) {
                                     Toast.makeText(tinderpet.this, e.getMessage(), Toast.LENGTH_LONG).show();
                                 }
-                                adater.notifyDataSetChanged();
+                                try {
+                                    adater.notifyDataSetChanged();
+                                } catch (Exception e) {
+                                }
                                 System.out.println("MATCH" + position);
                             } else {
                                 int valor = Integer.parseInt(elementos.get(position).getCoraz());
@@ -135,16 +141,19 @@ public class tinderpet extends AppCompatActivity implements AsyncResponse,Animat
                                     corazon[position] = true;
                                     try {
                                         conexionWeb = new ConexionWeb(tinderpet.this);
+                                        conexionWeb.agregarVariables("idusuarios", "" + idusuarios);
                                         conexionWeb.agregarVariables("idmascota", "" + elementos.get(position).getidmascota());
                                         URL direcciopn = new URL("http://caropetworld.xyz/index.php/Sistema/CorazonDown");
                                         conexionWeb.execute(direcciopn);
                                     } catch (MalformedURLException e) {
                                         Toast.makeText(tinderpet.this, e.getMessage(), Toast.LENGTH_LONG).show();
                                     }
-                                    adater.notifyDataSetChanged();
+                                    try {
+                                        adater.notifyDataSetChanged();
+                                    } catch (Exception e) {
+                                    }
                                     System.out.println("MATCH" + position);
                                 }
-
                             }
 
                         }
@@ -156,11 +165,16 @@ public class tinderpet extends AppCompatActivity implements AsyncResponse,Animat
                                     int valor = Integer.parseInt(elementos.get(position).getLike());
                                     elemento.get(position).ponerImagenLike(getResources().getDrawable(R.drawable.ic_thumb));
                                     elementos.get(position).setLike("" + (valor + 1));
-                                    adater.notifyDataSetChanged();
+                                    try {
+                                        adater.notifyDataSetChanged();
+                                    } catch (Exception e) {
+
+                                    }
                                     System.out.println("MATCH" + position);
                                     dislike[position] = false;
                                     conexionWeb = new ConexionWeb(tinderpet.this);
                                     conexionWeb.agregarVariables("idmascota", "" + elementos.get(position).getidmascota());
+                                    conexionWeb.agregarVariables("idusuarios", "" + idusuarios);
                                     URL direcciopn = new URL("http://caropetworld.xyz/index.php/Sistema/likeUp");
                                     conexionWeb.execute(direcciopn);
                                 } catch (MalformedURLException e) {
@@ -172,11 +186,16 @@ public class tinderpet extends AppCompatActivity implements AsyncResponse,Animat
                                     if (valor > 0) {
                                         elementos.get(position).setLike("" + (valor - 1));
                                         elemento.get(position).ponerImagenLike(getResources().getDrawable(R.drawable.ic_thumb_black));
-                                        adater.notifyDataSetChanged();
+                                        try {
+                                            adater.notifyDataSetChanged();
+                                        } catch (Exception e) {
+
+                                        }
                                         System.out.println("MATCH" + position);
                                         dislike[position] = true;
                                         conexionWeb = new ConexionWeb(tinderpet.this);
                                         conexionWeb.agregarVariables("idmascota", "" + elementos.get(position).getidmascota());
+                                        conexionWeb.agregarVariables("idusuarios", "" + idusuarios);
                                         URL direcciopn = new URL("http://caropetworld.xyz/index.php/Sistema/likeUp");
                                         conexionWeb.execute(direcciopn);
                                     }
@@ -188,31 +207,26 @@ public class tinderpet extends AppCompatActivity implements AsyncResponse,Animat
                     }, new tinderAdaptador.botonClick() {
                         @Override
                         public void onBtnClick(int position) {
-                        Intent intento= new Intent(tinderpet.this,Perfil_tinder_pet.class);
-                            intento.putExtra("idusuarios",elemento.get(position).getIdusuario());
+                            Intent intento = new Intent(tinderpet.this, Perfil_tinder_pet.class);
+                            intento.putExtra("idusuarios", elemento.get(position).getIdusuario());
                             startActivity(intento);
                             overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-
                         }
                     });
                     Menu_lista.setAdapter(adater);
                 } catch (JSONException e) {
-
                 }
             }
-
         }
     }
+
     @Override
     public void onRefresh() {
-        try
-        {
+        try {
             elementos.clear();
             cargarMascotas();
             mPullToRefreshLayout.refreshComplete();
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
 
         }
     }

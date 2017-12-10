@@ -100,4 +100,28 @@ class Mascotas extends CI_Model {
       $DB2->where('idmascota', $mascota );
       $DB2->update('mascota',$datos);
     }
+    public function agregarRelacionCorazon($datos)
+    {
+      $DB2 = $this->load->database('default', TRUE);
+      $DB2->insert('match',$datos);
+    }
+    public function borrarRelacionCorazon($usuarios_idusuarios,$mascota_idmascota)
+    {
+      $DB2 = $this->load->database('default', TRUE);
+      $DB2->where('usuarios_idusuarios', $usuarios_idusuarios );
+      $DB2->where('mascota_idmascota', $mascota_idmascota );
+      $DB2->delete('match');
+    }
+    public function agregarRelacionLike($datos)
+    {
+      $DB2 = $this->load->database('default', TRUE);
+      $DB2->insert('dislike',$datos);
+    }
+    public function borrarRelacionLike($usuarios_idusuarios,$mascota_idmascota)
+    {
+      $DB2 = $this->load->database('default', TRUE);
+      $DB2->where('usuarios_idusuarios', $usuarios_idusuarios );
+      $DB2->where('mascota_idmascota', $mascota_idmascota );
+      $DB2->delete('dislike');
+    }
   }
