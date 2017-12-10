@@ -97,6 +97,10 @@ public class tinderAdaptador extends BaseAdapter {
         b.setText(elemento.getedad());
         ImageView tinderfoto = (ImageView) vista.findViewById(R.id.fotot);
         Picasso.with(actividad).load(elemento.getfoto()).into(tinderfoto);
+        TextView nombreu = (TextView) vista.findViewById(R.id.nomusuariotinder);
+        nombreu.setText(elemento.getNombreu());
+        ImageView foto_usuario =(ImageView)vista.findViewById(R.id.fotou);
+        Picasso.with(actividad).load(elemento.getFotop()).into(foto_usuario);
         return vista;
     }
     public boolean getCorazon(){

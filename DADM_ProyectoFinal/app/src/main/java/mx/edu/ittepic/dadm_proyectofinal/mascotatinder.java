@@ -7,8 +7,8 @@ import android.graphics.drawable.Drawable;
  */
 
 public class mascotatinder {
-    String nombre,edad,sexo,raza,tipo,foto,c,l;
-    int idmascota;
+    String nombreu,nombre,edad,sexo,raza,tipo,foto,c,l,fotop;
+    int idmascota,idusuario;
     Drawable cd,ld;
     public mascotatinder(int idmascota, String nombre, String edad, String sexo, String raza, String tipo, String foto){
         this.idmascota=idmascota;
@@ -19,7 +19,7 @@ public class mascotatinder {
         this.tipo=tipo;
         this.foto=foto;
     }
-    public mascotatinder(int idmascota, String nombre, String edad, String sexo, String raza, String tipo, String foto, String c, String l, Drawable cd, Drawable ld){
+    public mascotatinder(int idmascota, String nombre, String edad, String sexo, String raza, String tipo, String foto, String c, String l, Drawable cd, Drawable ld,int idusuario, String nombreu,String fotop){
         this.idmascota=idmascota;
         this.nombre=nombre;
         this.edad=edad;
@@ -31,6 +31,9 @@ public class mascotatinder {
         this.l=l;
         this.cd=cd;
         this.ld=ld;
+        this.nombreu=nombreu;
+        this.idusuario=idusuario;
+        this.fotop=fotop;
     }
     public int getidmascota(){
         return idmascota;
@@ -77,4 +80,9 @@ public class mascotatinder {
     public void ponerImagenLike(Drawable ld){
         this.ld=ld;
     }
+    public int getIdusuario() {return idusuario;}
+    public String getNombreu() {return nombreu;}
+    public String getFotop() {return fotop;}
+
+
 }

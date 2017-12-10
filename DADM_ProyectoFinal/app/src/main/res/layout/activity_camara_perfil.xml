@@ -7,14 +7,21 @@
     android:orientation="vertical"
     android:background="@color/colorAccent"
     tools:context="mx.edu.ittepic.dadm_proyectofinal.camaraPerfil">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp">
     <ImageView
         android:id="@+id/imgPernew"
         android:layout_width="166dp"
         android:layout_height="166dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="5dp"/>
+        android:layout_gravity="center"/>
     <Button
         android:id="@+id/tomarfoto"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/ovalo8"
@@ -36,4 +43,5 @@
         android:textColor="#FFFFFF"
         android:textSize="18dp"
         android:textStyle="bold" />
+</LinearLayout>
 </LinearLayout>
