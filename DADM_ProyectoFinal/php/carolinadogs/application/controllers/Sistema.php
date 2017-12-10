@@ -297,33 +297,33 @@ class Sistema extends CI_Controller {
 	}
 	public function editar_mascota()
 	{
-		  $idmas=	$this->input->post('idmascota');
-		 if($this->input->post('foto')=="si"){
-				$decoded=base64_decode($this->input->post('foto_mas'));
-				file_put_contents("".$this->input->post('idusuarios')."mascota".$idmas.".jpg",$decoded);
-				$urlenvarserver=base_url()."".$this->input->post('idusuarios')."mascota".$idmas.".jpg";
-				$datos= array(
-					'foto_mas' => $urlenvarserver,
-					'nombre' => $this->input->post('nombre'),
-					'sexo' => $this->input->post('sexo'),
-					'edad' => $this->input->post('edad'),
-					'tipo_mascota_idtipo_mascota' => $this->input->post('tipo_mascota_idtipo_mascota'),
-					'razamascota_idrazamascota' => $this->input->post('razamascota_idrazamascota')
-				);
-				$this->Mascotas->actualizarMactoa($idmas,$datos);
-				echo "actualizado";
-			}
-			else {
-				$datos= array(
-					'nombre' => $this->input->post('nombre'),
-					'sexo' => $this->input->post('sexo'),
-					'edad' => $this->input->post('edad'),
-					'tipo_mascota_idtipo_mascota' => $this->input->post('tipo_mascota_idtipo_mascota'),
-					'razamascota_idrazamascota' => $this->input->post('razamascota_idrazamascota')
-				);
-				$this->Mascotas->actualizarMactoa($idmas,$datos);
-				echo "actualizado";
-			}
+		$idmas=	$this->input->post('idmascota');
+		if($this->input->post('foto')=="si"){
+			$decoded=base64_decode($this->input->post('foto_mas'));
+			file_put_contents(FCPATH."archivos/fotos/".$this->input->post('idusuarios')."mascota".$idmas.".jpg",$decoded);
+			$urlenvarserver=base_url()."archivos/fotos/".$this->input->post('idusuarios')."mascota".$idmas.".jpg";
+			$datos= array(
+				'foto_mas' => $urlenvarserver,
+				'nombre' => $this->input->post('nombre'),
+				'sexo' => $this->input->post('sexo'),
+				'edad' => $this->input->post('edad'),
+				'tipo_mascota_idtipo_mascota' => $this->input->post('tipo_mascota_idtipo_mascota'),
+				'razamascota_idrazamascota' => $this->input->post('razamascota_idrazamascota')
+			);
+			$this->Mascotas->actualizarMactoa($idmas,$datos);
+			echo "actualizado";
+		}
+		else {
+			$datos= array(
+				'nombre' => $this->input->post('nombre'),
+				'sexo' => $this->input->post('sexo'),
+				'edad' => $this->input->post('edad'),
+				'tipo_mascota_idtipo_mascota' => $this->input->post('tipo_mascota_idtipo_mascota'),
+				'razamascota_idrazamascota' => $this->input->post('razamascota_idrazamascota')
+			);
+			$this->Mascotas->actualizarMactoa($idmas,$datos);
+			echo "actualizado";
+		}
 	}
 	public function CorazonUp()
 	{

@@ -37,6 +37,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import es.dmoral.toasty.Toasty;
+
 public class editarMascota extends AppCompatActivity  implements AsyncResponse{
     String nombrea="",edada="",sexoa="";
     String idusuarios="";
@@ -189,6 +191,9 @@ public class editarMascota extends AppCompatActivity  implements AsyncResponse{
         }else
         {
             if (r.equals("eliminado")){
+                Toasty.Config.getInstance()
+                        .apply(); // required
+                Toasty.error(editarMascota.this, "Macota eliminada :(!", Toast.LENGTH_SHORT, true).show();
                 Intent intent = new Intent(editarMascota.this, MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
