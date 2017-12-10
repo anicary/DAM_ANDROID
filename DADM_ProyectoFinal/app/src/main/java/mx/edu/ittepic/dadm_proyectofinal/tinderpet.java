@@ -90,7 +90,9 @@ public class tinderpet extends AppCompatActivity implements AsyncResponse, Anima
                 System.out.println("PETICION!!!");
             } else {
                 try {
-                    elemento = getElemento();
+                    if(elemento == null){
+                        elemento = getElemento();
+                    }
                     JSONArray arrayjson = new JSONArray(r);
                     imagenesMostrar = new String[arrayjson.length()];
                     corazon = new boolean[arrayjson.length()];
@@ -114,8 +116,8 @@ public class tinderpet extends AppCompatActivity implements AsyncResponse, Anima
                         @Override
                         public void onBtnClick(int position) {
                             if (corazon[position]) {
-                                int valor = Integer.parseInt(elementos.get(position).getCoraz());
-                                elementos.get(position).setCoraz("" + (valor + 1));
+                                int valor = Integer.parseInt(elemento.get(position).getCoraz());
+                                elemento.get(position).setCoraz("" + (valor + 1));
                                 elemento.get(position).ponerImagenCora(getResources().getDrawable(R.drawable.ic_heart_on));
                                 corazon[position] = false;
                                 try {
@@ -133,10 +135,11 @@ public class tinderpet extends AppCompatActivity implements AsyncResponse, Anima
                                 }
                                 System.out.println("MATCH" + position);
                             } else {
-                                int valor = Integer.parseInt(elementos.get(position).getCoraz());
+                                System.out.println("Des MATCH" + position);
+                                int valor = Integer.parseInt(elemento.get(position).getCoraz());
                                 if (valor > 0) {
                                     //  adater.ponerConrazon("" + (valor - 1));
-                                    elementos.get(position).setCoraz("" + (valor - 1));
+                                    elemento.get(position).setCoraz("" + (valor - 1));
                                     elemento.get(position).ponerImagenCora(getResources().getDrawable(R.drawable.ic_heart_off));
                                     corazon[position] = true;
                                     try {
@@ -162,9 +165,9 @@ public class tinderpet extends AppCompatActivity implements AsyncResponse, Anima
                         public void onBtnClick(int position) {
                             if (dislike[position]) {
                                 try {
-                                    int valor = Integer.parseInt(elementos.get(position).getLike());
+                                    int valor = Integer.parseInt(elemento.get(position).getLike());
                                     elemento.get(position).ponerImagenLike(getResources().getDrawable(R.drawable.ic_thumb));
-                                    elementos.get(position).setLike("" + (valor + 1));
+                                    elemento.get(position).setLike("" + (valor + 1));
                                     try {
                                         adater.notifyDataSetChanged();
                                     } catch (Exception e) {
@@ -182,9 +185,9 @@ public class tinderpet extends AppCompatActivity implements AsyncResponse, Anima
                                 }
                             } else {
                                 try {
-                                    int valor = Integer.parseInt(elementos.get(position).getLike());
+                                    int valor = Integer.parseInt(elemento.get(position).getLike());
                                     if (valor > 0) {
-                                        elementos.get(position).setLike("" + (valor - 1));
+                                        elemento.get(position).setLike("" + (valor - 1));
                                         elemento.get(position).ponerImagenLike(getResources().getDrawable(R.drawable.ic_thumb_black));
                                         try {
                                             adater.notifyDataSetChanged();
