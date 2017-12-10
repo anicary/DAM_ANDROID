@@ -15,8 +15,10 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,9 +43,17 @@ public class Perfil_tinder_pet extends AppCompatActivity implements AsyncRespons
         ciudad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
-                        Uri.parse("google.navigation:q="+ncidudad+"+"+nestado+""));
-                startActivity(intent);
+                String query="";
+                try
+                {
+                    query = URLEncoder.encode(""+ncidudad+","+nestado, "utf-8");
+                Intent intent = new Intent(android.content.Intent.ACTION_VIEW,   Uri.parse("https://www.google.com/maps/search/?api=1&query="+query));
+                    startActivity(intent);
+                }catch (UnsupportedEncodingException e){
+
+                }
+
+
 
             }
         });
