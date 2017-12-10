@@ -26,24 +26,23 @@
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:id="@+id/fotou"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp" />
+                    android:layout_width="40dp"
+                    android:layout_height="40dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/nomusuariotinder"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:fontFamily="monospace"
                         android:gravity="center"
@@ -54,14 +53,15 @@
                     <TextView
                         android:id="@+id/textView2"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_marginLeft="5dp"
+                        android:layout_marginTop="1dp"
                         android:layout_weight="1"
                         android:fontFamily="monospace"
                         android:gravity="center"
                         android:text="tepic,nayarit"
                         android:textColor="#000000"
-                        android:textSize="10sp"
+                        android:textSize="12sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -69,7 +69,7 @@
 
             <ImageView
                 android:id="@+id/fotot"
-                android:layout_width="250dp"
+                android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
