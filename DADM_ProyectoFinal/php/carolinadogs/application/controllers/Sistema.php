@@ -165,8 +165,8 @@ class Sistema extends CI_Controller {
 			//$archivo="archivos/fotos/mascotas/";
 			//$archivo="";
 			$decoded=base64_decode($this->input->post('foto_mas'));
-			file_put_contents($archivo."".$this->input->post('idusuarios')."mascota".$nom.".jpg",$decoded);
-			$urlenvarserver=base_url()."".$this->input->post('idusuarios')."mascota".$nom.".jpg";
+			file_put_contents(FCPATH."archivos/fotos/".$this->input->post('idusuarios')."mascota".$nom.".jpg",$decoded);
+			$urlenvarserver=base_url()."archivos/fotos/".$this->input->post('idusuarios')."mascota".$nom.".jpg";
 			$datos= array(
 				'nombre' => $this->input->post('nombre'),
 				'sexo' => $this->input->post('sexo'),
