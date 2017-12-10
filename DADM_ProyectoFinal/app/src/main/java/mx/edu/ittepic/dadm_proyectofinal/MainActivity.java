@@ -74,8 +74,6 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         conperroyout =(ConstraintLayout)findViewById(R.id.constrainperro);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-      //  SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-
         SharedPreferences prefs =
                 getSharedPreferences("INFO_USUARIO", Context.MODE_PRIVATE);
 

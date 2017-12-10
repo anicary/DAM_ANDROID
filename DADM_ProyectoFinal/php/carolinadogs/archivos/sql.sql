@@ -1,18 +1,8 @@
 
 -- -----------------------------------------------------
--- Schema caroli41_dogs
+-- Table `u440932328_perro`.`usuarios`
 -- -----------------------------------------------------
-
--- -----------------------------------------------------
--- Schema caroli41_dogs
--- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `caroli41_dogs` DEFAULT CHARACTER SET utf8 ;
-USE `caroli41_dogs` ;
-
--- -----------------------------------------------------
--- Table `caroli41_dogs`.`usuarios`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `caroli41_dogs`.`usuarios` (
+CREATE TABLE IF NOT EXISTS `u440932328_perro`.`usuarios` (
   `idusuarios` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(100) NULL,
   `apellidos` VARCHAR(100) NULL,
@@ -25,97 +15,77 @@ CREATE TABLE IF NOT EXISTS `caroli41_dogs`.`usuarios` (
   `ultima_conexion` DATETIME NULL,
   `estado` VARCHAR(100) NULL,
   `municipio` VARCHAR(100) NULL,
+  `perfil_foto` VARCHAR(300) NULL,
   PRIMARY KEY (`idusuarios`))
- ;
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `caroli41_dogs`.`tipo_mascota`
+-- Table `u440932328_perro`.`tipo_mascota`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `caroli41_dogs`.`tipo_mascota` (
+CREATE TABLE IF NOT EXISTS `u440932328_perro`.`tipo_mascota` (
   `idtipo_mascota` INT NOT NULL,
   `nombre` VARCHAR(45) NULL,
   PRIMARY KEY (`idtipo_mascota`))
- ;
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `caroli41_dogs`.`razamascota`
+-- Table `u440932328_perro`.`razamascota`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `caroli41_dogs`.`razamascota` (
+CREATE TABLE IF NOT EXISTS `u440932328_perro`.`razamascota` (
   `idrazamascota` INT NOT NULL AUTO_INCREMENT,
   `nombre_raza` VARCHAR(200) NULL,
   `tipo_mascota_idtipo_mascota` INT NOT NULL,
+  `caracter` TEXT(2000) NULL,
+  `salud` TEXT(2000) NULL,
+  `caracteristicas` TEXT(2000) NULL,
+  `utilidad` TEXT(2000) NULL,
+  `foto_raza` VARCHAR(200) NULL,
   PRIMARY KEY (`idrazamascota`),
   INDEX `fk_razamascota_tipo_mascota1_idx` (`tipo_mascota_idtipo_mascota` ASC),
   CONSTRAINT `fk_razamascota_tipo_mascota1`
     FOREIGN KEY (`tipo_mascota_idtipo_mascota`)
-    REFERENCES `caroli41_dogs`.`tipo_mascota` (`idtipo_mascota`)
+    REFERENCES `u440932328_perro`.`tipo_mascota` (`idtipo_mascota`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
- ;
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `caroli41_dogs`.`mascota`
+-- Table `u440932328_perro`.`mascota`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `caroli41_dogs`.`mascota` (
+CREATE TABLE IF NOT EXISTS `u440932328_perro`.`mascota` (
   `idmascota` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NULL,
   `sexo` VARCHAR(45) NULL,
   `edad` VARCHAR(45) NULL,
+  `foto_mas` VARCHAR(300) NULL,
   `tipo_mascota_idtipo_mascota` INT NOT NULL,
   `razamascota_idrazamascota` INT NOT NULL,
+  `megusta` VARCHAR(45) NULL,
+  `nomegusta` VARCHAR(45) NULL,
   PRIMARY KEY (`idmascota`),
   INDEX `fk_mascota_tipo_mascota1_idx` (`tipo_mascota_idtipo_mascota` ASC),
   INDEX `fk_mascota_razamascota1_idx` (`razamascota_idrazamascota` ASC),
   CONSTRAINT `fk_mascota_tipo_mascota1`
     FOREIGN KEY (`tipo_mascota_idtipo_mascota`)
-    REFERENCES `caroli41_dogs`.`tipo_mascota` (`idtipo_mascota`)
+    REFERENCES `u440932328_perro`.`tipo_mascota` (`idtipo_mascota`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_mascota_razamascota1`
     FOREIGN KEY (`razamascota_idrazamascota`)
-    REFERENCES `caroli41_dogs`.`razamascota` (`idrazamascota`)
+    REFERENCES `u440932328_perro`.`razamascota` (`idrazamascota`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
- ;
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `caroli41_dogs`.`citasMedicas`
+-- Table `u440932328_perro`.`mascota_usuarios`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `caroli41_dogs`.`citasMedicas` (
-  `idcitasMedicas` INT NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`idcitasMedicas`))
- ;
-
-
--- -----------------------------------------------------
--- Table `caroli41_dogs`.`cuidados`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `caroli41_dogs`.`cuidados` (
-  `idcuidados` INT NOT NULL,
-  `comidas` VARCHAR(45) NULL,
-  `bebidas` VARCHAR(45) NULL,
-  PRIMARY KEY (`idcuidados`))
- ;
-
-
--- -----------------------------------------------------
--- Table `caroli41_dogs`.`recordatorios`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `caroli41_dogs`.`recordatorios` (
-  `idrecordatorios` INT NOT NULL,
-  PRIMARY KEY (`idrecordatorios`))
- ;
-
-
--- -----------------------------------------------------
--- Table `caroli41_dogs`.`mascota_usuarios`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `caroli41_dogs`.`mascota_usuarios` (
-  `idmascota_usuarios` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `u440932328_perro`.`mascota_usuarios` (
+  `idmascota_usuarios` INT NOT NULL AUTO_INCREMENT,
   `usuarios_idusuarios` INT NOT NULL,
   `mascota_idmascota` INT NOT NULL,
   `fecha_agregado` DATETIME NULL,
@@ -124,80 +94,169 @@ CREATE TABLE IF NOT EXISTS `caroli41_dogs`.`mascota_usuarios` (
   INDEX `fk_mascota_usuarios_mascota1_idx` (`mascota_idmascota` ASC),
   CONSTRAINT `fk_mascota_usuarios_usuarios`
     FOREIGN KEY (`usuarios_idusuarios`)
-    REFERENCES `caroli41_dogs`.`usuarios` (`idusuarios`)
+    REFERENCES `u440932328_perro`.`usuarios` (`idusuarios`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_mascota_usuarios_mascota1`
     FOREIGN KEY (`mascota_idmascota`)
-    REFERENCES `caroli41_dogs`.`mascota` (`idmascota`)
+    REFERENCES `u440932328_perro`.`mascota` (`idmascota`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
- ;
-
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Data for table `caroli41_dogs`.`usuarios`
+-- Table `u440932328_perro`.`match`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `u440932328_perro`.`match` (
+  `idmatch` INT NOT NULL AUTO_INCREMENT,
+  `usuarios_idusuarios` INT NOT NULL,
+  `mascota_idmascota` INT NOT NULL,
+  PRIMARY KEY (`idmatch`),
+  INDEX `fk_match_usuarios1_idx` (`usuarios_idusuarios` ASC),
+  INDEX `fk_match_mascota1_idx` (`mascota_idmascota` ASC),
+  CONSTRAINT `fk_match_usuarios1`
+    FOREIGN KEY (`usuarios_idusuarios`)
+    REFERENCES `u440932328_perro`.`usuarios` (`idusuarios`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_match_mascota1`
+    FOREIGN KEY (`mascota_idmascota`)
+    REFERENCES `u440932328_perro`.`mascota` (`idmascota`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `u440932328_perro`.`dislike`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `u440932328_perro`.`dislike` (
+  `iddislike` INT NOT NULL AUTO_INCREMENT,
+  `usuarios_idusuarios` INT NOT NULL,
+  `mascota_idmascota` INT NOT NULL,
+  PRIMARY KEY (`iddislike`),
+  INDEX `fk_dislike_usuarios1_idx` (`usuarios_idusuarios` ASC),
+  INDEX `fk_dislike_mascota1_idx` (`mascota_idmascota` ASC),
+  CONSTRAINT `fk_dislike_usuarios1`
+    FOREIGN KEY (`usuarios_idusuarios`)
+    REFERENCES `u440932328_perro`.`usuarios` (`idusuarios`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_dislike_mascota1`
+    FOREIGN KEY (`mascota_idmascota`)
+    REFERENCES `u440932328_perro`.`mascota` (`idmascota`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Data for table `u440932328_perro`.`usuarios`
 -- -----------------------------------------------------
 START TRANSACTION;
-USE `caroli41_dogs`;
-INSERT INTO `caroli41_dogs`.`usuarios` (`idusuarios`, `nombre`, `apellidos`, `correo`, `sexo`, `contrasena`, `tipo`, `activo`, `fecha_creacion`, `ultima_conexion`, `estado`, `municipio`) VALUES (1, 'Ana Carolina', 'Mondragon Rangel', 'ancamondragonra@ittepic.edu.mx', 'F', 'ae66099a971283caaccd860e2cfb50eab33b1ca1', 1, 1, '2017-11-28 12:37:21', '2017-11-28 12:37:21', 'Nayarit', 'Tepic');
-INSERT INTO `caroli41_dogs`.`usuarios` (`idusuarios`, `nombre`, `apellidos`, `correo`, `sexo`, `contrasena`, `tipo`, `activo`, `fecha_creacion`, `ultima_conexion`, `estado`, `municipio`) VALUES (2, 'Zulma', 'Isable', 'zuiscoronello@ittepic.edu.mx', 'F', '8cb2237d0679ca88db6464eac60da96345513964', 1, 1, '2017-11-28 12:37:21', '2017-11-28 12:37:21', 'Nayarit', 'Tepic');
+USE `u440932328_perro`;
+INSERT INTO `u440932328_perro`.`usuarios` (`idusuarios`, `nombre`, `apellidos`, `correo`, `sexo`, `contrasena`, `tipo`, `activo`, `fecha_creacion`, `ultima_conexion`, `estado`, `municipio`, `perfil_foto`) VALUES (1, 'Ana Carolina', 'Mondragon Rangel', 'ancamondragonra@ittepic.edu.mx', 'F', '249b1e7894db9d4994da9c386b2ddac2df75a47c', 1, 1, '2017-11-28 12:37:21', '2017-11-28 12:37:21', 'Nayarit', 'Tepic', 'http://carolina.x10host.com/archivos/fotos/caro.png');
+INSERT INTO `u440932328_perro`.`usuarios` (`idusuarios`, `nombre`, `apellidos`, `correo`, `sexo`, `contrasena`, `tipo`, `activo`, `fecha_creacion`, `ultima_conexion`, `estado`, `municipio`, `perfil_foto`) VALUES (2, 'Zulma', 'Isable', 'zuiscoronello@ittepic.edu.mx', 'F', '8cb2237d0679ca88db6464eac60da96345513964', 1, 1, '2017-11-28 12:37:21', '2017-11-28 12:37:21', 'Nayarit', 'Tepic', 'http://carolina.x10host.com/archivos/fotos/zulma.png');
+INSERT INTO `u440932328_perro`.`usuarios` (`idusuarios`, `nombre`, `apellidos`, `correo`, `sexo`, `contrasena`, `tipo`, `activo`, `fecha_creacion`, `ultima_conexion`, `estado`, `municipio`, `perfil_foto`) VALUES (4, 'Beny', 'Valtierra', 'fer@gmail.com', 'F', '356a192b7913b04c54574d18c28d46e6395428ab', 2, 1, '02/12/2017 14:16', '05/12/2017 12:46', 'Nayarit', 'Tepic', 'http://carolina.x10host.com/4fotoperfil.jpg');
+INSERT INTO `u440932328_perro`.`usuarios` (`idusuarios`, `nombre`, `apellidos`, `correo`, `sexo`, `contrasena`, `tipo`, `activo`, `fecha_creacion`, `ultima_conexion`, `estado`, `municipio`, `perfil_foto`) VALUES (5, 'adriana', 'Mondragón ', 'adriana@gmail.com', 'F', '356a192b7913b04c54574d18c28d46e6395428ab', 2, 1, '03/12/2017 15:34', '03/12/2017 15:34', 'Chihuahua', 'Ahumada', 'http://carolina.x10host.com/archivos/fotos/perfil.jpg');
+INSERT INTO `u440932328_perro`.`usuarios` (`idusuarios`, `nombre`, `apellidos`, `correo`, `sexo`, `contrasena`, `tipo`, `activo`, `fecha_creacion`, `ultima_conexion`, `estado`, `municipio`, `perfil_foto`) VALUES (6, 'Ana', 'Mondragón ', 'ana@gmail.com', 'F', '356a192b7913b04c54574d18c28d46e6395428ab', 2, 1, '03/12/2017 15:37', '03/12/2017 15:37', 'Aguascalientes', 'Aguascalientes', 'http://carolina.x10host.com/archivos/fotos/perfil.jpg');
+INSERT INTO `u440932328_perro`.`usuarios` (`idusuarios`, `nombre`, `apellidos`, `correo`, `sexo`, `contrasena`, `tipo`, `activo`, `fecha_creacion`, `ultima_conexion`, `estado`, `municipio`, `perfil_foto`) VALUES (7, 'memo', 'gillermo', 'guille@gmail.com', 'F', '356a192b7913b04c54574d18c28d46e6395428ab', 2, 1, '05/12/2017 12:51', '05/12/2017 12:51', 'Coahuila de Zaragoza', 'Abasolo', 'http://carolina.x10host.com/archivos/fotos/perfil.jpg');
 
 COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `caroli41_dogs`.`tipo_mascota`
+-- Data for table `u440932328_perro`.`tipo_mascota`
 -- -----------------------------------------------------
 START TRANSACTION;
-USE `caroli41_dogs`;
-INSERT INTO `caroli41_dogs`.`tipo_mascota` (`idtipo_mascota`, `nombre`) VALUES (1, 'Perro');
-INSERT INTO `caroli41_dogs`.`tipo_mascota` (`idtipo_mascota`, `nombre`) VALUES (2, 'Gato');
-INSERT INTO `caroli41_dogs`.`tipo_mascota` (`idtipo_mascota`, `nombre`) VALUES (3, 'Cuyo');
-INSERT INTO `caroli41_dogs`.`tipo_mascota` (`idtipo_mascota`, `nombre`) VALUES (4, 'Hamster');
-INSERT INTO `caroli41_dogs`.`tipo_mascota` (`idtipo_mascota`, `nombre`) VALUES (5, 'Conejo');
-INSERT INTO `caroli41_dogs`.`tipo_mascota` (`idtipo_mascota`, `nombre`) VALUES (6, 'Mini Pig');
-INSERT INTO `caroli41_dogs`.`tipo_mascota` (`idtipo_mascota`, `nombre`) VALUES (7, 'Peces');
-INSERT INTO `caroli41_dogs`.`tipo_mascota` (`idtipo_mascota`, `nombre`) VALUES (8, 'Reptiles');
-INSERT INTO `caroli41_dogs`.`tipo_mascota` (`idtipo_mascota`, `nombre`) VALUES (9, 'Aragnidos');
-INSERT INTO `caroli41_dogs`.`tipo_mascota` (`idtipo_mascota`, `nombre`) VALUES (10, 'Insectos');
+USE `u440932328_perro`;
+INSERT INTO `u440932328_perro`.`tipo_mascota` (`idtipo_mascota`, `nombre`) VALUES (1, 'Perro');
+INSERT INTO `u440932328_perro`.`tipo_mascota` (`idtipo_mascota`, `nombre`) VALUES (2, 'Gato');
+INSERT INTO `u440932328_perro`.`tipo_mascota` (`idtipo_mascota`, `nombre`) VALUES (3, 'Cuyo');
+INSERT INTO `u440932328_perro`.`tipo_mascota` (`idtipo_mascota`, `nombre`) VALUES (4, 'Hamster');
+INSERT INTO `u440932328_perro`.`tipo_mascota` (`idtipo_mascota`, `nombre`) VALUES (5, 'Conejo');
+INSERT INTO `u440932328_perro`.`tipo_mascota` (`idtipo_mascota`, `nombre`) VALUES (6, 'Mini Pig');
+INSERT INTO `u440932328_perro`.`tipo_mascota` (`idtipo_mascota`, `nombre`) VALUES (7, 'Peces');
+INSERT INTO `u440932328_perro`.`tipo_mascota` (`idtipo_mascota`, `nombre`) VALUES (8, 'Reptiles');
+INSERT INTO `u440932328_perro`.`tipo_mascota` (`idtipo_mascota`, `nombre`) VALUES (9, 'Aragnidos');
+INSERT INTO `u440932328_perro`.`tipo_mascota` (`idtipo_mascota`, `nombre`) VALUES (10, 'Insectos');
 
 COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `caroli41_dogs`.`razamascota`
+-- Data for table `u440932328_perro`.`razamascota`
 -- -----------------------------------------------------
 START TRANSACTION;
-USE `caroli41_dogs`;
-INSERT INTO `caroli41_dogs`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`) VALUES (1, 'Corgi galés de Cardigan', 1);
-INSERT INTO `caroli41_dogs`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`) VALUES (2, 'Husky siberiano', 1);
-INSERT INTO `caroli41_dogs`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`) VALUES (3, 'Pastor alemán', 1);
-INSERT INTO `caroli41_dogs`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`) VALUES (4, 'San bernardo', 1);
-INSERT INTO `caroli41_dogs`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`) VALUES (5, 'Golden retriever', 1);
-INSERT INTO `caroli41_dogs`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`) VALUES (6, 'Caniche', 1);
-INSERT INTO `caroli41_dogs`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`) VALUES (7, 'Maine Coon', 2);
-INSERT INTO `caroli41_dogs`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`) VALUES (8, 'Siberiano', 2);
-INSERT INTO `caroli41_dogs`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`) VALUES (9, 'Bosque de Noruega', 2);
-INSERT INTO `caroli41_dogs`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`) VALUES (10, 'Mau egipcio', 2);
-INSERT INTO `caroli41_dogs`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`) VALUES (11, 'Chartreux', 2);
-INSERT INTO `caroli41_dogs`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`) VALUES (12, 'Chartreux', 2);
-INSERT INTO `caroli41_dogs`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`) VALUES (13, 'Cuyo abisinio', 3);
-INSERT INTO `caroli41_dogs`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`) VALUES (14, 'Cobaya americana', 3);
-INSERT INTO `caroli41_dogs`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`) VALUES (15, 'Hámsteres enanos de Roborovski', 4);
-INSERT INTO `caroli41_dogs`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`) VALUES (16, 'Mini Lop', 5);
-INSERT INTO `caroli41_dogs`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`) VALUES (17, 'Lionhead', 5);
-INSERT INTO `caroli41_dogs`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`) VALUES (18, 'Juliana', 6);
-INSERT INTO `caroli41_dogs`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`) VALUES (19, 'Göttingen', 6);
-INSERT INTO `caroli41_dogs`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`) VALUES (20, 'Gekco', 8);
-INSERT INTO `caroli41_dogs`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`) VALUES (21, 'Salamandra', 8);
-INSERT INTO `caroli41_dogs`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`) VALUES (22, 'Peces Gato:', 7);
-INSERT INTO `caroli41_dogs`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`) VALUES (23, 'Peces espiga', 7);
-INSERT INTO `caroli41_dogs`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`) VALUES (24, 'Araña de rincón o violinista', 9);
-INSERT INTO `caroli41_dogs`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`) VALUES (25, 'Araña Hobo', 9);
-INSERT INTO `caroli41_dogs`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`) VALUES (26, 'Tarántula', 9);
-INSERT INTO `caroli41_dogs`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`) VALUES (27, 'hormigas', 10);
-INSERT INTO `caroli41_dogs`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`) VALUES (28, 'Hemidípteros', 10);
+USE `u440932328_perro`;
+INSERT INTO `u440932328_perro`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`, `caracter`, `salud`, `caracteristicas`, `utilidad`, `foto_raza`) VALUES (1, 'Corgi galés de Cardigan', 1, 'Es un perro sumamente inteligente y cariñoso, con una gran personalidad, sumamente activo y trabajador. Se sirve muy bien en la granjas. Es un perfecto perro de compañía para niños si es tratado como es debido y ladra sólo ocasionalmente.																																											', 'El corgi promedio tiene una altura de 25 a 30 cm, una longitud de 30 a 38 cm y un peso de 11 a 14 kg. Su esperanza de vida es de 12 a 14 años. Es un perro sumamente activo, pero la tendencia a tenerlos como mascotas en hogares pequeños reduce su actividad. Si a esto se le agregan excesos en su alimentación llevaran rápidamente a la obesidad. Un perro promedio requiere de 150 a 300 gramos de alimento comercial equilibrado por día. Una característica bastante común del corgi es su voracidad, que lo lleva a comer en demasía lo que da la sensación de que nunca está saciado; debe limitarse su ingesta.																																												', 'Es de talla pequeña, fuerte, de constitución robusta, alerta y activo, que da la impresión de fortaleza y vigor en un cuerpo pequeño. La cabeza recuerda por la forma y la apariencia a la del zorro, con una expresión alerta e inteligente. La cola es corta, preferiblemente natural, cuando los cachorros no nacen rabones la cola se amputa casi completamente. Cabe destacar que en algunos países europeos, como Suecia, esta práctica de amputar o cortar rabos ha sido prohibida por considerarse una mutilación sin función zootécnica. El pelo es medianamente largo y liso, de varios colores como rojo, azabache, beige o negro y fuego, usualmente con manchas blancas.																																										', 'Esta raza se utilizó para el pastoreo, guardián y como compañero.																																											', 'http://carolina.x10host.com/archivos/fotos/corgi.jpg');
+INSERT INTO `u440932328_perro`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`, `caracter`, `salud`, `caracteristicas`, `utilidad`, `foto_raza`) VALUES (2, 'Husky siberiano', 1, 'El Husky ha sido descrito como un representante del comportamiento del ancestro del perro: el lobo, ya que muestra una amplia gama de comportamientos propios de su antepasado.\r\nA nivel de inteligencia, está posicionado en la escala con el número 45 de la clasificación de Stanley Coren acerca de la inteligencia de los perros.																																																									', 'El husky tiene un pelaje que es una protección ante las inclemencias del tiempo frío. Requiere de un cepillado rutinario. No pelecha hasta que llegan los periodos estivales, en los que muda y pierde la subcapa interna de pelo, quedándose únicamente con la capa externa, la cual variará ligeramente su tonalidad hasta que vuelva a reponer su pelaje para los periodos invernales o más fríos.\r\n\r\nDurante la época de muda hay que realizar los cepillados más continuos, ya que se ayuda al perro a que la muda se realice antes. Al contrario de lo que se piensa, el husky se adapta bastante bien al calor, ya que la muda hace que durante los meses de calor sólo tenga la capa externa como otras razas. No es extraño ver a un husky tumbado al sol en pleno verano.\r\nNunca hay que rapar o afeitar a un husky																																																									', 'Es un perro de tamaño mediano. Acostumbrado a vivir en la nieve, tiene el pelaje mucho más denso y grueso que otras razas de perros. Es capaz de modificar drásticamente su pelaje según el lugar donde viva :puede cambiar entre pelo largo o más corto. El siberian husky puede tener estos colores: blanco, agoutí y blanco, negro y blanco, sable y blanco, rojo y blanco, gris y plata, siendo estos dos últimos más frecuentes en las hembras. En los estándares, se aceptan combinaciones de varios colores pero no un solo color completamente. Puede tener la lengua de color rosada a negra.																																																									', 'Pueden ser utilizados como mascota, para competir en concursos de belleza y como tiradores de trineos.																																																								', 'http://carolina.x10host.com/archivos/fotos/husky1.jpg');
+INSERT INTO `u440932328_perro`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`, `caracter`, `salud`, `caracteristicas`, `utilidad`, `foto_raza`) VALUES (3, 'Pastor alemán', 1, 'Es un animal vigoroso, ágil, bien musculado, despierto y lleno de vida. Sus proporciones físicas deben guardar relación no sólo en su apariencia sino también habrá que fijarse en su temperamento. Debe ser un perro bien equilibrado, con un desarrollo armonioso de los miembros anteriores y posteriores. Un buen ejemplar agrada a primera vista; también es muy fuerte. A veces puede ser agresivo y un poco dominante dependiendo de la forma en la que se educa. Por todo ello es un perro dedicado al trabajo.																																						', 'Los pastores alemanes tienen una esperanza de vida de entre 8 y 9 años. Hay que vigilar su calendario de vacunacion puesto que son susceptibles de contraer moquillo. El pastor alemán es de las razas con más problemas genéticos debido a su cría irresponsable. Como es común en perros grandes, esta raza suele padecer displasia de cadera,Otro problema de salud, que a veces se presenta en esta raza, es la Enfermedad de Von Willebrand. También tienen tendencia a la deficiencia pancreática, lo que significa que el páncreas deja de producir enzimas y el animal es incapaz de procesar o absorber nada. \r\nNecesita practicar ejercicio de modo continuo ya que es una raza de trabajo.																																						', 'Robusto y flexible, ligeramente alargado, cuerpo musculoso, sus mandíbulas deben cerrar en tijera. Es un perro de compañía muy bueno con los niños ya que es un perro muy equilibrado y fácil de adiestrar.																																						', 'Pastor de vacas y ovejas con infatigable trote y gran inteligencia. Ha sobresalido en numerosos trabajos útiles al hombre, tales como: guardián, perro guía, policía, perro de ataque, detector de drogas, etc. 																																						', 'http://carolina.x10host.com/archivos/fotos/pastor.jpg');
+INSERT INTO `u440932328_perro`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`, `caracter`, `salud`, `caracteristicas`, `utilidad`, `foto_raza`) VALUES (4, 'San bernardo', 1, 'Tranquilo, reposado aunque jovial, tiene una excelente relación con los niños.																																					', 'Es un perro que necesita cuidado ante todo en la cara, ojos y párpados y con su pelaje, en especial en la variedad de pelo largo. Es conveniente que haga algo de ejercicio (sin excederse debido a su propensión a padecer torsión de estómago) y que disponga de espacio adecuado a su gran tamaño (150 metros cuadrados como mínimo, aunque de 300 metros en adelante es lo más aconsejable).\r\n\r\nHay que evitar, especialmente durante el crecimiento, que tenga sobrepeso, puesto que ello puede agravar su tendencia a mostrar problemas de displasia de cadera y de codo. Debido a su pelaje y a su tamaño hay que estar atentos en evitar lugares cerrados o poco ventilados en los que haga bastante calor, puesto que ello puede provocarles un golpe de calor (incluso a los de pelo corto).\r\n\r\nHay que prestar especial atención cuando se le suministre cualquier tipo de sedante o similar, ya que suelen tener en algunos casos una cardiomiopatía dilatada no diagnosticada, lo cual podría tener consecuencias fatales para ellos.\r\n\r\nSu compañía y alegría son favorables para la salud. Se necesitan dos cosas fundamentales para su cuidado: limpiarles las orejas y sacarles las legañas.																																				', 'El san bernardo es un perro grande, elegante y fuerte, extrovertido, su apariencia es amigable, pacífica, es un perro \"bonachón\". En general manso y afectuoso, es muy leal y devoto a sus amos. Es especialmente adecuado para los niños por quienes siente especial atracción, por lo que recibe el apodo de \"perro niñera\". Es lo bastante grande para proteger con mesurada agresividad.																																					', 'Compañía, guardián de las granjas, perro guardián y asistente de viajero.																																					', 'http://carolina.x10host.com/archivos/fotos/san.jpg');
+INSERT INTO `u440932328_perro`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`, `caracter`, `salud`, `caracteristicas`, `utilidad`, `foto_raza`) VALUES (5, 'Golden retriever', 1, 'Amable, amigable y confiado, son buenas mascotas familiares.																																											', 'Son perros activos, y requieren de una cantidad razonable de ejercicio cada día, aunque las necesidades de ejercicio pueden variar dependiendo del perro y su edad.\r\n\r\nSe le debe proporcionar tanto una adecuada socialización temprana, como una actividad fisíca diaria para evitar conductas destructivas como que al volver se encuentre que ha roto algo para descargar su frustración. Tiene necesidad de estimulación mental, la cual se provee con entrenamiento y ejercicio, debido a que son buenos atletas y necesitan caminar todos los días, o se convertirán en perros inquietos y ansiosos.																																											', 'Como su nombre lo indica, su pelaje vienen en tonalidades de oro claro y oscuro. Su manto se compone de dos tipos de pelo: una capa exterior de pelaje que es resistente al agua y ligeramente ondulada, la cual pelecha en cantidades pequeñas a lo largo del año, y otra capa interna de subpelo suave que mantiene al perro fresco en verano y tibio en invierno. La capa interna, por lo general, es corta y pegada al vientre, muda en la primavera y el otoño.																																											', 'Su disposición confiada y amigable les hace ser malos perros guardianes, sin embargo son grandes compañeros.																																											', 'http://carolina.x10host.com/archivos/fotos/golde.jpg');
+INSERT INTO `u440932328_perro`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`, `caracter`, `salud`, `caracteristicas`, `utilidad`, `foto_raza`) VALUES (6, 'Caniche', 1, 'Es fiel, vive ligado a su dueño y a veces lo puede llegar a acaparar, hasta el punto de seguirlo a todas partes, observarlo atentamente y sentarse al mismo tiempo que él. Es juguetón, alegre, observador y muy inteligente, es capaz de aprender muchas cosas y muy rápidamente. A veces puede ser ladrador ante la presencia de extraños o cuando se queda solo en casa, es bastante protector. Es el compañero ideal para los niños, por su tamaño puede tolerar los empujones y tirones de un bebé cuando éste se agarra de su suave durante los primeros intentos de aprender a caminar. También es paciente con los niños que ya corren, gritan y juegan (si se ha criado junto a ellos).																																										', 'Acostumbra a tener problemas oculares y de oído. También puede padecer torsión de estómago y displasia de cadera.																																											', 'La característica más notable del Caniche es su peinado de competición, puede llevarlo a lo león, a la inglesa o al estilo moderno, aunque existen muchos cortes de pelo que no entran en el estándar. El Caniche Mediano es un perro que puede medir entre 35 y 45 cm. Es armonioso, firme y musculoso. Tiene unas patas fuertes y bien desarrolladas. Las orejas son bastante largas y le caen a los lados de las mejillas. La cola la lleva implantada bastante alta y se suele acortar un tercio. Existen dos variedades de caniche dependiendo del pelo: de pelo rizado (fino, lanoso, bien rizado, elástico, espeso y tupido, formando bucles iguales) y de pelo acordonado (abundante, fino, lanoso y prieto, formando cordoncillos de 20 cm por lo menos). Es preferible que la capa sea unicolor.																																											', 'Perro de compañía.																																											', 'http://carolina.x10host.com/archivos/fotos/max.jpg');
+INSERT INTO `u440932328_perro`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`, `caracter`, `salud`, `caracteristicas`, `utilidad`, `foto_raza`) VALUES (7, 'Maine Coon', 2, 'Los Maine Coon suelen ser amorosos, y como la mayoría de los gatos, perezosos. A pesar de ser perezosos son muy ágiles y son muy utilizados para la caza de ratones, por su habilidad natural de atrapar presas. Son gatos de exteriores y disfrutan la compañía de su propia especie. Debido a su impermeabilidad, algunos pueden tolerar el agua, e incluso jugar con ella, algo que realizan con gran frecuencia, especialmente relacionando sus presas o juguetes favoritos con el agua.\r\n\r\nA destacar la capacidad que ostentan estos gatos de producir maullidos de diferentes tonalidades y texturas, y su afán por establecer comunicación tanto otros animales, como con las presas que cazan.																																						', 'Su dieta no difiere excesivamente de la de cualquier gato común, si bien destaca su gusto por el marisco, que presenta ciertos componentes adictivos en este tipo de animales.\r\n\r\nSi se les permite comer en exceso y llevar una vida extremadamente sedentaria pueden llegar a pesar hasta 12 kilos, o más en casos extremos (obesidad mórbida).																																						', 'Cabeza\r\nLa cabeza de un Maine Coon debe ser mediana, casi cuadrada y perfil ligeramente cóncavo. Pómulos prominentes y barbilla alineada con la nariz y el labio superior.\r\n\r\nOrejas\r\nSus orejas son largas, puntiagudas y terminadas en pinceles. (No ocurre en todos los casos, los Maine Coon originarios de regiones europeas no suelen presentar estas características).\r\n\r\nOjos\r\nSus ojos son grandes y ligeramente ovalados; pueden ser de cualquier color menos azules, que es exclusivo en gatos blancos.\r\n\r\nCuerpo\r\nMusculoso, de apariencia rectangular, cuello musculoso en los machos y pecho amplio. Las hembras son mucho más pequeñas que los machos. Tendencia a presentar mayor volumen en la zona abdominal.\r\n\r\nPelo\r\nSu pelo es resistente al agua y nieve, es corto en la cabeza pero se va alargando al llegar a la cola.\r\n\r\nColor de manto\r\nPueden ser de cualquier color menos los patrones siameses, colorpoint, chocolate, etc. Los más comunes son los tabby, sólidos, humos y diluidos.																																						', ' muy ágiles y son muy utilizados para la caza de ratones																																					', 'http://carolina.x10host.com/archivos/fotos/moon.jpg');
+INSERT INTO `u440932328_perro`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`, `caracter`, `salud`, `caracteristicas`, `utilidad`, `foto_raza`) VALUES (8, 'Siberiano', 2, 'Es un perro de tamaño mediano. Acostumbrado a vivir en la nieve, tiene el pelaje mucho más denso y grueso que otras razas de perros. Es capaz de modificar drástica mente su pelaje según el lugar donde viva :puede cambiar entre pelo largo o más corto. El siberian husky puede tener estos colores: blanco, agoutí y blanco, negro y blanco, sable y blanco, rojo y blanco, gris y plata, siendo estos dos últimos más frecuentes en las hembras. En los estándares, se aceptan combinaciones de varios colores pero no un solo color completamente. Puede tener la lengua de color rosada a negra.																																																																																																																																					', 'Tiene un pelaje que es una protección ante las inclemencias del tiempo frío. Requiere de un cepillado rutinario. No pelecha hasta que llegan los periodos estivales, en los que muda y pierde la subcapa interna de pelo, quedándose únicamente con la capa externa, la cual variará ligeramente su tonalidad hasta que vuelva a reponer su pelaje para los periodos invernales o más fríos.\r\n\r\nDurante la época de muda hay que realizar los cepillados más continuos, ya que se ayuda al perro a que la muda se realice antes. Al contrario de lo que se piensa, el husky se adapta bastante bien al calor, ya que la muda hace que durante los meses de calor sólo tenga la capa externa como otras razas. No es extraño ver a un husky tumbado al sol en pleno verano.\r\n\r\nNunca hay que rapar o afeitar a un husky.\r\nLos huskys siberianos generalmente son perros de buena salud, viviendo de diez a doce años. Pueden tener problemas de la vista																																																																																																																																														', 'Presenta el comportamiento de su ancestro el lobo, aunque si se llega a entrenar	y socializa adecuadamente desde que es joven puede ser una buena mascota de familia, ya que son cariñosos con personas de todas las edades. Ademas de que le gusta estar en jauria por lo que sera feliz con otros compañeros perros.																																																																																																																																																																																																						', 'Los siberianos son aún utilizados ocasionalmente como perros de tiro en las carreras de mushing,Aparte de las carreras de tiro de perros también son populares para desarrollar la actividad de montaña denominada skijoring y Caninoterapia.																																																																																																																																																																																																	', 'http://carolina.x10host.com/archivos/fotos/husky.jpg');
+INSERT INTO `u440932328_perro`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`, `caracter`, `salud`, `caracteristicas`, `utilidad`, `foto_raza`) VALUES (9, 'Bosque de Noruega', 2, 'Les encanta convivir con la gente y se sienten miembros de la familia por derecho propio. Les gusta participar de todo y nunca hay que marginarlos de la vida cotidiana.																																											', 'Necesita un cepillado y peinado ocasional.																																											', 'Es una raza fuerte, y las hembras no suelen presentar problemas en el parto. Los cachorros comienzan a desarrollar el pelaje adulto entre los 3 y los 5 meses.																																										', 'Animal de compañía.																																											', 'http://carolina.x10host.com/archivos/fotos/nore.jpg');
+INSERT INTO `u440932328_perro`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`, `caracter`, `salud`, `caracteristicas`, `utilidad`, `foto_raza`) VALUES (10, 'Mau egipcio', 2, 'Es un gato muy independiente e inteligente, como la mayoría de los gatos, aunque es cariñoso y amistoso. Es posesivo con sus juguetes, al igual que con los dueños, y fiel con los mismos. Debido a que es un gato muy territorial y celoso no se recomienda dejarlo solo jugando con niños.																																						', 'El gato mau egipcio no necesita unos cuidados excesivos, bastará con prestar atención a su pelaje y cepillarlo de dos a tres veces por semana, de este modo logrará un manto brillante y sedoso, bonito por naturaleza. Una alimentación premium nos asegurará la belleza de su pelaje.\r\nAdemás de el pelaje prestaremos atención a otros aspectos, estos de carácter más rutinario como puede ser: eliminar sus legañas, revisarlo periódicamente y recortarle las uñas.																																				', 'El rasgo distintivo del Mau es el moteado de su manto, que contrasta con el color de fondo. Las motas oscuras deben ser redondeadas y tener una distribución uniforme, aunque con frecuencia se reparten aleatoriamente formando líneas discontinuas. Las patas y la cola presentan bandas de color más oscuro.\r\n\r\nTiene un cuerpo de tipo cobby pero largo, mediano, estilizado y musculoso, de constitución similar al abisinio.\r\n\r\nLas patas traseras son más largas que las delanteras, y tiene pies pequeños y delicados, redondos u ovalados. La cola es de longitud mediana, gruesa en la base y disminuye su grosor hacia la punta. La cabeza tiene una forma triangular algo redondeada, con curvas suaves en la mandíbula, los pómulos y el perfil. Las orejas son grandes y erguidas, están bien separadas y tienen una base ancha y puntas bastante afiladas.																																						', 'Mascota, limpiador de plagas.																																					', 'http://carolina.x10host.com/archivos/fotos/mau.jpg');
+INSERT INTO `u440932328_perro`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`, `caracter`, `salud`, `caracteristicas`, `utilidad`, `foto_raza`) VALUES (11, 'Chartreux', 2, 'La raza no solo es bien educada sino muy calmada.																																											', 'Se requiere poco acicalamiento, solo cepilladas regulares. Come mucho así que se recomienda una dieta balanceada y vitaminas. Los machos casi nunca marcan, son muy limpios y por lo general no agresivos.																																												', 'El único color aceptable es el color azul en todos los tonos de azul-gris a gris-azul y debe ser uniforme desde la punta del pelo hasta las raíces. Ya sea oscuro o pálido, el color de su pelaje debe ser completamente uniforme, aunque las marcas atigradas están presentes durante los primeros años de su vida. El manto es de color azul-gris. La presencia de manchas blancas en la capa puede eliminar completamente el título.																																										', 'Mascota.																																											', 'http://carolina.x10host.com/archivos/fotos/gatocha.jpg');
+INSERT INTO `u440932328_perro`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`, `caracter`, `salud`, `caracteristicas`, `utilidad`, `foto_raza`) VALUES (13, 'Cuyo abisinio', 3, 'Son animales mansos, tranquilos y nada violentos, aunque siempre se encuentran muy alerta. Ante situaciones extrañas o la manipulación pueden morder, respondiendo, quizás con inmovilidad o el escape a gran velocidad.																																											', 'Sus necesidades de líquido quedan cubiertas con la ingestión de alimentos frescos. Cerciórate de tener siempre un bebedero con agua limpia y fresca, utiliza una botella de agua equipada con un tubo para beber, seguramente te será más fácil y mantendrás el agua libre de contaminación.\r\nDebes tener cuidado con algunas plantas que pueden ser nocivas para tu mascota como el perejil, cicuta, cola de caballo, diente de león, yerba mala, mora, culantrillo, mostaza, acerba y  leche.\r\nComo muchos otros roedores, los cobayos se comen sus propias heces, es decir práctica la cecotrofia, para aprovechar los nutrientes. Esto no lo realizará si encuentra en su dieta, lo necesario, consulta a tu médico veterinario.																																											', 'Camadas reducidas de 4 crías, gestación larga, de 69 días, además de que las crías nacen con pelo caminando y pueden empezar a comer alimento sólido desde el primer día de edad. \r\nEl peso adulto de los cuyos oscila entre 0.7 y 1.8 kg siendo los machos mas robustos. La longevidad del cuyo varia de 5 a 8 años dependiendo el tipo de vida que haya llevado																																											', 'Mascota.																																											', 'http://carolina.x10host.com/archivos/fotos/cui.jpg');
+INSERT INTO `u440932328_perro`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`, `caracter`, `salud`, `caracteristicas`, `utilidad`, `foto_raza`) VALUES (14, 'Cobaya americana', 3, 'La cobaya americana tiene un gran temperamento. \r\nEs muy poco frecuente que muestren cualquier tipo de agresión hacia los seres humanos, aunque a veces lo hacen con otras cobayas. Pero si ese es el caso, entonces puede ser un problema con el tamaño de su jaula.																																											', 'No contrae enfermedades demasiado fácilmente. Animamos a los dueños a llevar su mascota afuera para jugar y correr de vez en cuando, pero sólo si los vigila. No dejes que coman nada que pueda causar una enfermedad o daño. También, un depredador podría fácilmente venir y arrebatarlos lejos si usted no tiene cuidado 																																											', 'La cobaya americana tiene un abrigo corto y liso. No tiene rizos y puede venir en una variedad de colores. El satén americano es idéntico al americano, excepto que su capa es fina, densa y extra brillante. Es una nueva raza que sólo recientemente ha ganado el reconocimiento de la asociación																																											', 'Mascota.																																										', 'http://carolina.x10host.com/archivos/fotos/cobaya.jpg');
+INSERT INTO `u440932328_perro`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`, `caracter`, `salud`, `caracteristicas`, `utilidad`, `foto_raza`) VALUES (15, 'Hámsteres enanos de Roborovski', 4, 'Los hámsters Roborovski son criaturas muy activas, muy sociables, y en cautiverio deben mantenerse en parejas o en grupos.																																											', 'No lo alimentes con demasiada verduras fresca, ya que los hámsters Roborovski están adaptados a las condiciones del desierto, y como tal, su sistema digestivo no están diseñados para procesar los alimentos con un alto contenido de humedad. Demasiado a la vez y podrían tener diarrea.\r\nAdemás, a pesar de que son criaturas del desierto con riñones muy eficientes que conservan toda la ingesta de agua, los hámsters Roborovski necesitan agua limpia y fresca disponible en todo momento.																																								', 'El hámster enano Roborovski o Roborowski (Phodopus roborovskii) es un muy atractivo, muy pequeño y es un manojo de energía.\r\nSe trata de la especie más pequeña de hámster y la mejor mascota ya que es muy fácil de manejar.\r\nRara vez muerden y pueden ser domesticados. La visión de un grupo de hámsters Roborovski corriendo alrededor de sus juguetes es cautivante.																																							', 'Mascota.																																										', 'http://carolina.x10host.com/archivos/fotos/hamster-roborovski.jpg');
+INSERT INTO `u440932328_perro`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`, `caracter`, `salud`, `caracteristicas`, `utilidad`, `foto_raza`) VALUES (16, 'Mini Lop', 5, 'La mayoría de los conejos pueden llevarse bien con otros animales como conejillos de indias, si estos son introducidos en su ambiente adecuadamente. Los Mini lops no son la excepción a esto. De hecho, fueron desarrollados con la intención de crear un conejo fácil de manejar y adaptar, y lo suficientemente resistente para soportar abrazos de los niños.																																						', 'La mayoría de los problemas de salud de esta y otras razas de conejos se relacionan con una dieta inadecuada.\r\nun criador debe estar al pendiente de que los conejos son susceptibles a condiciones extremas de calor o frío, especialmente si se mantienen de forma permanente al aire libre. “Snuffles” es el término dado a una enfermedad respiratoria infecciosa (Pasteurella multocida), común  en los conejos que se mantienen en condiciones de corrientes de aire o con poca ventilación.																																					', 'El lop no es un conejo muy activo y no requiere una gran cantidad de ejercicio, pero se debe tener cuidado de que no está sobrealimentado. El ejercicio también ayudará a los conejos a desgastar las uñas y a mantener el tono corporal.																																						', 'Mascota.																																			', 'http://carolina.x10host.com/archivos/fotos/lop.jpg');
+INSERT INTO `u440932328_perro`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`, `caracter`, `salud`, `caracteristicas`, `utilidad`, `foto_raza`) VALUES (17, 'Lionhead', 5, 'En la mayoría de los casos, Lionhead es una mascota amigable y educada. Es posible entrenar a un Lionhead ya que son criaturas muy inteligentes. Pueden comprender ciertas órdenes como venir, jugar y comer. Los conejos Lionhead también son buenos para los niños. 																																						', 'El conejo Lionhead es un animal que no requiere de cuidados excesivos. Si bien la melena de la cabeza precisa ser peinada no es necesario hacerlo de forma diaria, aunque esto no debe descuidarse pues se le pueden hacer nudos.\r\nDebido a esto los conejos cabeza de león pueden ingerir grandes cantidades de pelo, por lo que se les debe proporcionar pasta de malta dos o tres veces a la semana para que se desintegren y no le causen problemas estomacales o intestinales.\r\nAl igual que en resto de las razas, los conejos Lionhead no deben bañarse pues pierden la capa protectora que se halla en su piel.																																						', 'El conejo Lionhead tiene un cuerpo pequeño y compacto, y la cabeza es llamativa, aunque no del todo redondeada desde todos los lados, con el hocico bien desarrollado. Sus patas son de longitud media y son de hueso mediano. Sus orejas no deben exceder las 3 pulgadas de largo. Su melena debe tener al menos 2 pulgadas de largo y forma un círculo completo alrededor de la cabeza, que se extiende hasta una \"V\" en la parte posterior del cuello. Puede caer en una franja entre las orejas, creando un \"gorro de lana\". Los Lionheads tienen una capa normal de longitud media sobre la montura, y algunos tienen \"lana de transición\" en sus flancos.																																							', 'Mascota.																																				', 'http://carolina.x10host.com/archivos/fotos/conejo.jpg');
+INSERT INTO `u440932328_perro`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`, `caracter`, `salud`, `caracteristicas`, `utilidad`, `foto_raza`) VALUES (18, 'Juliana', 6, 'Se dice que los 	cerdos miniatura tienen un temperamento entre el perro y el gato, esto quiere decir que a veces necesitan sentirse queridos y acompañados, pero otras más prefieren estar solos. Son animales muy seguros de sí mismos y por lo general no sienten temor ante animales o especies más grandes que ellos, ya que están acostumbrados a defenderse de distintos depredadores.																																							', 'Debido a las malas prácticas de crianza y altos niveles de endogamia, asociaciones y santuarios dedicados al rescate de estos animales abandonados han reportado cada vez más cerdos con problemas congénitos como problemas en los ojos, machos con testículos poco desarrollados y hembras con ano imperforado, entre otros problemas																												', 'Higiénicamente son muy limpios, ya que hacen sus necesidades en un arenero, como los gatos.\r\nTienen una gran capacidad para aprender.\r\nSon capaces de convivir con cualquier otra mascota sin ningún problema ni rivalidad entre ellos.\r\nSon aptos para todos los hogares diferentes, ya sea un piso, una casa, etc. ya que no dependen de esto a diferencia de otros animales.\r\nSon muy cariñosos y obedientes.\r\nSon inofensivos.\r\nNo sueltan pelo\r\nNo poseen glándulas sudoríparas en la piel, por lo que no provocan olor corporal molesto.\r\nEstos cerditos viven aproximadamente entre 10 y 18 años, y pueden llegar a pesar entre los 30 y 35 kg. Como curiosidad, hay que destacar que son muy resistentes a las enfermedades, mucho más que cualquier raza de perro o gato.\r\nComo ya hemos comentado, estos minipig hacen sus necesidades donde nosotros les enseñemos, como si de un perrito o gatito se tratara, lo que los diferencia de cualquier otra raza de cerdo y de muchas mascotas.\r\nSu precio es alto, y son muy difíciles de conseguir dada a su rara naturaleza.																																							', 'Animal de compañía.																					', 'http://carolina.x10host.com/archivos/fotos/pig.jpg');
+INSERT INTO `u440932328_perro`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`, `caracter`, `salud`, `caracteristicas`, `utilidad`, `foto_raza`) VALUES (19, 'Göttingen', 6, 'Muy sociables,inteligentes,amorosos,limpios.																																											', 'Garrapatas\r\nPiel seca y con escamas, quemaduras por el sol y dermatitis.\r\nOtitis normales que se convierten en crónicas por la dificultad de limpiar y tratar los oídos de estos animales.\r\nEnfermedades respiratorias.\r\nObesidad. En casos de mala alimentación, los cerdos tienden a engordar rápidamente. La principal solución es racionar la dieta y aumentar la fibra.\r\nDeformaciones en pezuñas.\r\nProblemas de comportamiento, mostrando cada vez una mayor agresividad, lo que puede causarles heridas al enfrentarse con otros animales o destrozar objetos.																																											', 'Pueden domesticarse y una vez que aprenden a hacer algo ya no lo olvidan, lo cual puede dar algunos quebraderos de cabeza a sus dueños. Hay que disponer de un lugar de descanso con heno y de una amplia zona de jardín con barro y tierra para que los cerdos puedan cavar con sus hocicos: les encanta.																																											', 'Animal de compañia.																																											', 'http://carolina.x10host.com/archivos/fotos/pig1.jpg');
+INSERT INTO `u440932328_perro`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`, `caracter`, `salud`, `caracteristicas`, `utilidad`, `foto_raza`) VALUES (20, 'Gekco', 8, 'La gran mayoría de los geckos son nocturnos o crepusculares y se mantienen escondidos durante el día en los árboles y arbustos o bajo las rocas. Sólo algunas especies son diurnas, como las de los géneros Phelsuma, Naultinus y Gonatodes.\r\n\r\nTodos los geckos cazan por la vista. También utilizan la lengua para detectar olores, al igual que otros lagartos y las serpientes. Sin embargo, utilizan principalmente los estímulos visuales para localizar a sus presas y evadir depredadores. Los geckos sólo pueden ver las presas cuando se mueven. Si una presa se mantiene inmóvil, esta invisible para el gecko. Esto no tiene nada que ver con los ojos, sino con la forma en que los estímulos sensoriales se procesan por el cerebro.																																											', 'Como son animales no domesticados, es recomendable tenerlos en un lugar adecuado, similar a su habitad.\r\n																																									', 'Ojos y pies relativamente grandes, en particular los dedos de los pies. Por lo general las escamas son pequeñas y tienen una cabeza aplanada sin espinas o crestas. Presentan una gran variedad de formas, colores y tamaños. La mayoría tiene colores apagados y están bien camuflados en su entorno natural																																											', 'Mascota Exótica.																																											', 'http://carolina.x10host.com/archivos/fotos/chora.jpg');
+INSERT INTO `u440932328_perro`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`, `caracter`, `salud`, `caracteristicas`, `utilidad`, `foto_raza`) VALUES (21, 'Salamandra', 8, 'Son animales exóticos, que se recomienda tener en un lugar acoplado para ellos.																																					', 'Dependen de hábitats con agua, frescos o húmedos.																																				', 'Es un animal de hábitos nocturnos, aunque puede verse activa de día si la humedad relativa es alta,y cuando la temperatura es fresca pero superior a los 3 ºC. Por el día se refugia bajo la hojarasca, troncos de árboles caídos o bajo piedras. Las larvas se encuentran en arroyos y fuentes de aguas limpias y en ocasiones en aguas ferruginosas.\r\n Su piel contiene pequeñas cantidades de sustancias tóxicas que irritan los ojos y boca de los predadores.																																						', 'Animal exótico.																																					', 'http://carolina.x10host.com/archivos/fotos/sal.jpg');
+INSERT INTO `u440932328_perro`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`, `caracter`, `salud`, `caracteristicas`, `utilidad`, `foto_raza`) VALUES (22, 'Peces Gato:', 7, 'Permanecen la mayor parte de su tiempo en el fondo del agua, suelen ser de costumbres nocturnas y la mayoría habitan en aguas dulce, aunque existen grupos que viven en agua marina, generalmente asociados a arrecifes; también en agua salubre, especialmente en los estuarios. Existen ciertas excepciones, es decir peces gatos con costumbres diurnas como es el caso de los locáridos, y especies que se asocian en grupos, por ejemplo las populares corydoras.																																				', 'Si se decide adoptar estos asombrosos animales acuáticos, es necesario conocer sus costumbres, ya que es variable en función de la especie; el tamaño ha de ser compatible con una pecera adecuada. En cautividad es necesario disponer de troncos y otros accesorios para que puedan esconderse, muchos ejemplares requieren vivir en áreas con poca luz; su alimentación es variada en función de la especie, como ya manifestamos, algunos son carnívoros, otros herbívoros e incluso muchos consumen toda clase de alimentos, nos referimos a los peces gatos omnívoros. En tiendas especializadas de acuariofilia podemos encontrar alimentos balanceados de gran utilidad para el mantenimiento del pez gato.														', 'Cuentan con unos tentáculos en de la boca, denominados barbillones filamentosos, y esa es la razón por la que se le designe comúnmente como pez gato. Estos barbillones siempre están presentes en los laterales de la boca, también pueden existir en la mandíbula inferior, incluso en el propio hocico asociados con los orificios nasales. Su finalidad principal es la de su utilización como órgano sensorial, ya que gracias a ellos pueden detectar fácilmente el alimento que consumen.\r\n\r\nCuentan con espinas punzantes y retráctiles en la parte anterior de su aleta dorsal y pectoral, sin duda un elemento potencial que les sirve para defenderse de sus depredadores, además, ciertas especies poseen glándulas venenosas en las propias espinas, las cuales pueden inyectar a sus víctimas.																																						', 'Animal exótico en pecera.																																					', 'http://carolina.x10host.com/archivos/fotos/pez.jpg');
+INSERT INTO `u440932328_perro`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`, `caracter`, `salud`, `caracteristicas`, `utilidad`, `foto_raza`) VALUES (23, 'Peces espiga', 7, 'Pacífico y gregario, en general ignora a los demás compañeros de hábitat en cautiverio.																																						', 'Como se trata de un gran nadador, el acuario deberá tener una buena capacidad, de 150 L o más, con plantación periférica y mucho espacio para nadar. En cuanto a las condiciones físico-químicas del agua, es más bien exigente. Deberá tener un excelente sistema de filtrado y estar muy oxigenada. pH entre 6 y 7, dureza no mayor de 15 dGH , buena iluminación y cambios frecuentes de agua.																																						', 'Ideal para el acuario comunitario. Pacífico y gregario, en general ignora a los demás compañeros de hábitat en cautiverio, pudiendo llegar a ser un tanto agresivos en época de celo con los de su misma especie, ya que entre ellos existirá siempre un orden jerárquico. Sin embargo, al ser un nadador muy enérgico e incansable, puede llegar a producir estrés en peces tranquilos y lentos. Conviene mantenerlos en cardúmen de al menos 5 o 6 ejemplares.																																						', 'Ideal para acuarios.																																						', 'http://carolina.x10host.com/archivos/fotos/pezes.jpg');
+INSERT INTO `u440932328_perro`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`, `caracter`, `salud`, `caracteristicas`, `utilidad`, `foto_raza`) VALUES (24, 'Araña de rincón o violinista', 9, 'La araña de rincón es principalmente nocturna, viéndose incrementada su actividad en noches veraniegas calurosas y con luna. Si bien es activa durante todo el año, su vitalidad disminuye con la llegada del frío. Por ello sus lugares predilectos durante el día son los rincones oscuros, de los que sale para cazar. Esta especie de araña se esconde en lugares polvorientos y poco aseados como, por ejemplo, bajo los tanques de gas, detrás de cuadros, cornisas, librerías o en los armarios, especialmente con ropa.																																											', 'Mantenerla en un área que asemeje su entorno.																																										', 'Es marrón y tiene marcas en el lado dorsal del tórax con una línea negra que parte de ahí con forma de violín, cuyo cuello apunta a la parte posterior de la araña, lo que le da su nombre en áreas de habla inglesa, fiddleback spider («araña de violín»). Cuando el dibujo de violín no es visible se han de examinar los ojos para su correcta identificación.																																										', 'No se recomienda como mascota es venenosa																																									', 'http://carolina.x10host.com/archivos/fotos/viol.jpg');
+INSERT INTO `u440932328_perro`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`, `caracter`, `salud`, `caracteristicas`, `utilidad`, `foto_raza`) VALUES (25, 'Araña Hobo', 9, 'Muy agresiva en la naturaleza. Se adaptan a vivir en muchos lugares. 																																																																							', 'Se recomienda tenerlas en lugares que asemejen su habitad.																																																																					', 'Puede ser difícil ver a la araña hobo por el hecho de que a menudo se esconden. Ellas buscan temperaturas más cálidas cuando el clima cambia. En ese momento las personas pueden verlas dentro de sus casas.\r\nEsta es una de las arañas conocidas por hacer un tipo de embudo con la tela. Se ponen en su red a esperar que su presa venga. Las cucarachas, moscas, termitas, escarabajos, y muchas otras plagas son lo que principalmente van a comer. Ellas no logran escalar bien, por lo que generalmente se estas arañas comen de lo que aparece al nivel del suelo. 																																																																						', 'Mascota exótica.	(Venenosa).																																																																				', 'http://carolina.x10host.com/archivos/fotos/ara.jpg');
+INSERT INTO `u440932328_perro`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`, `caracter`, `salud`, `caracteristicas`, `utilidad`, `foto_raza`) VALUES (26, 'Tarántula', 9, 'Tranquila y solitaria 																												', 'Para mantenerla en buenas condiciones basta con tener un ternario adaptado y húmedo.											 																																																																																																																																																																															', 'Disponen de pelos urticantes que son capaces de lanzar como defensa contra los depredadores, pudiendo causar a manipuladores graves molestias en la piel, inflamaciones de mucosas si se inhalan, o en los peores casos graves daños en ojos sin protección.													 																																																																																																																																																																												', 'Como una mascota exótica.											 																																																																																																																																																																															', 'http://carolina.x10host.com/archivos/fotos/tarantula12.jpg');
+INSERT INTO `u440932328_perro`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`, `caracter`, `salud`, `caracteristicas`, `utilidad`, `foto_raza`) VALUES (27, 'hormigas', 10, 'Trabajadoras, atacan si se les molesta.																																										', 'Las hormigas de mascota se pueden mantener en un simple tubo de ensayo de vidrio hasta que la colonia sea lo suficientemente grande para que la muevas a una granja de hormigas (también llamada hormiguero o formicarium) real. Debes poner agua azucarada en el tubo de ensayo, tapada con una bola de algodón gruesa; detrás de esta bola pon a la reina y su progenie. El tubo puede ser tapado con otra bola-tapón de algodón para evitar que las hormigas se escapen. Este tipo de alojamiento no es para nada atractivo, pero es bastante eficiente para tener colonias pequeñas, con un máximo de 25 obreras.																																											', 'Cualquiera puede decirte cómo se ve una hormiga. Seis patas, dos antenas, un cuerpo conformado por tres segmentos (cabeza, tórax y abdomen). Algunas hormigas tienen alas, estas son las reinas y ‘reyes. Pueden encontrarse hormigas de muchos colores, incluyendo negro, café, amarillo y rojo.																																										', 'Mascota.																																										', 'http://carolina.x10host.com/archivos/fotos/hom.jpg');
+INSERT INTO `u440932328_perro`.`razamascota` (`idrazamascota`, `nombre_raza`, `tipo_mascota_idtipo_mascota`, `caracter`, `salud`, `caracteristicas`, `utilidad`, `foto_raza`) VALUES (28, 'Hemidípteros', 10, 'Son insectos, por lo tanto se comportan como tal.																																											', 'Mantenerlos en un lugar que se asemeje a su habitad.																																											', 'Los hemípteros son insectos hemimetábolos, es decir, con metamorfosis incompleta; tras de eclosionar los huevos, ninfas, o estadios inmaduros que son similares a los adultos pero sin gónadas ni alas. Después de varias mudas, que originan hasta cinco estadios ninfales sucesivos, se transforman en imagos (adultos) alados y sexualmente maduros, listos para perpetuar su especie.																																											', 'Existen muchas especies depredadoras de otros insectos, que son de inestimable valor para el control de las poblaciones naturales de plagas potenciales y que se usan en el control biológico.																																											', 'http://carolina.x10host.com/archivos/fotos/insec.jpeg');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `u440932328_perro`.`mascota`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `u440932328_perro`;
+INSERT INTO `u440932328_perro`.`mascota` (`idmascota`, `nombre`, `sexo`, `edad`, `foto_mas`, `tipo_mascota_idtipo_mascota`, `razamascota_idrazamascota`, `megusta`, `nomegusta`) VALUES (3, 'max', 'MACHO', '4', 'http://carolina.x10host.com/1mascota2.jpg', 1, 1, 'NULL', 'NULL');
+INSERT INTO `u440932328_perro`.`mascota` (`idmascota`, `nombre`, `sexo`, `edad`, `foto_mas`, `tipo_mascota_idtipo_mascota`, `razamascota_idrazamascota`, `megusta`, `nomegusta`) VALUES (4, 'maxo', 'HEMBRA', '42', 'http://carolina.x10host.com/1mascota3.jpg', 1, 1, 'NULL', 'NULL');
+INSERT INTO `u440932328_perro`.`mascota` (`idmascota`, `nombre`, `sexo`, `edad`, `foto_mas`, `tipo_mascota_idtipo_mascota`, `razamascota_idrazamascota`, `megusta`, `nomegusta`) VALUES (5, 'pom', 'HEMBRA', '1', 'http://carolina.x10host.com/1mascota4.jpg', 1, 1, 'NULL', 'NULL');
+INSERT INTO `u440932328_perro`.`mascota` (`idmascota`, `nombre`, `sexo`, `edad`, `foto_mas`, `tipo_mascota_idtipo_mascota`, `razamascota_idrazamascota`, `megusta`, `nomegusta`) VALUES (7, 'Tonche', 'MACHO', '4', 'http://carolina.x10host.com/4mascota6.jpg', 2, 11, 'NULL', 'NULL');
+INSERT INTO `u440932328_perro`.`mascota` (`idmascota`, `nombre`, `sexo`, `edad`, `foto_mas`, `tipo_mascota_idtipo_mascota`, `razamascota_idrazamascota`, `megusta`, `nomegusta`) VALUES (8, 'perro saurio', 'MACHO', '5555', 'http://carolina.x10host.com/5mascota7.jpg', 1, 5, 'NULL', 'NULL');
+INSERT INTO `u440932328_perro`.`mascota` (`idmascota`, `nombre`, `sexo`, `edad`, `foto_mas`, `tipo_mascota_idtipo_mascota`, `razamascota_idrazamascota`, `megusta`, `nomegusta`) VALUES (9, 'Puerco neve', 'MACHO', '1', 'http://carolina.x10host.com/6mascota8.jpg', 6, 19, 'NULL', 'NULL');
+INSERT INTO `u440932328_perro`.`mascota` (`idmascota`, `nombre`, `sexo`, `edad`, `foto_mas`, `tipo_mascota_idtipo_mascota`, `razamascota_idrazamascota`, `megusta`, `nomegusta`) VALUES (24, 'muñeca', 'HEMBRA', '7', 'http://carolina.x10host.com/2mascota9.jpg', 1, 1, 'NULL', 'NULL');
+INSERT INTO `u440932328_perro`.`mascota` (`idmascota`, `nombre`, `sexo`, `edad`, `foto_mas`, `tipo_mascota_idtipo_mascota`, `razamascota_idrazamascota`, `megusta`, `nomegusta`) VALUES (26, 'gg', 'HEMBRA', '', 'http://carolina.x10host.com/1mascota24.jpg', 1, 1, 'NULL', 'NULL');
+INSERT INTO `u440932328_perro`.`mascota` (`idmascota`, `nombre`, `sexo`, `edad`, `foto_mas`, `tipo_mascota_idtipo_mascota`, `razamascota_idrazamascota`, `megusta`, `nomegusta`) VALUES (32, 'TONCHEEEEE', 'HEMBRA', '1', 'http://caropetworld.xyz/1mascota26.jpg', 1, 1, '3', '9');
+INSERT INTO `u440932328_perro`.`mascota` (`idmascota`, `nombre`, `sexo`, `edad`, `foto_mas`, `tipo_mascota_idtipo_mascota`, `razamascota_idrazamascota`, `megusta`, `nomegusta`) VALUES (33, 'fer', 'MACHO', '25', 'http://caropetworld.xyz/2mascota32.jpg', 1, 1, '66', '30');
+INSERT INTO `u440932328_perro`.`mascota` (`idmascota`, `nombre`, `sexo`, `edad`, `foto_mas`, `tipo_mascota_idtipo_mascota`, `razamascota_idrazamascota`, `megusta`, `nomegusta`) VALUES (34, 'perro', 'MACHO', '3', 'http://caropetworld.xyz/mascota34.jpg', 6, 19, '5', '3');
+INSERT INTO `u440932328_perro`.`mascota` (`idmascota`, `nombre`, `sexo`, `edad`, `foto_mas`, `tipo_mascota_idtipo_mascota`, `razamascota_idrazamascota`, `megusta`, `nomegusta`) VALUES (36, 'popis', 'MACHO', '13', 'http://caropetworld.xyz/8mascota35.jpg', 6, 18, '37', '60');
+INSERT INTO `u440932328_perro`.`mascota` (`idmascota`, `nombre`, `sexo`, `edad`, `foto_mas`, `tipo_mascota_idtipo_mascota`, `razamascota_idrazamascota`, `megusta`, `nomegusta`) VALUES (37, 'Gatito ???? ', 'MACHO', '2', 'http://caropetworld.xyz/9mascota36.jpg', 2, 10, '11', '7');
+INSERT INTO `u440932328_perro`.`mascota` (`idmascota`, `nombre`, `sexo`, `edad`, `foto_mas`, `tipo_mascota_idtipo_mascota`, `razamascota_idrazamascota`, `megusta`, `nomegusta`) VALUES (38, 'alonso', 'MACHO', '5', 'http://caropetworld.xyz/2mascota37.jpg', 1, 6, '2', '7');
+INSERT INTO `u440932328_perro`.`mascota` (`idmascota`, `nombre`, `sexo`, `edad`, `foto_mas`, `tipo_mascota_idtipo_mascota`, `razamascota_idrazamascota`, `megusta`, `nomegusta`) VALUES (39, 'Prueba 1', 'HEMBRA', '2', 'http://caropetworld.xyz/4mascota38.jpg', 1, 1, '0', '0');
+INSERT INTO `u440932328_perro`.`mascota` (`idmascota`, `nombre`, `sexo`, `edad`, `foto_mas`, `tipo_mascota_idtipo_mascota`, `razamascota_idrazamascota`, `megusta`, `nomegusta`) VALUES (40, 'pruebaaaa', 'HEMBRA', '2', 'http://caropetworld.xyz/4mascota39.jpg', 1, 1, '0', '0');
+INSERT INTO `u440932328_perro`.`mascota` (`idmascota`, `nombre`, `sexo`, `edad`, `foto_mas`, `tipo_mascota_idtipo_mascota`, `razamascota_idrazamascota`, `megusta`, `nomegusta`) VALUES (41, 'adsdas', 'HEMBRA', '22', 'http://caropetworld.xyz/4mascota40.jpg', 1, 1, '0', '0');
+INSERT INTO `u440932328_perro`.`mascota` (`idmascota`, `nombre`, `sexo`, `edad`, `foto_mas`, `tipo_mascota_idtipo_mascota`, `razamascota_idrazamascota`, `megusta`, `nomegusta`) VALUES (42, 'a', 'HEMBRA', '2', 'http://caropetworld.xyz/4mascota41.jpg', 1, 1, '0', '0');
+INSERT INTO `u440932328_perro`.`mascota` (`idmascota`, `nombre`, `sexo`, `edad`, `foto_mas`, `tipo_mascota_idtipo_mascota`, `razamascota_idrazamascota`, `megusta`, `nomegusta`) VALUES (47, 'Pikachu', 'MACHO', '1', 'http://caropetworld.xyz/archivos/fotos/mascota47.jpg', 1, 1, '0', '0');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `u440932328_perro`.`mascota_usuarios`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `u440932328_perro`;
+INSERT INTO `u440932328_perro`.`mascota_usuarios` (`idmascota_usuarios`, `usuarios_idusuarios`, `mascota_idmascota`, `fecha_agregado`) VALUES (6, 1, 32, '2017-12-07 15:01:57');
+INSERT INTO `u440932328_perro`.`mascota_usuarios` (`idmascota_usuarios`, `usuarios_idusuarios`, `mascota_idmascota`, `fecha_agregado`) VALUES (7, 2, 33, '2017-12-07 15:05:05');
+INSERT INTO `u440932328_perro`.`mascota_usuarios` (`idmascota_usuarios`, `usuarios_idusuarios`, `mascota_idmascota`, `fecha_agregado`) VALUES (8, 1, 34, '2017-12-07 17:35:43');
+INSERT INTO `u440932328_perro`.`mascota_usuarios` (`idmascota_usuarios`, `usuarios_idusuarios`, `mascota_idmascota`, `fecha_agregado`) VALUES (12, 2, 38, '2017-12-08 21:53:41');
 
 COMMIT;
