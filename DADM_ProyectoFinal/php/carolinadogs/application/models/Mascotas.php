@@ -124,4 +124,14 @@ class Mascotas extends CI_Model {
       $DB2->where('mascota_idmascota', $mascota_idmascota );
       $DB2->delete('dislike');
     }
+    public function cargarCorazonesHechos($idusuarios)
+    {
+      $DBcon = $this->load->database('default', TRUE);
+      $query=$DBcon->query("SELECT  * from match where usuarios_idusuarios=$idusuarios");
+        if ($query->num_rows() > 0) {
+          return $query->result();
+        } else {
+          return false;
+        }
+      }
   }

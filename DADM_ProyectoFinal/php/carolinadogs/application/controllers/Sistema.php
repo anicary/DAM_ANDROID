@@ -333,7 +333,7 @@ class Sistema extends CI_Controller {
 		$sumado=$temporal[0]->megusta+1;
 		$datos= array(
 			'megusta' => $sumado
-		//	'idmascota' => $idmascota
+			//	'idmascota' => $idmascota
 		);
 		$this->Mascotas->subirCorazon($idmascota,$datos);
 		$datos2= array(
@@ -352,7 +352,7 @@ class Sistema extends CI_Controller {
 			$sumado=$temporal[0]->megusta-1;
 			$datos= array(
 				'megusta' => $sumado
-			//	'idmascota' => $idmascota
+				//	'idmascota' => $idmascota
 			);
 			$this->Mascotas->subirCorazon($idmascota,$datos);
 			$this->Mascotas->borrarRelacionCorazon($usuarios_idusuarios,$idmascota);
@@ -397,6 +397,12 @@ class Sistema extends CI_Controller {
 	public function perfil_usuario_tinder (){
 		$idusuarios=$this->input->post('idusuarios');
 		$datos=$this->Usuarios->obtenerDatosDelUsuario($idusuarios);
-	  echo json_encode($datos);
+		echo json_encode($datos);
+	}
+	public function obtenerCorazonesGlobal()
+	{
+		$idusuarios=$this->input->post('idusuarios');
+		$datos=$this->Usuarios->cargarCorazonesHechos($idusuarios);
+		echo json_encode($datos);
 	}
 }
