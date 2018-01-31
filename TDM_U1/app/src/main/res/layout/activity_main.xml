@@ -19,12 +19,28 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
 
         <Button
+            android:id="@+id/punto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:text="." />
+
+        <Button
             android:id="@+id/numcero"
-            android:layout_width="259dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:text="0" />
+
+        <Button
+            android:id="@+id/igual"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:text="=" />
 
         <Button
             android:id="@+id/mult"
@@ -174,9 +190,10 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="64dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -185,7 +202,7 @@
             android:layout_width="223dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="TextView"
+            android:inputType="number"
             tools:layout_editor_absoluteX="89dp"
             tools:layout_editor_absoluteY="34dp" />
 
