@@ -109,6 +109,13 @@ public class MainActivity extends AppCompatActivity {
                 result.setText(n1);
             }
         });
+        pto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                n1 = n1 + ".";
+                result.setText(n1);
+            }
+        });
         sumar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
