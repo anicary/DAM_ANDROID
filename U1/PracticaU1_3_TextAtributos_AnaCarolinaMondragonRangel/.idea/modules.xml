@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/PracticaU1_3_TextAtributos_AnaCarolinaMondragonRangel.iml" filepath="$PROJECT_DIR$/PracticaU1_3_TextAtributos_AnaCarolinaMondragonRangel.iml" />
+      <module fileurl="file://C:\AndroidAC\U1\PracticaU1_3_TextAtributos_AnaCarolinaMondragonRangel\PracticaU1_3_TextAtributos_AnaCarolinaMondragonRangel.iml" filepath="C:\AndroidAC\U1\PracticaU1_3_TextAtributos_AnaCarolinaMondragonRangel\PracticaU1_3_TextAtributos_AnaCarolinaMondragonRangel.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\AndroidAC\U1\PracticaU1_3_TextAtributos_AnaCarolinaMondragonRangel\app\app.iml" filepath="C:\AndroidAC\U1\PracticaU1_3_TextAtributos_AnaCarolinaMondragonRangel\app\app.iml" />
     </modules>
   </component>
 </project>
